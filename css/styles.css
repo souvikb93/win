@@ -2178,3 +2178,29 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .announce-link:hover, .announce-link:focus-visible { background-size: 100% 1.5px; }
 .footer ul a, .nav-login { background-image: linear-gradient(currentColor, currentColor); background-repeat: no-repeat; background-size: 0% 1px; background-position: 0 100%; padding-bottom: 2px; transition: background-size .3s var(--ease), color .2s; }
 .footer ul a:hover, .nav-login:hover { background-size: 100% 1px; }
+
+/* =========================================================
+   Problem pair: original look and spacing (owner request).
+   Without WIN = soft grey with faint files behind the text.
+   With WIN = deep navy, no decoration.
+   ========================================================= */
+.compare-card { border-radius: var(--radius-lg); padding: 36px; box-shadow: none; transition: none; }
+.compare-card:hover, .compare-card.before:hover, .compare-card.after:hover { transform: none; box-shadow: none; }
+.compare-card.before { background: #eef1f6; color: var(--ink); padding-bottom: 36px; }
+.compare-card.after { background: var(--navy); color: #fff; }
+.compare-card h3 { font-size: 24px; margin-bottom: 8px; }
+.compare-card > p { font-size: inherit; line-height: 1.6; margin-bottom: 26px; }
+.compare-card.before > p { color: var(--ink-2); } .compare-card.after > p { color: rgba(255,255,255,.7); }
+.compare-card.before .compare-list li { color: var(--ink-2); }
+.compare-card.after .compare-list li { color: rgba(255,255,255,.88); }
+.compare-list { position: relative; z-index: 1; }
+.compare-card.before > h3, .compare-card.before > p { position: relative; z-index: 1; }
+/* the files: big, soft and behind everything, so they never fight the text */
+.paper-stack { right: -26px; bottom: -34px; width: 260px; height: 220px; opacity: .55; z-index: 0; pointer-events: none; }
+.paper { width: 128px; height: 160px; padding: 14px; box-shadow: 0 8px 22px -12px rgba(26,34,62,.18); }
+.paper i { height: 6px; margin-bottom: 8px; background: #e3e8f0; }
+.paper:nth-child(1) { right: 120px; bottom: 56px; }
+.paper:nth-child(2) { right: 62px; bottom: 70px; }
+.paper:nth-child(3) { right: 0; bottom: 44px; }
+@media (max-width: 600px) { .compare-card { padding: 28px 22px; } .compare-card h3 { font-size: 22px; } }
+.compare-card.after, .compare-card.after:hover { box-shadow: none; }

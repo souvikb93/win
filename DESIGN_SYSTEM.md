@@ -59,6 +59,7 @@ All colours are CSS variables in `css/styles.css` `:root`. Never hard-code hex v
 - The brand full stop after headlines is a violet `.dot`. One per heading.
 - Scale: h1 `clamp(40px,5.2vw,72px)` · h2 `clamp(34px,4.4vw,56px)` · card h3 `28px` (`21px` for small dark cards) · body `17px` · lead `clamp(17px,1.6vw,21px)` · meta mono `11–12.5px` uppercase with letter-spacing.
 - Headlines are one colour (navy). No gradient text.
+- **Section headers and page titles use Title Case** ("One Request, Followed End to End."). Short articles, prepositions and conjunctions stay lowercase. Card titles, step titles and body copy stay sentence case.
 - Titles lead; dates and sources are secondary but must stay readable (see Press timeline).
 
 ---
@@ -93,6 +94,7 @@ Applies to Problem, Why WIN, Solutions, Press, Security.
 - Dark variant = same shape and padding on navy (Security cards; the "With WIN" card). Don't invent a third look.
 - Don't put cards inside cards. Visuals sit **directly on the card**, not in a second boxed panel.
 - Titles inside cards use the same size across a section.
+- **Exception: the Problem pair (Without WIN / With WIN)** keeps its own look and spacing: Without WIN is soft grey `#eef1f6`, With WIN is deep navy, both 22px radius, 36px padding, no shadow, no hover lift. Without WIN shows faint paper files **behind** the text (low opacity, never competing with it); With WIN has no decoration. Equal heights.
 - Decorative elements (e.g. the paper files) must never overlap text. Reserve space for them.
 
 ### Pills / chips
@@ -179,6 +181,8 @@ The How it works animation follows WIN's own diagrams exactly:
 | Lines connecting diagram to screen | Show relation by shared outline and fold/open interaction |
 | Dot crossing over nodes | Dot stays on the link between nodes |
 | Steps that didn't match WIN's diagrams | Follow the official 6/8-step flows exactly |
+| Unifying the Problem cards into plain white cards | Problem pair keeps grey vs navy and its own spacing (§5 exception) |
+| Sentence-case section headers | Title Case for section headers and page titles (§3) |
 | Real companies in example UI | Made-up names; real names only as real facts |
 | Custom cursor hiding the pointer | Never hide the system cursor |
 | Decorative files overlapping text | Reserve space; hide on phones |
