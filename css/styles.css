@@ -1960,19 +1960,20 @@ a.cx-card:hover { box-shadow: inset 0 0 0 1px var(--line-strong), var(--shadow-s
 }
 @media (max-width: 600px) { .how-art { border-radius: 20px; } .how-art .how5-left { padding: 14px 12px 16px; } .steps-head { padding: 18px 18px 12px; } }
 
-/* Home: announcement bar under the nav, shown while the hero is in view */
-.announce { position: fixed; z-index: 45; left: 0; right: 0; top: 72px; background: var(--navy); color: rgba(255,255,255,.85); font-size: 14px;
+/* Home: full-width announcement bar under the nav; light surface, close on the far right */
+.announce { position: fixed; z-index: 45; left: 0; right: 0; top: 72px; display: flex; align-items: center; background: var(--violet-100); color: var(--ink); font-size: 14px; border-bottom: 1px solid rgba(88,68,255,.16);
   transform: translateY(0); opacity: 1; transition: transform .45s var(--ease), opacity .35s; }
 .announce.is-hidden { transform: translateY(-110%); opacity: 0; pointer-events: none; }
-.announce-inner { display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 42px; padding-top: 8px; padding-bottom: 8px; }
+.announce-row { flex: 1; display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 44px; padding: 8px 56px; }
 .announce-tag { flex: none; font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; background: var(--violet); color: #fff; }
-.announce-text { text-align: center; }
-.announce-link { flex: none; color: #fff; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(255,255,255,.4); }
-.announce-link:hover { text-decoration-color: #fff; }
-.announce-close { flex: none; width: 28px; height: 28px; border-radius: 8px; color: rgba(255,255,255,.6); font-size: 18px; line-height: 1; }
-.announce-close:hover { color: #fff; background: rgba(255,255,255,.08); }
+.announce-text { text-align: center; color: var(--ink-2); }
+.announce-link { flex: none; color: var(--violet); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(88,68,255,.35); }
+.announce-link:hover { text-decoration-color: var(--violet); }
+.announce-close { position: absolute; right: clamp(12px, 2vw, 28px); top: 50%; transform: translateY(-50%); width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; color: var(--ink-3); }
+.announce-close svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+.announce-close:hover { color: var(--ink); background: rgba(88,68,255,.1); }
 body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px); }
-@media (max-width: 700px) { .announce { font-size: 12.5px; } .announce-text { text-align: left; } .announce-inner { justify-content: flex-start; gap: 8px; } }
+@media (max-width: 700px) { .announce { font-size: 12.5px; } .announce-row { justify-content: flex-start; gap: 8px; padding: 8px 44px 8px 16px; } }
 .announce-short { display: none; }
 @media (max-width: 700px) { .announce-text { display: none; } .announce-short { display: inline; flex: 1; } }
 
@@ -2058,3 +2059,54 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .nc.is-hub { min-width: 0; padding: 14px 20px 11px; } .nc.is-hub .net-logo { height: 26px; }
 @media (max-width: 1000px) { .how-art .how5-grid { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 600px) { .how-art .scr-url { display: none; } .scr-party b { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 220px; } }
+
+/* =========================================================
+   One card language for the whole site
+   surface: white · hairline border · 20px radius · one soft shadow · 32px padding
+   Dark variant (Security) keeps the same shape on navy.
+   ========================================================= */
+:root { --card-r: 20px; --card-pad: 32px; --card-shadow: 0 1px 2px rgba(26,34,62,.04), 0 12px 32px -18px rgba(26,34,62,.18); --card-shadow-hover: 0 1px 2px rgba(26,34,62,.05), 0 22px 44px -20px rgba(26,34,62,.26); }
+.compare-card, .stack-card, .role-copy, .role-visual, .press-feature, .press-item, .trust-card {
+  border-radius: var(--card-r); box-shadow: var(--card-shadow), inset 0 0 0 1px var(--line); border: 0;
+}
+.compare-card, .stack-card, .role-copy, .press-feature, .trust-card { padding: var(--card-pad); }
+.compare-card.before, .compare-card.after, .stack-card, .stack-card.is-right, .stack-card.is-fast, .role-copy, .press-feature, .press-item { background: var(--surface); color: var(--ink); }
+.compare-card.after > p, .compare-card.before > p { color: var(--ink-2); }
+.compare-card.after .compare-list li, .compare-card.before .compare-list li { color: var(--ink-2); }
+/* "after" card: same surface, only the accent marks the difference */
+.compare-card.after { box-shadow: var(--card-shadow), inset 0 0 0 1.5px var(--violet); }
+.compare-card.after .compare-list li::before { background-color: var(--violet-100); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M3.2 7.3l2.5 2.5 5.1-5.3' fill='none' stroke='%235844ff' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.compare-card.before { background: var(--surface); }
+.compare-card h3, .role-copy h3, .stack-copy h3 { font-size: 28px; }
+.trust-card h3 { font-size: 21px; }
+.compare-card > p, .role-copy > p, .stack-copy p, .press-feature .press-src { font-size: 16.5px; line-height: 1.6; color: var(--ink-2); }
+/* same hover on every interactive card */
+.compare-card, .role-copy, .press-feature, .press-item, .trust-card { transition: transform .35s var(--ease), box-shadow .35s var(--ease), background .3s; }
+.compare-card:hover, .role-copy:hover, .press-feature:hover, .press-item:hover { transform: translateY(-3px); box-shadow: var(--card-shadow-hover), inset 0 0 0 1px var(--line-strong); }
+.compare-card.after:hover { box-shadow: var(--card-shadow-hover), inset 0 0 0 1.5px var(--violet); }
+/* stacked cards must not shift while pinned */
+.stack-card:hover { transform: none; }
+
+/* Solutions visual: same card, light surface, same inner rows as everywhere else */
+.role-visual { background: radial-gradient(520px 260px at 100% 0%, rgba(88,68,255,.08), transparent 60%), var(--surface); color: var(--ink); padding: var(--card-pad); }
+.role-visual::before { display: none; }
+.rv-title { color: var(--ink-3); }
+.rv-card { background: var(--bg); border: 0; box-shadow: inset 0 0 0 1px var(--line); backdrop-filter: none; -webkit-backdrop-filter: none; border-radius: 14px; color: var(--ink); }
+.rv-card .rv-ico { background: var(--violet-100); }
+.rv-card .rv-ico svg { stroke: var(--violet); }
+.rv-card small { color: var(--ink-3); } .rv-card .rv-right { color: var(--ink-2); }
+.rv-card .pill-ok { background: var(--teal-100); color: var(--teal); }
+.rv-card .pill-off { background: #eef1f6; color: var(--ink-3); }
+.rv-big { color: var(--ink); } .role-visual p { color: var(--ink-2) !important; }
+
+/* Press: feature quote and list use the same card */
+.press-feature::after { color: var(--violet-100); }
+.press-meta b { color: var(--violet); }
+.press-item .arrow { background: var(--violet-100); color: var(--violet); }
+.press-item:hover .arrow { background: var(--violet); color: #fff; }
+
+/* Security: same shape and padding on the dark band */
+.trust-card { background: rgba(255,255,255,.04); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
+.trust-card:hover { background: rgba(255,255,255,.07); box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); transform: translateY(-3px); }
+
+@media (max-width: 600px) { :root { --card-pad: 24px; } .compare-card h3, .role-copy h3, .stack-copy h3 { font-size: 24px; } }
