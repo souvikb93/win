@@ -220,3 +220,5 @@ The How it works animation follows WIN's own diagrams exactly:
 **Solution page (`solution.html`):** How it works as a scroll timeline (after 21st.dev manuarora700/timeline). Direct flow only: merchant, WIN, producer, 6 steps. Sticky step number left, line fills violet with scroll, each step's screen loops on its own while visible (`js/solution.js`). Role names only, no companies. Top nav: Home, Solution, Press, Contact.
 
 Home no longer carries How it works: a short "See How WIN Works, Step by Step." band after Why WIN links to `solution.html` (as do the hero secondary button and the footer).
+
+The "One Network, Three Roles" tabs section moved from Home to the Solution page, below the timeline and above the closing CTA. Its tab script lives in `js/solution.js`.

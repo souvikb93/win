@@ -89,15 +89,6 @@
 
   /* How it works lives on the Solution page (js/solution.js) */
 
-  /* ---------- Solutions tabs ---------- */
-  var tabs = document.querySelectorAll('.role-tab');
-  tabs.forEach(function (t) {
-    t.addEventListener('click', function () {
-      var r = t.getAttribute('data-role');
-      tabs.forEach(function (x) { x.setAttribute('aria-selected', String(x === t)); });
-      document.querySelectorAll('.role-panel').forEach(function (p) { p.classList.toggle('is-active', p.getAttribute('data-panel') === r); });
-    });
-  });
 })();
 
 /* ---------- Card motion: data being requested, checked and delivered ---------- */

@@ -123,4 +123,14 @@
     if (!('IntersectionObserver' in window)) { visible = true; run(); return; }
     new IntersectionObserver(function (e) { visible = e[0].isIntersecting; if (visible) run(); }, { threshold: 0.4 }).observe(win);
   });
+
+  /* ---------- Roles tabs (One Network, Three Roles) ---------- */
+  var tabs = document.querySelectorAll('.role-tab');
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      var r = t.getAttribute('data-role');
+      tabs.forEach(function (x) { x.setAttribute('aria-selected', String(x === t)); });
+      document.querySelectorAll('.role-panel').forEach(function (p) { p.classList.toggle('is-active', p.getAttribute('data-panel') === r); });
+    });
+  });
 })();
