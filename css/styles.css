@@ -1744,3 +1744,72 @@ a.cx-card:hover { box-shadow: inset 0 0 0 1px var(--line-strong), var(--shadow-s
   .record { left: clamp(100px, var(--rx), calc(100% - 100px)); }
   .how4 .scr-body { height: 380px; padding: 16px; } .how4 .scr-view { inset: 16px; } .how4 .frm { grid-template-columns: 1fr; gap: 4px; }
 }
+
+/* =========================================================
+   How it works v5: classic diagram + screen (left), steps (right)
+   ========================================================= */
+.how.how5 { min-height: 0; display: block; padding: clamp(80px, 11vw, 140px) 0; }
+.how5-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr); gap: clamp(32px, 4vw, 64px); align-items: start; }
+.how5-left { display: grid; gap: 24px; }
+.dia { border-radius: 24px; background: var(--bg); box-shadow: inset 0 0 0 1px var(--line); padding: 18px 18px 14px; }
+.dia-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.dia-lane { fill: none; stroke: var(--line-strong); stroke-width: 2; stroke-dasharray: 5 6; transition: stroke .3s, opacity .4s; }
+.dia-lane.is-live { stroke: var(--violet); stroke-dasharray: none; }
+.dia-lane.is-live.is-data { stroke: var(--teal); }
+.dia-node rect { fill: #fff; stroke: var(--line-strong); stroke-width: 1.5; transition: stroke .3s; }
+.dia-node.is-active rect { stroke: var(--violet); stroke-width: 2.5; }
+.dia-ico { fill: none; stroke: var(--ink-2); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.dia-node.is-active .dia-ico { stroke: var(--violet); }
+.dia-label { font: 600 15px var(--font); fill: var(--ink); font-variation-settings: "wdth" 85; }
+.dia-sub { font: 400 10.5px var(--mono); fill: var(--ink-3); letter-spacing: .05em; }
+.dia .hub-ring { fill: none; stroke: var(--violet); stroke-width: 2; stroke-dasharray: 6 7; transform-origin: center; transform-box: fill-box; animation: spin 24s linear infinite; opacity: .6; }
+.dia .hub-core { fill: var(--navy); transition: fill .3s; }
+.dia .dia-node.is-hub.is-active .hub-core { fill: #232c55; }
+.dia .dia-node.is-hub.is-active .hub-ring { opacity: 1; }
+.hub-text { font: 800 22px var(--font); fill: #fff; font-variation-settings: "wdth" 75; letter-spacing: .04em; }
+.dia-svg[data-run="direct"] .agency-only { opacity: .18; }
+.dia-svg .agency-only { transition: opacity .5s; }
+.dia-packet { fill: var(--violet); opacity: 0; filter: drop-shadow(0 0 6px rgba(88,68,255,.6)); }
+.dia-packet.is-data { fill: var(--teal); filter: drop-shadow(0 0 6px rgba(4,139,168,.6)); }
+.dia-bubble { opacity: 0; transition: opacity .3s; }
+.dia-bubble.is-on { opacity: 1; }
+.dia-bubble rect { fill: var(--navy); } .dia-bubble text { font: 500 12px var(--font); fill: #fff; }
+.dia-legend { display: flex; gap: 18px; padding: 8px 6px 2px; font-size: 13px; color: var(--ink-3); }
+.dia-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.dia-legend i { width: 9px; height: 9px; border-radius: 50%; } .lg-req { background: var(--violet); } .lg-data { background: var(--teal); }
+.how5 .scr-body { height: 380px; padding: 22px 24px; }
+.how5 .scr-view { inset: 22px 24px; gap: 14px; }
+.how5 .frm { grid-template-columns: 130px 1fr; gap: 10px 14px; }
+.how5 .inp { height: 40px; }
+
+/* right: official steps */
+.how5-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; position: sticky; top: 96px; }
+.how5-steps li { position: relative; display: grid; grid-template-columns: 40px 1fr; gap: 16px; padding: 16px 16px 18px; border-radius: 16px; transition: background .3s; }
+.how5-steps .n { width: 40px; height: 40px; border-radius: 11px; display: grid; place-items: center; font-family: var(--mono); font-size: 13px; color: var(--ink-3); background: #f0f3f8; transition: background .3s, color .3s; }
+.how5-steps .who { font-family: var(--mono); font-size: 11.5px; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-3); }
+.how5-steps h4 { margin: 6px 0 0; font-size: 17px; font-weight: 600; line-height: 1.35; color: var(--ink-2); }
+.how5-steps p { margin: 6px 0 0; font-size: 15px; line-height: 1.55; color: var(--ink-2); display: none; }
+.how5-steps .bar { position: absolute; left: 16px; right: 16px; bottom: 6px; height: 2px; border-radius: 2px; overflow: hidden; display: none; }
+.how5-steps .bar i { display: block; height: 100%; width: 0; background: var(--violet); opacity: .45; }
+.how5-steps li.is-done .n { background: var(--teal-100); color: var(--teal); }
+.how5-steps li.is-active { background: var(--violet-100); }
+.how5-steps li.is-active .n { background: var(--violet); color: #fff; }
+.how5-steps li.is-active h4 { color: var(--ink); }
+.how5-steps li.is-active p, .how5-steps li.is-active .bar { display: block; }
+.how5-steps li.is-active .bar i { animation: grow var(--dur, 4000ms) linear forwards; }
+.how5.is-paused .how5-steps li.is-active .bar i { animation-play-state: paused; }
+
+/* producer forwarding rule screen */
+.rule-card { display: grid; gap: 14px; padding: 18px; border-radius: 14px; background: var(--bg); box-shadow: inset 0 0 0 1px var(--line); position: relative; }
+.rule-card small { display: block; font-size: 12px; color: var(--ink-3); } .rule-card b { display: block; font-size: 14.5px; } .rule-card span { font-size: 13px; color: var(--ink-2); }
+.rule-target { display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 12px; background: #fff; box-shadow: inset 0 0 0 1px var(--line-strong); }
+.ico-sm { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: var(--violet-100); color: var(--violet); font-weight: 700; }
+.rule-card .ui-switch { position: absolute; right: 18px; top: 18px; }
+.rule-note { margin: 0; font-size: 13px; color: var(--teal); font-weight: 600; opacity: 0; transition: opacity .3s; }
+.rule-note.is-on { opacity: 1; }
+
+@media (max-width: 1000px) { .how5-grid { grid-template-columns: 1fr; } .how5-steps { position: relative; top: 0; } }
+@media (max-width: 600px) {
+  .dia { padding: 10px; } .dia-sub { display: none; } .dia-label { font-size: 19px; }
+  .how5 .scr-body { height: 380px; padding: 16px; } .how5 .scr-view { inset: 16px; } .how5 .frm { grid-template-columns: 1fr; gap: 4px; }
+}
