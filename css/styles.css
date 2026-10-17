@@ -2004,15 +2004,15 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 /* Why WIN cards: Easy / Right / Fast are the headers; the sentence below is the sub-headline */
 .stack-copy { gap: 20px; align-content: center; }
 .stack-copy .tile-tag {
-  font-size: clamp(60px, 7vw, 104px); font-weight: 700; line-height: .9; letter-spacing: -.02em; color: var(--violet);
+  font-size: clamp(44px, 4.8vw, 68px); font-weight: 700; line-height: .95; letter-spacing: -.02em; color: var(--violet);
   font-variation-settings: "wdth" 78;
 }
-.stack-copy h3 { font-size: clamp(26px, 2.3vw, 34px); line-height: 1.15; max-width: 16ch; }
+.stack-copy h3 { font-size: 28px; line-height: 1.15; max-width: 18ch; }
 .stack-copy p { font-size: 18px; line-height: 1.6; max-width: 40ch; }
 .stack-card { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); padding: clamp(32px, 4vw, 56px); }
 @media (max-width: 1000px) {
-  .stack-copy .tile-tag { font-size: 56px; }
-  .stack-copy h3 { font-size: 26px; max-width: none; }
+  .stack-copy .tile-tag { font-size: 44px; }
+  .stack-copy h3 { font-size: 28px; max-width: none; }
   .stack-copy p { font-size: 16px; max-width: none; }
 }
 
@@ -2020,3 +2020,6 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .logos { padding: clamp(80px, 9vw, 128px) 0 clamp(72px, 8vw, 112px); }
 .logos p { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; margin-bottom: 40px; }
 .why { padding-top: clamp(24px, 3vw, 48px); }
+
+/* Why WIN header: more air between title, lead and the first card (still pinned while cards stack) */
+.why-head { gap: 20px; padding: 14px 0 44px; }

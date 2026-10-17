@@ -206,3 +206,5 @@ The How it works animation follows WIN's own diagrams exactly:
 | Combining unrelated items into one entry (2017 "Part 1/2/3") | Merge into one clear milestone or keep fully separate |
 
 **Home section backgrounds:** the customer strip and Why WIN share one white band (`--surface`, no divider). The Problem section no longer exists; do not re-add it.
+
+**Why WIN cards:** the card word (Easy / Right / Fast) is a display word `clamp(44px,4.8vw,68px)` violet; the sentence under it is the standard card h3 (28px). Never size a card h3 off-scale. Why WIN header keeps 20px gap to the lead and 44px below it before the first card.
