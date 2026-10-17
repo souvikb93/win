@@ -49,6 +49,29 @@
     tilt();
   }
 
+  /* ---------- Side section nav: show after the hero, highlight the section in view ---------- */
+  var sideNav = document.querySelector('.section-nav');
+  if (sideNav) {
+    var navLinks = Array.prototype.slice.call(sideNav.querySelectorAll('a'));
+    var sections = navLinks.map(function (a) { return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+    var setActive = function (id) {
+      navLinks.forEach(function (a) {
+        if (a.getAttribute('href') === '#' + id) a.setAttribute('aria-current', 'true');
+        else a.removeAttribute('aria-current');
+      });
+    };
+    var showNav = function () { sideNav.classList.toggle('is-visible', window.scrollY > window.innerHeight * 0.35); };
+    window.addEventListener('scroll', showNav, { passive: true });
+    showNav();
+    if ('IntersectionObserver' in window) {
+      var spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) setActive(en.target.id); });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      sections.forEach(function (sec) { spy.observe(sec); });
+    }
+    setActive('product');
+  }
+
   /* ---------- Logo carousel: duplicate the track for a seamless loop ---------- */
   var track = document.getElementById('logoTrack');
   if (track) {

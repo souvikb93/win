@@ -959,3 +959,35 @@ a.contact-card:hover { box-shadow: inset 0 0 0 1px var(--line-strong), var(--sha
 .cursor.is-down .cursor-label { transform: translate(-50%, -50%) scale(.9); }
 html.has-cursor .tl, html.has-cursor .tl a { cursor: none; }
 .tl--page.is-static .tl-sticky { padding-top: clamp(48px, 8vw, 96px); }
+
+/* Home: side section navigation (scrollspy) */
+.section-nav {
+  position: fixed; right: clamp(12px, 1.6vw, 28px); top: 50%; z-index: 40;
+  transform: translate(12px, -50%); opacity: 0; pointer-events: none;
+  transition: opacity .35s, transform .35s var(--ease);
+}
+.section-nav.is-visible { opacity: 1; transform: translate(0, -50%); pointer-events: auto; }
+.section-nav ol {
+  list-style: none; margin: 0; padding: 10px 8px; display: grid; gap: 2px;
+  background: rgba(255,255,255,.78); backdrop-filter: saturate(1.6) blur(14px); -webkit-backdrop-filter: saturate(1.6) blur(14px);
+  border-radius: 16px; box-shadow: var(--shadow-md), inset 0 0 0 1px rgba(26,34,62,.06);
+}
+.section-nav a {
+  display: flex; align-items: center; justify-content: flex-end; gap: 10px;
+  height: 26px; padding: 0 6px; border-radius: 8px; color: var(--ink-3); font-size: 13px; font-weight: 500;
+  transition: color .2s, background .2s;
+}
+.section-nav a::after {
+  content: ""; width: 12px; height: 2px; border-radius: 2px; background: var(--line-strong); flex-shrink: 0;
+  transition: width .3s var(--ease), background .3s;
+}
+.section-nav span {
+  max-width: 0; opacity: 0; overflow: hidden; white-space: nowrap;
+  transition: max-width .35s var(--ease), opacity .2s;
+}
+.section-nav:hover span, .section-nav:focus-within span { max-width: 140px; opacity: 1; }
+.section-nav a:hover { color: var(--ink); background: rgba(26,34,62,.05); }
+.section-nav a:hover::after { background: var(--ink-3); }
+.section-nav a[aria-current="true"] { color: var(--ink); }
+.section-nav a[aria-current="true"]::after { width: 24px; background: var(--orange); }
+@media (max-width: 1179px) { .section-nav { display: none; } }

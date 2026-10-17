@@ -6,10 +6,7 @@
   var home = page === 'home' ? '' : 'index.html';
 
   var links = [
-    { href: home + '#product', label: 'Product', key: 'product' },
-    { href: home + '#how', label: 'How it works', key: 'how' },
-    { href: home + '#solutions', label: 'Solutions', key: 'solutions' },
-    { href: home + '#security', label: 'Security', key: 'security' },
+    { href: 'index.html', label: 'Home', key: 'home' },
     { href: 'press.html', label: 'Press', key: 'press' },
     { href: 'contact.html', label: 'Contact', key: 'contact' }
   ];
