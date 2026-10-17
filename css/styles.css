@@ -1894,3 +1894,10 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 
 .eco-dark .eco-core { background: var(--violet); box-shadow: 0 0 0 12px rgba(88,68,255,.16), 0 0 0 26px rgba(88,68,255,.07), 0 20px 50px -20px rgba(0,0,0,.6); }
 .eco-dark .eco-module { color: var(--ink); }
+
+/* Why WIN: header is pinned only while the cards stack. It lives in .why-stage, which ends with the last card,
+   so the header scrolls away together with it instead of showing below it. */
+@media (min-width: 1001px) {
+  .why-stage .stack::after { height: 200px; }
+  .why-stage .stack-item:last-child { height: auto; min-height: 0; }
+}

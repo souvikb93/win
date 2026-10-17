@@ -149,6 +149,12 @@
       c.style.transform = 'scale(' + (1 - 0.05 * behind).toFixed(4) + ')';
       c.style.filter = behind > 0.02 ? 'brightness(' + (1 - 0.08 * behind).toFixed(3) + ')' : '';
     });
+    /* once the last card starts to leave, the pinned header leaves with it, at the same pace */
+    if (whyHead) {
+      var lastItem = items[items.length - 1], lift = 0;
+      if (getComputedStyle(whyHead).position === 'sticky') lift = Math.max(0, (parseFloat(getComputedStyle(lastItem).top) || 0) - lastItem.getBoundingClientRect().top);
+      whyHead.style.transform = lift > 0 ? 'translateY(' + (-lift).toFixed(1) + 'px)' : '';
+    }
   }
   function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
   window.addEventListener('scroll', onScroll, { passive: true });
