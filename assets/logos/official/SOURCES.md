@@ -8,3 +8,4 @@ Downloaded on 2026-10-17 with the owner's approval, from each company's own webs
 | `pellegrini.png` | https://pellegrini.de/cdn/shop/files/Pellegrini_Logo_2015_4c_5_5cm.png | 354×123 PNG with transparency. Rebuilt as a navy silhouette in `../mono/pellegrini.png` |
 
 Still on the 140×100 win.wine versions (no official download found): Hawesko, AMKA, Winedock, Döllerer, Ersan Weine.
+- hawesko.svg: supplied by owner (Downloads/logo.svg), 2026-10-17; recoloured navy in mono/hawesko.svg
