@@ -166,3 +166,21 @@
   window.addEventListener('resize', onScroll);
   update();
 })();
+
+/* ---------- Announcement bar: visible while the hero is on screen ---------- */
+(function () {
+  var bar = document.getElementById('announce'), hero = document.getElementById('product');
+  if (!bar || !hero) return;
+  var dismissed = false;
+  try { dismissed = sessionStorage.getItem('win-announce') === 'off'; } catch (e) {}
+  function update() {
+    var past = hero.getBoundingClientRect().bottom < window.innerHeight * 0.55;
+    bar.classList.toggle('is-hidden', dismissed || past);
+  }
+  bar.querySelector('.announce-close').addEventListener('click', function () {
+    dismissed = true; try { sessionStorage.setItem('win-announce', 'off'); } catch (e) {}
+    update();
+  });
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();

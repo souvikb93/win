@@ -1886,3 +1886,92 @@ a.cx-card:hover { box-shadow: inset 0 0 0 1px var(--line-strong), var(--shadow-s
   .how5 .scr-body { height: clamp(200px, calc(100vh - 540px), 300px); }
   .how5 .inp { height: 30px; } .how5 .frm { gap: 5px 14px; }
 }
+
+/* =========================================================
+   How it works v6: header in normal flow; the animation is one
+   calm panel sized to the viewport
+   ========================================================= */
+.how.how5 { min-height: 0; display: block; padding: clamp(80px, 11vw, 140px) 0; }
+.how5 .how4-head { display: block; margin-bottom: clamp(32px, 4vw, 48px); }
+.how5 .how4-head .section-head { max-width: 760px; gap: 16px; }
+.how5 .how4-head h2 { font-size: clamp(34px, 4.4vw, 56px); }
+.how5 .how4-head .lead { font-size: clamp(17px, 1.5vw, 20px); }
+
+.how-art {
+  height: clamp(600px, calc(100vh - 72px - 48px), 860px);
+  border-radius: 28px; background: #fff; overflow: hidden;
+  box-shadow: 0 30px 80px -40px rgba(26,34,62,.35), 0 0 0 1px var(--line);
+}
+.how-art .how5-grid { height: 100%; display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(300px, 1fr); gap: 0; align-items: stretch; }
+
+/* left panel */
+.how-art .how5-left { display: flex; flex-direction: column; gap: 0; min-height: 0; padding: 24px 28px 28px; position: relative;
+  background-color: var(--bg);
+  background-image: radial-gradient(rgba(26,34,62,.09) 1px, transparent 1px); background-size: 20px 20px; }
+.how-art .dia { flex: none; background: none; box-shadow: none; padding: 0; border-radius: 0; }
+.how-art .dia-svg { max-height: 230px; width: 100%; }
+.how-art .dia-node rect { fill: #fff; stroke: var(--line-strong); stroke-width: 1.2; filter: drop-shadow(0 6px 14px rgba(26,34,62,.08)); }
+.how-art .dia-node.is-active rect { fill: #fff; stroke: var(--violet); stroke-width: 2; }
+.how-art .dia-lane { stroke: #c9d2e0; stroke-width: 1.6; }
+.how-art .dia .hub-ring { opacity: .45; }
+.how-art .dia-bubble rect { fill: var(--violet); }
+.how-art .dia-svg[data-run="direct"] .agency-only { opacity: .15; }
+
+.how-art .link-beam { width: 1.5px; margin-left: -.75px; background: linear-gradient(var(--violet), rgba(88,68,255,.15)); }
+.how-art .link-beam::before { width: 7px; height: 7px; margin-left: -3.5px; top: -3px; box-shadow: 0 0 0 4px rgba(88,68,255,.14); }
+
+.how-art .scr { flex: 1; min-height: 0; display: flex; flex-direction: column; padding-top: 18px; }
+.how-art .scr-tab { flex: none; height: 26px; padding: 0 10px; border-radius: 8px 8px 0 0; background: var(--navy); font-size: 12px; font-weight: 600; }
+.how-art .scr-tab small { color: rgba(255,255,255,.6); }
+.how-art .scr-win { flex: 1; min-height: 0; display: flex; flex-direction: column; border-radius: 16px; border-top-left-radius: 0; box-shadow: 0 18px 40px -22px rgba(26,34,62,.35), 0 0 0 1px var(--line-strong); }
+.how-art .scr-win.is-tab-right { border-top-left-radius: 16px; }
+.how-art .pane-bar { flex: none; height: 34px; background: #f7f9fc; }
+.how-art .scr-body { flex: 1; height: auto; min-height: 0; padding: 18px 22px; }
+.how-art .scr-view { inset: 18px 22px; }
+
+/* right panel: steps */
+.how-art .steps-col { display: flex; flex-direction: column; min-height: 0; border-left: 1px solid var(--line); }
+.steps-head { flex: none; display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 24px 28px 14px; border-bottom: 1px solid var(--line); }
+.steps-head b { font-size: 15px; } .steps-head small { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); letter-spacing: .04em; }
+.how-art .steps-view { flex: 1; height: auto; min-height: 0; }
+.how-art .how5-steps { padding: 0 16px; }
+.how-art .how5-steps li { padding: 14px 14px 16px; border-radius: 14px; }
+.how-art .how5-steps li.is-active { background: var(--violet-100); }
+.how-art .how5-steps .n { width: 34px; height: 34px; border-radius: 10px; font-size: 12px; }
+.how-art .how5-steps h4 { font-size: 16px; }
+.how-art .how5-steps p { font-size: 14.5px; }
+
+/* use the room the screen has */
+.how-art .scr-view { gap: 14px; }
+.how-art .inp { height: 42px; font-size: 13.5px; }
+.how-art .frm { grid-template-columns: 140px 1fr; gap: 12px 16px; }
+.how-art .mail { padding: 13px 16px; }
+.how-art .checklist li { height: 44px; }
+.how-art .attr div { padding: 12px 14px; }
+.how-art .console { font-size: 12.5px; padding: 18px; gap: 10px; }
+.how-art .scr-h { font-size: 16px; }
+@media (max-height: 820px) { .how-art .dia-svg { max-height: 180px; } .how-art .how5-left { padding: 16px 22px 22px; } .how-art .inp { height: 32px; } .how-art .frm { gap: 6px 16px; } .how-art .checklist li { height: 36px; } .how-art .mail { padding: 9px 14px; } }
+@media (max-width: 1000px) {
+  .how-art { height: auto; }
+  .how-art .how5-grid { grid-template-columns: 1fr; }
+  .how-art .scr-win { min-height: 420px; }
+  .how-art .steps-col { border-left: 0; border-top: 1px solid var(--line); }
+  .how-art .steps-view { height: 340px; flex: none; }
+}
+@media (max-width: 600px) { .how-art { border-radius: 20px; } .how-art .how5-left { padding: 14px 12px 16px; } .steps-head { padding: 18px 18px 12px; } }
+
+/* Home: announcement bar under the nav, shown while the hero is in view */
+.announce { position: fixed; z-index: 45; left: 0; right: 0; top: 72px; background: var(--navy); color: rgba(255,255,255,.85); font-size: 14px;
+  transform: translateY(0); opacity: 1; transition: transform .45s var(--ease), opacity .35s; }
+.announce.is-hidden { transform: translateY(-110%); opacity: 0; pointer-events: none; }
+.announce-inner { display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 42px; padding-top: 8px; padding-bottom: 8px; }
+.announce-tag { flex: none; font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; background: var(--violet); color: #fff; }
+.announce-text { text-align: center; }
+.announce-link { flex: none; color: #fff; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(255,255,255,.4); }
+.announce-link:hover { text-decoration-color: #fff; }
+.announce-close { flex: none; width: 28px; height: 28px; border-radius: 8px; color: rgba(255,255,255,.6); font-size: 18px; line-height: 1; }
+.announce-close:hover { color: #fff; background: rgba(255,255,255,.08); }
+body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px); }
+@media (max-width: 700px) { .announce { font-size: 12.5px; } .announce-text { text-align: left; } .announce-inner { justify-content: flex-start; gap: 8px; } }
+.announce-short { display: none; }
+@media (max-width: 700px) { .announce-text { display: none; } .announce-short { display: inline; flex: 1; } }

@@ -178,7 +178,8 @@
 
   function setRun(run) {
     dia.setAttribute('data-run', run);
-    qa('.run').forEach(function (r) { r.classList.toggle('is-on', r.getAttribute('data-run') === run); });
+    q('#runName').textContent = run === 'agency' ? 'With a trade agency' : 'Merchant and producer, direct';
+    q('#runCount').textContent = RUNS[run].length + ' steps';
     steps.innerHTML = RUNS[run].map(function (s, i) {
       return '<li><span class="n">' + String(i + 1).padStart(2, '0') + '</span><div><span class="who">' + s.who + '</span><h4>' + s.t + '</h4><p>' + s.d + '</p></div><span class="bar"><i></i></span></li>';
     }).join('');
@@ -223,7 +224,7 @@
     running = false;
   }
 
-  playBtn.addEventListener('click', function () {
+  if (playBtn) playBtn.addEventListener('click', function () {
     playing = !playing; playBtn.textContent = playing ? 'Pause' : 'Play'; playBtn.setAttribute('aria-label', playBtn.textContent);
     section.classList.toggle('is-paused', !playing);
   });
@@ -235,7 +236,7 @@
     who.textContent = last.party; url.textContent = last.url; show(last.screen);
     qa('[data-attrs] div').forEach(function (a) { a.classList.add('is-in'); });
     q('[data-status]').className = 'pill ok'; q('[data-status]').textContent = 'Complete'; q('[data-imp]').textContent = '214 / 214'; q('[data-imp-bar]').style.width = '100%';
-    playBtn.hidden = true; return;
+    if (playBtn) playBtn.hidden = true; return;
   }
   setRun('agency'); show('erp-new'); focusNode('merchant'); markStep(0); linkTo('merchant'); setTimeout(function () { linkTo(); centerStep(); }, 300);
   if ('IntersectionObserver' in window) {

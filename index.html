@@ -29,6 +29,15 @@
   </ol>
 </nav>
 
+<div class="announce" id="announce" role="region" aria-label="Announcement">
+  <div class="container announce-inner">
+    <span class="announce-tag">New</span>
+    <span class="announce-text">The PPWR module is live: declarations of conformity for the EU packaging regulation, built straight from your WIN data.</span><span class="announce-short">PPWR module now live</span>
+    <a class="announce-link" href="#ecosystem">Learn more</a>
+    <button class="announce-close" type="button" aria-label="Dismiss announcement">×</button>
+  </div>
+</div>
+
 <main id="top">
 
   <!-- ============ HERO ============ -->
@@ -36,7 +45,6 @@
     <div class="hero-bg" aria-hidden="true"></div>
     <div class="container">
       <div class="hero-copy">
-        <a class="hero-pill" href="#ecosystem"><b>New</b> PPWR module now live for all WIN data</a>
         <h1>The data network for the beverage industry<span class="dot">.</span></h1>
         <p class="lead">Connect producers, retailers and distributors through automated product data exchange. WIN gets accurate product information from your suppliers directly into your business systems, without the manual back-and-forth.</p>
         <div class="hero-ctas">
@@ -213,14 +221,9 @@
           <h2>One request, followed end to end<span class="dot">.</span></h2>
           <p class="lead">WIN connects directly to your ERP. Create a new article and the product request starts itself. WIN routes it to the right producer, who gets an email automatically. As soon as the producer has entered the data, WIN sends the complete product data straight into your ERP, ready to use.</p>
         </div>
-        <div class="how3-runs" aria-hidden="true">
-          <span class="run" data-run="agency"><i></i>Via trade agency</span>
-          <span class="run" data-run="direct"><i></i>Merchant ↔ Producer</span>
-          <button class="how-play" id="howPlay" type="button" aria-label="Pause">Pause</button>
-          <div class="dia-legend"><span><i class="lg-req"></i>Request</span><span><i class="lg-data"></i>Product data</span></div>
-        </div>
       </div>
 
+      <div class="how-art">
       <div class="how5-grid">
         <div class="how5-left">
           <div class="dia" aria-hidden="true">
@@ -353,7 +356,11 @@
           </div>
         </div>
 
-        <div class="steps-view"><ol class="how5-steps" id="howSteps"></ol></div>
+        <div class="steps-col">
+          <div class="steps-head"><b id="runName">With a trade agency</b><small id="runCount">8 steps</small></div>
+          <div class="steps-view"><ol class="how5-steps" id="howSteps"></ol></div>
+        </div>
+      </div>
       </div>
     </div>
   </section>
