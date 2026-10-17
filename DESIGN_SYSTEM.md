@@ -223,4 +223,4 @@ Home no longer carries How it works: under the Why WIN cards (same section) a 23
 
 The "One Network, Three Roles" tabs section moved from Home to the Solution page, below the timeline and above the closing CTA. Its tab script lives in `js/solution.js`.
 
-**Data & Privacy page (`data-privacy.html`):** "Your Data. Your Rules." intro plus the four security cards on the dark band, moved from Home. On Home the dark band now carries the platform section ("WIN Is the Core. Add What You Need."). Top nav: Home, Solution, Data & Privacy, Press, Contact.
+Data & Privacy page was removed (owner request). The security cards no longer exist on the site. Top nav: Home, Solution, Press, Contact.

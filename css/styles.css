@@ -1892,9 +1892,5 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .eco-dark .orbit-lines .spoke { stroke: var(--accent-light); }
 .eco-dark .eco-core { box-shadow: 0 0 0 1px rgba(255,255,255,.14), 0 20px 50px -20px rgba(0,0,0,.6); }
 
-/* Data & Privacy page */
-.dp-intro h1 { max-width: 18ch; }
-.dp-intro .lead { max-width: 58ch; }
-.dp-trust .section-head { max-width: 680px; }
 .eco-dark .eco-core { background: var(--violet); box-shadow: 0 0 0 12px rgba(88,68,255,.16), 0 0 0 26px rgba(88,68,255,.07), 0 20px 50px -20px rgba(0,0,0,.6); }
 .eco-dark .eco-module { color: var(--ink); }
