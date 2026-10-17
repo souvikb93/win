@@ -2204,3 +2204,17 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .paper:nth-child(3) { right: 0; bottom: 44px; }
 @media (max-width: 600px) { .compare-card { padding: 28px 22px; } .compare-card h3 { font-size: 22px; } }
 .compare-card.after, .compare-card.after:hover { box-shadow: none; }
+
+/* No eyebrow labels. Card tags are plain words, not caps mono. */
+.eyebrow { display: none !important; }
+.tile-tag { font-family: var(--font); font-size: 15px; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--violet); }
+
+/* Hero: headline on two lines on desktop, natural wrap on phones */
+.hero h1 { max-width: none; font-size: clamp(40px, 5.6vw, 76px); }
+@media (min-width: 900px) { .hero h1 .d-br { display: inline; } .hero h1 { white-space: nowrap; } }
+@media (max-width: 899px) { .hero h1 .d-br { display: none; } .hero h1 { max-width: 15ch; } }
+
+/* Hero trust ticks in brand purple */
+.hero-trust span::before {
+  background: var(--violet-100) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-4.8' fill='none' stroke='%235844ff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat;
+}

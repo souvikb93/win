@@ -57,6 +57,8 @@ All colours are CSS variables in `css/styles.css` `:root`. Never hard-code hex v
 - **Roboto Flex** (variable) for everything; **Roboto Mono** for data, IDs, URLs, timestamps, small labels.
 - Headlines use the condensed width: `font-variation-settings: "wdth" 78–85`, weight 700, tight leading (≈1.04–1.1), letter-spacing −0.01em.
 - The brand full stop after headlines is a violet `.dot`. One per heading.
+- **No eyebrow labels.** No small uppercase/mono label above section headings ("HOW IT WORKS", "SECURITY"…). It reads as generic AI styling. Headings stand alone. Small uppercase mono is reserved for functional data (IDs, timestamps, sources), never as a section lead-in.
+- **Hero headline is two lines on desktop** ("The Data Network for the / Beverage Industry."); it wraps naturally on phones.
 - Scale: h1 `clamp(40px,5.2vw,72px)` · h2 `clamp(34px,4.4vw,56px)` · card h3 `28px` (`21px` for small dark cards) · body `17px` · lead `clamp(17px,1.6vw,21px)` · meta mono `11–12.5px` uppercase with letter-spacing.
 - Headlines are one colour (navy). No gradient text.
 - **Section headers and page titles use Title Case** ("One Request, Followed End to End."). Short articles, prepositions and conjunctions stay lowercase. Card titles, step titles and body copy stay sentence case.
@@ -96,6 +98,9 @@ Applies to Problem, Why WIN, Solutions, Press, Security.
 - Titles inside cards use the same size across a section.
 - **Exception: the Problem pair (Without WIN / With WIN)** keeps its own look and spacing: Without WIN is soft grey `#eef1f6`, With WIN is deep navy, both 22px radius, 36px padding, no shadow, no hover lift. Without WIN shows faint paper files **behind** the text (low opacity, never competing with it); With WIN has no decoration. Equal heights.
 - Decorative elements (e.g. the paper files) must never overlap text. Reserve space for them.
+
+### Tick marks
+Brand purple on a `--violet-100` disc (hero trust points and any check list). Teal ticks only mean "validated" inside product UI.
 
 ### Pills / chips
 Small rounded (999px) labels: violet-100 = info/request, teal-100 = complete, amber tint = warning, grey = neutral. 11–12px, 600 weight.
@@ -182,6 +187,9 @@ The How it works animation follows WIN's own diagrams exactly:
 | Dot crossing over nodes | Dot stays on the link between nodes |
 | Steps that didn't match WIN's diagrams | Follow the official 6/8-step flows exactly |
 | Unifying the Problem cards into plain white cards | Problem pair keeps grey vs navy and its own spacing (§5 exception) |
+| Eyebrow labels above every section heading | None. Headings stand alone (§3) |
+| Teal ticks under the hero CTAs | Brand purple ticks |
+| Hero headline on three lines | Two lines on desktop |
 | Sentence-case section headers | Title Case for section headers and page titles (§3) |
 | Real companies in example UI | Made-up names; real names only as real facts |
 | Custom cursor hiding the pointer | Never hide the system cursor |

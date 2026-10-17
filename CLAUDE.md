@@ -13,7 +13,8 @@ Concept redesign of win.wine for EuvinoPRO, built as a portfolio piece. Static H
 6. **WIN's official flows are exact:** direct = 6 steps, via agency = 8 steps (see DESIGN_SYSTEM.md §6).
 7. **Example content uses made-up names** (Nordwein Handel, Weingut Sonnenhang, Vinara Import). Real names only as real facts (logo strip, press, milestones).
 8. **Don't invent facts.** Source from win.wine, euvinopro.eu or linked press; log them in RESEARCH.md.
-9. Top nav = pages only. Home sections = side nav. Language = "EN ⌄" dropdown.
+9. **No eyebrow labels** above headings. Section headers in **Title Case**. Hero headline on two lines on desktop.
+10. Top nav = pages only. Home sections = side nav. Language = "EN ⌄" dropdown.
 
 ## How to work here
 - Owner dictates by voice; parse for intent. For larger design changes, **suggest first, then build** when asked to ("suggest before building").
