@@ -92,13 +92,12 @@ All colours are CSS variables in `css/styles.css` `:root`. Never hard-code hex v
 - Tertiary / text links: violet, 600 weight. **Underline draws in from the left on hover and focus** (`background-size` 0→100%). Never a permanent underline except in the announcement bar's "Learn more".
 
 ### Cards: one card language
-Applies to Problem, Why WIN, Solutions, Press, Security.
+Applies to Why WIN, Solutions, Press, Security.
 - Surface white, **20px radius**, hairline inset border, one soft shadow (`--card-shadow`), **32px padding** (24px on phones).
 - Hover on interactive cards: lift 3px + `--card-shadow-hover`. **No glow, no cursor-follow highlight, no coloured shadow.**
-- Dark variant = same shape and padding on navy (Security cards; the "With WIN" card). Don't invent a third look.
+- Dark variant = same shape and padding on navy (Security cards; the dark cards). Don't invent a third look.
 - Don't put cards inside cards. Visuals sit **directly on the card**, not in a second boxed panel.
 - Titles inside cards use the same size across a section.
-- **Exception: the Problem pair (Without WIN / With WIN)** keeps its own look and spacing: Without WIN is soft grey `#eef1f6`, With WIN is deep navy, both 22px radius, 36px padding, no shadow, no hover lift. Without WIN shows faint paper files **behind** the text (low opacity, never competing with it); With WIN has no decoration. Equal heights.
 - Decorative elements (e.g. the paper files) must never overlap text. Reserve space for them.
 
 ### Tick marks
@@ -188,7 +187,6 @@ The How it works animation follows WIN's own diagrams exactly:
 | Lines connecting diagram to screen | Show relation by shared outline and fold/open interaction |
 | Dot crossing over nodes | Dot stays on the link between nodes |
 | Steps that didn't match WIN's diagrams | Follow the official 6/8-step flows exactly |
-| Unifying the Problem cards into plain white cards | Problem pair keeps grey vs navy and its own spacing (§5 exception) |
 | Keeping an old page variant after a new one is chosen | Delete the loser and its dead CSS/JS (Press timeline was removed) |
 | Press intro with its own grey/orange glow, so the background changed between pages | One shared `.hero-bg` on every page (§3) |
 | Eyebrow labels above every section heading | None. Headings stand alone (§3) |
@@ -206,3 +204,5 @@ The How it works animation follows WIN's own diagrams exactly:
 | Judging cached CSS or a hidden preview | Hard reload, visible pane (§9) |
 | Date much smaller than title | Titles lead, dates stay clearly readable (≈22px) |
 | Combining unrelated items into one entry (2017 "Part 1/2/3") | Merge into one clear milestone or keep fully separate |
+
+**Home section backgrounds:** the customer strip and Why WIN share one white band (`--surface`, no divider). The Problem section no longer exists; do not re-add it.
