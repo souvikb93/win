@@ -2218,3 +2218,8 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .hero-trust span::before {
   background: var(--violet-100) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-4.8' fill='none' stroke='%235844ff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat;
 }
+
+/* Announcement: opaque colour; slides away the moment scrolling starts (no fade, so it never looks see-through) */
+.announce { background-color: #ecebff; opacity: 1; transition: transform .4s var(--ease), visibility 0s linear .4s; }
+.announce.is-hidden { opacity: 1; transform: translateY(-100%); visibility: hidden; pointer-events: none; }
+.announce:not(.is-hidden) { visibility: visible; transition: transform .4s var(--ease), visibility 0s; }

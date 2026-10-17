@@ -109,7 +109,7 @@ Small rounded (999px) labels: violet-100 = info/request, teal-100 = complete, am
 Visible labels (no placeholder-only), 40–46px inputs, 12px radius, hairline border, violet focus ring. **Inline validation** with `role="alert"` messages, focus moves to the first error. Optional fields are marked "(optional)" and never block submit. If there is no backend, show a clear **prototype-only** success state and say nothing was sent.
 
 ### Announcement bar
-Full-width, light (`--violet-100`), sits under the nav, close button on the **far right**, hides when the hero is out of view, dismissible per session. Short copy on phones.
+Full-width, light (`--violet-100`), sits under the nav, close button on the **far right**, **solid (opaque) colour**, visible at the very top of the page and slides away as soon as the visitor starts scrolling (returns at the top), dismissible per session. Short copy on phones.
 
 ### Footer
 Deep navy (`--navy-900`) with the soft violet glow. Brand lockup identical to the nav: **WIN logo + "by EuvinoPRO"**, same typography.

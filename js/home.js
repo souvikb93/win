@@ -163,7 +163,7 @@
   var dismissed = false;
   try { dismissed = sessionStorage.getItem('win-announce') === 'off'; } catch (e) {}
   function update() {
-    var past = hero.getBoundingClientRect().bottom < window.innerHeight * 0.55;
+    var past = window.scrollY > 12;
     bar.classList.toggle('is-hidden', dismissed || past);
   }
   bar.querySelector('.announce-close').addEventListener('click', function () {
