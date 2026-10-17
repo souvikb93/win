@@ -1561,3 +1561,18 @@ a.cx-card:hover { box-shadow: inset 0 0 0 1px var(--line-strong), var(--shadow-s
 .ui-seg.is-data .ui-dot { background: var(--teal); box-shadow: 0 0 0 4px rgba(4,139,168,.22); }
 .ui-wire, .ui-packet { display: none; }
 @media (max-width: 600px) { .ui-nodes { grid-template-columns: 1fr 26px 1fr 26px 1fr; } .ui-seg { margin: 0 3px; } }
+
+/* Footer brand lockup matches the nav */
+.footer .brand-by { display: block; color: rgba(255,255,255,.5); border-left-color: rgba(255,255,255,.2); }
+.footer .brand-by b { color: rgba(255,255,255,.85); }
+
+/* Side section nav: just the lines; panel and labels appear on hover or focus */
+@media (min-width: 1180px) {
+  .section-nav ol { background: transparent; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; transition: background .25s, box-shadow .25s; }
+  .section-nav:hover ol, .section-nav:focus-within ol {
+    background: rgba(255,255,255,.88); backdrop-filter: saturate(1.6) blur(14px); -webkit-backdrop-filter: saturate(1.6) blur(14px);
+    box-shadow: var(--shadow-md), inset 0 0 0 1px rgba(26,34,62,.06);
+  }
+  .section-nav a::after { background: rgba(26,34,62,.32); box-shadow: 0 0 0 1px rgba(255,255,255,.55); }
+  .section-nav a[aria-current="true"]::after { background: var(--violet); }
+}

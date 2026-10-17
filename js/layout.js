@@ -65,9 +65,8 @@
       '<div class="container">' +
         '<div class="footer-grid">' +
           '<div class="footer-brand">' +
-            '<a href="index.html" aria-label="WIN home">' + LOGO + '</a>' +
+            '<a class="brand" href="index.html" aria-label="WIN home">' + LOGO + '<span class="brand-by">by<b>EuvinoPRO</b></span></a>' +
             '<p>The wine and beverage information network. Complete product data, from producer to shelf.</p>' +
-            '<div class="eu">A product of</div><div class="eu"><img src="assets/brand/euvinopro-logo.svg" alt="EuvinoPRO"></div>' +
           '</div>' +
           '<div><h5>Product</h5><ul>' +
             '<li><a href="' + home + '#product">Overview</a></li>' +
