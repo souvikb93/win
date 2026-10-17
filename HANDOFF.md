@@ -10,6 +10,7 @@ Modern SaaS-style redesign of win.wine in EuvinoPRO's brand language, built for 
 
 ## Files
 - `index.html`, `press.html`, `press2.html`, `contact.html`
+- `DESIGN_SYSTEM.md` (tokens, components, motion, rules, mistake log) and `CLAUDE.md` (project instructions that load every session)
 - `css/styles.css`: tokens and every component
 - `js/layout.js`: shared nav, footer, language toggle and logo sizing
 - `js/home.js`: hero, product tilt, side section nav, How-it-works engine, card motion

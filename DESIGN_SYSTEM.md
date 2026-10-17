@@ -1,0 +1,191 @@
+# WIN redesign: Design System & Working Rules
+
+The single source of truth for how this site looks, moves and gets built. Read it before changing any UI. If a rule here and a request conflict, follow the request, then update this file.
+
+This is a concept redesign of win.wine for EuvinoPRO. The tone is **enterprise SaaS, calm and premium, trade-focused**: confident, quiet, generous spacing, nothing decorative that doesn't explain the product.
+
+---
+
+## 1. Principles
+
+1. **One accent.** Violet is the only brand accent. No second accent colour, no multi-colour gradients.
+2. **Show the product, don't decorate.** Motion and visuals must explain how WIN works (a request, a check, a delivery). If it only looks pretty, cut it.
+3. **Consistency beats novelty.** Every card, button, pill, link and row follows one pattern. Never invent a new variant when an existing one fits.
+4. **Room to breathe.** Cramped layouts are the most common failure. Prefer fewer things with more space.
+5. **Realistic and specific.** Real UI details (URLs, field names, timestamps, counts), not abstract boxes and arrows.
+6. **Calm motion.** Timed, eased, purposeful. Nothing bounces for its own sake.
+
+---
+
+## 2. Colour
+
+All colours are CSS variables in `css/styles.css` `:root`. Never hard-code hex values in new CSS unless adding a token.
+
+### Brand
+| Token | Value | Role |
+|---|---|---|
+| `--navy` | `#1a223e` | Primary text, dark cards, nav lockup |
+| `--navy-900` | `#0f1428` | Deepest dark: footer, Security band, timeline |
+| `--violet` | `#5844ff` | **The accent.** Primary buttons, active states, links, focus, progress |
+| `--violet-600` | `#4733f0` | Primary button hover |
+| `--violet-100` | `#ecebff` | Light accent tint: pills, icon tiles, active rows, announcement bar |
+| `--accent-soft` | `#f4f2ff` | Faintest tint for highlighted rows |
+| `--accent-light` | `#a99dff` | Accent on dark backgrounds (never on white) |
+
+### Semantic (use only for their meaning)
+| Token | Value | Meaning |
+|---|---|---|
+| `--teal` / `--teal-100` | `#048ba8` / `#e1f3f7` | Validated, complete, data returned |
+| `--red` | `#d9483b` | Errors, missing required data |
+| `--orange` | `#e57f09` | **Warnings only** (e.g. "Incomplete"). Never decoration, never a brand accent |
+
+### Neutrals
+`--bg #f5f7fb` page · `--surface #fff` cards · `--line #e4eaf3` hairlines · `--line-strong #d3dbe8` · `--ink` = navy · `--ink-2 #4b5563` body · `--ink-3 #8a90a1` meta/placeholder.
+
+### Colour rules
+- Page is light (`--bg`). Dark sections (Security, footer, Press timeline) use `--navy-900`. Do not add more dark blocks without a reason.
+- Request = violet. Validated data = teal. Warning/incomplete = amber-orange tint. Error = red. Keep these meanings fixed across the whole site.
+- **Never** put violet and orange together as a decorative pair. **Never** use a gradient on headlines or buttons.
+- Announcement and info bars are **light** (`--violet-100`), not deep.
+- Customer logos are shown in their **original colours**, never grey-scaled or recoloured. Fix backgrounds/legibility by trimming and sizing (see `assets/logos/`), not by filtering.
+- Contrast: body text on white must be `--ink-2` or darker; `--ink-3` is for meta only.
+
+---
+
+## 3. Typography
+
+- **Roboto Flex** (variable) for everything; **Roboto Mono** for data, IDs, URLs, timestamps, small labels.
+- Headlines use the condensed width: `font-variation-settings: "wdth" 78–85`, weight 700, tight leading (≈1.04–1.1), letter-spacing −0.01em.
+- The brand full stop after headlines is a violet `.dot`. One per heading.
+- Scale: h1 `clamp(40px,5.2vw,72px)` · h2 `clamp(34px,4.4vw,56px)` · card h3 `28px` (`21px` for small dark cards) · body `17px` · lead `clamp(17px,1.6vw,21px)` · meta mono `11–12.5px` uppercase with letter-spacing.
+- Headlines are one colour (navy). No gradient text.
+- Titles lead; dates and sources are secondary but must stay readable (see Press timeline).
+
+---
+
+## 4. Layout & spacing
+
+- Container: `max-width 1200px`, gutter `24px` (`16px` under 600px).
+- Section padding: `clamp(80px,11vw,140px)` vertical. Heading block max-width ≈ 760px.
+- Grid gaps 20–24px between cards. Inner card gap 16–18px.
+- **Navigation**
+  - Top nav lists **pages only**: Home, Press, Contact, Press 2. The nav spans the **full width** (padding `clamp(20px,3vw,48px)`), no centred container.
+  - Home sections are reached through the **side section nav** (lines only at rest; panel + labels on hover/focus; chip bar below 1180px).
+  - Language selector is a simple **"EN ⌄"** dropdown (like FarmDoc), never a pill toggle. German is marked "Soon".
+  - The **Log in** link does not appear on the Contact page.
+- **Viewport fitting**: only the artifact that needs it (How it works panel, Why WIN stack) is sized to the viewport. Headings and body text stay in normal flow. Test **1440×900** and **1366×768**; nothing may clip or get an internal scrollbar.
+- **Mobile**: stack vertically, no horizontal scroll (`scrollWidth === innerWidth`), tap targets ≥ 40px. Hide decoration (floating papers, URLs, subtitles) before shrinking content.
+
+---
+
+## 5. Components
+
+### Buttons
+- **Text only.** No icons inside buttons unless explicitly asked.
+- Primary: violet fill, white text, 48px high (40px small), 12px radius. **No glow or coloured shadow at rest.** Hover = darker violet. Keyboard focus = white ring + violet ring.
+- Secondary: white, hairline inset border. Ghost-light only on dark.
+- Tertiary / text links: violet, 600 weight. **Underline draws in from the left on hover and focus** (`background-size` 0→100%). Never a permanent underline except in the announcement bar's "Learn more".
+
+### Cards: one card language
+Applies to Problem, Why WIN, Solutions, Press, Security.
+- Surface white, **20px radius**, hairline inset border, one soft shadow (`--card-shadow`), **32px padding** (24px on phones).
+- Hover on interactive cards: lift 3px + `--card-shadow-hover`. **No glow, no cursor-follow highlight, no coloured shadow.**
+- Dark variant = same shape and padding on navy (Security cards; the "With WIN" card). Don't invent a third look.
+- Don't put cards inside cards. Visuals sit **directly on the card**, not in a second boxed panel.
+- Titles inside cards use the same size across a section.
+- Decorative elements (e.g. the paper files) must never overlap text. Reserve space for them.
+
+### Pills / chips
+Small rounded (999px) labels: violet-100 = info/request, teal-100 = complete, amber tint = warning, grey = neutral. 11–12px, 600 weight.
+
+### Forms
+Visible labels (no placeholder-only), 40–46px inputs, 12px radius, hairline border, violet focus ring. **Inline validation** with `role="alert"` messages, focus moves to the first error. Optional fields are marked "(optional)" and never block submit. If there is no backend, show a clear **prototype-only** success state and say nothing was sent.
+
+### Announcement bar
+Full-width, light (`--violet-100`), sits under the nav, close button on the **far right**, hides when the hero is out of view, dismissible per session. Short copy on phones.
+
+### Footer
+Deep navy (`--navy-900`) with the soft violet glow. Brand lockup identical to the nav: **WIN logo + "by EuvinoPRO"**, same typography.
+
+### Logo
+- WIN wordmark with the **wine-bottle "i"**. Navy on light, white on dark. **One colour only**, not a two-colour version.
+- Use the inline SVG from `js/layout.js`, don't redraw it.
+
+### Product screens
+Mock UIs are realistic: window chrome, URL, real field names, mono IDs. Use **made-up names** (see §7). The hero uses the provided "Mein Netzwerk" screenshot.
+
+---
+
+## 6. Motion
+
+- Easing `cubic-bezier(.2,.7,.2,1)` (`--ease`). Durations: micro 150–250ms, state change 300–450ms, scene change 500–700ms.
+- Use motion to show **cause and effect**: a request travels, a screen folds into its sender and opens from its receiver, a field validates, a count climbs.
+- **Never** show relationships with connector lines/beams between a diagram and a screen. Show it by interaction: the active party and its screen share the same purple outline; data moving closes one screen and opens the next.
+- The travelling dot/packet stays on the link between two nodes. It never crosses over a node.
+- Loops pause when off-screen (IntersectionObserver). `prefers-reduced-motion` gets a static end state.
+- Don't hide the system cursor. Contextual labels trail beside it.
+- No bouncing, no shaking, no decorative parallax. Micro-interactions on hover are allowed if they say something (list items nudge, underline draws).
+
+### Official flows are not negotiable
+The How it works animation follows WIN's own diagrams exactly:
+- **Direct (6):** create article in ERP → request sent to WIN → notification to the producer → producer answers (ERP or online) → product data sent to WIN → imported into the ERP.
+- **With agency (8):** the same first three, then 4 the producer's **one-time setting to forward all requests to the agency**, 5 **WIN notifies the agency directly**, 6 agency answers, 7 data sent to WIN, 8 imported into the ERP. The agency connects to WIN, never to the producer.
+
+---
+
+## 7. Content rules
+
+- **Made-up names** in all example UI: merchant *Nordwein Handel*, producer *Weingut Sonnenhang*, agency *Vinara Import*, wine *Riesling Kalkstein 2025*, other *Markthalle Feinkost*, *Cantina del Lago*. Never favour a real company in examples.
+- Real names appear **only** where they are real facts: the customer logo strip, press coverage, milestones, and the provided product screenshot.
+- Facts must be sourced (win.wine, euvinopro.eu, linked press). Don't invent features, integrations, numbers or customer claims. Researched facts live in `RESEARCH.md`.
+- Voice: plain, specific, short. English first; the toggle is in place, German copy comes later.
+- Hero copy and How-it-works body copy were supplied by the owner. Keep them verbatim unless told otherwise.
+
+---
+
+## 8. Build rules
+
+- **Stack:** plain HTML/CSS/JS, no build step. One stylesheet (`css/styles.css`), small scripts per feature (`layout.js`, `home.js`, `why.js`, `how.js`, `timeline.js`, `gallery.js`, `cursor.js`).
+- **21st.dev components** are ported to vanilla JS (GSAP via CDN where needed). Free tier = 2 downloads/day.
+- Shared nav/footer live in `js/layout.js`. Change them once.
+- Add a token before adding a hard-coded value. Reuse a pattern before creating one.
+- Accessibility: semantic landmarks, labelled controls, visible `:focus-visible`, 4.5:1 text contrast, `aria-hidden` on purely decorative animation, keyboard reachable.
+- Deploy: push to `main` → Vercel auto-deploys to https://win-redesign.vercel.app. Commit messages end with the Co-Authored-By line.
+
+---
+
+## 9. Verification checklist (do before saying "done")
+
+1. Open the page in the preview pane (**make it visible**; a hidden pane runs no animation frames or observers).
+2. Hard-reload assets (`fetch(file,{cache:'reload'})`) so you aren't judging cached CSS/JS.
+3. Check **1440×900**, **1366×768** and **375×812**. No overflow, no clipping, no overlap.
+4. Measure, don't eyeball: computed styles, `getBoundingClientRect`, `scrollWidth`.
+5. For animation, step through the sequence order (a fast test clock is fine) and confirm states, then say plainly that real-time feel wasn't watched.
+6. No console errors.
+7. Commit, push, confirm the Vercel deployment is **Ready** and the live page contains the change.
+
+---
+
+## 10. Mistakes already made (don't repeat)
+
+| Mistake | Rule |
+|---|---|
+| Violet + orange together, gradient headline | One accent. Single-colour headlines. Orange = warnings only |
+| Glow behind primary buttons; purple glow on card hover | No resting glow. No cursor-follow highlight |
+| Different card styles per section | One card language (§5) |
+| Boxed animation inside a card | Visuals sit directly on the card |
+| Whole section forced into the viewport | Only the artifact is viewport-sized |
+| Cramped diagrams and screens | More space, fewer elements, larger type |
+| Lines connecting diagram to screen | Show relation by shared outline and fold/open interaction |
+| Dot crossing over nodes | Dot stays on the link between nodes |
+| Steps that didn't match WIN's diagrams | Follow the official 6/8-step flows exactly |
+| Real companies in example UI | Made-up names; real names only as real facts |
+| Custom cursor hiding the pointer | Never hide the system cursor |
+| Decorative files overlapping text | Reserve space; hide on phones |
+| Dark announcement pill above the headline | Light full-width bar under the nav, close on the right |
+| Section links crowding the top nav | Pages in the top nav; sections in the side nav |
+| EN/DE pill toggle | Simple "EN ⌄" dropdown |
+| Grey-scaled customer logos | Original colours |
+| Judging cached CSS or a hidden preview | Hard reload, visible pane (§9) |
+| Date much smaller than title (timeline) | Titles lead, dates stay clearly readable (≈22px) |
+| Combining unrelated items into one entry (2017 "Part 1/2/3") | Merge into one clear milestone or keep fully separate |
