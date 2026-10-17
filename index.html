@@ -204,69 +204,125 @@
     </div>
   </section>
 
-  <!-- ============ HOW IT WORKS: two-window stage ============ -->
-  <section class="section how" id="how">
-    <div class="container how-wrap">
-      <div class="how-top">
+  <!-- ============ HOW IT WORKS: network diagram + the active party's screen ============ -->
+  <section class="section how how3" id="how">
+    <div class="container how3-wrap">
+      <div class="how3-top">
         <div class="how-title">
           <span class="eyebrow">How it works</span>
-          <h2>From new article to finished record<span class="dot">.</span></h2>
+          <h2>One request, followed end to end<span class="dot">.</span></h2>
         </div>
-        <div class="how-controls">
-          <div class="how-tabs" role="tablist" aria-label="Flow">
-            <button role="tab" aria-selected="true" data-mode="direct">Merchant ↔ Producer</button>
-            <button role="tab" aria-selected="false" data-mode="agency">Via trade agency</button>
-          </div>
+        <div class="how3-runs" aria-hidden="true">
+          <span class="run" data-run="agency"><i></i>Via trade agency</span>
+          <span class="run" data-run="direct"><i></i>Direct to producer</span>
           <button class="how-play" id="howPlay" type="button" aria-label="Pause">Pause</button>
         </div>
       </div>
 
-      <ol class="how-stepper" id="howStepper"></ol>
-
-      <div class="how-stage" id="howStage" data-mode="direct">
-        <!-- Merchant ERP -->
-        <div class="win-pane erp" aria-hidden="true">
-          <div class="pane-bar"><i></i><i></i><i></i><span>Your ERP · Article master</span></div>
-          <div class="pane-body">
-            <div class="erp-head"><span>Article</span><span>Product</span><span>Producer</span><span>Data</span></div>
-            <div class="erp-row"><span class="mono">40-11861</span><span>Blaufränkisch 2023</span><span>Prieler</span><span class="pill ok">Complete</span></div>
-            <div class="erp-row"><span class="mono">40-11870</span><span>Sauvignon Blanc 2024</span><span>Tement</span><span class="pill ok">Complete</span></div>
-            <div class="erp-row is-new" id="erpNew"><span class="mono">40-11873</span><span class="erp-name"><b id="erpName"></b><i class="ui-caret"></i></span><span id="erpProd">—</span><span class="pill" id="erpPill">Draft</span></div>
-            <div class="erp-detail" id="erpDetail"><span>Attributes received</span><b id="erpCount">0 / 214</b><i><em id="erpBar"></em></i></div>
-          </div>
+      <div class="how3-grid">
+        <!-- Left: who is involved and what is flowing -->
+        <div class="net" aria-hidden="true">
+          <svg class="net-svg" viewBox="0 0 440 380">
+            <path class="edge" id="e-mw" d="M110 92 C 170 92, 170 190, 220 190"/>
+            <path class="edge" id="e-wp" d="M220 190 C 270 190, 270 92, 330 92"/>
+            <path class="edge agency-only" id="e-pa" d="M330 120 L 330 262"/>
+            <path class="edge agency-only" id="e-aw" d="M330 290 C 270 290, 270 190, 220 190"/>
+          </svg>
+          <div class="net-node" data-node="merchant" style="left:25%;top:24%"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 9l2-5h14l2 5"/><path d="M3 9h18v2.5a3 3 0 01-6 0 3 3 0 01-6 0 3 3 0 01-6 0z"/><path d="M5 14v7h14v-7"/></svg></span><b>Merchant</b><small>Hawesko · ERP</small></div>
+          <div class="net-node is-hub" data-node="win" style="left:50%;top:50%"><b>WIN</b><small>route · check</small></div>
+          <div class="net-node" data-node="producer" style="left:75%;top:24%"><span class="ico"><svg viewBox="0 0 24 24"><path d="M9 2h6l-.8 6.5a2.2 2.2 0 01-4.4 0z"/><path d="M12 11v8M8 21h8"/></svg></span><b>Producer</b><small>Schloss Gobelsburg</small></div>
+          <div class="net-node agency-only" data-node="agency" style="left:75%;top:76%"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 7h16v12H4z"/><path d="M9 7V5h6v2M4 12h16"/></svg></span><b>Trade agency</b><small>Pellegrini · DE</small></div>
+          <span class="net-packet" id="netPacket"><i></i><em id="netLabel">Product request</em></span>
+          <p class="net-caption" id="netCaption"></p>
         </div>
 
-        <!-- WIN hub -->
-        <div class="hub-col" aria-hidden="true">
-          <i class="hub-line l"></i><i class="hub-line r"></i>
-          <span class="hub-badge"><b>WIN</b><small id="hubNote">waiting</small></span>
-          <span class="hub-pill" id="hubPill">Product request</span>
-        </div>
+        <!-- Right: what the active party sees -->
+        <div class="scr" aria-live="polite">
+          <div class="scr-who"><span class="scr-dot"></span><span id="scrWho">Merchant · Hawesko</span></div>
+          <div class="scr-win">
+            <div class="pane-bar"><i></i><i></i><i></i><span class="scr-url" id="scrUrl">erp.hawesko.de/articles/new</span></div>
+            <div class="scr-body">
 
-        <!-- Producer / agency in WIN -->
-        <div class="win-pane prod" aria-hidden="true">
-          <div class="pane-bar"><i></i><i></i><i></i><span id="prodTitle">WIN · Weingut Schloss Gobelsburg</span></div>
-          <div class="pane-body">
-            <div class="prod-view is-on" data-view="idle"><div class="empty"><b>No open requests</b><span>New requests from merchants appear here.</span></div></div>
-            <div class="prod-view" data-view="mail">
-              <div class="notif"><span class="notif-dot"></span><div><small>New product request · now</small><b>Hawesko requests data for</b><span>Grüner Veltliner Ried Lamm 2025</span></div><span class="notif-btn">Open</span></div>
-            </div>
-            <div class="prod-view" data-view="rule">
-              <div class="rule"><div><small>Forwarding rule · set once</small><b>All requests for the German market</b><span>→ Pellegrini, trade agency</span></div><span class="ui-switch" id="ruleSwitch"></span></div>
-            </div>
-            <div class="prod-view" data-view="form">
-              <div class="pf-head"><b>Grüner Veltliner Ried Lamm 2025</b><span class="pf-chip" id="pfChip">For Hawesko</span></div>
-              <div class="pf-row" data-k="abv"><span>Alcohol</span><b></b></div>
-              <div class="pf-row" data-k="size"><span>Bottle size</span><b></b></div>
-              <div class="pf-row" data-k="allergen"><span>Allergens</span><b></b></div>
-              <div class="pf-row" data-k="gtin"><span>GTIN</span><b></b></div>
-              <div class="pf-foot"><span id="pfCount">0 / 214 checked</span><span class="pf-send" id="pfSend">Send</span></div>
+              <!-- ERP: new article -->
+              <div class="scr-view" data-screen="erp-new">
+                <div class="scr-h"><b>New article</b><span class="pill">Draft</span></div>
+                <div class="frm">
+                  <label>Article no.</label><div class="inp mono">40-11873</div>
+                  <label>Producer</label><div class="inp">Weingut Schloss Gobelsburg</div>
+                  <label>Wine name</label><div class="inp" data-type="Grüner Veltliner Ried Lamm"><span class="tv"></span><i class="ui-caret"></i></div>
+                  <label>Vintage</label><div class="inp mono" data-type="2025"><span class="tv"></span><i class="ui-caret"></i></div>
+                </div>
+                <div class="scr-actions"><span class="btn-fake" data-btn>Request product data via WIN</span></div>
+              </div>
+
+              <!-- WIN: routing console -->
+              <div class="scr-view" data-screen="win-route">
+                <div class="scr-h"><b>Request routing</b><span class="pill req">Live</span></div>
+                <ol class="console" data-lines></ol>
+              </div>
+
+              <!-- Producer: mail inbox -->
+              <div class="scr-view" data-screen="mail">
+                <div class="scr-h"><b>Inbox</b><span class="muted">info@gobelsburg.at</span></div>
+                <div class="mail-list">
+                  <div class="mail is-new"><span class="from">WIN · EuvinoPRO</span><b>Hawesko requests product data: Grüner Veltliner Ried Lamm 2025</b><span class="snippet">Please complete 41 required fields for Hawesko. Open the request in WIN.</span><span class="mail-tag" data-agency>Auto-forwarded to Pellegrini</span></div>
+                  <div class="mail"><span class="from">Weinbauverband</span><b>Newsletter October</b><span class="snippet">Harvest report and dates for the autumn fairs.</span></div>
+                  <div class="mail"><span class="from">Spedition Huber</span><b>Delivery confirmation #44812</b><span class="snippet">Pallets collected on Tuesday.</span></div>
+                </div>
+              </div>
+
+              <!-- Agency: request list -->
+              <div class="scr-view" data-screen="agency-inbox">
+                <div class="scr-h"><b>Requests</b><span class="muted">Pellegrini · German market</span></div>
+                <div class="req-head"><span>Merchant</span><span>Product</span><span>From</span><span></span></div>
+                <div class="req-row is-new"><span>Hawesko</span><span>Grüner Veltliner Ried Lamm 2025</span><span>Schloss Gobelsburg</span><span class="btn-fake sm" data-btn>Open</span></div>
+                <div class="req-row"><span>Karstadt</span><span>Lugana DOC 2024</span><span>Cantina Avanzi</span><span class="pill ok">Done</span></div>
+                <div class="req-row"><span>Winedock</span><span>Soave Classico 2024</span><span>Cantina Avanzi</span><span class="pill ok">Done</span></div>
+              </div>
+
+              <!-- Producer or agency: product data form -->
+              <div class="scr-view" data-screen="form">
+                <div class="scr-h"><b>Grüner Veltliner Ried Lamm 2025</b><span class="pill req" id="formFor">For Hawesko</span></div>
+                <div class="frm frm-data">
+                  <label>Alcohol</label><div class="inp mono" data-type="12.5 % vol"><span class="tv"></span><i class="ui-caret"></i></div>
+                  <label>Bottle size</label><div class="inp mono" data-type="0.75 l"><span class="tv"></span><i class="ui-caret"></i></div>
+                  <label>Allergens</label><div class="inp" data-type="Contains sulphites"><span class="tv"></span><i class="ui-caret"></i></div>
+                  <label class="agency-field">Description (DE)</label><div class="inp agency-field" data-type="Trocken, würzig, weißer Pfeffer"><span class="tv"></span><i class="ui-caret"></i></div>
+                </div>
+                <div class="scr-actions"><span class="frm-count" data-count>27 / 41 required fields</span><span class="btn-fake" data-btn>Send to WIN</span></div>
+              </div>
+
+              <!-- WIN: validation -->
+              <div class="scr-view" data-screen="win-check">
+                <div class="scr-h"><b>Validation</b><span class="muted">40-11873 · 214 attributes</span></div>
+                <ul class="checklist" data-checks>
+                  <li>GTIN check digit<span>4006381333931</span></li>
+                  <li>LMIV mandatory fields<span>12 / 12</span></li>
+                  <li>Allergen declaration<span>sulphites</span></li>
+                  <li>Hawesko required fields<span>41 / 41</span></li>
+                </ul>
+                <div class="approved" data-approved>Record approved, sending to Hawesko</div>
+              </div>
+
+              <!-- ERP: record arrives -->
+              <div class="scr-view" data-screen="erp-done">
+                <div class="scr-h"><b>40-11873 · Grüner Veltliner Ried Lamm 2025</b><span class="pill" data-status>Waiting</span></div>
+                <div class="attr" data-attrs>
+                  <div><span>Alcohol</span><b>12.5 % vol</b></div>
+                  <div><span>Bottle size</span><b>0.75 l</b></div>
+                  <div><span>Allergens</span><b>Contains sulphites</b></div>
+                  <div><span>GTIN</span><b>4006381333931</b></div>
+                  <div><span>Source</span><b data-source>Schloss Gobelsburg</b></div>
+                  <div><span>Imported</span><b>11:20:42</b></div>
+                </div>
+                <div class="erp-detail is-on"><span>Attributes imported</span><b data-imp>0 / 214</b><i><em data-imp-bar></em></i></div>
+              </div>
+
             </div>
           </div>
+          <ol class="scr-steps" id="scrSteps" aria-hidden="true"></ol>
         </div>
       </div>
-
-      <p class="how-caption" id="howCaption" aria-live="polite"></p>
     </div>
   </section>
 

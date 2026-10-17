@@ -1,170 +1,202 @@
-/* How it works: the merchant's ERP on the left, the producer's WIN app on the right,
-   the WIN hub between them. Each step changes what both screens show.
-   Autoplays while the section is on screen; every step can be clicked. */
+/* How it works v3.
+   Left: the network (merchant, WIN, producer, trade agency) with a labelled packet
+   showing what is flowing. Right: the screen of whoever the data just reached.
+   Plays the trade-agency run, then the direct run, and loops while on screen. */
 (function () {
-  var stage = document.getElementById('howStage');
-  if (!stage) return;
   var section = document.getElementById('how');
-  var stepper = document.getElementById('howStepper');
-  var caption = document.getElementById('howCaption');
-  var playBtn = document.getElementById('howPlay');
+  var net = section && section.querySelector('.net');
+  if (!net) return;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var $ = function (id) { return document.getElementById(id); };
-  var erpPane = stage.querySelector('.win-pane.erp'), prodPane = stage.querySelector('.win-pane.prod');
-  var hub = stage.querySelector('.hub-col'), hubPill = $('hubPill'), hubNote = $('hubNote');
-  var erpRow = $('erpNew'), erpName = $('erpName'), erpProd = $('erpProd'), erpPill = $('erpPill');
-  var erpDetail = $('erpDetail'), erpCount = $('erpCount'), erpBar = $('erpBar');
-  var prodTitle = $('prodTitle'), pfChip = $('pfChip'), pfCount = $('pfCount'), pfSend = $('pfSend'), ruleSwitch = $('ruleSwitch');
-  var pf = {}; stage.querySelectorAll('.pf-row').forEach(function (r) { pf[r.getAttribute('data-k')] = r; });
-  var NAME = 'Grüner Veltliner Ried Lamm 2025';
-  var VALUES = { abv: '12.5 % vol', size: '0.75 l', allergen: 'Contains sulphites', gtin: '4006381333931' };
-  var STEP_MS = 3600;
+  var q = function (sel, root) { return (root || section).querySelector(sel); };
+  var qa = function (sel, root) { return Array.prototype.slice.call((root || section).querySelectorAll(sel)); };
+  var wait = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
 
-  /* Each step is a scene: what the ERP shows, what WIN carries, what the producer sees. */
-  var FLOWS = {
-    direct: [
-      { t: 'Create the article', c: '<b>You create the article in your ERP.</b> Article number, producer, wine name and vintage. That\'s all you type.', erp: 'typing', prod: 'idle', focus: 'erp' },
-      { t: 'Request goes to WIN', c: '<b>Your ERP sends a product request to WIN</b> automatically. No email, no spreadsheet.', erp: 'requested', send: 'left', prod: 'idle', focus: 'erp', note: 'routing' },
-      { t: 'Producer notified', c: '<b>WIN routes the request to the right producer</b> and notifies them.', erp: 'waiting', send: 'right', prod: 'mail', focus: 'prod', note: 'routed' },
-      { t: 'Producer answers', c: '<b>The producer fills in the data</b> in the WIN app or from their own ERP. Every field is checked as it\'s entered.', erp: 'waiting', prod: 'form', focus: 'prod', note: 'checking' },
-      { t: 'Checked data returns', c: '<b>Only a complete, validated record leaves the producer.</b> Every change is logged.', erp: 'waiting', back: 'right', prod: 'sent', focus: 'prod', note: 'validated' },
-      { t: 'Imported, ready to sell', c: '<b>The finished record lands in your ERP.</b> 214 of 214 attributes, no retyping.', erp: 'complete', back: 'left', prod: 'sent', focus: 'erp', note: 'delivered' }
-    ],
-    agency: [
-      { t: 'Create the article', c: '<b>You create the article in your ERP</b>, the same as always.', erp: 'typing', prod: 'idle', focus: 'erp' },
-      { t: 'Request goes to WIN', c: '<b>Your ERP sends the product request to WIN</b> automatically.', erp: 'requested', send: 'left', prod: 'idle', focus: 'erp', note: 'routing' },
-      { t: 'Producer notified', c: '<b>WIN notifies the producer</b> behind the wine.', erp: 'waiting', send: 'right', prod: 'mail', focus: 'prod', note: 'routed' },
-      { t: 'Forwarded to agency', c: '<b>A one-time rule by the producer</b> forwards every request for this market to their trade agency.', erp: 'waiting', prod: 'rule', focus: 'prod', note: 'forwarding' },
-      { t: 'Agency refines', c: '<b>The agency prepares the data for your market</b>, online or from its own ERP.', erp: 'waiting', prod: 'form', agency: true, focus: 'prod', note: 'checking' },
-      { t: 'Checked data returns', c: '<b>The validated record goes back through WIN</b>, checked like any direct answer.', erp: 'waiting', back: 'right', prod: 'sent', agency: true, focus: 'prod', note: 'validated' },
-      { t: 'Imported, ready to sell', c: '<b>The complete record lands in your ERP</b>, ready to use.', erp: 'complete', back: 'left', prod: 'sent', agency: true, focus: 'erp', note: 'delivered' }
-    ]
+  var packet = q('#netPacket'), label = q('#netLabel'), caption = q('#netCaption');
+  var who = q('#scrWho'), url = q('#scrUrl'), steps = q('#scrSteps'), playBtn = q('#howPlay');
+  var nodes = {}; qa('.net-node').forEach(function (n) { nodes[n.getAttribute('data-node')] = n; });
+  var views = {}; qa('.scr-view').forEach(function (v) { views[v.getAttribute('data-screen')] = v; });
+  var VB = { w: 440, h: 380 };
+
+  var playing = !reduce, visible = false, running = false;
+  function alive() { return visible; }
+  async function holdWhilePaused() { while (!playing && visible) await wait(200); }
+
+  /* ---------- helpers for the screens ---------- */
+  async function typeInto(inp, speed) {
+    var text = inp.getAttribute('data-type'), tv = inp.querySelector('.tv');
+    inp.classList.remove('is-ok'); inp.classList.add('is-typing'); tv.textContent = '';
+    for (var i = 0; i < text.length && alive(); i++) { tv.textContent += text[i]; await wait(speed || 45); }
+    inp.classList.remove('is-typing'); inp.classList.add('is-ok');
+    await wait(140);
+  }
+  async function press(btn, doneText) {
+    btn.classList.add('is-press'); await wait(160); btn.classList.remove('is-press');
+    if (doneText) { btn.textContent = doneText; btn.classList.add('is-done'); }
+  }
+  function show(screen) { Object.keys(views).forEach(function (k) { views[k].classList.toggle('is-on', k === screen); }); }
+  function focusNode(k) { Object.keys(nodes).forEach(function (n) { nodes[n].classList.toggle('is-active', n === k); }); }
+
+  /* Move the packet along an SVG edge, in percent of the diagram box */
+  function travel(edgeId, reverse, text, data) {
+    return new Promise(function (resolve) {
+      var path = document.getElementById(edgeId), len = path.getTotalLength();
+      qa('.edge').forEach(function (e) { e.classList.remove('is-live', 'is-data'); });
+      path.classList.add('is-live'); if (data) path.classList.add('is-data');
+      label.textContent = text; packet.classList.toggle('is-data', !!data); packet.style.opacity = 1;
+      var t0 = null, dur = reduce ? 1 : 1100;
+      function frame(t) {
+        if (!t0) t0 = t;
+        var p = Math.min(1, (t - t0) / dur), e = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+        var pt = path.getPointAtLength((reverse ? 1 - e : e) * len);
+        packet.style.left = (pt.x / VB.w * 100) + '%'; packet.style.top = (pt.y / VB.h * 100) + '%';
+        if (p < 1) requestAnimationFrame(frame);
+        else { packet.style.opacity = 0; path.classList.remove('is-live', 'is-data'); resolve(); }
+      }
+      requestAnimationFrame(frame);
+    });
+  }
+
+  /* ---------- screen actions ---------- */
+  var act = {
+    erpNew: async function () {
+      var v = views['erp-new'], btn = q('[data-btn]', v);
+      qa('.inp[data-type]', v).forEach(function (i) { i.querySelector('.tv').textContent = ''; i.classList.remove('is-ok'); });
+      btn.textContent = 'Request product data via WIN'; btn.classList.remove('is-done');
+      await wait(400);
+      var inps = qa('.inp[data-type]', v);
+      for (var i = 0; i < inps.length && alive(); i++) await typeInto(inps[i], 45);
+      await wait(350); await press(btn, 'Request sent ✓');
+    },
+    winRoute: async function (run) {
+      var ol = q('[data-lines]', views['win-route']); ol.innerHTML = '';
+      var lines = [
+        ['09:41:02', 'Request <span class="hl">40-11873</span> from Hawesko'],
+        ['09:41:02', 'Producer matched: Weingut Schloss Gobelsburg'],
+        run === 'agency' ? ['09:41:02', 'Forwarding rule found → <span class="hl">Pellegrini (DE)</span>'] : ['09:41:02', 'No forwarding rule, producer answers directly'],
+        ['09:41:03', '<span class="ok">Notification sent</span>']
+      ];
+      for (var i = 0; i < lines.length && alive(); i++) {
+        var li = document.createElement('li'); li.innerHTML = '<time>' + lines[i][0] + '</time><span>' + lines[i][1] + '</span>';
+        ol.appendChild(li); await wait(520);
+      }
+    },
+    mail: async function (run) {
+      var v = views.mail, m = q('.mail.is-new', v), tag = q('[data-agency]', v);
+      tag.style.display = run === 'agency' ? '' : 'none';
+      m.classList.remove('is-arrive'); void m.offsetWidth; m.classList.add('is-arrive');
+      await wait(1800);
+    },
+    agencyInbox: async function () {
+      var v = views['agency-inbox'], row = q('.req-row.is-new', v), btn = q('[data-btn]', row);
+      row.classList.remove('is-arrive'); void row.offsetWidth; row.classList.add('is-arrive');
+      await wait(1300); await press(btn);
+      await wait(300);
+    },
+    form: async function (run) {
+      var v = views.form, frm = q('.frm', v), btn = q('[data-btn]', v), count = q('[data-count]', v);
+      frm.classList.toggle('has-agency', run === 'agency');
+      q('#formFor').textContent = run === 'agency' ? 'Refined for DE market' : 'For Hawesko';
+      qa('.inp[data-type]', v).forEach(function (i) { i.querySelector('.tv').textContent = ''; i.classList.remove('is-ok'); });
+      btn.textContent = 'Send to WIN'; btn.classList.remove('is-done');
+      var inps = qa('.inp[data-type]', v).filter(function (i) { return getComputedStyle(i).display !== 'none'; });
+      var total = 41, start = total - inps.length * 3 - 2;
+      count.textContent = start + ' / 41 required fields';
+      await wait(300);
+      for (var i = 0; i < inps.length && alive(); i++) { await typeInto(inps[i], 38); count.textContent = Math.min(total, start + (i + 1) * 3 + (i === inps.length - 1 ? 2 : 0)) + ' / 41 required fields'; }
+      count.textContent = '41 / 41 required fields';
+      await wait(350); await press(btn, 'Sent ✓');
+    },
+    winCheck: async function () {
+      var v = views['win-check'], items = qa('[data-checks] li', v), ok = q('[data-approved]', v);
+      items.forEach(function (li) { li.classList.remove('is-ok'); }); ok.classList.remove('is-on');
+      for (var i = 0; i < items.length && alive(); i++) { await wait(420); items[i].classList.add('is-ok'); }
+      await wait(250); ok.classList.add('is-on'); await wait(600);
+    },
+    erpDone: async function (run) {
+      var v = views['erp-done'], st = q('[data-status]', v), attrs = qa('[data-attrs] div', v), imp = q('[data-imp]', v), bar = q('[data-imp-bar]', v);
+      q('[data-source]', v).textContent = run === 'agency' ? 'Pellegrini for Schloss Gobelsburg' : 'Schloss Gobelsburg';
+      st.className = 'pill wait'; st.textContent = 'Importing'; attrs.forEach(function (a) { a.classList.remove('is-in'); }); imp.textContent = '0 / 214'; bar.style.width = '0';
+      for (var i = 0; i < attrs.length && alive(); i++) {
+        await wait(230); attrs[i].classList.add('is-in');
+        var n = Math.round(214 * (i + 1) / attrs.length); imp.textContent = n + ' / 214'; bar.style.width = (n / 214 * 100) + '%';
+      }
+      await wait(250); st.className = 'pill ok'; st.textContent = 'Complete';
+      await wait(900);
+    }
   };
 
-  var mode = 'direct', idx = 0, playing = !reduce, visible = false, timer = null, token = 0;
-  function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+  /* ---------- the two runs ---------- */
+  var M = { who: 'Merchant · Hawesko', node: 'merchant' };
+  var W = { who: 'WIN · EuvinoPRO', node: 'win' };
+  var RUNS = {
+    agency: [
+      { m: M, url: 'erp.hawesko.de/articles/new', screen: 'erp-new', fn: 'erpNew', cap: '<b>The merchant creates the article</b> in their ERP and asks WIN for the product data.' },
+      { m: W, edge: 'e-mw', text: 'Product request', url: 'backend.euvinopro.eu/win/routing', screen: 'win-route', fn: 'winRoute', cap: '<b>WIN receives the request</b> and finds the producer and their forwarding rule.' },
+      { m: { who: 'Producer · Weingut Schloss Gobelsburg', node: 'producer' }, edge: 'e-wp', text: 'Notification', url: 'mail.gobelsburg.at/inbox', screen: 'mail', fn: 'mail', cap: '<b>The producer is notified.</b> Their rule passes the request on automatically.' },
+      { m: { who: 'Trade agency · Pellegrini', node: 'agency' }, edge: 'e-pa', text: 'Forwarded request', url: 'backend.euvinopro.eu/agency/requests', screen: 'agency-inbox', fn: 'agencyInbox', cap: '<b>The trade agency receives the request</b> for the German market.' },
+      { m: { who: 'Trade agency · Pellegrini', node: 'agency' }, url: 'backend.euvinopro.eu/agency/requests/40-11873', screen: 'form', fn: 'form', cap: '<b>The agency fills in and refines the data</b>, including a German description.' },
+      { m: W, edge: 'e-aw', text: 'Product data', data: true, url: 'backend.euvinopro.eu/win/validation', screen: 'win-check', fn: 'winCheck', cap: '<b>WIN checks every field</b> against the law and Hawesko\'s requirements.' },
+      { m: M, edge: 'e-mw', rev: true, text: 'Validated record', data: true, url: 'erp.hawesko.de/articles/40-11873', screen: 'erp-done', fn: 'erpDone', cap: '<b>The complete record lands in the merchant\'s ERP</b>, ready to sell.' }
+    ],
+    direct: [
+      { m: M, url: 'erp.hawesko.de/articles/new', screen: 'erp-new', fn: 'erpNew', cap: '<b>The merchant creates the article</b> in their ERP and asks WIN for the product data.' },
+      { m: W, edge: 'e-mw', text: 'Product request', url: 'backend.euvinopro.eu/win/routing', screen: 'win-route', fn: 'winRoute', cap: '<b>WIN receives the request</b> and routes it to the producer.' },
+      { m: { who: 'Producer · Weingut Schloss Gobelsburg', node: 'producer' }, edge: 'e-wp', text: 'Notification', url: 'mail.gobelsburg.at/inbox', screen: 'mail', fn: 'mail', cap: '<b>The producer gets an email</b> with a link to the request.' },
+      { m: { who: 'Producer · Weingut Schloss Gobelsburg', node: 'producer' }, url: 'backend.euvinopro.eu/producer/requests/40-11873', screen: 'form', fn: 'form', cap: '<b>The producer fills in the data</b> once, in the WIN app or from their own ERP.' },
+      { m: W, edge: 'e-wp', rev: true, text: 'Product data', data: true, url: 'backend.euvinopro.eu/win/validation', screen: 'win-check', fn: 'winCheck', cap: '<b>WIN checks every field</b> against the law and Hawesko\'s requirements.' },
+      { m: M, edge: 'e-mw', rev: true, text: 'Validated record', data: true, url: 'erp.hawesko.de/articles/40-11873', screen: 'erp-done', fn: 'erpDone', cap: '<b>The complete record lands in the merchant\'s ERP</b>, ready to sell.' }
+    ]
+  };
+  var ORDER = ['agency', 'direct'];
 
-  function renderStepper() {
-    var flow = FLOWS[mode];
-    stepper.style.setProperty('--n', flow.length);
-    stepper.innerHTML = flow.map(function (s, i) {
-      return '<li><button type="button" data-i="' + i + '"><span class="n">' + String(i + 1).padStart(2, '0') + '</span><span class="t">' + s.t + '</span><span class="bar" style="--dur:' + STEP_MS + 'ms"></span></button></li>';
-    }).join('');
+  function setRun(run) {
+    net.setAttribute('data-run', run);
+    qa('.run').forEach(function (r) { r.classList.toggle('is-on', r.getAttribute('data-run') === run); });
+    steps.innerHTML = RUNS[run].map(function () { return '<li><i></i></li>'; }).join('');
+  }
+  function markStep(i) {
+    qa('li', steps).forEach(function (li, n) { li.classList.toggle('is-done', n < i); li.classList.toggle('is-active', n === i); });
   }
 
-  function view(name) { stage.querySelectorAll('.prod-view').forEach(function (v) { v.classList.toggle('is-on', v.getAttribute('data-view') === name); }); }
-  function pill(cls, text) { erpPill.className = 'pill' + (cls ? ' ' + cls : ''); erpPill.textContent = text; }
+  async function playScene(run, s, i) {
+    markStep(i);
+    if (s.edge) { focusNode(null); await travel(s.edge, s.rev, s.text, s.data); }
+    focusNode(s.m.node);
+    who.textContent = s.m.who; url.textContent = s.url; caption.innerHTML = s.cap;
+    show(s.screen);
+    await wait(300);
+    await act[s.fn](run);
+    await wait(700);
+  }
 
-  function setErp(state, instant) {
-    erpRow.classList.add('is-in');
-    erpRow.classList.remove('is-complete', 'is-typing');
-    erpProd.textContent = 'Schloss Gobelsburg';
-    if (state === 'typing') { pill('', 'Draft'); erpDetail.classList.remove('is-on'); erpCount.textContent = '0 / 214'; erpBar.style.width = '0'; }
-    if (state === 'requested') { erpName.textContent = NAME; pill('req', 'Request sent'); }
-    if (state === 'waiting') { erpName.textContent = NAME; pill('wait', 'Waiting'); erpDetail.classList.add('is-on'); erpCount.textContent = '0 / 214'; erpBar.style.width = '0'; }
-    if (state === 'complete') {
-      erpName.textContent = NAME; erpDetail.classList.add('is-on');
-      setTimeout(function () { pill('ok', 'Complete'); erpRow.classList.add('is-complete'); erpCount.textContent = '214 / 214'; erpBar.style.width = '100%'; }, instant ? 0 : 700);
+  async function loop() {
+    if (running) return; running = true;
+    while (visible) {
+      for (var r = 0; r < ORDER.length && visible; r++) {
+        var run = ORDER[r]; setRun(run);
+        for (var i = 0; i < RUNS[run].length && visible; i++) { await holdWhilePaused(); if (!visible) break; await playScene(run, RUNS[run][i], i); }
+        if (visible) { markStep(RUNS[run].length); await wait(1200); }
+      }
     }
+    running = false;
   }
 
-  function setProducer(s) {
-    prodTitle.textContent = s.agency ? 'WIN · Pellegrini, trade agency' : 'WIN · Weingut Schloss Gobelsburg';
-    pfChip.textContent = s.agency ? 'Refined for DE market' : 'For Hawesko';
-    view(s.prod === 'sent' ? 'form' : s.prod);
-    if (s.prod === 'rule') { ruleSwitch.classList.remove('is-on'); setTimeout(function () { ruleSwitch.classList.add('is-on'); }, 700); }
-    if (s.prod === 'sent') {
-      Object.keys(pf).forEach(function (k) { pf[k].querySelector('b').textContent = VALUES[k]; pf[k].className = 'pf-row is-ok'; });
-      pfCount.textContent = '214 / 214 checked'; pfSend.className = 'pf-send is-sent'; pfSend.textContent = 'Sent ✓';
-    }
-  }
+  playBtn.addEventListener('click', function () {
+    playing = !playing; playBtn.textContent = playing ? 'Pause' : 'Play'; playBtn.setAttribute('aria-label', playBtn.textContent);
+    section.classList.toggle('is-paused', !playing);
+  });
 
-  function travel(dir, data) {
-    /* dir: 'left' or 'right' half of the hub; send = toward WIN/producer, back = toward WIN/ERP */
-    hub.classList.remove('is-left', 'is-right', 'is-data');
-    hub.classList.add(dir === 'left' ? 'is-left' : 'is-right');
-    if (data) hub.classList.add('is-data');
-    hubPill.textContent = data ? 'Validated record' : 'Product request';
-    hubPill.classList.toggle('is-data', !!data);
-    var from, to;
-    if (!data) { from = dir === 'left' ? '0%' : '50%'; to = dir === 'left' ? '50%' : '100%'; }
-    else { from = dir === 'right' ? '100%' : '50%'; to = dir === 'right' ? '50%' : '0%'; }
-    hubPill.style.transition = 'none'; hubPill.style.left = from; hubPill.style.opacity = 1;
-    void hubPill.offsetWidth; hubPill.style.transition = '';
-    requestAnimationFrame(function () { hubPill.style.left = to; });
-    setTimeout(function () { hubPill.style.opacity = 0; }, 1300);
+  /* Static end state for reduced motion */
+  if (reduce) {
+    setRun('agency'); markStep(99); focusNode('merchant');
+    var last = RUNS.agency[RUNS.agency.length - 1];
+    who.textContent = last.m.who; url.textContent = last.url; caption.innerHTML = last.cap; show(last.screen);
+    qa('[data-attrs] div').forEach(function (a) { a.classList.add('is-in'); });
+    q('[data-status]').className = 'pill ok'; q('[data-status]').textContent = 'Complete'; q('[data-imp]').textContent = '214 / 214'; q('[data-imp-bar]').style.width = '100%';
+    playBtn.hidden = true; return;
   }
-
-  async function animateForm(my) {
-    var keys = Object.keys(pf);
-    keys.forEach(function (k) { pf[k].querySelector('b').textContent = ''; pf[k].className = 'pf-row'; });
-    pfSend.className = 'pf-send'; pfSend.textContent = 'Send'; pfCount.textContent = '0 / 214 checked';
-    var checked = [61, 118, 172, 214];
-    for (var i = 0; i < keys.length; i++) {
-      var row = pf[keys[i]], b = row.querySelector('b'), v = VALUES[keys[i]];
-      row.className = 'pf-row is-typing';
-      for (var c = 0; c < v.length; c++) { if (my !== token) return; b.textContent += v[c]; await wait(28); }
-      row.className = 'pf-row is-ok'; pfCount.textContent = checked[i] + ' / 214 checked';
-      await wait(120);
-    }
-    if (my === token) pfSend.className = 'pf-send is-ready';
-  }
-
-  async function typeName(my) {
-    erpName.textContent = ''; erpRow.classList.add('is-typing');
-    for (var c = 0; c < NAME.length; c++) { if (my !== token) return; erpName.textContent += NAME[c]; await wait(45); }
-    erpRow.classList.remove('is-typing');
-  }
-
-  function go(i, instant) {
-    var flow = FLOWS[mode];
-    idx = (i + flow.length) % flow.length;
-    var s = flow[idx], my = ++token;
-    stepper.querySelectorAll('li').forEach(function (li, n) {
-      li.classList.toggle('is-active', n === idx); li.classList.toggle('is-done', n < idx);
-      var bar = li.querySelector('.bar'); if (n === idx) { bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = ''; }
-    });
-    caption.innerHTML = s.c;
-    erpPane.classList.toggle('is-active', s.focus === 'erp');
-    prodPane.classList.toggle('is-active', s.focus === 'prod');
-    hub.classList.remove('is-left', 'is-right', 'is-data');
-    hubNote.textContent = s.note || 'waiting';
-    if (idx === 0) { erpRow.classList.remove('is-in'); setTimeout(function () { if (my === token) { setErp('typing'); if (!instant) typeName(my); else erpName.textContent = NAME; } }, 250); }
-    else setErp(s.erp, instant);
-    setProducer(s);
-    if (s.prod === 'form' && !instant) animateForm(my);
-    else if (s.prod === 'form') Object.keys(pf).forEach(function (k) { pf[k].querySelector('b').textContent = VALUES[k]; pf[k].className = 'pf-row is-ok'; });
-    if (s.send && !instant) travel(s.send, false);
-    if (s.back && !instant) travel(s.back, true);
-    schedule();
-  }
-
-  function schedule() {
-    clearTimeout(timer);
-    if (playing && visible) timer = setTimeout(function () { go(idx + 1); }, STEP_MS);
-  }
-  function setPlaying(p) {
-    playing = p; playBtn.textContent = p ? 'Pause' : 'Play'; playBtn.setAttribute('aria-label', p ? 'Pause' : 'Play');
-    section.classList.toggle('is-paused', !p);
-    if (p) go(idx); else clearTimeout(timer);
-  }
-  function setMode(m) {
-    mode = m;
-    stage.setAttribute('data-mode', m);
-    document.querySelectorAll('.how-tabs button').forEach(function (b) { b.setAttribute('aria-selected', String(b.getAttribute('data-mode') === m)); });
-    renderStepper(); go(0);
-  }
-
-  stepper.addEventListener('click', function (e) { var b = e.target.closest('button[data-i]'); if (b) go(+b.getAttribute('data-i')); });
-  document.querySelectorAll('.how-tabs button').forEach(function (b) { b.addEventListener('click', function () { setMode(b.getAttribute('data-mode')); }); });
-  playBtn.addEventListener('click', function () { setPlaying(!playing); });
-
-  renderStepper();
-  if (reduce) { playing = false; playBtn.textContent = 'Play'; section.classList.add('is-paused'); go(FLOWS[mode].length - 1, true); return; }
+  setRun('agency'); show('erp-new'); focusNode('merchant'); caption.innerHTML = RUNS.agency[0].cap;
   if ('IntersectionObserver' in window) {
-    new IntersectionObserver(function (en) {
-      var was = visible; visible = en[0].isIntersecting;
-      if (visible && !was) go(idx); else if (!visible) clearTimeout(timer);
-    }, { threshold: 0.4 }).observe(section);
-  } else { visible = true; go(0); }
+    new IntersectionObserver(function (en) { visible = en[0].isIntersecting; if (visible) loop(); }, { threshold: 0.35 }).observe(section);
+  } else { visible = true; loop(); }
 })();
