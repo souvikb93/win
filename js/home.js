@@ -29,6 +29,26 @@
   }
   setTimeout(cycleFloats, reduceMotion ? 0 : 1300);
 
+  /* ---------- Hero: product screen tilts flat as you scroll (container-scroll animation) ---------- */
+  var device = document.getElementById('device');
+  if (device && !reduceMotion) {
+    var ticking = false;
+    var tilt = function () {
+      ticking = false;
+      var top = device.getBoundingClientRect().top;
+      var vh = window.innerHeight;
+      var p = Math.min(1, Math.max(0, 1 - (top - 90) / (vh * 0.62)));
+      var small = window.innerWidth < 768;
+      var s0 = small ? 0.9 : 1.05, s1 = 1;
+      device.style.setProperty('--rx', (20 * (1 - p)).toFixed(2) + 'deg');
+      device.style.setProperty('--sc', (s0 + (s1 - s0) * p).toFixed(4));
+    };
+    var onTilt = function () { if (!ticking) { ticking = true; requestAnimationFrame(tilt); } };
+    window.addEventListener('scroll', onTilt, { passive: true });
+    window.addEventListener('resize', onTilt);
+    tilt();
+  }
+
   /* ---------- Logo carousel: duplicate the track for a seamless loop ---------- */
   var track = document.getElementById('logoTrack');
   if (track) {

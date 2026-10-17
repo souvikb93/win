@@ -23,7 +23,7 @@
   var header =
     '<div class="concept-strip"><strong>Design concept.</strong> Unofficial redesign of win.wine by Souvik Bhattacharya, not affiliated with EuvinoPRO.</div>' +
     '<header class="nav" id="nav">' +
-      '<div class="container nav-inner">' +
+      '<div class="nav-inner">' +
         '<a class="brand" href="index.html" aria-label="WIN home">' + LOGO +
           '<span class="brand-by">by<b>EuvinoPRO</b></span></a>' +
         '<nav class="nav-links" aria-label="Main">' + navLinks() + '</nav>' +
