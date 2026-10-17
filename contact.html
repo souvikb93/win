@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact | WIN by EuvinoPRO</title>
+  <meta name="description" content="Book a WIN demo, register as a producer or talk to the EuvinoPRO team in Berlin.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,300..900&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="contact">
+<script src="js/layout.js"></script>
+
+<main>
+  <section class="page-hero contact-hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container contact-grid">
+      <div class="contact-copy">
+        <span class="eyebrow">Get in touch</span>
+        <h1>Let's talk about your product data<span class="dot">.</span></h1>
+        <p class="lead">Book a demo with your own articles, register as a producer, or ask us anything about connecting your ERP.</p>
+
+        <ol class="next-steps">
+          <li><span>01</span><div><b>Tell us about your setup</b>Your role, your ERP and how you handle product data today.</div></li>
+          <li><span>02</span><div><b>30-minute demo</b>We walk through WIN with articles from your own range.</div></li>
+          <li><span>03</span><div><b>Connection plan</b>How WIN plugs into your ERP, plus the modules that fit.</div></li>
+        </ol>
+
+        <div class="contact-cards">
+          <a class="contact-card" href="tel:+493098395916"><small>Phone</small><b>+49 30 983 959 16</b></a>
+          <a class="contact-card" href="mailto:info@euvinopro.eu"><small>Email</small><b>info@euvinopro.eu</b></a>
+          <div class="contact-card"><small>Office</small><b>Inselstraße 10, 10179 Berlin</b></div>
+          <a class="contact-card" href="https://backend.euvinopro.eu/login"><small>Already a customer?</small><b>Log in to WIN →</b></a>
+        </div>
+      </div>
+
+      <div class="form-card" id="formCard">
+        <form id="contactForm" novalidate>
+          <fieldset class="topic">
+            <legend>What can we help with?</legend>
+            <div class="topic-options">
+              <label><input type="radio" name="topic" value="demo" checked><span>Book a demo</span></label>
+              <label><input type="radio" name="topic" value="producer"><span>I'm a producer</span></label>
+              <label><input type="radio" name="topic" value="agency"><span>Agency / importer</span></label>
+              <label><input type="radio" name="topic" value="press"><span>Press</span></label>
+              <label><input type="radio" name="topic" value="other"><span>Something else</span></label>
+            </div>
+          </fieldset>
+
+          <div class="form-row">
+            <label class="field-l"><span>Full name</span><input name="name" type="text" autocomplete="name" required placeholder="Jana Weber"></label>
+            <label class="field-l"><span>Company</span><input name="company" type="text" autocomplete="organization" required placeholder="Weinhandel GmbH"></label>
+          </div>
+          <div class="form-row">
+            <label class="field-l"><span>Work email</span><input name="email" type="email" autocomplete="email" required placeholder="jana@weinhandel.de"></label>
+            <label class="field-l"><span>Your role</span>
+              <select name="role" required>
+                <option value="">Choose…</option>
+                <option>Merchant / retailer</option>
+                <option>Wholesaler (GFGH)</option>
+                <option>Producer</option>
+                <option>Trade agency / importer</option>
+                <option>Other</option>
+              </select>
+            </label>
+          </div>
+          <label class="field-l"><span>ERP system <em>(optional)</em></span><input name="erp" type="text" placeholder="e.g. SAP, Microsoft Dynamics, in-house"></label>
+          <label class="field-l"><span>Message</span><textarea name="message" rows="4" placeholder="How many new articles do you list per season? Where does it hurt today?"></textarea></label>
+          <label class="consent"><input type="checkbox" name="consent" required><span>I agree that EuvinoPRO may use my details to answer this request.</span></label>
+          <button class="btn btn-primary btn-block" type="submit">Send request</button>
+          <p class="form-note">Concept prototype: this form doesn't send anything.</p>
+        </form>
+
+        <div class="form-success" id="formSuccess" hidden>
+          <div class="success-ico"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+          <h2 class="h-sm">Thanks, <span id="successName">we've got it</span>.</h2>
+          <p>In the real product, the EuvinoPRO team would now get back to you to schedule a call.</p>
+          <button class="btn btn-secondary" type="button" id="resetForm">Send another request</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight" style="padding-bottom: clamp(80px, 10vw, 120px)">
+    <div class="container faq-grid">
+      <div class="reveal">
+        <span class="eyebrow">FAQ</span>
+        <h2 class="h-sm" style="margin-top:16px">Good to know<span class="dot">.</span></h2>
+      </div>
+      <div class="faq reveal">
+        <details open><summary>Is WIN really free for producers?</summary><p>Yes. Producers enter and manage their product data at no cost. Merchants and wholesalers pay for the data they request.</p></details>
+        <details><summary>Does WIN work with our ERP?</summary><p>WIN connects to ERP systems so requests and data travel machine to machine. If you aren't connected yet, you can use the WIN web app straight away. We'll check your system in the demo.</p></details>
+        <details><summary>Where is our data stored?</summary><p>On servers in Germany, under German and EU data protection law. WIN isn't an open pool: only merchants who send a request receive a producer's data.</p></details>
+        <details><summary>Which data can WIN handle?</summary><p>More than 200 attributes per wine, including descriptions, aromas, media, LMIV labelling, logistics and packaging data for LUCID reports. Merchants decide which fields are required.</p></details>
+        <details><summary>Can WIN connect us to GDSN?</summary><p>Yes. The optional EuvinoPRO GDSN module publishes and receives product data in a GDSN data pool, sent straight from your ERP via API.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  var form = document.getElementById('contactForm');
+  var success = document.getElementById('formSuccess');
+  var topic = new URLSearchParams(location.search).get('topic');
+  if (topic) {
+    var r = form.querySelector('input[name="topic"][value="' + topic + '"]');
+    if (r) r.checked = true;
+    var role = { producer: 'Producer', agency: 'Trade agency / importer' }[topic];
+    if (role) form.elements.namedItem('role').value = role;
+  }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var ok = true;
+    form.querySelectorAll('[required]').forEach(function (el) {
+      var valid = el.type === 'checkbox' ? el.checked : el.checkValidity() && el.value.trim() !== '';
+      var wrap = el.closest('.field-l, .consent');
+      if (wrap) wrap.classList.toggle('is-invalid', !valid);
+      if (!valid && ok) { el.focus(); ok = false; }
+    });
+    if (!ok) return;
+    var first = form.elements.namedItem('name').value.trim().split(' ')[0];
+    document.getElementById('successName').textContent = first || "we've got it";
+    form.hidden = true;
+    success.hidden = false;
+  });
+  form.addEventListener('input', function (e) {
+    var wrap = e.target.closest('.is-invalid');
+    if (wrap) wrap.classList.remove('is-invalid');
+  });
+  document.getElementById('resetForm').addEventListener('click', function () {
+    form.reset(); form.hidden = false; success.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>
