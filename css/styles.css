@@ -345,28 +345,6 @@ p { margin: 0; }
 .marquee-track { display: flex; width: max-content; }
 
 /* ---------- Before / After ---------- */
-.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.compare-card { border-radius: var(--radius-lg); padding: 36px; position: relative; overflow: hidden; }
-.compare-card h3 { margin-bottom: 8px; }
-.compare-card > p { color: var(--ink-2); margin-bottom: 26px; }
-.compare-card.before { background: #eef1f6; }
-.compare-card.after { background: var(--navy); color: #fff; }
-.compare-card.after > p { color: rgba(255,255,255,.7); }
-.compare-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
-.compare-list li { display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.45; }
-.compare-list li::before {
-  content: ""; width: 22px; height: 22px; border-radius: 7px; flex-shrink: 0; margin-top: 1px;
-  background-position: center; background-repeat: no-repeat; background-size: 14px;
-}
-.before .compare-list li { color: var(--ink-2); }
-.before .compare-list li::before {
-  background-color: #dfe4ec;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M4 4l6 6M10 4l-6 6' stroke='%238a90a1' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
-}
-.after .compare-list li::before {
-  background-color: rgba(88,68,255,.18);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M3.2 7.3l2.5 2.5 5.1-5.3' fill='none' stroke='%23f59a32' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-}
 
  
 
@@ -445,9 +423,7 @@ p { margin: 0; }
 .diagram .hub.is-active .hub-core { fill: var(--navy-700); }
 .diagram .agency { transition: opacity .5s var(--ease); }
 .diagram[data-mode="direct"] .agency { opacity: 0; pointer-events: none; }
-.diagram .rec-id { font: 500 10.5px var(--mono); fill: var(--ink-3); letter-spacing: .06em; }
-.diagram .rec-name { font: 600 15px var(--font); fill: var(--ink); }
-.diagram .rec-meta { font: 500 11px var(--mono); fill: var(--ink-3); }
+
 .diagram .packet { fill: var(--accent); filter: drop-shadow(0 0 6px rgba(88,68,255,.7)); opacity: 0; }
 .diagram .packet.is-data { fill: var(--teal); filter: drop-shadow(0 0 6px rgba(4,139,168,.6)); }
 .diagram .bubble rect { fill: var(--navy); }
@@ -678,7 +654,7 @@ p { margin: 0; }
   .device { padding: 6px; border-radius: 20px; border-width: 3px; }
   .device .browser { border-radius: 14px; }
 
-  .compare { grid-template-columns: 1fr; }
+  
   .bento { grid-template-columns: 1fr 1fr; }
   .tile-wide { grid-column: span 2; }
   .tile-third { grid-column: span 1; }
@@ -715,7 +691,7 @@ p { margin: 0; }
   .float-1 { right: 8px; top: 40px; }
   .float-3 { right: auto; left: 8px; bottom: 14px; }
   .logo-tile { width: 140px; height: 80px; }
-  .compare-card { padding: 28px 22px; }
+  
   
   .bento { grid-template-columns: 1fr; }
   .tile-wide, .tile-third, .stat-pair { grid-column: span 1; }
@@ -725,9 +701,9 @@ p { margin: 0; }
   .diagram-card { padding: 10px; }
   .diagram .node-label { font-size: 21px; }
   .diagram .node-sub { display: none; }
-  .diagram .rec-id { font-size: 15px; }
-  .diagram .rec-name { font-size: 19px; }
-  .diagram .rec-meta { font-size: 15px; }
+  
+  
+  
   .diagram .bubble text { font-size: 17px; }
   .field { flex-wrap: wrap; font-size: 14px; }
   .field .mono { display: none; }
@@ -1034,25 +1010,15 @@ a.cx-card:hover { box-shadow: inset 0 0 0 1px var(--line-strong), var(--shadow-s
    Home motion: data being requested, checked, delivered
    ========================================================= */
 /* Cursor-following highlight on cards */
-.tile, .trust-card, .compare-card, .role-copy, .press-feature { position: relative; }
+
 .tile, .trust-card { transition: transform .4s var(--ease), box-shadow .4s var(--ease), opacity .8s var(--ease); }
 .tile:hover { transform: translateY(-4px); box-shadow: var(--shadow-md), inset 0 0 0 1px var(--line); }
 .trust-card:hover { transform: translateY(-4px); }
 
-/* Without WIN: messy files drift and shuffle */
-
-.compare-card.before .compare-list li { transition: opacity .5s var(--ease), transform .5s var(--ease); }
-.compare-card.before:not(.is-in) .compare-list li { opacity: 0; transform: translateX(-10px); }
-
-/* With WIN: each benefit ticks in */
-.compare-card.after .compare-list li { transition: opacity .5s var(--ease), transform .5s var(--ease); }
-.compare-card.after .compare-list li::before { transition: transform .45s cubic-bezier(.3,1.6,.5,1), background-color .3s; }
-.compare-card.after:not(.is-in) .compare-list li { opacity: 0; transform: translateY(8px); }
-.compare-card.after:not(.is-in) .compare-list li::before { transform: scale(0); }
-.compare-list li:nth-child(1) { transition-delay: .25s; } .compare-list li:nth-child(1)::before { transition-delay: .45s; }
-.compare-list li:nth-child(2) { transition-delay: .45s; } .compare-list li:nth-child(2)::before { transition-delay: .65s; }
-.compare-list li:nth-child(3) { transition-delay: .65s; } .compare-list li:nth-child(3)::before { transition-delay: .85s; }
-.compare-list li:nth-child(4) { transition-delay: .85s; } .compare-list li:nth-child(4)::before { transition-delay: 1.05s; }
+ 
+ 
+ 
+ 
 
 /* Easy: toggles snap into place */
 .seg i { transition: background .3s, color .3s, box-shadow .3s; }
@@ -1117,7 +1083,7 @@ a.cx-card:hover { box-shadow: inset 0 0 0 1px var(--line-strong), var(--shadow-s
 }
 @media (prefers-reduced-motion: reduce) {
   .trust-ico svg * { stroke-dashoffset: 0 !important; }
-  .eco-module, .compare-list li, .compare-list li::before { opacity: 1 !important; transform: none !important; }
+  
 }
 
 /* =========================================================
@@ -1874,24 +1840,13 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
    Dark variant (Security) keeps the same shape on navy.
    ========================================================= */
 :root { --card-r: 20px; --card-pad: 32px; --card-shadow: 0 1px 2px rgba(26,34,62,.04), 0 12px 32px -18px rgba(26,34,62,.18); --card-shadow-hover: 0 1px 2px rgba(26,34,62,.05), 0 22px 44px -20px rgba(26,34,62,.26); }
-.compare-card, .stack-card, .role-copy, .role-visual, .press-feature, .press-item, .trust-card {
-  border-radius: var(--card-r); box-shadow: var(--card-shadow), inset 0 0 0 1px var(--line); border: 0;
-}
-.compare-card, .stack-card, .role-copy, .press-feature, .trust-card { padding: var(--card-pad); }
-.compare-card.before, .compare-card.after, .stack-card, .stack-card.is-right, .stack-card.is-fast, .role-copy, .press-feature, .press-item { background: var(--surface); color: var(--ink); }
-.compare-card.after > p, .compare-card.before > p { color: var(--ink-2); }
-.compare-card.after .compare-list li, .compare-card.before .compare-list li { color: var(--ink-2); }
+
 /* "after" card: same surface, only the accent marks the difference */
-.compare-card.after { box-shadow: var(--card-shadow), inset 0 0 0 1.5px var(--violet); }
-.compare-card.after .compare-list li::before { background-color: var(--violet-100); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M3.2 7.3l2.5 2.5 5.1-5.3' fill='none' stroke='%235844ff' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
-.compare-card.before { background: var(--surface); }
-.compare-card h3, .role-copy h3, .stack-copy h3 { font-size: 28px; }
+
 .trust-card h3 { font-size: 21px; }
-.compare-card > p, .role-copy > p, .stack-copy p, .press-feature .press-src { font-size: 16.5px; line-height: 1.6; color: var(--ink-2); }
+
 /* same hover on every interactive card */
-.compare-card, .role-copy, .press-feature, .press-item, .trust-card { transition: transform .35s var(--ease), box-shadow .35s var(--ease), background .3s; }
-.compare-card:hover, .role-copy:hover, .press-feature:hover, .press-item:hover { transform: translateY(-3px); box-shadow: var(--card-shadow-hover), inset 0 0 0 1px var(--line-strong); }
-.compare-card.after:hover { box-shadow: var(--card-shadow-hover), inset 0 0 0 1.5px var(--violet); }
+
 /* stacked cards must not shift while pinned */
 .stack-card:hover { transform: none; }
 
@@ -1917,31 +1872,9 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .trust-card { background: rgba(255,255,255,.04); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
 .trust-card:hover { background: rgba(255,255,255,.07); box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); transform: translateY(-3px); }
 
-@media (max-width: 600px) { :root { --card-pad: 24px; } .compare-card h3, .role-copy h3, .stack-copy h3 { font-size: 24px; } }
+@media (max-width: 600px) { :root { --card-pad: 24px; }  }
 
 /* No glow on hover: cards only lift */
-.tile::after, .trust-card::after, .compare-card::after, .role-copy::after { content: none !important; }
-.compare-card.after:hover, .compare-card:hover, .role-copy:hover, .press-feature:hover, .press-item:hover { box-shadow: var(--card-shadow-hover), inset 0 0 0 1px var(--line-strong); }
-
-/* With WIN: back to the deep navy card; white cards stay consistent */
-.compare-card.after { background: var(--navy); color: #fff; box-shadow: var(--card-shadow); }
-.compare-card.after h3 { color: #fff; }
-.compare-card.after > p { color: rgba(255,255,255,.72); }
-.compare-card.after .compare-list li { color: rgba(255,255,255,.88); }
-.compare-card.after .compare-list li::before { background-color: rgba(143,125,255,.22); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M3.2 7.3l2.5 2.5 5.1-5.3' fill='none' stroke='%23c9c1ff' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
-.compare-card.after:hover { box-shadow: var(--card-shadow-hover); }
-
-/* Without WIN: files sit below the list, never over the text */
-.compare-card.before { padding-bottom: 150px; }
-
-/* Without WIN: list text shuffles sideways on hover, like papers being pushed around */
-.compare-card.before .compare-list li { transition: transform .35s cubic-bezier(.3,1.5,.5,1), color .25s, opacity .5s; }
-.compare-card.before .compare-list li:hover { transform: translateX(6px); color: var(--ink); animation: shuffle .5s ease; }
-@keyframes shuffle { 0% { transform: translateX(0); } 25% { transform: translateX(7px); } 50% { transform: translateX(-3px); } 75% { transform: translateX(6px); } 100% { transform: translateX(6px); } }
-.compare-card.before .compare-list li:hover::before { background-color: #f7d9d5; }
-.compare-card.after .compare-list li { transition: transform .35s var(--ease), color .25s, opacity .5s; }
-.compare-card.after .compare-list li:hover { transform: translateX(6px); color: #fff; }
-@media (max-width: 600px) { .compare-card.before { padding-bottom: 28px; } }
 
 /* Solutions visual v2: header + a small live scene per role */
 .rv2 { display: grid; align-content: start; gap: 18px; min-height: 420px; }
@@ -1986,26 +1919,9 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .footer ul a, .nav-login { background-image: linear-gradient(currentColor, currentColor); background-repeat: no-repeat; background-size: 0% 1px; background-position: 0 100%; padding-bottom: 2px; transition: background-size .3s var(--ease), color .2s; }
 .footer ul a:hover, .nav-login:hover { background-size: 100% 1px; }
 
-/* =========================================================
-   Problem pair: original look and spacing (owner request).
-   Without WIN = soft grey with faint files behind the text.
-   With WIN = deep navy, no decoration.
-   ========================================================= */
-.compare-card { border-radius: var(--radius-lg); padding: 36px; box-shadow: none; transition: none; }
-.compare-card:hover, .compare-card.before:hover, .compare-card.after:hover { transform: none; box-shadow: none; }
-.compare-card.before { background: #eef1f6; color: var(--ink); padding-bottom: 36px; }
-.compare-card.after { background: var(--navy); color: #fff; }
-.compare-card h3 { font-size: 24px; margin-bottom: 8px; }
-.compare-card > p { font-size: inherit; line-height: 1.6; margin-bottom: 26px; }
-.compare-card.before > p { color: var(--ink-2); } .compare-card.after > p { color: rgba(255,255,255,.7); }
-.compare-card.before .compare-list li { color: var(--ink-2); }
-.compare-card.after .compare-list li { color: rgba(255,255,255,.88); }
-.compare-list { position: relative; z-index: 1; }
-.compare-card.before > h3, .compare-card.before > p { position: relative; z-index: 1; }
-/* the files: big, soft and behind everything, so they never fight the text */
+ 
 
-@media (max-width: 600px) { .compare-card { padding: 28px 22px; } .compare-card h3 { font-size: 22px; } }
-.compare-card.after, .compare-card.after:hover { box-shadow: none; }
+/* the files: big, soft and behind everything, so they never fight the text */
 
 /* No eyebrow labels. Card tags are plain words, not caps mono. */
 .eyebrow { display: none !important; }
@@ -2022,33 +1938,6 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .announce { background-color: #ecebff; opacity: 1; transition: transform .4s var(--ease), visibility 0s linear .4s; }
 .announce.is-hidden { opacity: 1; transform: translateY(-100%); visibility: hidden; pointer-events: none; }
 .announce:not(.is-hidden) { visibility: visible; transition: transform .4s var(--ease), visibility 0s; }
-
-/* =========================================================
-   Problem pair: previews (spreadsheet vs structured record)
-   ========================================================= */
-.cmp-prev { border-radius: 14px; margin: 18px 0 22px; overflow: hidden; position: relative; z-index: 1; font-size: 12.5px; }
-.compare-card h3 { margin-bottom: 0; }
-/* Without WIN: muted spreadsheet with quiet warning marks */
-.sheet { background: rgba(255,255,255,.72); box-shadow: inset 0 0 0 1px #dde3ec; color: var(--ink-2); }
-.sheet-bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 12px; background: rgba(255,255,255,.6); border-bottom: 1px solid #e3e8f0; }
-.sheet-file { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); }
-.sheet-flag { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: #fff1de; color: #b26d0e; white-space: nowrap; }
-.sheet-row { display: grid; grid-template-columns: 1.5fr 1.1fr .7fr .9fr; gap: 1px; background: #e6ebf2; }
-.sheet-row > span { background: rgba(255,255,255,.78); padding: 7px 10px; min-height: 30px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.sheet-row.is-head > span { background: rgba(244,246,250,.9); color: var(--ink-3); font-size: 11.5px; }
-.sheet .mono { font-family: var(--mono); font-size: 11.5px; }
-.sheet .is-miss { background: #fff4e3; box-shadow: inset 0 0 0 1px rgba(229,160,58,.45); }
-.sheet .is-bad { background: #fbe9e6; color: var(--red); box-shadow: inset 0 0 0 1px rgba(217,72,59,.35); }
-/* With WIN: clean structured record on navy */
-.rec { background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); color: rgba(255,255,255,.9); padding: 12px; display: grid; gap: 10px; }
-.rec-bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-.rec-name { font-weight: 600; font-size: 13.5px; }
-.rec-pill { font-size: 11px; font-weight: 600; padding: 2px 9px; border-radius: 999px; background: rgba(127,214,232,.18); color: #9be3f2; }
-.rec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.rec-f { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 9px; background: rgba(255,255,255,.07); font-size: 12.5px; }
-.rec-f i, .rec-foot i { flex: none; width: 16px; height: 16px; border-radius: 50%; background: rgba(169,157,255,.25) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.3l2.2 2.2 4.8-4.8' fill='none' stroke='%23c9c1ff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/11px no-repeat; }
-.rec-foot { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: rgba(255,255,255,.75); padding-top: 2px; }
-@media (max-width: 600px) { .sheet-row { grid-template-columns: 1.4fr 1fr .8fr; } .sheet-row > span:nth-child(4) { display: none; } .rec-grid { grid-template-columns: 1fr; } }
 
 /* =========================================================
    Why WIN v3: header with lead stays pinned; card visuals
@@ -2106,3 +1995,8 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .logo-tile, .logo-tile:hover { width: auto; height: auto; padding: 0 clamp(28px, 3.6vw, 52px); background: none; box-shadow: none; border-radius: 0; transform: none; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: none; }
 .logo-tile img, .logo-tile:hover img { width: auto; height: var(--h, 40px); max-width: none; max-height: none; object-fit: contain; transform: none; transition: none; }
 @media (max-width: 600px) { .logo-tile img { height: calc(var(--h, 40px) * .72); } .logo-tile { padding: 0 24px; } }
+
+/* Why WIN sits on the same white band as the customer strip, with no divider between them */
+.logos { border-bottom: 0; }
+.why { background: var(--surface); padding-top: clamp(56px, 7vw, 96px); }
+.why-head { background: linear-gradient(to bottom, var(--surface) 78%, rgba(255,255,255,0)); }
