@@ -26,6 +26,8 @@ Modern SaaS-style redesign of win.wine in EuvinoPRO's brand language, built for 
 - Home card motion tells the product story: messy files shuffle, benefits tick in, field toggles snap into place, validation fixes a missing bottle size, data streams from WIN out to its modules.
 - The Contact page uses +49 30 2000 3438 0 (from Souvik's brief). The Home CTA still shows +49 30 983 959 16 from the old imprint.
 
+- Home now ends with Testimonials (placeholder quotes, role-based) and a Book a demo CTA panel; the press teaser was removed from Home.
+
 ## Failed / gotchas
 - A hidden preview pane runs no animation frames or scroll observers, so test motion with the pane visible or with stubbed observers.
 - SplitText locks line breaks at split time. Reload the page after CSS width changes.

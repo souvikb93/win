@@ -214,3 +214,5 @@ The How it works animation follows WIN's own diagrams exactly:
 - **Animations never resize their card.** Reserve space for the largest state (hidden messages use `visibility`, not `display`).
 - **Progress bars are grey, brand violet only when complete.** No amber/teal states.
 - **Case:** headings Title Case; UI labels, messages, buttons and pills sentence case ("Bottle size", "Send to trader", "Ready to use"); acronyms (GTIN, ERP) upper.
+
+**Home ending:** Testimonials carousel (after 21st.dev "Carousel Testimonials"; role-based, no real names or photos; quotes are placeholders until real ones are supplied) then a navy "Ready To See WIN In Action." CTA panel with the primary "Book a demo" button to `contact.html?topic=demo`. Press lives on its own page only.

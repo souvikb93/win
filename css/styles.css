@@ -2032,3 +2032,30 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
   .stack-copy .tile-tag { font-size: 52px; }
 }
 .stack-card.is-right .stack-copy p { max-width: 46ch; font-size: 17px; }
+
+/* Testimonials (carousel after 21st.dev "Carousel Testimonials") + closing CTA */
+.testi { background: var(--bg); }
+.testi-head { text-align: center; display: grid; gap: 16px; justify-items: center; margin-bottom: clamp(40px, 5vw, 64px); }
+.testi-head .lead { max-width: 56ch; margin: 0; }
+.testi-stage { display: grid; justify-items: center; gap: 40px; max-width: 880px; margin: 0 auto; }
+.testi-stage .testi-slide { grid-area: 1 / 1; }
+.testi-stage { grid-template-columns: minmax(0, 1fr); }
+.testi-slide { margin: 0; display: grid; justify-items: center; gap: 36px; text-align: center; opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .5s, transform .5s, visibility 0s .5s; }
+.testi-slide.is-active { opacity: 1; visibility: visible; transform: none; transition: opacity .5s, transform .5s; }
+.testi-slide blockquote { margin: 0; font-size: clamp(22px, 2.5vw, 32px); line-height: 1.35; color: var(--navy); font-weight: 500; letter-spacing: -.005em; }
+.testi-slide figcaption { display: grid; justify-items: center; gap: 2px; }
+.testi-slide figcaption b { font-size: 16px; color: var(--ink); }
+.testi-slide figcaption small { font-size: 14px; color: var(--ink-3); }
+.testi-av { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; background: var(--violet-100); color: var(--violet); font-size: 26px; font-weight: 700; margin-bottom: 12px; }
+.testi-ctrl { grid-area: 2 / 1; display: flex; align-items: center; gap: 20px; }
+.testi-btn { width: 44px; height: 44px; border-radius: 50%; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-strong); color: var(--navy); font-size: 18px; transition: background .2s, color .2s; }
+.testi-btn:hover { background: var(--navy); color: #fff; }
+.testi-dots { display: flex; gap: 8px; }
+.testi-dots button { width: 8px; height: 8px; border-radius: 8px; background: #c9cfdd; transition: width .3s, background .3s; }
+.testi-dots button.is-on { width: 24px; background: var(--violet); }
+.testi-stage { min-height: 0; }
+.cta-end { padding-top: 0; }
+.cta-panel { background: var(--navy); color: #fff; border-radius: var(--card-r); padding: clamp(48px, 7vw, 96px) clamp(24px, 5vw, 64px); text-align: center; display: grid; justify-items: center; gap: 20px; box-shadow: var(--card-shadow); }
+.cta-panel h2 { color: #fff; }
+.cta-panel p { color: rgba(255,255,255,.72); font-size: 18px; max-width: 52ch; margin: 0 0 12px; }
+@media (max-width: 600px) { .testi-slide { gap: 28px; } .testi-av { width: 56px; height: 56px; } }
