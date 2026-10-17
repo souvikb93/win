@@ -21,7 +21,7 @@
   }
 
   function setState(target) {
-    var link = target.closest('a.is-link');
+    var link = target.closest('a.is-link, a.tl-link');
     var logo = target.closest('.tl-logo');
     var rail = target.closest('[data-cursor]');
     var mode = '', text = '';

@@ -10,7 +10,6 @@
   var track = section.querySelector('.tl-track');
   var rail = section.querySelector('.tl-rail');
   var fill = section.querySelector('.tl-fill');
-  var progress = section.querySelector('.tl-progress i');
   var items = gsap.utils.toArray(section.querySelectorAll('.tl-item'));
 
   var mm = gsap.matchMedia();
@@ -32,8 +31,7 @@
         start: function () { return 'top ' + navH() + 'px'; },
         end: function () { return '+=' + distance(); },
         scrub: 0.6,
-        invalidateOnRefresh: true,
-        onUpdate: function (self) { if (progress) progress.style.transform = 'scaleX(' + self.progress.toFixed(4) + ')'; }
+        invalidateOnRefresh: true
       }
     });
 
@@ -46,10 +44,9 @@
     items.forEach(function (item) {
       var stem = item.querySelector('.tl-stem');
       var dot = item.querySelector('.tl-dot');
-      var tag = item.querySelector('.tl-tag');
+      var tag = item.querySelector('.tl-meta');
       var logos = item.querySelector('.tl-foot');
-      var card = item.querySelector('.tl-body');
-      var targets = [item.querySelector('.tl-year'), item.querySelector('.tl-title'), item.querySelector('.tl-text')].filter(Boolean);
+      var targets = [item.querySelector('.tl-title'), item.querySelector('.tl-text')].filter(Boolean);
       var lines = targets;
       if (window.SplitText) {
         var split = SplitText.create(targets, { type: 'lines', mask: 'lines' });
@@ -61,7 +58,6 @@
       gsap.set(dot, { scale: 0 });
       gsap.set(lines, { yPercent: 110 });
       gsap.set(tag, { autoAlpha: 0 });
-      gsap.set(card, { autoAlpha: 0, y: item.classList.contains('is-top') ? 20 : -20 });
       if (logos) gsap.set(logos, { autoAlpha: 0, y: 14 });
 
       var tl = gsap.timeline({
@@ -69,7 +65,6 @@
       });
       tl.to(stem, { scaleY: 1, duration: 0.45, ease: 'none' })
         .to(dot, { scale: 1, duration: 0.3, ease: 'back.out(2)' }, '-=0.15')
-        .to(card, { autoAlpha: 1, y: 0, duration: 0.35, ease: 'power2.out' }, '-=0.1')
         .to(tag, { autoAlpha: 1, duration: 0.2 }, '<')
         .to(lines, { yPercent: 0, duration: 0.6, stagger: 0.06, ease: 'power2.out' }, '-=0.2');
       if (logos) tl.to(logos, { autoAlpha: 1, y: 0, duration: 0.3 }, '-=0.3');
