@@ -25,7 +25,7 @@ All colours are CSS variables in `css/styles.css` `:root`. Never hard-code hex v
 | Token | Value | Role |
 |---|---|---|
 | `--navy` | `#1a223e` | Primary text, dark cards, nav lockup |
-| `--navy-900` | `#0f1428` | Deepest dark: footer, Security band, timeline |
+| `--navy-900` | `#0f1428` | Deepest dark: footer, Security band |
 | `--violet` | `#5844ff` | **The accent.** Primary buttons, active states, links, focus, progress |
 | `--violet-600` | `#4733f0` | Primary button hover |
 | `--violet-100` | `#ecebff` | Light accent tint: pills, icon tiles, active rows, announcement bar |
@@ -43,7 +43,7 @@ All colours are CSS variables in `css/styles.css` `:root`. Never hard-code hex v
 `--bg #f5f7fb` page · `--surface #fff` cards · `--line #e4eaf3` hairlines · `--line-strong #d3dbe8` · `--ink` = navy · `--ink-2 #4b5563` body · `--ink-3 #8a90a1` meta/placeholder.
 
 ### Colour rules
-- Page is light (`--bg`). Dark sections (Security, footer, Press timeline) use `--navy-900`. Do not add more dark blocks without a reason.
+- Page is light (`--bg`). Dark sections (Security, footer) use `--navy-900`. Do not add more dark blocks without a reason.
 - Request = violet. Validated data = teal. Warning/incomplete = amber-orange tint. Error = red. Keep these meanings fixed across the whole site.
 - **Never** put violet and orange together as a decorative pair. **Never** use a gradient on headlines or buttons.
 - Announcement and info bars are **light** (`--violet-100`), not deep.
@@ -62,7 +62,7 @@ All colours are CSS variables in `css/styles.css` `:root`. Never hard-code hex v
 - Scale: h1 `clamp(40px,5.2vw,72px)` · h2 `clamp(34px,4.4vw,56px)` · card h3 `28px` (`21px` for small dark cards) · body `17px` · lead `clamp(17px,1.6vw,21px)` · meta mono `11–12.5px` uppercase with letter-spacing.
 - Headlines are one colour (navy). No gradient text.
 - **Section headers and page titles use Title Case** ("One Request, Followed End to End."). Short articles, prepositions and conjunctions stay lowercase. Card titles, step titles and body copy stay sentence case.
-- Titles lead; dates and sources are secondary but must stay readable (see Press timeline).
+- Titles lead; dates and sources are secondary but must stay readable (≈22px dates beside titles).
 
 ---
 
@@ -72,7 +72,7 @@ All colours are CSS variables in `css/styles.css` `:root`. Never hard-code hex v
 - Section padding: `clamp(80px,11vw,140px)` vertical. Heading block max-width ≈ 760px.
 - Grid gaps 20–24px between cards. Inner card gap 16–18px.
 - **Navigation**
-  - Top nav lists **pages only**: Home, Press, Contact, Press 2. The nav spans the **full width** (padding `clamp(20px,3vw,48px)`), no centred container.
+  - Top nav lists **pages only**: Home, Press, Contact. The nav spans the **full width** (padding `clamp(20px,3vw,48px)`), no centred container.
   - Home sections are reached through the **side section nav** (lines only at rest; panel + labels on hover/focus; chip bar below 1180px).
   - Language selector is a simple **"EN ⌄"** dropdown (like FarmDoc), never a pill toggle. German is marked "Soon".
   - The **Log in** link does not appear on the Contact page.
@@ -100,7 +100,7 @@ Applies to Problem, Why WIN, Solutions, Press, Security.
 - Decorative elements (e.g. the paper files) must never overlap text. Reserve space for them.
 
 ### Tick marks
-Brand purple on a `--violet-100` disc (hero trust points and any check list). Teal ticks only mean "validated" inside product UI.
+Brand purple on a `--violet-100` disc (any check list). The hero has no trust-point row under its CTAs. Teal ticks only mean "validated" inside product UI.
 
 ### Pills / chips
 Small rounded (999px) labels: violet-100 = info/request, teal-100 = complete, amber tint = warning, grey = neutral. 11–12px, 600 weight.
@@ -152,7 +152,7 @@ The How it works animation follows WIN's own diagrams exactly:
 
 ## 8. Build rules
 
-- **Stack:** plain HTML/CSS/JS, no build step. One stylesheet (`css/styles.css`), small scripts per feature (`layout.js`, `home.js`, `why.js`, `how.js`, `timeline.js`, `gallery.js`, `cursor.js`).
+- **Stack:** plain HTML/CSS/JS, no build step. One stylesheet (`css/styles.css`), small scripts per feature (`layout.js`, `home.js`, `why.js`, `how.js`, `gallery.js`, `cursor.js`).
 - **21st.dev components** are ported to vanilla JS (GSAP via CDN where needed). Free tier = 2 downloads/day.
 - Shared nav/footer live in `js/layout.js`. Change them once.
 - Add a token before adding a hard-coded value. Reuse a pattern before creating one.
@@ -187,6 +187,7 @@ The How it works animation follows WIN's own diagrams exactly:
 | Dot crossing over nodes | Dot stays on the link between nodes |
 | Steps that didn't match WIN's diagrams | Follow the official 6/8-step flows exactly |
 | Unifying the Problem cards into plain white cards | Problem pair keeps grey vs navy and its own spacing (§5 exception) |
+| Keeping an old page variant after a new one is chosen | Delete the loser and its dead CSS/JS (Press timeline was removed) |
 | Eyebrow labels above every section heading | None. Headings stand alone (§3) |
 | Teal ticks under the hero CTAs | Brand purple ticks |
 | Hero headline on three lines | Two lines on desktop |
@@ -199,5 +200,5 @@ The How it works animation follows WIN's own diagrams exactly:
 | EN/DE pill toggle | Simple "EN ⌄" dropdown |
 | Grey-scaled customer logos | Original colours |
 | Judging cached CSS or a hidden preview | Hard reload, visible pane (§9) |
-| Date much smaller than title (timeline) | Titles lead, dates stay clearly readable (≈22px) |
+| Date much smaller than title | Titles lead, dates stay clearly readable (≈22px) |
 | Combining unrelated items into one entry (2017 "Part 1/2/3") | Merge into one clear milestone or keep fully separate |

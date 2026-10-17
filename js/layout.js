@@ -24,8 +24,7 @@
   var links = [
     { href: 'index.html', label: 'Home', key: 'home' },
     { href: 'press.html', label: 'Press', key: 'press' },
-    { href: 'contact.html', label: 'Contact', key: 'contact' },
-    { href: 'press2.html', label: 'Press 2', key: 'press2' }
+    { href: 'contact.html', label: 'Contact', key: 'contact' }
   ];
   function navLinks() {
     return links.map(function (l) {

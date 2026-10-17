@@ -1,4 +1,4 @@
-/* Press 2: 3D scroll gallery.
+/* Press: 3D scroll gallery.
    Vanilla port of the youcefbnm/animated-gallery component (21st.dev):
    the grid starts tilted back (rotateX 75deg) and flattens over the first half
    of the scroll, then settles from scale 1.2 to 1 while each column drifts

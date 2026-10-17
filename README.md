@@ -6,8 +6,7 @@ A concept redesign of [win.wine](https://www.win.wine/), EuvinoPRO's product-dat
 
 ## Pages
 - `index.html`: Home. Hero with a coded product mock-up, customer logo carousel, before/after, Easy/Right/Fast, interactive How-it-works diagram (direct flow and via a trade agency), solutions by role, security, EuvinoPRO modules, press teaser, call to action.
-- `press.html`: The whole page is one horizontal-scroll timeline (vanilla GSAP port of hyperiux/timeline from 21st.dev). Every article and partner lives on it, articles are clickable, a Framer-style cursor changes over links, logos and the rail, and `press.html#hawesko`-style deep links jump to a milestone. Vertical fallback on mobile and with reduced motion.
-- `press2.html`: Alternative Press page (Press 2) for comparison: a 3D scroll gallery (vanilla port of youcefbnm/animated-gallery from 21st.dev). 8 article images from win.wine plus 4 text clippings for other coverage; every tile opens the original article.
+- `press.html`: The Press page. A 3D scroll gallery (vanilla port of youcefbnm/animated-gallery from 21st.dev) of 12 tiles: 8 article images from win.wine plus 4 text clippings; every tile opens the original coverage. (`/press2` redirects here.)
 - `contact.html`: Two-column contact page that fits the first viewport at 1440×900 and 1366×768: intro and contact cards on the left, a compact form with inline validation and a prototype-only success state on the right (sends nothing). FAQ sits below the fold. No login links on this page.
 
 ## Stack
