@@ -47,7 +47,7 @@ All colours are CSS variables in `css/styles.css` `:root`. Never hard-code hex v
 - Request = violet. Validated data = teal. Warning/incomplete = amber-orange tint. Error = red. Keep these meanings fixed across the whole site.
 - **Never** put violet and orange together as a decorative pair. **Never** use a gradient on headlines or buttons.
 - Announcement and info bars are **light** (`--violet-100`), not deep.
-- Customer logos are shown in **one colour: brand navy** (single-colour versions in `assets/logos/mono/`, made from the cleaned logos by turning darkness into opacity, so white lettering stays knocked out). Never mix original colours in the strip. Keep the logo strip to customers the owner has approved (Karstadt and Weinladen Schmidt were removed on request).
+- Customer logos are shown in **one colour: brand navy** (single-colour versions in `assets/logos/mono/`, made from the cleaned logos by turning darkness into opacity, so white lettering stays knocked out). Never mix original colours in the strip. **No frames or tiles around the logos, no hover effect, and the strip never pauses on hover.** Logos are cropped tight and sized by eye (a per-logo `--h`: Hawesko 46, Schlumberger 44, Pellegrini 56, AMKA 33, Winedock 52, Döllerer 64, Ersan 22 px) so they read as the same size, not the same bounding box; re-balance by eye when adding one. Keep the logo strip to customers the owner has approved (Karstadt and Weinladen Schmidt were removed on request).
 - Contrast: body text on white must be `--ink-2` or darker; `--ink-3` is for meta only.
 
 ---
@@ -201,6 +201,7 @@ The How it works animation follows WIN's own diagrams exactly:
 | Dark announcement pill above the headline | Light full-width bar under the nav, close on the right |
 | Section links crowding the top nav | Pages in the top nav; sections in the side nav |
 | EN/DE pill toggle | Simple "EN ⌄" dropdown |
+| Logos in framed tiles, pausing on hover, or sized by equal box height | Frameless, always moving, balanced by eye (§2) |
 | Customer logos in mixed colours / grey-scaled | One brand-navy colour for the whole strip (§2) |
 | Judging cached CSS or a hidden preview | Hard reload, visible pane (§9) |
 | Date much smaller than title | Titles lead, dates stay clearly readable (≈22px) |
