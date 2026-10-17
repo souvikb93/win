@@ -105,17 +105,6 @@
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-  /* Cursor-following highlight */
-  if (fine) {
-    document.querySelectorAll('.tile, .trust-card, .compare-card, .role-copy').forEach(function (el) {
-      el.addEventListener('pointermove', function (e) {
-        var r = el.getBoundingClientRect();
-        el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-        el.style.setProperty('--my', (e.clientY - r.top) + 'px');
-      });
-    });
-  }
-
   function whenVisible(el, cb, opts) {
     if (!el) return;
     if (!('IntersectionObserver' in window)) { cb(true); return; }

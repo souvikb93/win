@@ -379,11 +379,13 @@
           </ul>
           <a class="text-link" href="contact.html?topic=demo">Book a merchant demo</a>
         </div>
-        <div class="role-visual">
-          <div class="rv-title">This week</div>
-          <div class="rv-card"><span class="rv-ico"><svg viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg></span><div><b>38 requests sent</b><small>straight from the ERP</small></div><span class="rv-right">Mon–Fri</span></div>
-          <div class="rv-card"><span class="rv-ico"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></span><div><b>31 records complete</b><small>imported without retyping</small></div><span class="pill-ok">Ready</span></div>
-          <div class="rv-card"><span class="rv-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>7 in progress</b><small>producers notified automatically</small></div><span class="rv-right">auto-reminder</span></div>
+        <div class="role-visual rv2" data-rv="merchants" aria-hidden="true">
+          <div class="rv2-head"><b>Your requests, live</b><span>What happens after a merchant creates an article</span></div>
+          <div class="rv2-stage">
+            <div class="rv2-row" style="--d:0s"><span class="rv2-who">Nordwein Handel</span><span class="rv2-act">Request sent</span><span class="rv2-state"><i></i>Waiting</span></div>
+            <div class="rv2-row" style="--d:.9s"><span class="rv2-who">Weingut Sonnenhang</span><span class="rv2-act">Entering data</span><span class="rv2-state is-mid"><i></i>41 of 214</span></div>
+            <div class="rv2-row" style="--d:1.8s"><span class="rv2-who">Cantina del Lago</span><span class="rv2-act">Record returned</span><span class="rv2-state is-done"><i></i>Complete</span></div>
+            <p class="rv2-note">Each request turns into a complete record in your ERP, without a chase.</p></div>
         </div>
       </div>
 
@@ -398,11 +400,13 @@
           </ul>
           <a class="text-link" href="contact.html?topic=producer">Register as a producer</a>
         </div>
-        <div class="role-visual">
-          <div class="rv-title">Data release</div>
-          <div class="rv-card"><span class="rv-ico"><svg viewBox="0 0 24 24"><path d="M3 9l3-6h12l3 6"/><path d="M3 9h18v3a3 3 0 01-6 0 3 3 0 01-6 0 3 3 0 01-6 0z"/><path d="M5 14v7h14v-7"/></svg></span><div><b>Nordwein Handel</b><small>requested 12 wines</small></div><span class="pill-ok">Released</span></div>
-          <div class="rv-card"><span class="rv-ico"><svg viewBox="0 0 24 24"><path d="M3 9l3-6h12l3 6"/><path d="M3 9h18v3a3 3 0 01-6 0 3 3 0 01-6 0 3 3 0 01-6 0z"/><path d="M5 14v7h14v-7"/></svg></span><div><b>Markthalle Feinkost</b><small>requested 4 wines</small></div><span class="pill-ok">Released</span></div>
-          <div class="rv-card"><span class="rv-ico"><svg viewBox="0 0 24 24"><path d="M3 9l3-6h12l3 6"/><path d="M3 9h18v3a3 3 0 01-6 0 3 3 0 01-6 0 3 3 0 01-6 0z"/><path d="M5 14v7h14v-7"/></svg></span><div><b>Unknown merchant</b><small>no request, no access</small></div><span class="pill-off">Hidden</span></div>
+        <div class="role-visual rv2" data-rv="producers" aria-hidden="true">
+          <div class="rv2-head"><b>Who can see your data</b><span>You release it per merchant, never to everyone</span></div>
+          <div class="rv2-stage">
+            <div class="rv2-row" style="--d:0s"><span class="rv2-who">Nordwein Handel</span><span class="rv2-act">Requested 12 wines</span><span class="rv2-toggle is-on"></span></div>
+            <div class="rv2-row" style="--d:.9s"><span class="rv2-who">Markthalle Feinkost</span><span class="rv2-act">Requested 4 wines</span><span class="rv2-toggle is-on"></span></div>
+            <div class="rv2-row rv2-hidden" style="--d:1.8s"><span class="rv2-who">Unknown merchant</span><span class="rv2-act">No request</span><span class="rv2-toggle"></span></div>
+            <p class="rv2-note">Switch on means released. No request, no access.</p></div>
         </div>
       </div>
 
@@ -417,11 +421,13 @@
           </ul>
           <a class="text-link" href="contact.html?topic=agency">Talk to us about the agency model</a>
         </div>
-        <div class="role-visual">
-          <div class="rv-title">Forwarding rule</div>
-          <div class="rv-big">1<span>×</span></div>
-          <p style="color:rgba(255,255,255,.7);max-width:34ch">set once by the producer. From then on, every merchant request for their wines goes to your agency.</p>
-          <div class="rv-card"><span class="rv-ico"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><div><b>Cantina del Lago → Vinara Import</b><small>all requests for DE market</small></div><span class="pill-ok">Active</span></div>
+        <div class="role-visual rv2" data-rv="agencies" aria-hidden="true">
+          <div class="rv2-head"><b>One rule routes everything</b><span>Set once by the producer, used for every request</span></div>
+          <div class="rv2-stage">
+            <div class="rv2-flow"><span class="rv2-chip">Weingut Sonnenhang</span><span class="rv2-arrow"><i></i></span><span class="rv2-chip is-ag">Vinara Import</span></div>
+            <div class="rv2-rule"><b>Forward all requests for the German market</b><span class="rv2-toggle is-on"></span></div>
+            <div class="rv2-row" style="--d:.2s"><span class="rv2-who">Nordwein Handel</span><span class="rv2-act">New request</span><span class="rv2-state is-mid"><i></i>To agency</span></div>
+            <p class="rv2-note">The agency receives each request directly and refines the data for its market.</p></div>
         </div>
       </div>
     </div>
