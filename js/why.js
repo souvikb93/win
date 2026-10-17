@@ -75,25 +75,25 @@
       f.gtin.querySelector('.ui-val').textContent = '4006381333931'; state(f.gtin, 'is-ok', 'Check digit is valid');
       f.size.querySelector('.ui-val').textContent = '0.75 l'; state(f.size, 'is-ok', 'Added');
       f.country.querySelector('.ui-val').textContent = 'Austria'; state(f.country, 'is-ok', 'Recognised country');
-      setPct(100, 3); send.className = 'ui-send is-sent'; send.textContent = 'Sent to Nordwein Handel ✓';
+      setPct(100, 3); send.className = 'ui-send is-sent'; send.textContent = 'Sent to trader';
     }
     if (reduce) finalState();
     else loopWhileVisible(form, async function (alive) {
       await wait(700);
       await type(f.gtin, '4006381333931', alive, 60); state(f.gtin, 'is-ok', 'Check digit is valid'); setPct(33, 1);
       await wait(500); if (!alive()) return;
-      state(f.size, 'is-err', 'Missing: Nordwein Handel needs the bottle size'); setPct(33, 1, true);
+      state(f.size, 'is-err', 'Required by the trader'); setPct(33, 1, true);
       await wait(1400); if (!alive()) return;
       await type(f.country, 'Austria', alive, 90); state(f.country, 'is-ok', 'Recognised country'); setPct(66, 2, true);
       await wait(1100); if (!alive()) return;
       await type(f.size, '0.75 l', alive, 110); state(f.size, 'is-ok', 'Added'); setPct(100, 3);
       send.classList.add('is-ready');
       await wait(800); send.classList.add('is-press');
-      await wait(160); send.classList.remove('is-press'); send.classList.remove('is-ready'); send.classList.add('is-sent'); send.textContent = 'Sent to Nordwein Handel ✓';
+      await wait(160); send.classList.remove('is-press'); send.classList.remove('is-ready'); send.classList.add('is-sent'); send.textContent = 'Sent to trader';
       await wait(2800);
     }, function () {
       Object.keys(f).forEach(function (k) { f[k].querySelector('.ui-val').textContent = ''; state(f[k]); });
-      setPct(0, 0); send.className = 'ui-send'; send.textContent = 'Send to merchant';
+      setPct(0, 0); send.className = 'ui-send'; send.textContent = 'Send to trader';
     });
   }
 
