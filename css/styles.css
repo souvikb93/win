@@ -1975,3 +1975,86 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 @media (max-width: 700px) { .announce { font-size: 12.5px; } .announce-text { text-align: left; } .announce-inner { justify-content: flex-start; gap: 8px; } }
 .announce-short { display: none; }
 @media (max-width: 700px) { .announce-text { display: none; } .announce-short { display: inline; flex: 1; } }
+
+/* =========================================================
+   How it works v7: premium node cards; the screen opens out of
+   the active card and folds back into it when data moves
+   ========================================================= */
+.how-art .net2 { position: relative; flex: none; height: clamp(190px, 27vh, 250px); }
+.net2-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; z-index: 0; }
+.net2-lines path { fill: none; stroke: #cbd4e3; stroke-width: 1.5; stroke-dasharray: 4 6; transition: stroke .4s, opacity .5s; }
+.net2-lines path.is-live { stroke: var(--violet); stroke-dasharray: 6 6; animation: edgeFlow .6s linear infinite; }
+.net2-lines path.is-live.is-data { stroke: var(--teal); }
+.net2[data-run="direct"] .agency-only { opacity: .22; filter: grayscale(1); }
+
+.nc { position: absolute; z-index: 2; left: var(--x); top: var(--y); transform: translate(-50%, -50%); display: flex; align-items: center; gap: 12px; min-width: 196px; padding: 12px 18px 12px 12px; border-radius: 18px; background: linear-gradient(180deg, #fff, #fbfcfe);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 12px 30px -16px rgba(26,34,62,.28), 0 0 0 1px rgba(26,34,62,.08);
+  transition: box-shadow .45s var(--ease), transform .45s var(--ease), opacity .5s, filter .5s; }
+.nc-ico { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; flex: none; background: linear-gradient(145deg, #f1efff, #ffffff); box-shadow: inset 0 0 0 1px rgba(88,68,255,.16); transition: background .4s; }
+.nc-ico svg { width: 21px; height: 21px; fill: none; stroke: var(--violet); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.nc-txt { display: grid; gap: 1px; text-align: left; }
+.nc-txt b { font-size: 15px; font-weight: 650; letter-spacing: -.005em; }
+.nc-txt small { font-size: 12px; color: var(--ink-3); }
+.nc.is-active { transform: translate(-50%, -50%) scale(1.04); box-shadow: inset 0 1px 0 #fff, 0 22px 44px -18px rgba(88,68,255,.5), 0 0 0 2px var(--violet); }
+.nc.is-active .nc-ico { background: var(--violet); box-shadow: none; }
+.nc.is-active .nc-ico svg { stroke: #fff; }
+.nc.is-active::after { content: ""; position: absolute; top: 10px; right: 10px; width: 7px; height: 7px; border-radius: 50%; background: var(--violet); animation: ping 1.4s ease-out infinite; }
+
+.nc.is-hub { display: grid; justify-items: center; gap: 6px; min-width: 150px; padding: 18px 24px 14px; border-radius: 20px; background: linear-gradient(160deg, #262f5a, var(--navy-900)); box-shadow: 0 22px 44px -20px rgba(15,20,40,.6), 0 0 0 1px rgba(255,255,255,.06) inset; }
+.nc.is-hub::before { content: ""; position: absolute; inset: -14px; border-radius: 30px; background: radial-gradient(closest-side, rgba(88,68,255,.22), transparent); z-index: -1; transition: opacity .4s; opacity: .6; }
+.nc.is-hub .net-logo { height: 30px; width: auto; }
+.nc.is-hub .net-logo .win-logo__type, .nc.is-hub .net-logo .win-logo__vine { fill: #fff; }
+.nc.is-hub small { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.55); }
+.nc.is-hub.is-active { box-shadow: 0 26px 50px -18px rgba(88,68,255,.6), 0 0 0 2px #8f7dff; }
+.nc.is-hub.is-active::before { opacity: 1; }
+.nc.is-hub.is-active::after { background: #a99dff; }
+
+.net2-packet { position: absolute; z-index: 1; left: 0; top: 0; display: flex; align-items: center; gap: 8px; transform: translate(-6px, -6px); opacity: 0; transition: opacity .25s; pointer-events: none; }
+.net2-packet i { width: 12px; height: 12px; border-radius: 50%; background: var(--violet); box-shadow: 0 0 0 5px rgba(88,68,255,.18), 0 0 16px 2px rgba(88,68,255,.55); flex: none; }
+.net2-packet em { font-style: normal; font-size: 11.5px; font-weight: 600; white-space: nowrap; padding: 4px 10px; border-radius: 999px; background: var(--navy); color: #fff; box-shadow: var(--shadow-md); transform: translateY(-18px); }
+.net2-packet.is-data i { background: var(--teal); box-shadow: 0 0 0 5px rgba(4,139,168,.18), 0 0 16px 2px rgba(4,139,168,.5); }
+
+/* the screen: same purple outline as the active card; folds into it when data moves */
+.how-art .scr { position: relative; }
+.how-art .scr-win { transform-origin: var(--fx, 50%) var(--fy, -40px);
+  box-shadow: 0 24px 50px -26px rgba(88,68,255,.45), 0 0 0 2px var(--violet); border-radius: 16px;
+  transition: transform .5s cubic-bezier(.5,0,.75,0), opacity .4s ease-in, box-shadow .4s; }
+.how-art .scr-win.is-folded { transform: scale(.06); opacity: 0; }
+.how-art .scr-win.is-opening { transition: transform .6s cubic-bezier(.16,1,.3,1), opacity .35s ease-out; }
+.how-art .pane-bar { gap: 6px; }
+.scr-party { display: inline-flex; align-items: center; gap: 8px; margin-left: 10px; font-size: 12.5px; }
+.scr-party b { font-weight: 650; color: var(--ink); }
+.scr-ico { width: 20px; height: 20px; border-radius: 6px; display: grid; place-items: center; background: var(--violet); }
+.scr-ico svg { width: 12px; height: 12px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.scr-ico .net-logo { height: 8px; width: auto; } .scr-ico .net-logo * { fill: #fff; }
+.how-art .scr-url { margin-left: auto; }
+.scr-sending { position: absolute; left: 0; right: 0; top: 18px; bottom: 0; display: grid; align-content: center; justify-items: center; gap: 12px; border-radius: 16px; border: 1.5px dashed #d6dcea; opacity: 0; transition: opacity .3s; pointer-events: none; }
+.scr-sending.is-on { opacity: 1; }
+.scr-sending b { font-size: 14px; font-weight: 600; color: var(--ink-2); }
+.scr-sending .sd-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--violet); animation: ping 1.2s ease-out infinite; }
+.scr-sending.is-data .sd-dot { background: var(--teal); }
+.shimmer { display: block; width: 46%; height: 10px; border-radius: 6px; background: linear-gradient(90deg, #eef1f6 0%, #f8f9fc 50%, #eef1f6 100%); background-size: 200% 100%; animation: shimmer 1.3s linear infinite; }
+.shimmer.w80 { width: 38%; } .shimmer.w60 { width: 28%; }
+@keyframes shimmer { to { background-position: -200% 0; } }
+
+@media (max-height: 820px) { .how-art .net2 { height: 180px; } .nc { padding: 10px 14px 10px 10px; min-width: 176px; } .nc-ico { width: 36px; height: 36px; } }
+@media (max-width: 1000px) { .how-art .net2 { height: 240px; } }
+@media (max-width: 600px) {
+  .how-art .net2 { height: 220px; }
+  .nc { min-width: 0; padding: 8px; gap: 0; } .nc-txt { display: none; } .nc-ico { width: 36px; height: 36px; }
+  .nc.is-hub { min-width: 0; padding: 12px 14px 10px; } .nc.is-hub .net-logo { height: 20px; } .nc.is-hub small { display: none; }
+  .net2-packet em { font-size: 10.5px; }
+}
+/* cards: separate translate/scale so edge cards can anchor to the panel sides */
+.nc { transform: none; translate: -50% -50%; scale: 1; transition: box-shadow .45s var(--ease), scale .45s var(--ease), opacity .5s, filter .5s; }
+.nc.is-active { transform: none; scale: 1.04; }
+.nc[data-node="merchant"] { left: 0; translate: 0 -50%; transform-origin: left center; }
+.nc[data-node="producer"] { left: auto; right: 0; translate: 0 -50%; transform-origin: right center; }
+.nc { min-width: 180px; }
+@media (min-width: 1001px) { .how-art .how5-grid { grid-template-columns: minmax(0, 1.85fr) minmax(290px, 1fr); } }
+.nc { min-width: 0; padding: 10px 16px 10px 10px; gap: 10px; }
+.nc-ico { width: 38px; height: 38px; }
+.nc-txt b { font-size: 14.5px; } .nc-txt small { font-size: 11.5px; }
+.nc.is-hub { min-width: 0; padding: 14px 20px 11px; } .nc.is-hub .net-logo { height: 26px; }
+@media (max-width: 1000px) { .how-art .how5-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 600px) { .how-art .scr-url { display: none; } .scr-party b { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 220px; } }

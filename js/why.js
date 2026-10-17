@@ -72,7 +72,7 @@
       f.gtin.querySelector('.ui-val').textContent = '4006381333931'; state(f.gtin, 'is-ok', 'Check digit valid');
       f.abv.querySelector('.ui-val').textContent = '12.5 % vol'; state(f.abv, 'is-ok', 'Within declared range');
       f.size.querySelector('.ui-val').textContent = '0.75 l'; state(f.size, 'is-ok', 'Added');
-      setPct(100); send.className = 'ui-send is-sent'; send.textContent = 'Sent to Hawesko ✓';
+      setPct(100); send.className = 'ui-send is-sent'; send.textContent = 'Sent to Nordwein Handel ✓';
     }
     if (reduce) finalState();
     else loopWhileVisible(form, async function (alive) {
@@ -81,12 +81,12 @@
       await wait(500); if (!alive()) return;
       await type(f.abv, '12.5 % vol', alive, 80); state(f.abv, 'is-ok', 'Within declared range'); setPct(66);
       await wait(600); if (!alive()) return;
-      state(f.size, 'is-err', 'Required by Hawesko');
+      state(f.size, 'is-err', 'Required by Nordwein Handel');
       await wait(1500); if (!alive()) return;
       await type(f.size, '0.75 l', alive, 110); state(f.size, 'is-ok', 'Added'); setPct(100);
       send.classList.add('is-ready');
       await wait(800); send.classList.add('is-press');
-      await wait(160); send.classList.remove('is-press'); send.classList.remove('is-ready'); send.classList.add('is-sent'); send.textContent = 'Sent to Hawesko ✓';
+      await wait(160); send.classList.remove('is-press'); send.classList.remove('is-ready'); send.classList.add('is-sent'); send.textContent = 'Sent to Nordwein Handel ✓';
       await wait(2800);
     }, function () {
       Object.keys(f).forEach(function (k) { f[k].querySelector('.ui-val').textContent = ''; state(f[k]); });
@@ -104,7 +104,7 @@
     var STEPS = [
       { t: '09:41:02', who: 'ERP', text: 'Article 40-11873 created', at: 'erp' },
       { t: '09:41:02', who: 'WIN', text: 'Product request received', seg: 0, dir: 'fwd', to: 'win' },
-      { t: '09:41:03', who: 'Mail', text: 'Routed to Schloss Gobelsburg, producer notified', seg: 1, dir: 'fwd', to: 'prod' },
+      { t: '09:41:03', who: 'Mail', text: 'Routed to Weingut Sonnenhang, producer notified', seg: 1, dir: 'fwd', to: 'prod' },
       { t: '11:20:41', who: 'Producer', text: 'Data entered and checked, 214 / 214', at: 'prod', pause: 1200 },
       { t: '11:20:42', who: 'WIN', text: 'Validated record received', seg: 1, dir: 'back', to: 'win', data: true },
       { t: '11:20:42', who: 'ERP', text: 'Imported. Article ready to sell', seg: 0, dir: 'back', to: 'erp', data: true, done: true }
