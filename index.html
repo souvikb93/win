@@ -103,60 +103,69 @@
     <div class="container">
       <div class="section-head reveal">
         <h2>Master Data Shouldn't Arrive as a PDF<span class="dot">.</span></h2>
-        <p class="lead">Wine and beverage data is complex: vintages, allergens, alcohol, logistics, packaging. Most of it still travels by email attachment and gets typed in by hand.</p>
+        <p class="lead">Supplier PDFs, spreadsheets, and endless follow-up emails make product data unnecessarily difficult to manage. Manual entry takes time, and incomplete information creates more work for everyone.</p>
       </div>
       <div class="compare">
         <div class="compare-card before reveal">
           <h3>Without WIN</h3>
-          <p>Every new article starts a chase.</p>
-          <ul class="compare-list">
-            <li>Excel lists and PDF datasheets from every supplier, each in its own format</li>
-            <li>Retyping data into the ERP, field by field</li>
-            <li>Manual GTIN checks and half-filled sheets</li>
-            <li>Follow-up calls and emails until the data is complete</li>
-          </ul>
-          <div class="paper-stack" aria-hidden="true">
-            <div class="paper"><i></i><i></i><i></i><i></i></div>
-            <div class="paper"><b>.xlsx</b><i></i><i></i><i></i><i></i></div>
-            <div class="paper"><b>missing</b><i></i><i></i><i></i><i></i></div>
+          <div class="cmp-prev sheet" aria-hidden="true">
+            <div class="sheet-bar"><span class="sheet-file">supplier_list_final_v3.xlsx</span><span class="sheet-flag">Needs checking</span></div>
+            <div class="sheet-row is-head"><span>Product</span><span>GTIN</span><span>Size</span><span>Origin</span></div>
+            <div class="sheet-row"><span>Riesling Kalkstein</span><span class="mono">4006381…</span><span>0,75</span><span class="is-miss">&nbsp;</span></div>
+            <div class="sheet-row"><span>Weißburgunder</span><span class="is-miss">&nbsp;</span><span>75 cl</span><span>AT</span></div>
+            <div class="sheet-row"><span>Riesling Kalkst.</span><span class="mono">4006381…</span><span class="is-bad">0.75 l?</span><span>Austria</span></div>
           </div>
+          <ul class="compare-list">
+            <li>Product details scattered across PDFs and spreadsheets.</li>
+            <li>Manual copying and retyping of product information.</li>
+            <li>Repeated emails and phone calls to suppliers.</li>
+            <li>Missing or inconsistent product data.</li>
+          </ul>
         </div>
         <div class="compare-card after reveal">
           <h3>With WIN</h3>
-          <p>One digital process, from request to import.</p>
+          <div class="cmp-prev rec" aria-hidden="true">
+            <div class="rec-bar"><span class="rec-name">Riesling Kalkstein 2025</span><span class="rec-pill">Complete</span></div>
+            <div class="rec-grid">
+              <span class="rec-f"><i></i>Product name</span><span class="rec-f"><i></i>GTIN</span>
+              <span class="rec-f"><i></i>Bottle size</span><span class="rec-f"><i></i>Country of origin</span>
+            </div>
+            <div class="rec-foot"><i></i>Sent to your ERP</div>
+          </div>
           <ul class="compare-list">
-            <li>Requests go out straight from your ERP or the WIN web app</li>
-            <li>Producers enter data once, and WIN checks it while they type</li>
-            <li>Complete records arrive machine-to-machine, with no media breaks</li>
-            <li>You're notified the moment the data is ready to use</li>
+            <li>Request product information digitally.</li>
+            <li>Let suppliers provide structured product data.</li>
+            <li>Check information for completeness as it is entered.</li>
+            <li>Transfer completed data directly into connected business systems.</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ PILLARS: stacking cards (after uilayout stacking-card, 21st.dev) ============ -->
+  <!-- ============ WHY WIN: stacking cards Easy, Right, Fast (after uilayout stacking-card, 21st.dev) ============ -->
   <section class="section why" id="why" style="padding-top:0">
     <div class="container">
       <div class="why-head">
-        <h2>Easy. Right. Fast<span class="dot">.</span></h2>
+        <h2>A Smoother Way to Work Together<span class="dot">.</span></h2>
+        <p class="lead">WIN connects beverage businesses and their suppliers through a digital process that makes product information easier to manage, more reliable, and faster to exchange.</p>
       </div>
       <div class="stack" id="stack">
         <div class="stack-item" style="--i:0">
           <article class="stack-card is-easy">
             <div class="stack-copy">
               <span class="tile-tag">Easy</span>
-              <h3>You decide what matters</h3>
-              <p>WIN offers more than 200 attributes per wine: descriptions, aromas, media, LMIV labelling, logistics, packaging for LUCID reports. You mark each one as required or optional.</p>
+              <h3>You Decide What Matters<span class="dot">.</span></h3>
+              <p>Choose which product attributes suppliers need to provide and which are optional. WIN helps you structure product information around your business requirements.</p>
             </div>
             <div class="stack-visual">
               <div class="ui ui-fields" aria-hidden="true">
-                <div class="ui-head"><b>Required fields</b><span class="ui-sub">for your producers</span><span class="ui-count"><b data-count-req>12</b> required</span></div>
-                <div class="ui-row"><span class="ui-label">Alcohol by volume</span><span class="ui-chip">LMIV</span><span class="ui-switch is-on"></span></div>
-                <div class="ui-row"><span class="ui-label">GTIN / EAN</span><span class="ui-chip">Logistics</span><span class="ui-switch is-on"></span></div>
-                <div class="ui-row" data-target="1"><span class="ui-label">Allergens &amp; sulphites</span><span class="ui-chip">LMIV</span><span class="ui-switch"></span></div>
-                <div class="ui-row"><span class="ui-label">Packaging material</span><span class="ui-chip">LUCID</span><span class="ui-switch is-on"></span></div>
-                <div class="ui-row" data-target="2"><span class="ui-label">Tasting notes &amp; aromas</span><span class="ui-chip">Marketing</span><span class="ui-switch"></span></div>
+                <div class="ui-head"><b>Required fields</b><span class="ui-sub">for your suppliers</span><span class="ui-count"><b data-count-req>2</b> required</span></div>
+                <div class="ui-row is-req"><span class="ui-label">Product name</span><span class="ui-state">Required</span><span class="ui-switch is-on"></span></div>
+                <div class="ui-row is-req"><span class="ui-label">GTIN</span><span class="ui-state">Required</span><span class="ui-switch is-on"></span></div>
+                <div class="ui-row" data-target="1"><span class="ui-label">Bottle size</span><span class="ui-state">Optional</span><span class="ui-switch"></span></div>
+                <div class="ui-row" data-target="2"><span class="ui-label">Country of origin</span><span class="ui-state">Optional</span><span class="ui-switch"></span></div>
+                <div class="ui-row"><span class="ui-label">Tasting notes</span><span class="ui-state">Optional</span><span class="ui-switch"></span></div>
                 <svg class="ui-cursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l14 8-6 1.6L9.8 19z"/></svg>
               </div>
             </div>
@@ -166,16 +175,16 @@
           <article class="stack-card is-right">
             <div class="stack-copy">
               <span class="tile-tag">Right</span>
-              <h3>Checked at input, not after import</h3>
-              <p>WIN checks every record while the producer types. Only complete, plausible data is sent on, and an audit trail shows who changed what and when.</p>
+              <h3>Checked As Data Is Entered<span class="dot">.</span></h3>
+              <p>WIN checks product information as suppliers enter it, helping identify missing or invalid fields before the data is passed on.</p>
             </div>
             <div class="stack-visual">
               <div class="ui ui-form" aria-hidden="true">
                 <div class="ui-head"><b>Riesling Kalkstein 2025</b><span class="ui-sub">Requested by Nordwein Handel</span></div>
                 <div class="ui-field" data-f="gtin"><label>GTIN</label><div class="ui-input"><span class="ui-val"></span><i class="ui-caret"></i></div><span class="ui-msg"></span></div>
-                <div class="ui-field" data-f="abv"><label>Alcohol</label><div class="ui-input"><span class="ui-val"></span><i class="ui-caret"></i></div><span class="ui-msg"></span></div>
                 <div class="ui-field" data-f="size"><label>Bottle size</label><div class="ui-input"><span class="ui-val"></span><i class="ui-caret"></i></div><span class="ui-msg"></span></div>
-                <div class="ui-progress"><span>Data complete</span><b data-pct>0%</b><i><em></em></i></div>
+                <div class="ui-field" data-f="country"><label>Country of origin</label><div class="ui-input"><span class="ui-val"></span><i class="ui-caret"></i></div><span class="ui-msg"></span></div>
+                <div class="ui-progress"><span data-status>0 of 3 required fields complete</span><b data-pct>0%</b><i><em></em></i></div>
                 <span class="ui-send">Send to merchant</span>
               </div>
             </div>
@@ -185,19 +194,19 @@
           <article class="stack-card is-fast">
             <div class="stack-copy">
               <span class="tile-tag">Fast</span>
-              <h3>Machine to machine</h3>
-              <p>Your ERP sends the request, and the producer's system or the web app answers. No retyping and no transfer errors. Optional GDSN connection included.</p>
+              <h3>From Request to Ready-to-Use Data<span class="dot">.</span></h3>
+              <p>WIN routes product requests to the right supplier and transfers completed product information directly into the retailer's connected ERP system. No repeated manual data entry.</p>
             </div>
             <div class="stack-visual">
-              <div class="ui ui-flow" aria-hidden="true">
-                <div class="ui-nodes">
-                  <span class="ui-node" data-n="erp"><b>Your ERP</b><small>Nordwein Handel</small></span>
-                  <span class="ui-seg" data-seg="0"><i class="ui-dot"></i></span>
-                  <span class="ui-node is-hub" data-n="win"><b>WIN</b><small>route · check</small></span>
-                  <span class="ui-seg" data-seg="1"><i class="ui-dot"></i></span>
-                  <span class="ui-node" data-n="prod"><b>Producer</b><small>Sonnenhang</small></span>
-                </div>
-                <ol class="ui-log"></ol>
+              <div class="ui ui-activity" aria-hidden="true">
+                <div class="ui-head"><b>Product request</b><span class="ui-sub">Riesling Kalkstein 2025</span><span class="ui-count" data-act-status>In progress</span></div>
+                <ol class="act">
+                  <li><span class="act-dot"></span><span class="act-who">Retailer ERP</span><span class="act-msg">Product request created</span><span class="act-state"></span></li>
+                  <li><span class="act-dot"></span><span class="act-who is-win">WIN</span><span class="act-msg">Request forwarded to supplier</span><span class="act-state"></span></li>
+                  <li><span class="act-dot"></span><span class="act-who">Producer</span><span class="act-msg">Product information submitted</span><span class="act-state"></span></li>
+                  <li><span class="act-dot"></span><span class="act-who is-win">WIN</span><span class="act-msg">Product data checked for completeness</span><span class="act-state"></span></li>
+                  <li><span class="act-dot"></span><span class="act-who">Retailer ERP</span><span class="act-msg">Product information received</span><span class="act-state"></span></li>
+                </ol>
               </div>
             </div>
           </article>

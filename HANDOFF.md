@@ -22,6 +22,7 @@ Modern SaaS-style redesign of win.wine in EuvinoPRO's brand language, built for 
 - Palette: EuvinoPRO navy #1A223E and violet #5844FF, WIN orange #E57F09 as the accent, teal #048BA8 for "validated".
 - Type: Roboto Flex with condensed headlines; data in Roboto Mono.
 - 21st.dev components were ported to vanilla JS: container-scroll-animation and youcefbnm/animated-gallery (the hyperiux/timeline Press page was dropped).
+- Problem section: Without WIN shows a muted spreadsheet preview with warning marks, With WIN a structured record with positive status. Why WIN header (with lead) stays pinned and the stack offset is measured in `js/home.js`. Cards: Easy (required/optional fields, 2→4 required), Right (missing bottle size flagged, completion status), Fast (timestamp-free activity log, five steps).
 - Home card motion tells the product story: messy files shuffle, benefits tick in, field toggles snap into place, validation fixes a missing bottle size, data streams from WIN out to its modules.
 - The Contact page uses +49 30 2000 3438 0 (from Souvik's brief). The Home CTA still shows +49 30 983 959 16 from the old imprint.
 

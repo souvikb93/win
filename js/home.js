@@ -135,6 +135,15 @@
   var items = Array.prototype.slice.call(document.querySelectorAll('.stack-item'));
   if (!items.length || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var cards = items.map(function (it) { return it.querySelector('.stack-card'); });
+  var whySec = document.getElementById('why'), whyHead = whySec && whySec.querySelector('.why-head');
+  /* the pinned header carries a lead paragraph, so measure it and start the stack right below it */
+  function setStackTop() {
+    if (!whyHead) return;
+    var cs = getComputedStyle(whyHead);
+    if (cs.position === 'sticky') whySec.style.setProperty('--stack-top', Math.round((parseFloat(cs.top) || 0) + whyHead.offsetHeight + 8) + 'px');
+    else whySec.style.removeProperty('--stack-top');
+  }
+  setStackTop(); window.addEventListener('resize', setStackTop);
   var ticking = false;
   function update() {
     ticking = false;

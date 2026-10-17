@@ -58,10 +58,11 @@ All colours are CSS variables in `css/styles.css` `:root`. Never hard-code hex v
 - Headlines use the condensed width: `font-variation-settings: "wdth" 78–85`, weight 700, tight leading (≈1.04–1.1), letter-spacing −0.01em.
 - The brand full stop after headlines is a violet `.dot`. One per heading.
 - **No eyebrow labels.** No small uppercase/mono label above section headings ("HOW IT WORKS", "SECURITY"…). It reads as generic AI styling. Headings stand alone. Small uppercase mono is reserved for functional data (IDs, timestamps, sources), never as a section lead-in.
+- **Top-of-page backgrounds are identical on Home, Press and Contact.** All three use the shared `.hero-bg` (glows and dot field anchored in px from the top, so box height doesn't matter). Never give a page its own intro background.
 - **Hero headline is two lines on desktop** ("The Data Network for the / Beverage Industry."); it wraps naturally on phones.
 - Scale: h1 `clamp(40px,5.2vw,72px)` · h2 `clamp(34px,4.4vw,56px)` · card h3 `28px` (`21px` for small dark cards) · body `17px` · lead `clamp(17px,1.6vw,21px)` · meta mono `11–12.5px` uppercase with letter-spacing.
 - Headlines are one colour (navy). No gradient text.
-- **Section headers and page titles use Title Case** ("One Request, Followed End to End."). Short articles, prepositions and conjunctions stay lowercase. Card titles, step titles and body copy stay sentence case.
+- **Section headers and page titles use Title Case** ("One Request, Followed End to End."). Short articles, prepositions and conjunctions stay lowercase. Why WIN card titles also use Title Case with the brand full stop (owner copy); step titles and body copy stay sentence case.
 - Titles lead; dates and sources are secondary but must stay readable (≈22px dates beside titles).
 
 ---
@@ -87,6 +88,7 @@ All colours are CSS variables in `css/styles.css` `:root`. Never hard-code hex v
 - **Text only.** No icons inside buttons unless explicitly asked.
 - Primary: violet fill, white text, 48px high (40px small), 12px radius. **No glow or coloured shadow at rest.** Hover = darker violet. Keyboard focus = white ring + violet ring.
 - Secondary: white, hairline inset border. Ghost-light only on dark.
+- The nav **Log in** link is brand violet, 600 weight.
 - Tertiary / text links: violet, 600 weight. **Underline draws in from the left on hover and focus** (`background-size` 0→100%). Never a permanent underline except in the announcement bar's "Learn more".
 
 ### Cards: one card language
@@ -188,6 +190,7 @@ The How it works animation follows WIN's own diagrams exactly:
 | Steps that didn't match WIN's diagrams | Follow the official 6/8-step flows exactly |
 | Unifying the Problem cards into plain white cards | Problem pair keeps grey vs navy and its own spacing (§5 exception) |
 | Keeping an old page variant after a new one is chosen | Delete the loser and its dead CSS/JS (Press timeline was removed) |
+| Press intro with its own grey/orange glow, so the background changed between pages | One shared `.hero-bg` on every page (§3) |
 | Eyebrow labels above every section heading | None. Headings stand alone (§3) |
 | Teal ticks under the hero CTAs | Brand purple ticks |
 | Hero headline on three lines | Two lines on desktop |
