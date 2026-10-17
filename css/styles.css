@@ -1881,6 +1881,20 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .tl-scr .scr-url { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
 @media (max-width: 860px) { .tl-scr .scr-url { display: none; } }
 
-/* Home: How it works now lives on the Solution page; a short link band takes its place */
-.how-link { padding: clamp(56px, 7vw, 96px) 0; }
-.how-link-inner { display: grid; justify-items: center; gap: 24px; text-align: center; }
+/* Why WIN: closing line under the stacked cards, links to the Solution page */
+.why-more { display: grid; justify-items: center; gap: 24px; text-align: center; padding: 0 0 clamp(24px, 3vw, 48px); }
+.why-more p { margin: 0; font-size: clamp(20px, 1.8vw, 23px); font-weight: 600; line-height: 1.3; color: var(--navy); }
+
+/* Platform (WIN Is the Core) on the dark band that used to hold security */
+.eco-dark h2 { color: #fff; }
+.eco-dark .text-link { color: var(--accent-light); }
+.eco-dark .orbit-lines ellipse { stroke: rgba(255,255,255,.22); }
+.eco-dark .orbit-lines .spoke { stroke: var(--accent-light); }
+.eco-dark .eco-core { box-shadow: 0 0 0 1px rgba(255,255,255,.14), 0 20px 50px -20px rgba(0,0,0,.6); }
+
+/* Data & Privacy page */
+.dp-intro h1 { max-width: 18ch; }
+.dp-intro .lead { max-width: 58ch; }
+.dp-trust .section-head { max-width: 680px; }
+.eco-dark .eco-core { background: var(--violet); box-shadow: 0 0 0 12px rgba(88,68,255,.16), 0 0 0 26px rgba(88,68,255,.07), 0 20px 50px -20px rgba(0,0,0,.6); }
+.eco-dark .eco-module { color: var(--ink); }
