@@ -6,7 +6,7 @@ A concept redesign of [win.wine](https://www.win.wine/), EuvinoPRO's product-dat
 
 ## Pages
 - `index.html`: Home. Hero with a coded product mock-up, customer logo carousel, before/after, Easy/Right/Fast, interactive How-it-works diagram (direct flow and via a trade agency), solutions by role, security, EuvinoPRO modules, press teaser, call to action.
-- `press.html`: Featured story, filterable archive, horizontal-scroll milestones timeline (vanilla GSAP port of hyperiux/timeline from 21st.dev; vertical fallback on mobile and with reduced motion), media kit.
+- `press.html`: The whole page is one horizontal-scroll timeline (vanilla GSAP port of hyperiux/timeline from 21st.dev). Every article and partner lives on it, articles are clickable, a Framer-style cursor changes over links, logos and the rail, and `press.html#hawesko`-style deep links jump to a milestone. Vertical fallback on mobile and with reduced motion.
 - `contact.html`: Demo/contact form (front-end only, sends nothing), next steps, FAQ.
 
 ## Stack

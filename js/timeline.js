@@ -10,6 +10,7 @@
   var track = section.querySelector('.tl-track');
   var rail = section.querySelector('.tl-rail');
   var fill = section.querySelector('.tl-fill');
+  var progress = section.querySelector('.tl-progress i');
   var items = gsap.utils.toArray(section.querySelectorAll('.tl-item'));
 
   var mm = gsap.matchMedia();
@@ -31,7 +32,8 @@
         start: function () { return 'top ' + navH() + 'px'; },
         end: function () { return '+=' + distance(); },
         scrub: 0.6,
-        invalidateOnRefresh: true
+        invalidateOnRefresh: true,
+        onUpdate: function (self) { if (progress) progress.style.transform = 'scaleX(' + self.progress.toFixed(4) + ')'; }
       }
     });
 
@@ -45,8 +47,9 @@
       var stem = item.querySelector('.tl-stem');
       var dot = item.querySelector('.tl-dot');
       var tag = item.querySelector('.tl-tag');
-      var logos = item.querySelector('.tl-logos');
-      var targets = [item.querySelector('.tl-year'), item.querySelector('.tl-text')];
+      var logos = [item.querySelector('.tl-logos'), item.querySelector('.tl-read')].filter(Boolean);
+      if (!logos.length) logos = null;
+      var targets = [item.querySelector('.tl-year'), item.querySelector('.tl-title'), item.querySelector('.tl-text')].filter(Boolean);
       var lines = targets;
       if (window.SplitText) {
         var split = SplitText.create(targets, { type: 'lines', mask: 'lines' });
@@ -70,11 +73,22 @@
       if (logos) tl.to(logos, { autoAlpha: 1, y: 0, duration: 0.3 }, '-=0.3');
     });
 
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
+    /* Deep links (press.html#hawesko) scroll to the point where that milestone sits mid-screen. */
+    function jumpToHash() {
+      var target = location.hash && section.querySelector(location.hash);
+      if (!target || !target.classList.contains('tl-item')) return;
+      var st = slide.scrollTrigger;
+      var x = target.getBoundingClientRect().left - gsap.getProperty(track, 'x') - window.innerWidth * 0.35;
+      var p = Math.min(1, Math.max(0, x / distance()));
+      window.scrollTo(0, st.start + (st.end - st.start) * p);
+    }
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { ScrollTrigger.refresh(); jumpToHash(); });
+    window.addEventListener('hashchange', jumpToHash);
     window.addEventListener('load', function () { ScrollTrigger.refresh(); }, { once: true });
 
     return function () {
       ScrollTrigger.removeEventListener('refreshInit', setHeight);
+      window.removeEventListener('hashchange', jumpToHash);
       splits.forEach(function (s) { s.revert(); });
       gsap.set(section.querySelectorAll('.tl-track, .tl-fill, .tl-item *'), { clearProps: 'all' });
       section.style.height = '';
