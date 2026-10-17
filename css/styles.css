@@ -1042,3 +1042,16 @@ html.has-cursor .tl, html.has-cursor .tl a { cursor: none; }
 .tl.is-static .tl-dot { top: 24px !important; bottom: auto !important; }
 .tl.is-static .tl-item { padding-left: 28px; }
 @media (max-width: 600px) { #today .tl-body { width: auto; } .tl-head .tl-year { font-size: 30px; } }
+/* Short desktop screens: tighter cards so nothing touches the frame or progress bar */
+@media (min-width: 900px) and (max-height: 760px) {
+  .tl-item .tl-stem { height: 28px; }
+  .tl-item.is-top .tl-body, .tl-item.is-top .tl-body.is-link { bottom: calc(50% + 28px); }
+  .tl-item.is-bottom .tl-body, .tl-item.is-bottom .tl-body.is-link { top: calc(50% + 28px); }
+  .tl-body, .tl-body.is-link { padding: 16px 18px; gap: 8px; }
+  .tl-head .tl-year { font-size: 30px; }
+  .tl-title { font-size: 17px; }
+  .tl-text { font-size: 14px; line-height: 1.45; }
+  .tl-foot { padding-top: 10px; }
+  .tl-logo { height: 34px; }
+  .tl-progress { bottom: 14px; }
+}
