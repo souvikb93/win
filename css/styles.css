@@ -2031,3 +2031,4 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
   .ui-input { height: 34px; } .ui-form { gap: 6px; } .ui-msg { min-height: 14px; } .stack-copy { gap: 14px; }
   .stack-copy .tile-tag { font-size: 52px; }
 }
+.stack-card.is-right .stack-copy p { max-width: 46ch; font-size: 17px; }

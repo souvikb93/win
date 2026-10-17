@@ -207,7 +207,7 @@ The How it works animation follows WIN's own diagrams exactly:
 
 **Home section backgrounds:** the customer strip and Why WIN share one white band (`--surface`, no divider). The Problem section no longer exists; do not re-add it.
 
-**Why WIN cards:** the card word (Easy / Right / Fast) is a display word `clamp(44px,4.8vw,68px)` violet; the sentence under it is the standard card h3 (28px). Never size a card h3 off-scale. Why WIN header keeps 20px gap to the lead and 44px below it before the first card.
+**Why WIN cards:** the card word (Easy / Precise / Fast) is a display word `clamp(44px,4.8vw,68px)` violet; the sentence under it is the standard card h3 (28px). Never size a card h3 off-scale. Why WIN header keeps 20px gap to the lead and 44px below it before the first card.
 
 **Product-UI mockups (Why WIN and any new card):**
 - **No company or product names.** Use roles: trader, producer, supplier, agency. Generic for every visitor. (How it works and Solutions still carry made-up names: replace on request.)
