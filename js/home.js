@@ -56,13 +56,17 @@
     var sections = navLinks.map(function (a) { return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
     var setActive = function (id) {
       navLinks.forEach(function (a) {
-        if (a.getAttribute('href') === '#' + id) a.setAttribute('aria-current', 'true');
-        else a.removeAttribute('aria-current');
+        if (a.getAttribute('href') === '#' + id) {
+          a.setAttribute('aria-current', 'true');
+          /* Chip bar mode: keep the active chip in view without scrolling the page */
+          if (navList.scrollWidth > navList.clientWidth) {
+            navList.scrollTo({ left: a.parentNode.offsetLeft - navList.clientWidth / 2 + a.offsetWidth / 2 });
+          }
+        } else a.removeAttribute('aria-current');
       });
     };
-    var showNav = function () { sideNav.classList.toggle('is-visible', window.scrollY > window.innerHeight * 0.35); };
-    window.addEventListener('scroll', showNav, { passive: true });
-    showNav();
+    var navList = sideNav.querySelector('ol');
+    requestAnimationFrame(function () { sideNav.classList.add('is-visible'); });
     if ('IntersectionObserver' in window) {
       var spy = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) { if (en.isIntersecting) setActive(en.target.id); });

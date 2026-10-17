@@ -18,7 +18,6 @@
   }
 
   var header =
-    '<div class="concept-strip"><strong>Design concept.</strong> Unofficial redesign of win.wine by Souvik Bhattacharya, not affiliated with EuvinoPRO.</div>' +
     '<header class="nav" id="nav">' +
       '<div class="nav-inner">' +
         '<a class="brand" href="index.html" aria-label="WIN home">' + LOGO +
@@ -119,6 +118,23 @@
     if (b) setLang(b.getAttribute('data-set-lang'), true);
   });
   try { var saved = localStorage.getItem('win-lang'); if (saved) setLang(saved, false); } catch (e) {}
+
+  /* Logos: equal visual weight. Size each logo by its aspect ratio so a long
+     wordmark and a square brand block cover roughly the same area. */
+  function sizeLogos() {
+    document.querySelectorAll('img[data-logo-area]').forEach(function (img) {
+      function apply() {
+        var r = img.naturalWidth / img.naturalHeight; if (!r) return;
+        var area = +img.getAttribute('data-logo-area');
+        var maxW = +(img.getAttribute('data-logo-maxw') || 9999);
+        var w = Math.min(Math.sqrt(area * r), maxW);
+        img.style.width = Math.round(w) + 'px';
+        img.style.height = Math.round(w / r) + 'px';
+      }
+      if (img.complete) apply(); else img.addEventListener('load', apply, { once: true });
+    });
+  }
+  document.addEventListener('DOMContentLoaded', sizeLogos);
 
   /* Reveal on scroll */
   function initReveal() {
