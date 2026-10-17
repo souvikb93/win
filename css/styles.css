@@ -399,12 +399,7 @@ p { margin: 0; }
 .stat-tile p { color: var(--ink-2); font-size: 15px; }
 
 /* ---------- How it works ---------- */
-.how { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.how-tabs { display: inline-flex; padding: 4px; border-radius: 12px; background: #eef1f6; margin-bottom: 36px; }
-.how-tabs button { padding: 10px 18px; border-radius: 9px; font-size: 15px; font-weight: 600; color: var(--ink-2); transition: background .2s, color .2s, box-shadow .2s; }
-.how-tabs button[aria-selected="true"] { background: var(--surface); color: var(--ink); box-shadow: var(--shadow-sm); }
 
-.how-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 48px; align-items: start; }
 .diagram-card {
   background: var(--bg); border-radius: var(--radius-lg); box-shadow: inset 0 0 0 1px var(--line);
   padding: 20px; position: sticky; top: 100px;
@@ -659,7 +654,7 @@ p { margin: 0; }
   .tile-wide { grid-column: span 2; }
   .tile-third { grid-column: span 1; }
   .stat-pair { grid-column: span 2; }
-  .how-grid { grid-template-columns: 1fr; gap: 28px; }
+  
   .diagram-card { position: relative; top: 0; }
   .role-panel { grid-template-columns: 1fr; }
   .role-visual { min-height: 0; }
@@ -696,8 +691,8 @@ p { margin: 0; }
   .bento { grid-template-columns: 1fr; }
   .tile-wide, .tile-third, .stat-pair { grid-column: span 1; }
   .tile { padding: 26px 22px; }
-  .how-tabs { display: flex; width: 100%; }
-  .how-tabs button { flex: 1; padding: 10px 8px; font-size: 14px; }
+  
+  
   .diagram-card { padding: 10px; }
   .diagram .node-label { font-size: 21px; }
   .diagram .node-sub { display: none; }
@@ -1235,28 +1230,11 @@ a.cx-card:hover { box-shadow: inset 0 0 0 1px var(--line-strong), var(--shadow-s
 /* =========================================================
    How it works v2: two real windows and the WIN hub
    ========================================================= */
-.how { padding: clamp(48px, 7vh, 88px) 0; min-height: calc(100vh - 72px); display: flex; align-items: center; }
-.how-wrap { display: grid; gap: 22px; }
-.how-top { display: flex; align-items: end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
-.how-title { display: grid; gap: 14px; }
-.how-title h2 { font-size: clamp(32px, 3.6vw, 48px); }
-.how-controls { display: flex; align-items: center; gap: 12px; }
-.how .how-tabs { margin: 0; }
-.how-play { height: 40px; padding: 0 14px; border-radius: 10px; font-size: 14px; font-weight: 600; color: var(--violet); box-shadow: inset 0 0 0 1px var(--line-strong); }
 
-.how-stepper { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--n, 6), 1fr); gap: 8px; }
-.how-stepper li button { width: 100%; display: grid; gap: 6px; text-align: left; padding: 10px 12px 12px; border-radius: 12px; background: var(--bg); box-shadow: inset 0 0 0 1px var(--line); transition: background .25s, box-shadow .25s; position: relative; overflow: hidden; }
-.how-stepper li button:hover { box-shadow: inset 0 0 0 1px var(--line-strong); }
-.how-stepper .n { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: .06em; }
-.how-stepper .t { font-size: 13.5px; font-weight: 600; line-height: 1.3; color: var(--ink-2); }
-.how-stepper .bar { position: absolute; left: 0; bottom: 0; height: 3px; width: 0; background: var(--violet); }
-.how-stepper li.is-done button { background: #fff; } .how-stepper li.is-done .n { color: var(--violet); }
-.how-stepper li.is-active button { background: var(--violet-100); box-shadow: inset 0 0 0 1.5px var(--violet); }
-.how-stepper li.is-active .t { color: var(--ink); } .how-stepper li.is-active .n { color: var(--violet); }
-.how-stepper li.is-active .bar { animation: grow var(--dur, 3600ms) linear forwards; }
-.how.is-paused .how-stepper li.is-active .bar { animation-play-state: paused; }
+ 
 
-.how-stage { display: grid; grid-template-columns: 1fr 150px 1fr; align-items: center; min-height: 340px; }
+ 
+
 .win-pane { border-radius: 16px; background: #fff; box-shadow: var(--shadow-lg), 0 0 0 1px rgba(26,34,62,.08); overflow: hidden; transition: box-shadow .35s, transform .35s var(--ease); }
 .win-pane.is-active { box-shadow: var(--shadow-lg), 0 0 0 2px var(--violet), 0 0 0 7px rgba(88,68,255,.12); transform: translateY(-3px); }
 .pane-bar { display: flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px; background: #f0f3f8; border-bottom: 1px solid var(--line); font-size: 12px; color: var(--ink-2); font-weight: 600; }
@@ -1316,15 +1294,12 @@ a.cx-card:hover { box-shadow: inset 0 0 0 1px var(--line-strong), var(--shadow-s
 .pf-send { font-size: 12.5px; font-weight: 600; padding: 7px 14px; border-radius: 9px; background: #e3e7ef; color: var(--ink-3); transition: background .3s, color .3s, transform .15s; }
 .pf-send.is-ready { background: var(--violet); color: #fff; } .pf-send.is-sent { background: var(--teal); color: #fff; }
 
-.how-caption { margin: 0; min-height: 26px; font-size: 16px; color: var(--ink-2); text-align: center; }
-.how-caption b { color: var(--ink); }
-
-@media (max-width: 1100px) { .how-stepper .t { font-size: 12.5px; } .how-stage { grid-template-columns: 1fr 110px 1fr; } .erp-head, .erp-row { grid-template-columns: 64px 1.4fr .9fr 88px; } }
+@media (max-width: 1100px) {   .erp-head, .erp-row { grid-template-columns: 64px 1.4fr .9fr 88px; } }
 @media (max-width: 900px) {
-  .how { min-height: 0; display: block; }
-  .how-stepper { display: flex; overflow-x: auto; scrollbar-width: none; margin-inline: calc(var(--gutter) * -1); padding: 0 var(--gutter); }
-  .how-stepper li { flex: 0 0 150px; }
-  .how-stage { grid-template-columns: 1fr; gap: 0; }
+  
+  
+  
+  
   .hub-col { height: 96px; }
   .hub-line { top: 0; bottom: 0; left: 50% !important; right: auto !important; width: 2px; height: calc(50% - 34px); background: repeating-linear-gradient(180deg, var(--line-strong) 0 6px, transparent 6px 12px); }
   .hub-line.r { top: auto; bottom: 0; }
@@ -1365,26 +1340,19 @@ a.cx-card:hover { box-shadow: inset 0 0 0 1px var(--line-strong), var(--shadow-s
 
 /* diagram */
 .net { position: relative; aspect-ratio: 440 / 380; width: 100%; max-height: 470px; margin: 0 auto; border-radius: 24px; background: radial-gradient(circle at 50% 50%, rgba(88,68,255,.06), transparent 65%), var(--bg); box-shadow: inset 0 0 0 1px var(--line); }
-.net-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+
 .edge { fill: none; stroke: var(--line-strong); stroke-width: 2; stroke-dasharray: 5 7; transition: stroke .3s, opacity .4s; }
 .edge.is-live { stroke: var(--violet); animation: edgeFlow .7s linear infinite; }
 .edge.is-live.is-data { stroke: var(--teal); }
 @keyframes edgeFlow { to { stroke-dashoffset: -24; } }
-.net-node { position: absolute; z-index: 2; transform: translate(-50%, -50%); display: grid; justify-items: center; gap: 2px; min-width: 118px; padding: 12px 12px 10px; border-radius: 16px; background: #fff; box-shadow: var(--shadow-sm), inset 0 0 0 1px var(--line-strong); text-align: center; transition: box-shadow .3s, opacity .4s, transform .3s var(--ease); }
-.net-node .ico { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; background: var(--violet-100); margin-bottom: 4px; }
-.net-node .ico svg { width: 17px; height: 17px; fill: none; stroke: var(--violet); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-.net-node b { font-size: 14px; } .net-node small { font-size: 11.5px; color: var(--ink-3); }
-.net-node.is-hub { min-width: 96px; padding: 18px 12px; background: var(--navy); color: #fff; box-shadow: 0 0 0 10px rgba(88,68,255,.07); }
-.net-node.is-hub b { font-size: 20px; letter-spacing: .04em; } .net-node.is-hub small { color: rgba(255,255,255,.6); font-family: var(--mono); font-size: 10px; }
-.net-node.is-active { box-shadow: var(--shadow-md), inset 0 0 0 2px var(--violet), 0 0 0 7px rgba(88,68,255,.12); transform: translate(-50%, -50%) scale(1.04); }
-.net-node.is-hub.is-active { box-shadow: 0 0 0 10px rgba(88,68,255,.22); }
+
+ 
+
+ 
+
 .net[data-run="direct"] .agency-only { opacity: .22; }
-.net-packet { position: absolute; z-index: 1; left: 0; top: 0; display: flex; align-items: center; gap: 6px; transform: translate(-6px, -6px); opacity: 0; transition: opacity .25s; pointer-events: none; }
-.net-packet i { width: 12px; height: 12px; border-radius: 50%; background: var(--violet); box-shadow: 0 0 0 5px rgba(88,68,255,.2); flex-shrink: 0; }
-.net-packet em { font-style: normal; font-size: 11.5px; font-weight: 600; white-space: nowrap; padding: 3px 9px; border-radius: 999px; background: var(--violet); color: #fff; box-shadow: var(--shadow-md); }
-.net-packet.is-data i { background: var(--teal); box-shadow: 0 0 0 5px rgba(4,139,168,.2); } .net-packet.is-data em { background: var(--teal); }
-.net-caption { position: absolute; left: 16px; right: 16px; bottom: 14px; margin: 0; font-size: 13.5px; line-height: 1.45; color: var(--ink-2); text-align: center; }
-.net-caption b { color: var(--ink); }
+
+ 
 
 /* screen */
 .scr { display: grid; gap: 12px; }
@@ -1446,9 +1414,9 @@ a.cx-card:hover { box-shadow: inset 0 0 0 1px var(--line-strong), var(--shadow-s
 
 @media (max-width: 1000px) { .how3-grid { grid-template-columns: 1fr; } .net { max-width: 520px; } }
 @media (max-width: 600px) {
-  .net-node { min-width: 0; padding: 8px 8px 7px; } .net-node small { display: none; } .net-node .ico { width: 24px; height: 24px; }
-  .net-node b { font-size: 12px; } .net-packet em { font-size: 10.5px; }
-  .net-caption { font-size: 12px; bottom: 8px; }
+    
+   
+  
   .scr-body { height: 360px; padding: 14px; } .scr-view { inset: 14px; }
   .frm { grid-template-columns: 1fr; gap: 4px; }
   .req-head, .req-row { grid-template-columns: 1fr 64px; } .req-head span:nth-child(1), .req-head span:nth-child(3), .req-row > span:nth-child(1), .req-row > span:nth-child(3) { display: none; }
@@ -1459,9 +1427,6 @@ a.cx-card:hover { box-shadow: inset 0 0 0 1px var(--line-strong), var(--shadow-s
 /* =========================================================
    How it works v4: normal flow, data lane, steps + screen
    ========================================================= */
-.how.how4 { min-height: 0; display: block; padding: clamp(80px, 11vw, 140px) 0; }
-.how4-head { display: flex; align-items: end; justify-content: space-between; gap: 32px; flex-wrap: wrap; margin-bottom: clamp(40px, 5vw, 64px); }
-.how4-head .section-head { max-width: 780px; }
 
 /* lane */
 .lane { position: relative; padding: 28px clamp(16px, 2vw, 28px) 30px; border-radius: 28px; background: var(--bg); box-shadow: inset 0 0 0 1px var(--line); margin-bottom: clamp(36px, 4vw, 56px); }
@@ -1492,39 +1457,20 @@ a.cx-card:hover { box-shadow: inset 0 0 0 1px var(--line-strong), var(--shadow-s
 .record.is-data .record-meter em { background: var(--teal); }
 
 /* steps + screen */
-.how4-main { display: grid; grid-template-columns: minmax(280px, 380px) 1fr; gap: clamp(28px, 4vw, 56px); align-items: start; }
-.how4-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; counter-reset: s; }
-.how4-steps li { display: grid; grid-template-columns: 34px 1fr; gap: 14px; padding: 14px; border-radius: 14px; transition: background .3s; }
-.how4-steps .n { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; font-family: var(--mono); font-size: 12px; color: var(--ink-3); background: #f0f3f8; transition: background .3s, color .3s; }
-.how4-steps .who { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
-.how4-steps h4 { margin: 4px 0 0; font-size: 16px; font-weight: 600; line-height: 1.35; color: var(--ink-2); }
-.how4-steps p { margin: 4px 0 0; font-size: 14.5px; line-height: 1.5; color: var(--ink-2); display: none; }
-.how4-steps li.is-done .n { background: var(--teal-100); color: var(--teal); }
-.how4-steps li.is-active { background: var(--violet-100); }
-.how4-steps li.is-active .n { background: var(--violet); color: #fff; }
-.how4-steps li.is-active h4 { color: var(--ink); }
-.how4-steps li.is-active p { display: block; }
-.how4 .scr-body { height: 400px; padding: 24px 26px; }
-.how4 .scr-view { inset: 24px 26px; gap: 14px; }
-.how4 .frm { grid-template-columns: 130px 1fr; gap: 10px 14px; }
-.how4 .inp { height: 40px; }
 
-@media (max-width: 1000px) { .how4-main { grid-template-columns: 1fr; } .how4-steps { grid-auto-flow: row; } }
 @media (max-width: 700px) {
   .lane { padding: 18px 12px 22px; border-radius: 20px; }
   .lane-parties { gap: 6px; } .party { padding: 10px 4px; border-radius: 12px; } .party .ico { width: 30px; height: 30px; } .party > b { font-size: 12px; } .party small { display: none; }
   .lane-track { margin-top: 22px; }
   .record { width: 200px; padding: 10px 12px; }
   .record { left: clamp(100px, var(--rx), calc(100% - 100px)); }
-  .how4 .scr-body { height: 380px; padding: 16px; } .how4 .scr-view { inset: 16px; } .how4 .frm { grid-template-columns: 1fr; gap: 4px; }
+    
 }
 
 /* =========================================================
    How it works v5: classic diagram + screen (left), steps (right)
    ========================================================= */
-.how.how5 { min-height: 0; display: block; padding: clamp(80px, 11vw, 140px) 0; }
-.how5-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr); gap: clamp(32px, 4vw, 64px); align-items: start; }
-.how5-left { display: grid; gap: 24px; }
+
 .dia { border-radius: 24px; background: var(--bg); box-shadow: inset 0 0 0 1px var(--line); padding: 18px 18px 14px; }
 .dia-svg { display: block; width: 100%; height: auto; overflow: visible; }
 .dia-lane { fill: none; stroke: var(--line-strong); stroke-width: 2; stroke-dasharray: 5 6; transition: stroke .3s, opacity .4s; }
@@ -1551,27 +1497,8 @@ a.cx-card:hover { box-shadow: inset 0 0 0 1px var(--line-strong), var(--shadow-s
 .dia-legend { display: flex; gap: 18px; padding: 8px 6px 2px; font-size: 13px; color: var(--ink-3); }
 .dia-legend span { display: inline-flex; align-items: center; gap: 6px; }
 .dia-legend i { width: 9px; height: 9px; border-radius: 50%; } .lg-req { background: var(--violet); } .lg-data { background: var(--teal); }
-.how5 .scr-body { height: 380px; padding: 22px 24px; }
-.how5 .scr-view { inset: 22px 24px; gap: 14px; }
-.how5 .frm { grid-template-columns: 130px 1fr; gap: 10px 14px; }
-.how5 .inp { height: 40px; }
 
 /* right: official steps */
-.how5-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; position: sticky; top: 96px; }
-.how5-steps li { position: relative; display: grid; grid-template-columns: 40px 1fr; gap: 16px; padding: 16px 16px 18px; border-radius: 16px; transition: background .3s; }
-.how5-steps .n { width: 40px; height: 40px; border-radius: 11px; display: grid; place-items: center; font-family: var(--mono); font-size: 13px; color: var(--ink-3); background: #f0f3f8; transition: background .3s, color .3s; }
-.how5-steps .who { font-family: var(--mono); font-size: 11.5px; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-3); }
-.how5-steps h4 { margin: 6px 0 0; font-size: 17px; font-weight: 600; line-height: 1.35; color: var(--ink-2); }
-.how5-steps p { margin: 6px 0 0; font-size: 15px; line-height: 1.55; color: var(--ink-2); display: none; }
-.how5-steps .bar { position: absolute; left: 16px; right: 16px; bottom: 6px; height: 2px; border-radius: 2px; overflow: hidden; display: none; }
-.how5-steps .bar i { display: block; height: 100%; width: 0; background: var(--violet); opacity: .45; }
-.how5-steps li.is-done .n { background: var(--teal-100); color: var(--teal); }
-.how5-steps li.is-active { background: var(--violet-100); }
-.how5-steps li.is-active .n { background: var(--violet); color: #fff; }
-.how5-steps li.is-active h4 { color: var(--ink); }
-.how5-steps li.is-active p, .how5-steps li.is-active .bar { display: block; }
-.how5-steps li.is-active .bar i { animation: grow var(--dur, 4000ms) linear forwards; }
-.how5.is-paused .how5-steps li.is-active .bar i { animation-play-state: paused; }
 
 /* producer forwarding rule screen */
 .rule-card { display: grid; gap: 14px; padding: 18px; border-radius: 14px; background: var(--bg); box-shadow: inset 0 0 0 1px var(--line); position: relative; }
@@ -1582,157 +1509,49 @@ a.cx-card:hover { box-shadow: inset 0 0 0 1px var(--line-strong), var(--shadow-s
 .rule-note { margin: 0; font-size: 13px; color: var(--teal); font-weight: 600; opacity: 0; transition: opacity .3s; }
 .rule-note.is-on { opacity: 1; }
 
-@media (max-width: 1000px) { .how5-grid { grid-template-columns: 1fr; } .how5-steps { position: relative; top: 0; } }
 @media (max-width: 600px) {
   .dia { padding: 10px; } .dia-sub { display: none; } .dia-label { font-size: 19px; }
-  .how5 .scr-body { height: 380px; padding: 16px; } .how5 .scr-view { inset: 16px; } .how5 .frm { grid-template-columns: 1fr; gap: 4px; }
+    
 }
 
 /* =========================================================
    How it works v5.1: one viewport, linked diagram and screen,
    auto-scrolling steps
    ========================================================= */
-.how.how5 { min-height: calc(100vh - 72px); display: flex; align-items: center; padding: 24px 0; }
-.how5 > .container { width: 100%; }
-.how5 .how4-head { margin-bottom: 18px; gap: 16px 32px; align-items: end; }
-.how5 .how4-head .section-head { gap: 10px; max-width: 760px; }
-.how5 .how4-head h2 { font-size: clamp(30px, 3.1vw, 44px); }
-.how5 .how4-head .lead { font-size: 16px; line-height: 1.55; }
-.how5 .how3-runs { gap: 8px; }
-.how5 .dia-legend { padding: 0 0 0 8px; gap: 14px; font-size: 12.5px; }
-
-.how5-grid { grid-template-columns: minmax(0, 1.2fr) minmax(300px, .8fr); gap: clamp(28px, 3.4vw, 56px); align-items: stretch; }
-.how5-left { position: relative; gap: 0; }
-.how5 .dia { padding: 10px 14px; border-radius: 22px; }
-.how5 .dia-svg { max-height: 196px; width: auto; max-width: 100%; margin: 0 auto; }
-.how5 .dia-node rect { transition: stroke .3s, fill .3s; }
-.how5 .dia-node.is-active rect { fill: #f6f4ff; }
 
 /* the beam from the active party down to its screen */
 .link-beam { position: absolute; z-index: 3; width: 2px; left: var(--bx, 50%); top: var(--by, 0); height: var(--bh, 24px); margin-left: -1px; background: linear-gradient(var(--violet), rgba(88,68,255,.35)); transition: left .5s cubic-bezier(.45,0,.2,1), top .3s, height .3s; }
 .link-beam::before { content: ""; position: absolute; left: 50%; top: -4px; width: 8px; height: 8px; margin-left: -4px; border-radius: 50%; background: var(--violet); box-shadow: 0 0 0 4px rgba(88,68,255,.18); }
 
-.how5 .scr { position: relative; gap: 0; padding-top: 22px; }
 .scr-tab { position: relative; z-index: 2; align-self: start; justify-self: start; display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 12px; margin-left: var(--tx, 0px); border-radius: 10px 10px 0 0; background: var(--violet); color: #fff; font-size: 12.5px; font-weight: 600; white-space: nowrap; transition: margin-left .5s cubic-bezier(.45,0,.2,1); }
 .scr-tab .scr-dot { background: #fff; }
 .scr-tab small { font-weight: 400; color: rgba(255,255,255,.75); }
-.how5 .scr-win { box-shadow: var(--shadow-lg), 0 0 0 2px var(--violet); border-top-left-radius: 0; }
-.how5 .scr-win.is-tab-right { border-top-left-radius: 16px; }
-.how5 .scr-body { height: clamp(220px, calc(100vh - 600px), 340px); padding: 16px 20px; }
-.how5 .scr-view { inset: 16px 20px; gap: 10px; transform-origin: var(--ox, 50%) 0; transform: scale(.94) translateY(-6px); transition: opacity .35s, transform .45s cubic-bezier(.3,1.2,.4,1); }
-.how5 .scr-view.is-on { transform: none; }
-.how5 .inp { height: 34px; }
-.how5 .frm { gap: 7px 14px; }
-.how5 .mail { padding: 9px 14px; }
-.how5 .checklist li { height: 36px; }
-.how5 .console { min-height: 0; }
 
 /* steps scroll so the active one sits in the middle */
 .steps-view { position: relative; overflow: hidden; height: 100%; min-height: 360px;
   -webkit-mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent); mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent); }
-.how5 .how5-steps { position: absolute; left: 0; right: 0; top: 0; transform: translateY(var(--sy, 0px)); transition: transform .7s cubic-bezier(.45,0,.2,1); }
-.how5 .how5-steps li { opacity: .5; transition: background .3s, opacity .3s; }
-.how5 .how5-steps li.is-active { opacity: 1; }
-.how5 .how5-steps li.is-done { opacity: .62; }
 
-@media (max-height: 820px) { .how5 .how4-head .lead { font-size: 14.5px; } .how5 .dia-svg { max-height: 170px; } }
 @media (max-width: 1000px) {
-  .how.how5 { min-height: 0; display: block; padding: 72px 0; }
+  
   .steps-view { height: 380px; }
-  .how5 .scr-body { height: 360px; }
-}
-.how5 .how4-head { display: grid; grid-template-columns: 1fr auto; flex-wrap: nowrap; }
-.how5 .how4-head .section-head { max-width: none; }
-.how5 .how3-runs { flex-direction: column; align-items: flex-end; justify-content: flex-end; }
-.how5 .how3-runs .run { height: 32px; }
-.how5 .how3-runs .how-play { height: 32px; }
-.how5 .dia-legend { padding: 4px 0 0; }
-.how5 .dia-svg { max-height: 178px; }
-.how5 .scr { padding-top: 16px; }
-.how5 .scr-body { height: clamp(220px, calc(100vh - 612px), 340px); }
-@media (max-width: 1000px) { .how5 .how4-head { grid-template-columns: 1fr; } .how5 .how3-runs { flex-direction: row; align-items: center; justify-content: flex-start; flex-wrap: wrap; } }
-@media (min-width: 1001px) and (max-height: 820px) {
-  .how5 .dia-svg { max-height: 150px; }
-  .how5 .dia { padding: 8px 12px; }
-  .how5 .how4-head { margin-bottom: 12px; }
-  .how5 .how4-head .section-head { gap: 6px; }
-  .how5 .how4-head h2 { font-size: 30px; }
-  .how5 .scr-body { height: clamp(200px, calc(100vh - 540px), 300px); }
-  .how5 .inp { height: 30px; } .how5 .frm { gap: 5px 14px; }
+  
 }
 
 /* =========================================================
    How it works v6: header in normal flow; the animation is one
    calm panel sized to the viewport
    ========================================================= */
-.how.how5 { min-height: 0; display: block; padding: clamp(80px, 11vw, 140px) 0; }
-.how5 .how4-head { display: block; margin-bottom: clamp(32px, 4vw, 48px); }
-.how5 .how4-head .section-head { max-width: 760px; gap: 16px; }
-.how5 .how4-head h2 { font-size: clamp(34px, 4.4vw, 56px); }
-.how5 .how4-head .lead { font-size: clamp(17px, 1.5vw, 20px); }
-
-.how-art {
-  height: clamp(600px, calc(100vh - 72px - 48px), 860px);
-  border-radius: 28px; background: #fff; overflow: hidden;
-  box-shadow: 0 30px 80px -40px rgba(26,34,62,.35), 0 0 0 1px var(--line);
-}
-.how-art .how5-grid { height: 100%; display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(300px, 1fr); gap: 0; align-items: stretch; }
 
 /* left panel */
-.how-art .how5-left { display: flex; flex-direction: column; gap: 0; min-height: 0; padding: 24px 28px 28px; position: relative;
-  background-color: var(--bg);
-  background-image: radial-gradient(rgba(26,34,62,.09) 1px, transparent 1px); background-size: 20px 20px; }
-.how-art .dia { flex: none; background: none; box-shadow: none; padding: 0; border-radius: 0; }
-.how-art .dia-svg { max-height: 230px; width: 100%; }
-.how-art .dia-node rect { fill: #fff; stroke: var(--line-strong); stroke-width: 1.2; filter: drop-shadow(0 6px 14px rgba(26,34,62,.08)); }
-.how-art .dia-node.is-active rect { fill: #fff; stroke: var(--violet); stroke-width: 2; }
-.how-art .dia-lane { stroke: #c9d2e0; stroke-width: 1.6; }
-.how-art .dia .hub-ring { opacity: .45; }
-.how-art .dia-bubble rect { fill: var(--violet); }
-.how-art .dia-svg[data-run="direct"] .agency-only { opacity: .15; }
-
-.how-art .link-beam { width: 1.5px; margin-left: -.75px; background: linear-gradient(var(--violet), rgba(88,68,255,.15)); }
-.how-art .link-beam::before { width: 7px; height: 7px; margin-left: -3.5px; top: -3px; box-shadow: 0 0 0 4px rgba(88,68,255,.14); }
-
-.how-art .scr { flex: 1; min-height: 0; display: flex; flex-direction: column; padding-top: 18px; }
-.how-art .scr-tab { flex: none; height: 26px; padding: 0 10px; border-radius: 8px 8px 0 0; background: var(--navy); font-size: 12px; font-weight: 600; }
-.how-art .scr-tab small { color: rgba(255,255,255,.6); }
-.how-art .scr-win { flex: 1; min-height: 0; display: flex; flex-direction: column; border-radius: 16px; border-top-left-radius: 0; box-shadow: 0 18px 40px -22px rgba(26,34,62,.35), 0 0 0 1px var(--line-strong); }
-.how-art .scr-win.is-tab-right { border-top-left-radius: 16px; }
-.how-art .pane-bar { flex: none; height: 34px; background: #f7f9fc; }
-.how-art .scr-body { flex: 1; height: auto; min-height: 0; padding: 18px 22px; }
-.how-art .scr-view { inset: 18px 22px; }
 
 /* right panel: steps */
-.how-art .steps-col { display: flex; flex-direction: column; min-height: 0; border-left: 1px solid var(--line); }
+
 .steps-head { flex: none; display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 24px 28px 14px; border-bottom: 1px solid var(--line); }
 .steps-head b { font-size: 15px; } .steps-head small { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); letter-spacing: .04em; }
-.how-art .steps-view { flex: 1; height: auto; min-height: 0; }
-.how-art .how5-steps { padding: 0 16px; }
-.how-art .how5-steps li { padding: 14px 14px 16px; border-radius: 14px; }
-.how-art .how5-steps li.is-active { background: var(--violet-100); }
-.how-art .how5-steps .n { width: 34px; height: 34px; border-radius: 10px; font-size: 12px; }
-.how-art .how5-steps h4 { font-size: 16px; }
-.how-art .how5-steps p { font-size: 14.5px; }
 
 /* use the room the screen has */
-.how-art .scr-view { gap: 14px; }
-.how-art .inp { height: 42px; font-size: 13.5px; }
-.how-art .frm { grid-template-columns: 140px 1fr; gap: 12px 16px; }
-.how-art .mail { padding: 13px 16px; }
-.how-art .checklist li { height: 44px; }
-.how-art .attr div { padding: 12px 14px; }
-.how-art .console { font-size: 12.5px; padding: 18px; gap: 10px; }
-.how-art .scr-h { font-size: 16px; }
-@media (max-height: 820px) { .how-art .dia-svg { max-height: 180px; } .how-art .how5-left { padding: 16px 22px 22px; } .how-art .inp { height: 32px; } .how-art .frm { gap: 6px 16px; } .how-art .checklist li { height: 36px; } .how-art .mail { padding: 9px 14px; } }
-@media (max-width: 1000px) {
-  .how-art { height: auto; }
-  .how-art .how5-grid { grid-template-columns: 1fr; }
-  .how-art .scr-win { min-height: 420px; }
-  .how-art .steps-col { border-left: 0; border-top: 1px solid var(--line); }
-  .how-art .steps-view { height: 340px; flex: none; }
-}
-@media (max-width: 600px) { .how-art { border-radius: 20px; } .how-art .how5-left { padding: 14px 12px 16px; } .steps-head { padding: 18px 18px 12px; } }
+
+@media (max-width: 600px) {   .steps-head { padding: 18px 18px 12px; } }
 
 /* Home: full-width announcement bar under the nav; light surface, close on the far right */
 .announce { position: fixed; z-index: 45; left: 0; right: 0; top: 72px; display: flex; align-items: center; background: var(--violet-100); color: var(--ink); font-size: 14px; border-bottom: 1px solid rgba(88,68,255,.16);
@@ -1755,34 +1574,12 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
    How it works v7: premium node cards; the screen opens out of
    the active card and folds back into it when data moves
    ========================================================= */
-.how-art .net2 { position: relative; flex: none; height: clamp(190px, 27vh, 250px); }
+
 .net2-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; z-index: 0; }
 .net2-lines path { fill: none; stroke: #cbd4e3; stroke-width: 1.5; stroke-dasharray: 4 6; transition: stroke .4s, opacity .5s; }
 .net2-lines path.is-live { stroke: var(--violet); stroke-dasharray: 6 6; animation: edgeFlow .6s linear infinite; }
 .net2-lines path.is-live.is-data { stroke: var(--teal); }
 .net2[data-run="direct"] .agency-only { opacity: .22; filter: grayscale(1); }
-
-.nc { position: absolute; z-index: 2; left: var(--x); top: var(--y); transform: translate(-50%, -50%); display: flex; align-items: center; gap: 12px; min-width: 196px; padding: 12px 18px 12px 12px; border-radius: 18px; background: linear-gradient(180deg, #fff, #fbfcfe);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 12px 30px -16px rgba(26,34,62,.28), 0 0 0 1px rgba(26,34,62,.08);
-  transition: box-shadow .45s var(--ease), transform .45s var(--ease), opacity .5s, filter .5s; }
-.nc-ico { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; flex: none; background: linear-gradient(145deg, #f1efff, #ffffff); box-shadow: inset 0 0 0 1px rgba(88,68,255,.16); transition: background .4s; }
-.nc-ico svg { width: 21px; height: 21px; fill: none; stroke: var(--violet); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-.nc-txt { display: grid; gap: 1px; text-align: left; }
-.nc-txt b { font-size: 15px; font-weight: 650; letter-spacing: -.005em; }
-.nc-txt small { font-size: 12px; color: var(--ink-3); }
-.nc.is-active { transform: translate(-50%, -50%) scale(1.04); box-shadow: inset 0 1px 0 #fff, 0 22px 44px -18px rgba(88,68,255,.5), 0 0 0 2px var(--violet); }
-.nc.is-active .nc-ico { background: var(--violet); box-shadow: none; }
-.nc.is-active .nc-ico svg { stroke: #fff; }
-.nc.is-active::after { content: ""; position: absolute; top: 10px; right: 10px; width: 7px; height: 7px; border-radius: 50%; background: var(--violet); animation: ping 1.4s ease-out infinite; }
-
-.nc.is-hub { display: grid; justify-items: center; gap: 6px; min-width: 150px; padding: 18px 24px 14px; border-radius: 20px; background: linear-gradient(160deg, #262f5a, var(--navy-900)); box-shadow: 0 22px 44px -20px rgba(15,20,40,.6), 0 0 0 1px rgba(255,255,255,.06) inset; }
-.nc.is-hub::before { content: ""; position: absolute; inset: -14px; border-radius: 30px; background: radial-gradient(closest-side, rgba(88,68,255,.22), transparent); z-index: -1; transition: opacity .4s; opacity: .6; }
-.nc.is-hub .net-logo { height: 30px; width: auto; }
-.nc.is-hub .net-logo .win-logo__type, .nc.is-hub .net-logo .win-logo__vine { fill: #fff; }
-.nc.is-hub small { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.55); }
-.nc.is-hub.is-active { box-shadow: 0 26px 50px -18px rgba(88,68,255,.6), 0 0 0 2px #8f7dff; }
-.nc.is-hub.is-active::before { opacity: 1; }
-.nc.is-hub.is-active::after { background: #a99dff; }
 
 .net2-packet { position: absolute; z-index: 1; left: 0; top: 0; display: flex; align-items: center; gap: 8px; transform: translate(-6px, -6px); opacity: 0; transition: opacity .25s; pointer-events: none; }
 .net2-packet i { width: 12px; height: 12px; border-radius: 50%; background: var(--violet); box-shadow: 0 0 0 5px rgba(88,68,255,.18), 0 0 16px 2px rgba(88,68,255,.55); flex: none; }
@@ -1790,49 +1587,29 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .net2-packet.is-data i { background: var(--teal); box-shadow: 0 0 0 5px rgba(4,139,168,.18), 0 0 16px 2px rgba(4,139,168,.5); }
 
 /* the screen: same purple outline as the active card; folds into it when data moves */
-.how-art .scr { position: relative; }
-.how-art .scr-win { transform-origin: var(--fx, 50%) var(--fy, -40px);
-  box-shadow: 0 24px 50px -26px rgba(88,68,255,.45), 0 0 0 2px var(--violet); border-radius: 16px;
-  transition: transform .5s cubic-bezier(.5,0,.75,0), opacity .4s ease-in, box-shadow .4s; }
-.how-art .scr-win.is-folded { transform: scale(.06); opacity: 0; }
-.how-art .scr-win.is-opening { transition: transform .6s cubic-bezier(.16,1,.3,1), opacity .35s ease-out; }
-.how-art .pane-bar { gap: 6px; }
+
 .scr-party { display: inline-flex; align-items: center; gap: 8px; margin-left: 10px; font-size: 12.5px; }
 .scr-party b { font-weight: 650; color: var(--ink); }
 .scr-ico { width: 20px; height: 20px; border-radius: 6px; display: grid; place-items: center; background: var(--violet); }
 .scr-ico svg { width: 12px; height: 12px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.scr-ico .net-logo { height: 8px; width: auto; } .scr-ico .net-logo * { fill: #fff; }
-.how-art .scr-url { margin-left: auto; }
-.scr-sending { position: absolute; left: 0; right: 0; top: 18px; bottom: 0; display: grid; align-content: center; justify-items: center; gap: 12px; border-radius: 16px; border: 1.5px dashed #d6dcea; opacity: 0; transition: opacity .3s; pointer-events: none; }
-.scr-sending.is-on { opacity: 1; }
-.scr-sending b { font-size: 14px; font-weight: 600; color: var(--ink-2); }
-.scr-sending .sd-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--violet); animation: ping 1.2s ease-out infinite; }
-.scr-sending.is-data .sd-dot { background: var(--teal); }
+ 
+
 .shimmer { display: block; width: 46%; height: 10px; border-radius: 6px; background: linear-gradient(90deg, #eef1f6 0%, #f8f9fc 50%, #eef1f6 100%); background-size: 200% 100%; animation: shimmer 1.3s linear infinite; }
 .shimmer.w80 { width: 38%; } .shimmer.w60 { width: 28%; }
 @keyframes shimmer { to { background-position: -200% 0; } }
 
-@media (max-height: 820px) { .how-art .net2 { height: 180px; } .nc { padding: 10px 14px 10px 10px; min-width: 176px; } .nc-ico { width: 36px; height: 36px; } }
-@media (max-width: 1000px) { .how-art .net2 { height: 240px; } }
 @media (max-width: 600px) {
-  .how-art .net2 { height: 220px; }
-  .nc { min-width: 0; padding: 8px; gap: 0; } .nc-txt { display: none; } .nc-ico { width: 36px; height: 36px; }
-  .nc.is-hub { min-width: 0; padding: 12px 14px 10px; } .nc.is-hub .net-logo { height: 20px; } .nc.is-hub small { display: none; }
+  
+    
+    
   .net2-packet em { font-size: 10.5px; }
 }
 /* cards: separate translate/scale so edge cards can anchor to the panel sides */
-.nc { transform: none; translate: -50% -50%; scale: 1; transition: box-shadow .45s var(--ease), scale .45s var(--ease), opacity .5s, filter .5s; }
-.nc.is-active { transform: none; scale: 1.04; }
-.nc[data-node="merchant"] { left: 0; translate: 0 -50%; transform-origin: left center; }
-.nc[data-node="producer"] { left: auto; right: 0; translate: 0 -50%; transform-origin: right center; }
-.nc { min-width: 180px; }
-@media (min-width: 1001px) { .how-art .how5-grid { grid-template-columns: minmax(0, 1.85fr) minmax(290px, 1fr); } }
-.nc { min-width: 0; padding: 10px 16px 10px 10px; gap: 10px; }
-.nc-ico { width: 38px; height: 38px; }
-.nc-txt b { font-size: 14.5px; } .nc-txt small { font-size: 11.5px; }
-.nc.is-hub { min-width: 0; padding: 14px 20px 11px; } .nc.is-hub .net-logo { height: 26px; }
-@media (max-width: 1000px) { .how-art .how5-grid { grid-template-columns: minmax(0, 1fr); } }
-@media (max-width: 600px) { .how-art .scr-url { display: none; } .scr-party b { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 220px; } }
+
+ 
+ 
+
+@media (max-width: 600px) {  .scr-party b { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 220px; } }
 
 /* =========================================================
    One card language for the whole site
@@ -2103,3 +1880,7 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 }
 .tl-scr .scr-url { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
 @media (max-width: 860px) { .tl-scr .scr-url { display: none; } }
+
+/* Home: How it works now lives on the Solution page; a short link band takes its place */
+.how-link { padding: clamp(56px, 7vw, 96px) 0; }
+.how-link-inner { display: grid; justify-items: center; gap: 24px; text-align: center; }

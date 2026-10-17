@@ -87,7 +87,7 @@
     });
   }
 
-  /* How it works lives in js/how.js */
+  /* How it works lives on the Solution page (js/solution.js) */
 
   /* ---------- Solutions tabs ---------- */
   var tabs = document.querySelectorAll('.role-tab');
