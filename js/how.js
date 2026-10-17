@@ -37,6 +37,25 @@
   function show(screen) { Object.keys(views).forEach(function (k) { views[k].classList.toggle('is-on', k === screen); }); }
   function focusNode(k) { Object.keys(nodes).forEach(function (n) { nodes[n].classList.toggle('is-active', n === k); }); }
 
+  /* Tie the screen to the party in the diagram: a beam drops from that party to the
+     screen, the screen's tab sits right under it and the screen grows out of that spot. */
+  var leftCol = q('.how5-left'), beam = q('#linkBeam'), tab = q('#scrTab'), scrWin = q('#scrWin'), scrBox = q('.how5 .scr');
+  var linked = 'merchant';
+  function linkTo(k) {
+    linked = k || linked;
+    var node = nodes[linked]; if (!node || !leftCol) return;
+    var L = leftCol.getBoundingClientRect(), N = node.getBoundingClientRect(), W = scrWin.getBoundingClientRect(), S = scrBox.getBoundingClientRect();
+    var x = N.left + N.width / 2 - L.left;
+    beam.style.setProperty('--bx', x + 'px');
+    beam.style.setProperty('--by', (N.bottom - L.top + 4) + 'px');
+    beam.style.setProperty('--bh', Math.max(10, W.top - N.bottom - 4 - 30) + 'px');
+    var tw = tab.offsetWidth, tx = Math.min(Math.max(0, x - (S.left - L.left) - tw / 2), S.width - tw);
+    tab.style.setProperty('--tx', tx + 'px');
+    scrWin.classList.toggle('is-tab-right', tx > 12);
+    qa('.scr-view').forEach(function (v) { v.style.setProperty('--ox', (x - (W.left - L.left)) + 'px'); });
+  }
+  window.addEventListener('resize', function () { linkTo(); centerStep(); });
+
   /* Send a packet along a diagram lane, with a label riding above it */
   function travel(id, reverse, text, data) {
     return new Promise(function (resolve) {
@@ -164,7 +183,15 @@
       return '<li><span class="n">' + String(i + 1).padStart(2, '0') + '</span><div><span class="who">' + s.who + '</span><h4>' + s.t + '</h4><p>' + s.d + '</p></div><span class="bar"><i></i></span></li>';
     }).join('');
   }
+  var activeIdx = 0;
+  function centerStep() {
+    var li = steps.children[activeIdx], view = steps.parentNode; if (!li) return;
+    var sy = view.clientHeight / 2 - (li.offsetTop + li.offsetHeight / 2);
+    steps.style.setProperty('--sy', Math.min(view.clientHeight * 0.18, sy) + 'px');
+  }
   function markStep(i) {
+    activeIdx = Math.min(i, steps.children.length - 1);
+    requestAnimationFrame(centerStep);
     qa('li', steps).forEach(function (li, n) {
       li.classList.toggle('is-done', n < i); li.classList.toggle('is-active', n === i);
       if (n === i) { var b = li.querySelector('.bar i'); b.style.animation = 'none'; void b.offsetWidth; b.style.animation = ''; }
@@ -176,6 +203,8 @@
     if (s.edge) { focusNode(null); await travel(s.edge, s.rev, s.text, s.data); }
     focusNode(s.node);
     who.textContent = s.party; url.textContent = s.url;
+    q('#scrRole').textContent = s.node === 'win' ? 'checks this' : 'sees this';
+    linkTo(s.node);
     show(s.screen);
     await wait(300);
     await act[s.fn](run);
@@ -208,7 +237,7 @@
     q('[data-status]').className = 'pill ok'; q('[data-status]').textContent = 'Complete'; q('[data-imp]').textContent = '214 / 214'; q('[data-imp-bar]').style.width = '100%';
     playBtn.hidden = true; return;
   }
-  setRun('agency'); show('erp-new'); focusNode('merchant'); markStep(0);
+  setRun('agency'); show('erp-new'); focusNode('merchant'); markStep(0); linkTo('merchant'); setTimeout(function () { linkTo(); centerStep(); }, 300);
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (en) { visible = en[0].isIntersecting; if (visible) loop(); }, { threshold: 0.35 }).observe(section);
   } else { visible = true; loop(); }
