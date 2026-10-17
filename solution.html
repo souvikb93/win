@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Solution | WIN by EuvinoPRO</title>
+  <meta name="description" content="How WIN works, step by step: a merchant requests product data, the producer answers once, WIN checks it and delivers it to the ERP.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,300..900&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="solution">
+<script src="js/layout.js"></script>
+
+<main>
+  <section class="gx-intro sol-intro" aria-labelledby="solTitle">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container gx-intro-inner">
+      <h1 id="solTitle">How WIN Connects Merchant and Producer<span class="dot">.</span></h1>
+      <p class="lead">Six steps, from a new article in the merchant's ERP to complete, checked product data arriving back in it. Each step shows what happens on screen.</p>
+    </div>
+  </section>
+
+  <section class="section sol-tl" aria-label="How it works, step by step">
+    <div class="container">
+      <div class="tl" data-tl>
+        <span class="tl-line" aria-hidden="true"><i data-tl-fill></i></span>
+        <ol class="tl-list">
+      <li class="tl-row">
+        <div class="tl-side"><span class="tl-dot" aria-hidden="true"><i></i></span><span class="tl-num">01</span><span class="tl-who">Merchant</span></div>
+        <div class="tl-body">
+          <span class="tl-num-m">Step 01 · Merchant</span>
+          <h3>Create a new article in the ERP<span class="dot">.</span></h3>
+          <p>Assign the article number, select the producer and add the article name: grape variety or wine name, and vintage.</p>
+          <div class="scr-win tl-scr" data-loop="erp-new" aria-hidden="true">
+            <div class="pane-bar"><i></i><i></i><i></i><span class="scr-party"><b>Merchant · ERP</b></span><span class="scr-url">erp / articles / new</span></div>
+            <div class="scr-body">
+              <div class="scr-view is-on" data-screen="erp-new">
+                <div class="scr-h"><b>New article</b><span class="pill">Draft</span></div>
+                <div class="frm">
+                  <label>Article no.</label><div class="inp mono">40-11873</div>
+                  <label>Producer</label><div class="inp">Selected producer</div>
+                  <label>Wine name</label><div class="inp" data-type="Riesling, dry"><span class="tv"></span><i class="ui-caret"></i></div>
+                  <label>Vintage</label><div class="inp mono" data-type="2025"><span class="tv"></span><i class="ui-caret"></i></div>
+                </div>
+                <div class="scr-actions"><span class="btn-fake" data-btn>Request product data via WIN</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="tl-row">
+        <div class="tl-side"><span class="tl-dot" aria-hidden="true"><i></i></span><span class="tl-num">02</span><span class="tl-who">Merchant → WIN</span></div>
+        <div class="tl-body">
+          <span class="tl-num-m">Step 02 · Merchant → WIN</span>
+          <h3>Product request is sent to WIN<span class="dot">.</span></h3>
+          <p>The ERP sends the request automatically. No email, no spreadsheet.</p>
+          <div class="scr-win tl-scr" data-loop="win-route" aria-hidden="true">
+            <div class="pane-bar"><i></i><i></i><i></i><span class="scr-party"><b>WIN · EuvinoPRO</b></span><span class="scr-url">win / requests</span></div>
+            <div class="scr-body">
+              <div class="scr-view is-on" data-screen="win-route">
+                <div class="scr-h"><b>Request routing</b><span class="pill req">Live</span></div>
+                <ol class="console" data-lines></ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="tl-row">
+        <div class="tl-side"><span class="tl-dot" aria-hidden="true"><i></i></span><span class="tl-num">03</span><span class="tl-who">WIN → Producer</span></div>
+        <div class="tl-body">
+          <span class="tl-num-m">Step 03 · WIN → Producer</span>
+          <h3>Notification of a new product request from the merchant<span class="dot">.</span></h3>
+          <p>The producer gets an email from WIN with a link to the request.</p>
+          <div class="scr-win tl-scr" data-loop="mail" aria-hidden="true">
+            <div class="pane-bar"><i></i><i></i><i></i><span class="scr-party"><b>Producer · Inbox</b></span><span class="scr-url">mail / inbox</span></div>
+            <div class="scr-body">
+              <div class="scr-view is-on" data-screen="mail">
+                <div class="scr-h"><b>Inbox</b><span class="muted">Producer</span></div>
+                <div class="mail-list">
+                  <div class="mail is-new"><span class="from">WIN · EuvinoPRO</span><b>A merchant requests product data: Riesling, dry 2025</b><span class="snippet">Please complete 41 required fields for the merchant. Open the request in WIN.</span></div>
+                  <div class="mail"><span class="from">Wine association</span><b>Newsletter October</b><span class="snippet">Harvest report and dates for the autumn fairs.</span></div>
+                  <div class="mail"><span class="from">Freight forwarder</span><b>Delivery confirmation #44812</b><span class="snippet">Pallets collected on Tuesday.</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="tl-row">
+        <div class="tl-side"><span class="tl-dot" aria-hidden="true"><i></i></span><span class="tl-num">04</span><span class="tl-who">Producer</span></div>
+        <div class="tl-body">
+          <span class="tl-num-m">Step 04 · Producer</span>
+          <h3>Product request is answered, in the ERP or online<span class="dot">.</span></h3>
+          <p>The producer fills in the data once, in the WIN web app or straight from their own ERP.</p>
+          <div class="scr-win tl-scr" data-loop="form" aria-hidden="true">
+            <div class="pane-bar"><i></i><i></i><i></i><span class="scr-party"><b>Producer · WIN web app</b></span><span class="scr-url">win / producer / requests / 40-11873</span></div>
+            <div class="scr-body">
+              <div class="scr-view is-on" data-screen="form">
+                <div class="scr-h"><b>Riesling, dry 2025</b><span class="pill req">For the merchant</span></div>
+                <div class="frm frm-data">
+                  <label>Alcohol</label><div class="inp mono" data-type="12.5 % vol"><span class="tv"></span><i class="ui-caret"></i></div>
+                  <label>Bottle size</label><div class="inp mono" data-type="0.75 l"><span class="tv"></span><i class="ui-caret"></i></div>
+                  <label>Allergens</label><div class="inp" data-type="Contains sulphites"><span class="tv"></span><i class="ui-caret"></i></div>
+                </div>
+                <div class="scr-actions"><span class="frm-count" data-count>32 / 41 required fields</span><span class="btn-fake" data-btn>Send to WIN</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="tl-row">
+        <div class="tl-side"><span class="tl-dot" aria-hidden="true"><i></i></span><span class="tl-num">05</span><span class="tl-who">Producer → WIN</span></div>
+        <div class="tl-body">
+          <span class="tl-num-m">Step 05 · Producer → WIN</span>
+          <h3>Product data is sent to WIN<span class="dot">.</span></h3>
+          <p>WIN checks every field against the law and the merchant's required fields.</p>
+          <div class="scr-win tl-scr" data-loop="win-check" aria-hidden="true">
+            <div class="pane-bar"><i></i><i></i><i></i><span class="scr-party"><b>WIN · EuvinoPRO</b></span><span class="scr-url">win / validation</span></div>
+            <div class="scr-body">
+              <div class="scr-view is-on" data-screen="win-check">
+                <div class="scr-h"><b>Validation</b><span class="muted">40-11873 · 214 attributes</span></div>
+                <ul class="checklist" data-checks>
+                  <li>GTIN check digit<span>4006381333931</span></li>
+                  <li>LMIV mandatory fields<span>12 / 12</span></li>
+                  <li>Allergen declaration<span>sulphites</span></li>
+                  <li>Merchant's required fields<span>41 / 41</span></li>
+                </ul>
+                <div class="approved" data-approved>Record approved, sending to the merchant</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="tl-row">
+        <div class="tl-side"><span class="tl-dot" aria-hidden="true"><i></i></span><span class="tl-num">06</span><span class="tl-who">WIN → Merchant</span></div>
+        <div class="tl-body">
+          <span class="tl-num-m">Step 06 · WIN → Merchant</span>
+          <h3>Product data is imported into the ERP<span class="dot">.</span></h3>
+          <p>The complete record lands in the merchant's ERP, ready to use.</p>
+          <div class="scr-win tl-scr" data-loop="erp-done" aria-hidden="true">
+            <div class="pane-bar"><i></i><i></i><i></i><span class="scr-party"><b>Merchant · ERP</b></span><span class="scr-url">erp / articles / 40-11873</span></div>
+            <div class="scr-body">
+              <div class="scr-view is-on" data-screen="erp-done">
+                <div class="scr-h"><b>40-11873 · Riesling, dry 2025</b><span class="pill" data-status>Waiting</span></div>
+                <div class="attr" data-attrs>
+                  <div><span>Alcohol</span><b>12.5 % vol</b></div>
+                  <div><span>Bottle size</span><b>0.75 l</b></div>
+                  <div><span>Allergens</span><b>Contains sulphites</b></div>
+                  <div><span>GTIN</span><b>4006381333931</b></div>
+                  <div><span>Source</span><b>Producer via WIN</b></div>
+                  <div><span>Imported</span><b>11:20:42</b></div>
+                </div>
+                <div class="erp-detail is-on"><span>Attributes imported</span><b data-imp>0 / 214</b><i><em data-imp-bar></em></i></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-end" id="book">
+    <div class="container">
+      <div class="cta-panel reveal">
+        <h2>Ready To See WIN In Action<span class="dot">.</span></h2>
+        <p>Book a short demo and we will show you how WIN fits the way you work with your partners.</p>
+        <a class="btn btn-primary" href="contact.html?topic=demo">Book a demo</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="js/solution.js"></script>
+</body>
+</html>

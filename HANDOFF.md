@@ -5,7 +5,7 @@ Modern SaaS-style redesign of win.wine in EuvinoPRO's brand language, built for 
 
 ## State
 - Live at https://win-redesign.vercel.app. Each push to `main` deploys automatically (Vercel project `win-redesign`, linked to the GitHub repo).
-- Pages: Home, Press (3D scroll gallery), Contact. The old timeline Press page was removed; `/press2` redirects to `/press`.
+- Pages: Home, Solution (How it works timeline, direct flow), Press (3D scroll gallery), Contact. The old timeline Press page was removed; `/press2` redirects to `/press`.
 - English only. The EN | DE toggle shows a "coming soon" toast.
 
 ## Files

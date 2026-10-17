@@ -23,6 +23,7 @@
 
   var links = [
     { href: 'index.html', label: 'Home', key: 'home' },
+    { href: 'solution.html', label: 'Solution', key: 'solution' },
     { href: 'press.html', label: 'Press', key: 'press' },
     { href: 'contact.html', label: 'Contact', key: 'contact' }
   ];
@@ -69,7 +70,7 @@
           '</div>' +
           '<div><h5>Product</h5><ul>' +
             '<li><a href="' + home + '#product">Overview</a></li>' +
-            '<li><a href="' + home + '#how">How it works</a></li>' +
+            '<li><a href="solution.html">How it works</a></li>' +
             '<li><a href="' + home + '#security">Security</a></li>' +
             '<li><a href="' + home + '#ecosystem">EuvinoPRO modules</a></li>' +
           '</ul></div>' +
