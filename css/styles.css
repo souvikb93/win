@@ -1901,3 +1901,16 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
   .why-stage .stack::after { height: 200px; }
   .why-stage .stack-item:last-child { height: auto; min-height: 0; }
 }
+
+/* CTA panel: flowing lines on the dark base, kept away from the text by a soft hole in the mask */
+.cta-panel { position: relative; overflow: hidden; isolation: isolate; }
+.cta-panel > *:not(.cta-paths) { position: relative; z-index: 1; }
+.cta-paths { position: absolute; inset: 0; z-index: 0; pointer-events: none; color: #fff;
+  -webkit-mask-image: radial-gradient(ellipse var(--hrx, 300px) var(--hry, 150px) at var(--hx, 50%) var(--hy, 50%), transparent 78%, #000 100%);
+  mask-image: radial-gradient(ellipse var(--hrx, 300px) var(--hry, 150px) at var(--hx, 50%) var(--hy, 50%), transparent 78%, #000 100%); }
+.cta-paths svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.cta-paths path { stroke-dasharray: .32 .68; stroke-dashoffset: 1; animation: cta-flow 24s linear infinite; }
+@keyframes cta-flow { from { stroke-dashoffset: 1; } to { stroke-dashoffset: -1; } }
+.cta-paths.is-paused path { animation-play-state: paused; }
+.cta-paths.is-static path { animation: none; stroke-dasharray: none; stroke-opacity: .06; }

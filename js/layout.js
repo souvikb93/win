@@ -166,3 +166,49 @@
     els.forEach(function (el) { io.observe(el); });
   }
 })();
+
+/* CTA panel: flowing line background (after 21st.dev kokonutd "Background Paths").
+   Two mirrored sets of 36 curves; a soft hole in the mask keeps the lines away from the text and button. */
+(function () {
+  function init() {
+    var panels = document.querySelectorAll('.cta-panel');
+    if (!panels.length) return;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var NS = 'http://www.w3.org/2000/svg';
+    panels.forEach(function (panel) {
+      var layer = document.createElement('div'); layer.className = 'cta-paths'; layer.setAttribute('aria-hidden', 'true');
+      [1, -1].forEach(function (pos) {
+        var svg = document.createElementNS(NS, 'svg');
+        svg.setAttribute('viewBox', '0 0 696 316'); svg.setAttribute('preserveAspectRatio', 'xMidYMid slice'); svg.setAttribute('fill', 'none');
+        for (var i = 0; i < 36; i++) {
+          var p = document.createElementNS(NS, 'path');
+          p.setAttribute('d', 'M-' + (380 - i * 5 * pos) + ' -' + (189 + i * 6) + 'C-' + (380 - i * 5 * pos) + ' -' + (189 + i * 6) + ' -' + (312 - i * 5 * pos) + ' ' + (216 - i * 6) + ' ' + (152 - i * 5 * pos) + ' ' + (343 - i * 6) + 'C' + (616 - i * 5 * pos) + ' ' + (470 - i * 6) + ' ' + (684 - i * 5 * pos) + ' ' + (875 - i * 6) + ' ' + (684 - i * 5 * pos) + ' ' + (875 - i * 6));
+          p.setAttribute('pathLength', '1');
+          p.setAttribute('stroke', '#fff');
+          p.setAttribute('stroke-width', (0.5 + i * 0.03).toFixed(2));
+          p.setAttribute('stroke-opacity', (0.1 + i * 0.03).toFixed(2));
+          if (!reduce) { p.style.animationDuration = (20 + Math.random() * 10).toFixed(1) + 's'; p.style.animationDelay = '-' + (Math.random() * 25).toFixed(1) + 's'; }
+          svg.appendChild(p);
+        }
+        layer.appendChild(svg);
+      });
+      panel.insertBefore(layer, panel.firstChild);
+      if (reduce) layer.classList.add('is-static');
+
+      /* hole in the mask around the text block */
+      function fit() {
+        var kids = Array.prototype.slice.call(panel.children).filter(function (c) { return c !== layer; });
+        var P = panel.getBoundingClientRect(), l = 1e9, t = 1e9, r = -1e9, b = -1e9;
+        kids.forEach(function (k) { var R = k.getBoundingClientRect(); l = Math.min(l, R.left); t = Math.min(t, R.top); r = Math.max(r, R.right); b = Math.max(b, R.bottom); });
+        var cx = (l + r) / 2 - P.left, cy = (t + b) / 2 - P.top, rx = (r - l) / 2 * 1.45 + 36, ry = (b - t) / 2 * 1.45 + 36;
+        layer.style.setProperty('--hx', cx + 'px'); layer.style.setProperty('--hy', cy + 'px');
+        layer.style.setProperty('--hrx', rx + 'px'); layer.style.setProperty('--hry', ry + 'px');
+      }
+      fit(); window.addEventListener('resize', fit); window.addEventListener('load', fit);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+
+      if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { layer.classList.toggle('is-paused', !e[0].isIntersecting); }, { threshold: 0 }).observe(panel);
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
