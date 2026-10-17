@@ -1,30 +1,36 @@
 # Handoff (2026-10-17)
 
 ## Goal
-Modern SaaS-style redesign of win.wine in EuvinoPRO's brand, built for Souvik's interview with EuvinoPRO. Deploy on Vercel from github.com/souvikb93/win, with How-it-works diagrams.
+Modern SaaS-style redesign of win.wine in EuvinoPRO's brand language, built for Souvik's interview with EuvinoPRO. Live on Vercel from github.com/souvikb93/win.
 
 ## State
-3 pages built and checked in the browser at 1440px and 375px: Home, Press, Contact. English only; the DE toggle shows a "coming soon" toast. Committed locally. Not pushed and not deployed.
+- Live at https://win-redesign.vercel.app. Each push to `main` deploys automatically (Vercel project `win-redesign`, linked to the GitHub repo).
+- Pages: Home, Press (horizontal timeline), Contact, Press 2 (3D scroll gallery). The two Press versions stay side by side until one is picked.
+- English only. The EN | DE toggle shows a "coming soon" toast.
 
 ## Files
-- `index.html`, `press.html`, `contact.html`
+- `index.html`, `press.html`, `press2.html`, `contact.html`
 - `css/styles.css`: tokens and every component
-- `js/layout.js`: shared nav, footer and language toggle (the WIN logo SVG is inlined)
-- `js/home.js`: hero event cards, carousel loop, How-it-works step engine, role tabs
-- `assets/logos/*`: customer logos from win.wine
-- `assets/brand/*`: WIN and EuvinoPRO logos, favicon
+- `js/layout.js`: shared nav, footer, language toggle and logo sizing
+- `js/home.js`: hero, product tilt, side section nav, How-it-works engine, card motion
+- `js/timeline.js` (Press), `js/gallery.js` (Press 2), `js/cursor.js` (contextual cursor label)
+- `assets/logos/*`: cleaned customer logos (originals in `assets/logos/original/`)
+- `assets/press/*`: article images from win.wine
 
 ## Changed / decisions
-- Palette: EuvinoPRO navy #1A223E and violet #5844FF, plus WIN orange #E57F09 as the accent (the orange full stop after headlines), and teal #048BA8 for "validated".
-- Type: Roboto Flex (variable Roboto). Headlines use a condensed width as a nod to WIN's Roboto Condensed; data uses Roboto Mono.
-- The product mock-up is coded HTML rebuilt from the real "Mein Netzwerk" screen.
-- A concept disclaimer appears in the top strip and the footer.
+- Palette: EuvinoPRO navy #1A223E and violet #5844FF, WIN orange #E57F09 as the accent, teal #048BA8 for "validated".
+- Type: Roboto Flex with condensed headlines; data in Roboto Mono.
+- 21st.dev components were ported to vanilla JS: hyperiux/timeline, container-scroll-animation and youcefbnm/animated-gallery.
+- Home card motion tells the product story: messy files shuffle, benefits tick in, field toggles snap into place, validation fixes a missing bottle size, data streams from WIN out to its modules.
+- The Contact page uses +49 30 2000 3438 0 (from Souvik's brief). The Home CTA still shows +49 30 983 959 16 from the old imprint.
 
 ## Failed / gotchas
-- `.form-card form { display: grid }` overrode the `hidden` attribute. Fixed with a `[hidden]` rule.
-- The preview server config lives in ~/.claude/launch.json (`win-site`, port 4410). A launch.json inside the project folder isn't picked up.
+- A hidden preview pane runs no animation frames or scroll observers, so test motion with the pane visible or with stubbed observers.
+- SplitText locks line breaks at split time. Reload the page after CSS width changes.
+- The preview server needs `--bind 127.0.0.1` because of a hostname decode crash, and the port is pinned with `autoPort: false`.
 
 ## Next
-1. Push to GitHub and deploy on Vercel.
-2. Explainer/case-study artifact with diagrams (architecture, request lifecycle, data ownership, before/after audit).
-3. German copy (the existing German site text is a good base).
+1. Pick Press or Press 2 and delete the other.
+2. Decide on one phone number for the whole site.
+3. German copy.
+4. Explainer artifact with diagrams for the interview.
