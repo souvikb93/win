@@ -3,7 +3,7 @@
    articles ("Read ↗"), partner logos (company name) and the scroll rail.
    Only on devices with a fine pointer that can hover. */
 (function () {
-  var zone = document.getElementById('milestones');
+  var zone = document.querySelector('[data-cursor-zone]') || document.getElementById('milestones');
   var cursor = document.querySelector('.cursor');
   if (!zone || !cursor) return;
   if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
@@ -21,7 +21,7 @@
   }
 
   function setState(target) {
-    var link = target.closest('a.is-link, a.tl-link');
+    var link = target.closest('a.is-link, a.tl-link, a.gx-tile');
     var logo = target.closest('.tl-logo');
     var rail = target.closest('[data-cursor]');
     var mode = '', text = '';
