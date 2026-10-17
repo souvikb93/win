@@ -1285,3 +1285,45 @@ a.cx-card:hover { box-shadow: inset 0 0 0 1px var(--line-strong), var(--shadow-s
   .trust-ico svg * { stroke-dashoffset: 0 !important; }
   .eco-module, .compare-list li, .compare-list li::before { opacity: 1 !important; transform: none !important; }
 }
+
+/* =========================================================
+   Why WIN: stacking cards (after uilayout/stacking-card)
+   Header stays pinned; each card pins below it, the next one
+   slides over it and earlier cards ease back.
+   ========================================================= */
+.why { --why-top: 92px; --stack-top: 236px; }
+.why-head { position: sticky; top: var(--why-top); z-index: 3; display: grid; gap: 14px; padding: 12px 0 28px;
+  background: linear-gradient(to bottom, var(--bg) 78%, rgba(245,247,251,0)); }
+.stack { position: relative; }
+.stack-item { position: sticky; top: var(--stack-top); height: calc(100vh - var(--stack-top)); z-index: calc(4 + var(--i)); pointer-events: none; }
+.stack-item { padding-top: calc(var(--i) * 26px); }
+.stack-item .stack-card { pointer-events: auto; }
+.stack::after { content: ""; display: block; height: 36vh; }
+.stack-card {
+  display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(28px, 4vw, 56px); align-items: center;
+  min-height: min(420px, calc(100vh - var(--stack-top) - 90px)); padding: clamp(28px, 3.4vw, 48px); border-radius: 28px;
+  background: var(--surface); box-shadow: 0 -12px 40px -24px rgba(26,34,62,.35), var(--shadow-md), inset 0 0 0 1px var(--line);
+  transform-origin: 50% 0; will-change: transform; transition: filter .3s;
+}
+.stack-copy { display: grid; gap: 16px; align-content: center; }
+.stack-copy h3 { font-size: clamp(30px, 3vw, 42px); }
+.stack-copy p { color: var(--ink-2); font-size: 17px; line-height: 1.6; max-width: 44ch; }
+.stack-visual { border-radius: 20px; padding: clamp(18px, 2vw, 26px); background: var(--bg); box-shadow: inset 0 0 0 1px var(--line); }
+.stack-visual .tile-visual { margin: 0; padding: 0; }
+.stack-card.is-right { background: var(--navy); color: #fff; box-shadow: 0 -12px 40px -24px rgba(15,20,40,.6), var(--shadow-lg); }
+.stack-card.is-right .stack-copy p { color: rgba(255,255,255,.7); }
+.stack-card.is-right .stack-visual { background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
+.stack-card.is-right .check { color: var(--ink); }
+.stack-card.is-fast { background: linear-gradient(160deg, #fff7ed, #ffffff 60%); }
+.stack-card.is-fast .stack-visual { background: #fff; padding-top: 36px; padding-bottom: 36px; }
+
+@media (max-width: 900px) {
+  .why { --stack-top: 88px; }
+  .why-head { position: relative; top: 0; padding-bottom: 20px; background: none; }
+  .stack-item { height: auto; min-height: calc(100vh - var(--stack-top)); }
+  .stack-item { padding-top: calc(var(--i) * 14px); }
+  .stack-card { grid-template-columns: 1fr; gap: 22px; min-height: 0; padding: 26px 22px; border-radius: 22px; }
+  .stack-copy h3 { font-size: 28px; }
+  .stack-copy p { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { .stack-card { transform: none !important; } }

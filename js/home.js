@@ -321,3 +321,29 @@
     }, { threshold: 0.6 });
   });
 })();
+
+/* ---------- Why WIN: earlier cards ease back as the next one slides over ---------- */
+(function () {
+  var items = Array.prototype.slice.call(document.querySelectorAll('.stack-item'));
+  if (!items.length || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var cards = items.map(function (it) { return it.querySelector('.stack-card'); });
+  var ticking = false;
+  function update() {
+    ticking = false;
+    var cover = items.map(function (it) {
+      var top = parseFloat(getComputedStyle(it).top) || 0;
+      var h = (it.offsetHeight || 1) * 0.6;
+      return Math.min(1, Math.max(0, 1 - (it.getBoundingClientRect().top - top) / h));
+    });
+    cards.forEach(function (c, i) {
+      var behind = 0;
+      for (var j = i + 1; j < items.length; j++) behind += cover[j];
+      c.style.transform = 'scale(' + (1 - 0.05 * behind).toFixed(4) + ')';
+      c.style.filter = behind > 0.02 ? 'brightness(' + (1 - 0.08 * behind).toFixed(3) + ')' : '';
+    });
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
+})();

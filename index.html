@@ -178,56 +178,64 @@
     </div>
   </section>
 
-  <!-- ============ PILLARS ============ -->
-  <section class="section" id="why" style="padding-top:0">
+  <!-- ============ PILLARS: stacking cards (after uilayout stacking-card, 21st.dev) ============ -->
+  <section class="section why" id="why" style="padding-top:0">
     <div class="container">
-      <div class="section-head reveal">
+      <div class="why-head">
         <span class="eyebrow">Why WIN</span>
         <h2>Easy. Right. Fast<span class="dot">.</span></h2>
       </div>
-      <div class="bento">
-        <article class="tile tile-wide reveal">
-          <span class="tile-tag">01 · Easy</span>
-          <h3>You decide what matters</h3>
-          <p>WIN offers more than 200 attributes per wine: descriptions, aromas, media, LMIV labelling, logistics, packaging for LUCID reports. You mark each one as required or optional.</p>
-          <div class="tile-visual fields">
-            <div class="field"><span>Alcohol by volume <span class="mono">LMIV</span></span><span class="seg"><i class="on req">Required</i><i>Optional</i></span></div>
-            <div class="field"><span>Allergens &amp; sulphites <span class="mono">LMIV</span></span><span class="seg"><i class="on req">Required</i><i>Optional</i></span></div>
-            <div class="field"><span>Tasting notes &amp; aromas <span class="mono">Marketing</span></span><span class="seg"><i>Required</i><i class="on">Optional</i></span></div>
-            <div class="field"><span>Packaging material <span class="mono">LUCID</span></span><span class="seg"><i class="on req">Required</i><i>Optional</i></span></div>
-          </div>
-        </article>
-        <article class="tile tile-wide reveal">
-          <span class="tile-tag">02 · Right</span>
-          <h3>Checked at input, not after import</h3>
-          <p>WIN checks every record while the producer types. Only complete, plausible data is sent on, and an audit trail shows who changed what and when.</p>
-          <div class="tile-visual checks">
-            <div class="check"><span class="tick"><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.2 2.2 4.8-4.8"/></svg></span>GTIN check digit<span class="mono">4 006381 333931</span></div>
-            <div class="check"><span class="tick"><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.2 2.2 4.8-4.8"/></svg></span>Alcohol within range<span class="mono">12.5 % vol</span></div>
-            <div class="check is-err"><span class="tick err"><svg viewBox="0 0 12 12"><path d="M3.5 3.5l5 5M8.5 3.5l-5 5"/></svg></span>Bottle size missing<span class="mono">fix before sending</span></div>
-            <div class="check"><span class="tick"><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.2 2.2 4.8-4.8"/></svg></span>Producer address<span class="mono">verified</span></div>
-          </div>
-        </article>
-        <article class="tile tile-wide reveal">
-          <span class="tile-tag">03 · Fast</span>
-          <h3>Machine to machine</h3>
-          <p>Your ERP sends the request, and the producer's system or the web app answers. No retyping and no transfer errors. Optional GDSN connection included.</p>
-          <div class="tile-visual pipe">
-            <div class="pipe-node">Your ERP<small>request</small></div>
-            <div class="pipe-line"></div>
-            <div class="pipe-node hub">WIN<small>route · check</small></div>
-            <div class="pipe-line"></div>
-            <div class="pipe-node">Producer<small>answer</small></div>
-          </div>
-        </article>
-        <div class="stat-pair">
-          <article class="tile stat-tile reveal">
-            <div class="stat-num"><span data-count="200">200</span><span class="unit">+</span></div>
-            <p>attributes per wine, from aromas to logistics</p>
+      <div class="stack" id="stack">
+        <div class="stack-item" style="--i:0">
+          <article class="stack-card is-easy">
+            <div class="stack-copy">
+              <span class="tile-tag">01 · Easy</span>
+              <h3>You decide what matters</h3>
+              <p>WIN offers more than 200 attributes per wine: descriptions, aromas, media, LMIV labelling, logistics, packaging for LUCID reports. You mark each one as required or optional.</p>
+            </div>
+            <div class="stack-visual">
+              <div class="tile-visual fields">
+                <div class="field"><span>Alcohol by volume <span class="mono">LMIV</span></span><span class="seg"><i class="on req">Required</i><i>Optional</i></span></div>
+                <div class="field"><span>Allergens &amp; sulphites <span class="mono">LMIV</span></span><span class="seg"><i class="on req">Required</i><i>Optional</i></span></div>
+                <div class="field"><span>Tasting notes &amp; aromas <span class="mono">Marketing</span></span><span class="seg"><i>Required</i><i class="on">Optional</i></span></div>
+                <div class="field"><span>Packaging material <span class="mono">LUCID</span></span><span class="seg"><i class="on req">Required</i><i>Optional</i></span></div>
+              </div>
+            </div>
           </article>
-          <article class="tile stat-tile reveal">
-            <div class="stat-num">€0</div>
-            <p>for producers. Merchants pay for the data they request.</p>
+        </div>
+        <div class="stack-item" style="--i:1">
+          <article class="stack-card is-right">
+            <div class="stack-copy">
+              <span class="tile-tag">02 · Right</span>
+              <h3>Checked at input, not after import</h3>
+              <p>WIN checks every record while the producer types. Only complete, plausible data is sent on, and an audit trail shows who changed what and when.</p>
+            </div>
+            <div class="stack-visual">
+              <div class="tile-visual checks">
+                <div class="check"><span class="tick"><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.2 2.2 4.8-4.8"/></svg></span>GTIN check digit<span class="mono">4 006381 333931</span></div>
+                <div class="check"><span class="tick"><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.2 2.2 4.8-4.8"/></svg></span>Alcohol within range<span class="mono">12.5 % vol</span></div>
+                <div class="check is-err"><span class="tick err"><svg viewBox="0 0 12 12"><path d="M3.5 3.5l5 5M8.5 3.5l-5 5"/></svg></span>Bottle size missing<span class="mono">fix before sending</span></div>
+                <div class="check"><span class="tick"><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.2 2.2 4.8-4.8"/></svg></span>Producer address<span class="mono">verified</span></div>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="stack-item" style="--i:2">
+          <article class="stack-card is-fast">
+            <div class="stack-copy">
+              <span class="tile-tag">03 · Fast</span>
+              <h3>Machine to machine</h3>
+              <p>Your ERP sends the request, and the producer's system or the web app answers. No retyping and no transfer errors. Optional GDSN connection included.</p>
+            </div>
+            <div class="stack-visual">
+              <div class="tile-visual pipe">
+                <div class="pipe-node">Your ERP<small>request</small></div>
+                <div class="pipe-line"></div>
+                <div class="pipe-node hub">WIN<small>route · check</small></div>
+                <div class="pipe-line"></div>
+                <div class="pipe-node">Producer<small>answer</small></div>
+              </div>
+            </div>
           </article>
         </div>
       </div>
