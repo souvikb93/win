@@ -2000,3 +2000,23 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .logos { border-bottom: 0; }
 .why { background: var(--surface); padding-top: clamp(56px, 7vw, 96px); }
 .why-head { background: linear-gradient(to bottom, var(--surface) 78%, rgba(255,255,255,0)); }
+
+/* Why WIN cards: Easy / Right / Fast are the headers; the sentence below is the sub-headline */
+.stack-copy { gap: 20px; align-content: center; }
+.stack-copy .tile-tag {
+  font-size: clamp(60px, 7vw, 104px); font-weight: 700; line-height: .9; letter-spacing: -.02em; color: var(--violet);
+  font-variation-settings: "wdth" 78;
+}
+.stack-copy h3 { font-size: clamp(26px, 2.3vw, 34px); line-height: 1.15; max-width: 16ch; }
+.stack-copy p { font-size: 18px; line-height: 1.6; max-width: 40ch; }
+.stack-card { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); padding: clamp(32px, 4vw, 56px); }
+@media (max-width: 1000px) {
+  .stack-copy .tile-tag { font-size: 56px; }
+  .stack-copy h3 { font-size: 26px; max-width: none; }
+  .stack-copy p { font-size: 16px; max-width: none; }
+}
+
+/* Customer strip: more air above and below, uppercase label */
+.logos { padding: clamp(80px, 9vw, 128px) 0 clamp(72px, 8vw, 112px); }
+.logos p { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; margin-bottom: 40px; }
+.why { padding-top: clamp(24px, 3vw, 48px); }
