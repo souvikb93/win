@@ -1,21 +1,23 @@
-/* How it works v3.
-   Left: the network (merchant, WIN, producer, trade agency) with a labelled packet
-   showing what is flowing. Right: the screen of whoever the data just reached.
+/* How it works v4.
+   Top: the data lane. A record card moves between merchant, WIN, producer and
+   trade agency and shows what it carries (request, forwarded, data entered,
+   validated, complete). Below: the step list and the screen of whoever holds it.
    Plays the trade-agency run, then the direct run, and loops while on screen. */
 (function () {
   var section = document.getElementById('how');
-  var net = section && section.querySelector('.net');
-  if (!net) return;
+  var lane = section && section.querySelector('#lane');
+  if (!lane) return;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var q = function (sel, root) { return (root || section).querySelector(sel); };
   var qa = function (sel, root) { return Array.prototype.slice.call((root || section).querySelectorAll(sel)); };
   var wait = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
 
-  var packet = q('#netPacket'), label = q('#netLabel'), caption = q('#netCaption');
-  var who = q('#scrWho'), url = q('#scrUrl'), steps = q('#scrSteps'), playBtn = q('#howPlay');
-  var nodes = {}; qa('.net-node').forEach(function (n) { nodes[n.getAttribute('data-node')] = n; });
+  var record = q('#record'), recTag = q('#recTag'), recDir = q('#recDir'), recBar = q('#recBar'), recCount = q('#recCount'), fill = q('#laneFill');
+  var who = q('#scrWho'), url = q('#scrUrl'), steps = q('#howSteps'), playBtn = q('#howPlay');
+  var nodes = {}; qa('.party').forEach(function (n) { nodes[n.getAttribute('data-node')] = n; });
+  var COL = { merchant: 12.5, win: 37.5, producer: 62.5, agency: 87.5 };
+  var at = 'merchant';
   var views = {}; qa('.scr-view').forEach(function (v) { views[v.getAttribute('data-screen')] = v; });
-  var VB = { w: 440, h: 380 };
 
   var playing = !reduce, visible = false, running = false;
   function alive() { return visible; }
@@ -36,23 +38,24 @@
   function show(screen) { Object.keys(views).forEach(function (k) { views[k].classList.toggle('is-on', k === screen); }); }
   function focusNode(k) { Object.keys(nodes).forEach(function (n) { nodes[n].classList.toggle('is-active', n === k); }); }
 
-  /* Move the packet along an SVG edge, in percent of the diagram box */
-  function travel(edgeId, reverse, text, data) {
+  /* The record card moves along the lane to its next holder and shows what it now carries */
+  function setRecord(r) {
+    if (r.tag) recTag.textContent = r.tag;
+    if (r.fields !== undefined) { recCount.textContent = r.fields + ' / 214 fields'; recBar.style.width = Math.max(1, r.fields / 214 * 100) + '%'; }
+    record.classList.toggle('is-data', !!r.data);
+    fill.classList.toggle('is-data', !!r.data);
+  }
+  function moveTo(target, r) {
     return new Promise(function (resolve) {
-      var path = document.getElementById(edgeId), len = path.getTotalLength();
-      qa('.edge').forEach(function (e) { e.classList.remove('is-live', 'is-data'); });
-      path.classList.add('is-live'); if (data) path.classList.add('is-data');
-      label.textContent = text; packet.classList.toggle('is-data', !!data); packet.style.opacity = 1;
-      var t0 = null, dur = reduce ? 1 : 1100;
-      function frame(t) {
-        if (!t0) t0 = t;
-        var p = Math.min(1, (t - t0) / dur), e = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
-        var pt = path.getPointAtLength((reverse ? 1 - e : e) * len);
-        packet.style.left = (pt.x / VB.w * 100) + '%'; packet.style.top = (pt.y / VB.h * 100) + '%';
-        if (p < 1) requestAnimationFrame(frame);
-        else { packet.style.opacity = 0; path.classList.remove('is-live', 'is-data'); resolve(); }
-      }
-      requestAnimationFrame(frame);
+      var a = COL[at], b = COL[target];
+      var px = function (x) { return (x - 12.5) / 75 * 100; };
+      recDir.textContent = b >= a ? '→' : '←';
+      fill.style.setProperty('--from', Math.min(px(a), px(b)) + '%');
+      fill.style.setProperty('--w', Math.abs(px(b) - px(a)) + '%');
+      setRecord(r || {});
+      record.style.setProperty('--rx', b + '%');
+      at = target;
+      setTimeout(function () { fill.style.setProperty('--w', '0%'); fill.style.setProperty('--from', px(b) + '%'); resolve(); }, reduce ? 0 : 1150);
     });
   }
 
@@ -130,29 +133,35 @@
   var W = { who: 'WIN · EuvinoPRO', node: 'win' };
   var RUNS = {
     agency: [
-      { m: M, url: 'erp.hawesko.de/articles/new', screen: 'erp-new', fn: 'erpNew', cap: '<b>The merchant creates the article</b> in their ERP and asks WIN for the product data.' },
-      { m: W, edge: 'e-mw', text: 'Product request', url: 'backend.euvinopro.eu/win/routing', screen: 'win-route', fn: 'winRoute', cap: '<b>WIN receives the request</b> and finds the producer and their forwarding rule.' },
-      { m: { who: 'Producer · Weingut Schloss Gobelsburg', node: 'producer' }, edge: 'e-wp', text: 'Notification', url: 'mail.gobelsburg.at/inbox', screen: 'mail', fn: 'mail', cap: '<b>The producer is notified.</b> Their rule passes the request on automatically.' },
-      { m: { who: 'Trade agency · Pellegrini', node: 'agency' }, edge: 'e-pa', text: 'Forwarded request', url: 'backend.euvinopro.eu/agency/requests', screen: 'agency-inbox', fn: 'agencyInbox', cap: '<b>The trade agency receives the request</b> for the German market.' },
-      { m: { who: 'Trade agency · Pellegrini', node: 'agency' }, url: 'backend.euvinopro.eu/agency/requests/40-11873', screen: 'form', fn: 'form', cap: '<b>The agency fills in and refines the data</b>, including a German description.' },
-      { m: W, edge: 'e-aw', text: 'Product data', data: true, url: 'backend.euvinopro.eu/win/validation', screen: 'win-check', fn: 'winCheck', cap: '<b>WIN checks every field</b> against the law and Hawesko\'s requirements.' },
-      { m: M, edge: 'e-mw', rev: true, text: 'Validated record', data: true, url: 'erp.hawesko.de/articles/40-11873', screen: 'erp-done', fn: 'erpDone', cap: '<b>The complete record lands in the merchant\'s ERP</b>, ready to sell.' }
+      { m: M, t: 'Merchant creates the article', url: 'erp.hawesko.de/articles/new', screen: 'erp-new', fn: 'erpNew', rec: { tag: 'Product request', fields: 2 }, d: 'Article number, producer, wine name and vintage. That is all the merchant types.' },
+      { m: W, t: 'WIN routes the request', move: 'win', url: 'backend.euvinopro.eu/win/routing', screen: 'win-route', fn: 'winRoute', rec: { tag: 'Request · routing', fields: 2 }, d: 'WIN finds the producer, and their forwarding rule to a trade agency.' },
+      { m: { who: 'Producer · Weingut Schloss Gobelsburg', node: 'producer' }, t: 'Producer is notified', move: 'producer', url: 'mail.gobelsburg.at/inbox', screen: 'mail', fn: 'mail', rec: { tag: 'Request · notified', fields: 2 }, d: 'The producer gets an email. Their rule passes the request on automatically.' },
+      { m: { who: 'Trade agency · Pellegrini', node: 'agency' }, t: 'Forwarded to the agency', move: 'agency', url: 'backend.euvinopro.eu/agency/requests', screen: 'agency-inbox', fn: 'agencyInbox', rec: { tag: 'Forwarded request', fields: 2 }, d: 'The agency that represents the wine in Germany receives it.' },
+      { m: { who: 'Trade agency · Pellegrini', node: 'agency' }, t: 'Agency fills in the data', url: 'backend.euvinopro.eu/agency/requests/40-11873', screen: 'form', fn: 'form', rec: { tag: 'Data entered', fields: 214, data: true }, d: 'Every field is checked as it is typed, including a German description.' },
+      { m: W, t: 'WIN validates the record', move: 'win', url: 'backend.euvinopro.eu/win/validation', screen: 'win-check', fn: 'winCheck', rec: { tag: 'Validating', fields: 214, data: true }, d: 'Checked against the law and against Hawesko\'s 41 required fields.' },
+      { m: M, t: 'Imported into the ERP', move: 'merchant', url: 'erp.hawesko.de/articles/40-11873', screen: 'erp-done', fn: 'erpDone', rec: { tag: 'Complete ✓', fields: 214, data: true }, d: 'The complete record lands in the merchant\'s ERP, ready to sell.' }
     ],
     direct: [
-      { m: M, url: 'erp.hawesko.de/articles/new', screen: 'erp-new', fn: 'erpNew', cap: '<b>The merchant creates the article</b> in their ERP and asks WIN for the product data.' },
-      { m: W, edge: 'e-mw', text: 'Product request', url: 'backend.euvinopro.eu/win/routing', screen: 'win-route', fn: 'winRoute', cap: '<b>WIN receives the request</b> and routes it to the producer.' },
-      { m: { who: 'Producer · Weingut Schloss Gobelsburg', node: 'producer' }, edge: 'e-wp', text: 'Notification', url: 'mail.gobelsburg.at/inbox', screen: 'mail', fn: 'mail', cap: '<b>The producer gets an email</b> with a link to the request.' },
-      { m: { who: 'Producer · Weingut Schloss Gobelsburg', node: 'producer' }, url: 'backend.euvinopro.eu/producer/requests/40-11873', screen: 'form', fn: 'form', cap: '<b>The producer fills in the data</b> once, in the WIN app or from their own ERP.' },
-      { m: W, edge: 'e-wp', rev: true, text: 'Product data', data: true, url: 'backend.euvinopro.eu/win/validation', screen: 'win-check', fn: 'winCheck', cap: '<b>WIN checks every field</b> against the law and Hawesko\'s requirements.' },
-      { m: M, edge: 'e-mw', rev: true, text: 'Validated record', data: true, url: 'erp.hawesko.de/articles/40-11873', screen: 'erp-done', fn: 'erpDone', cap: '<b>The complete record lands in the merchant\'s ERP</b>, ready to sell.' }
+      { m: M, t: 'Merchant creates the article', url: 'erp.hawesko.de/articles/new', screen: 'erp-new', fn: 'erpNew', rec: { tag: 'Product request', fields: 2 }, d: 'Article number, producer, wine name and vintage. That is all the merchant types.' },
+      { m: W, t: 'WIN routes the request', move: 'win', url: 'backend.euvinopro.eu/win/routing', screen: 'win-route', fn: 'winRoute', rec: { tag: 'Request · routing', fields: 2 }, d: 'WIN finds the producer behind the wine. No agency involved.' },
+      { m: { who: 'Producer · Weingut Schloss Gobelsburg', node: 'producer' }, t: 'Producer is notified', move: 'producer', url: 'mail.gobelsburg.at/inbox', screen: 'mail', fn: 'mail', rec: { tag: 'Request · notified', fields: 2 }, d: 'The producer gets an email with a link to the request.' },
+      { m: { who: 'Producer · Weingut Schloss Gobelsburg', node: 'producer' }, t: 'Producer fills in the data', url: 'backend.euvinopro.eu/producer/requests/40-11873', screen: 'form', fn: 'form', rec: { tag: 'Data entered', fields: 214, data: true }, d: 'Once, in the WIN app or straight from their own ERP. Every field is checked.' },
+      { m: W, t: 'WIN validates the record', move: 'win', url: 'backend.euvinopro.eu/win/validation', screen: 'win-check', fn: 'winCheck', rec: { tag: 'Validating', fields: 214, data: true }, d: 'Checked against the law and against Hawesko\'s 41 required fields.' },
+      { m: M, t: 'Imported into the ERP', move: 'merchant', url: 'erp.hawesko.de/articles/40-11873', screen: 'erp-done', fn: 'erpDone', rec: { tag: 'Complete ✓', fields: 214, data: true }, d: 'The complete record lands in the merchant\'s ERP, ready to sell.' }
     ]
   };
   var ORDER = ['agency', 'direct'];
 
   function setRun(run) {
-    net.setAttribute('data-run', run);
+    lane.setAttribute('data-run', run);
     qa('.run').forEach(function (r) { r.classList.toggle('is-on', r.getAttribute('data-run') === run); });
-    steps.innerHTML = RUNS[run].map(function () { return '<li><i></i></li>'; }).join('');
+    steps.innerHTML = RUNS[run].map(function (s, i) {
+      return '<li><span class="n">' + String(i + 1).padStart(2, '0') + '</span><div><span class="who">' + s.m.who.split(' · ')[0] + '</span><h4>' + s.t + '</h4><p>' + s.d + '</p></div></li>';
+    }).join('');
+    /* new run: the record starts again at the merchant */
+    record.style.transition = 'none'; record.style.setProperty('--rx', COL.merchant + '%'); at = 'merchant';
+    void record.offsetWidth; record.style.transition = '';
+    setRecord({ tag: 'Draft', fields: 0, data: false });
   }
   function markStep(i) {
     qa('li', steps).forEach(function (li, n) { li.classList.toggle('is-done', n < i); li.classList.toggle('is-active', n === i); });
@@ -160,13 +169,15 @@
 
   async function playScene(run, s, i) {
     markStep(i);
-    if (s.edge) { focusNode(null); await travel(s.edge, s.rev, s.text, s.data); }
+    if (s.move) { focusNode(null); await moveTo(s.move, { tag: s.rec.tag, data: s.rec.data && s.fn !== 'form' ? true : s.rec.data }); }
     focusNode(s.m.node);
-    who.textContent = s.m.who; url.textContent = s.url; caption.innerHTML = s.cap;
+    who.textContent = s.m.who; url.textContent = s.url;
     show(s.screen);
+    if (!s.move) setRecord({ tag: s.rec.tag });
     await wait(300);
     await act[s.fn](run);
-    await wait(700);
+    setRecord(s.rec);
+    await wait(800);
   }
 
   async function loop() {
@@ -190,12 +201,12 @@
   if (reduce) {
     setRun('agency'); markStep(99); focusNode('merchant');
     var last = RUNS.agency[RUNS.agency.length - 1];
-    who.textContent = last.m.who; url.textContent = last.url; caption.innerHTML = last.cap; show(last.screen);
+    who.textContent = last.m.who; url.textContent = last.url; show(last.screen); setRecord(last.rec);
     qa('[data-attrs] div').forEach(function (a) { a.classList.add('is-in'); });
     q('[data-status]').className = 'pill ok'; q('[data-status]').textContent = 'Complete'; q('[data-imp]').textContent = '214 / 214'; q('[data-imp-bar]').style.width = '100%';
     playBtn.hidden = true; return;
   }
-  setRun('agency'); show('erp-new'); focusNode('merchant'); caption.innerHTML = RUNS.agency[0].cap;
+  setRun('agency'); show('erp-new'); focusNode('merchant'); markStep(0);
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (en) { visible = en[0].isIntersecting; if (visible) loop(); }, { threshold: 0.35 }).observe(section);
   } else { visible = true; loop(); }

@@ -204,13 +204,14 @@
     </div>
   </section>
 
-  <!-- ============ HOW IT WORKS: network diagram + the active party's screen ============ -->
-  <section class="section how how3" id="how">
-    <div class="container how3-wrap">
-      <div class="how3-top">
-        <div class="how-title">
+  <!-- ============ HOW IT WORKS v4: data lane + steps + screen ============ -->
+  <section class="section how how4" id="how">
+    <div class="container">
+      <div class="how4-head">
+        <div class="section-head" style="margin-bottom:0">
           <span class="eyebrow">How it works</span>
           <h2>One request, followed end to end<span class="dot">.</span></h2>
+          <p class="lead">Follow one product request from the merchant's ERP to the producer, through a trade agency when there is one, and back as a complete, validated record.</p>
         </div>
         <div class="how3-runs" aria-hidden="true">
           <span class="run" data-run="agency"><i></i>Via trade agency</span>
@@ -219,25 +220,27 @@
         </div>
       </div>
 
-      <div class="how3-grid">
-        <!-- Left: who is involved and what is flowing -->
-        <div class="net" aria-hidden="true">
-          <svg class="net-svg" viewBox="0 0 440 380">
-            <path class="edge" id="e-mw" d="M110 92 C 170 92, 170 190, 220 190"/>
-            <path class="edge" id="e-wp" d="M220 190 C 270 190, 270 92, 330 92"/>
-            <path class="edge agency-only" id="e-pa" d="M330 120 L 330 262"/>
-            <path class="edge agency-only" id="e-aw" d="M330 290 C 270 290, 270 190, 220 190"/>
-          </svg>
-          <div class="net-node" data-node="merchant" style="left:25%;top:24%"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 9l2-5h14l2 5"/><path d="M3 9h18v2.5a3 3 0 01-6 0 3 3 0 01-6 0 3 3 0 01-6 0z"/><path d="M5 14v7h14v-7"/></svg></span><b>Merchant</b><small>Hawesko · ERP</small></div>
-          <div class="net-node is-hub" data-node="win" style="left:50%;top:50%"><b>WIN</b><small>route · check</small></div>
-          <div class="net-node" data-node="producer" style="left:75%;top:24%"><span class="ico"><svg viewBox="0 0 24 24"><path d="M9 2h6l-.8 6.5a2.2 2.2 0 01-4.4 0z"/><path d="M12 11v8M8 21h8"/></svg></span><b>Producer</b><small>Schloss Gobelsburg</small></div>
-          <div class="net-node agency-only" data-node="agency" style="left:75%;top:76%"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 7h16v12H4z"/><path d="M9 7V5h6v2M4 12h16"/></svg></span><b>Trade agency</b><small>Pellegrini · DE</small></div>
-          <span class="net-packet" id="netPacket"><i></i><em id="netLabel">Product request</em></span>
-          <p class="net-caption" id="netCaption"></p>
+      <!-- The data lane: who holds the record, and how it changes -->
+      <div class="lane" id="lane" aria-hidden="true">
+        <div class="lane-parties">
+          <div class="party" data-node="merchant"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 9l2-5h14l2 5"/><path d="M3 9h18v2.5a3 3 0 01-6 0 3 3 0 01-6 0 3 3 0 01-6 0z"/><path d="M5 14v7h14v-7"/></svg></span><b>Merchant</b><small>Hawesko · ERP</small></div>
+          <div class="party is-hub" data-node="win"><span class="ico"><b>W</b></span><b>WIN</b><small>routes and checks</small></div>
+          <div class="party" data-node="producer"><span class="ico"><svg viewBox="0 0 24 24"><path d="M9 2h6l-.8 6.5a2.2 2.2 0 01-4.4 0z"/><path d="M12 11v8M8 21h8"/></svg></span><b>Producer</b><small>Schloss Gobelsburg</small></div>
+          <div class="party agency-only" data-node="agency"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 7h16v12H4z"/><path d="M9 7V5h6v2M4 12h16"/></svg></span><b>Trade agency</b><small>Pellegrini · DE market</small></div>
         </div>
+        <div class="lane-track"><i class="lane-fill" id="laneFill"></i>
+          <span class="lane-stop" style="--x:12.5%"></span><span class="lane-stop" style="--x:37.5%"></span><span class="lane-stop" style="--x:62.5%"></span><span class="lane-stop agency-only" style="--x:87.5%"></span>
+        </div>
+        <div class="record" id="record">
+          <div class="record-top"><span class="record-tag" id="recTag">Product request</span><span class="record-dir" id="recDir">→</span></div>
+          <b class="record-name">40-11873 · Grüner Veltliner 2025</b>
+          <div class="record-meter"><i><em id="recBar"></em></i><span id="recCount">2 / 214 fields</span></div>
+        </div>
+      </div>
 
-        <!-- Right: what the active party sees -->
-        <div class="scr" aria-live="polite">
+      <div class="how4-main">
+        <ol class="how4-steps" id="howSteps"></ol>
+        <div class="scr">
           <div class="scr-who"><span class="scr-dot"></span><span id="scrWho">Merchant · Hawesko</span></div>
           <div class="scr-win">
             <div class="pane-bar"><i></i><i></i><i></i><span class="scr-url" id="scrUrl">erp.hawesko.de/articles/new</span></div>
@@ -320,7 +323,6 @@
 
             </div>
           </div>
-          <ol class="scr-steps" id="scrSteps" aria-hidden="true"></ol>
         </div>
       </div>
     </div>
