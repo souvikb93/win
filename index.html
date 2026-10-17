@@ -26,7 +26,6 @@
     <li><a href="#security"><span>Security</span></a></li>
     <li><a href="#ecosystem"><span>Platform</span></a></li>
     <li><a href="#press"><span>In the press</span></a></li>
-    <li><a href="#get-started"><span>Get started</span></a></li>
   </ol>
 </nav>
 
@@ -38,7 +37,7 @@
     <div class="container">
       <div class="hero-copy">
         <a class="hero-pill" href="#ecosystem"><b>New</b> PPWR module now live for all WIN data</a>
-        <h1>One request. <span class="accent">Complete product data</span><span class="dot">.</span></h1>
+        <h1>Complete product data for the wine and beverage trade<span class="dot">.</span></h1>
         <p class="lead">WIN connects wine merchants, producers and agencies. Suppliers enter their data once, WIN checks it as it's typed, and the finished record lands straight in your ERP. No Excel lists, no PDFs, no follow-up calls.</p>
         <div class="hero-ctas">
           <a class="btn btn-primary" href="contact.html?topic=demo">Book a demo</a>
@@ -191,9 +190,10 @@
               <div class="ui ui-flow" aria-hidden="true">
                 <div class="ui-nodes">
                   <span class="ui-node" data-n="erp"><b>Your ERP</b><small>Hawesko</small></span>
+                  <span class="ui-seg" data-seg="0"><i class="ui-dot"></i></span>
                   <span class="ui-node is-hub" data-n="win"><b>WIN</b><small>route · check</small></span>
-                  <span class="ui-node" data-n="prod"><b>Producer</b><small>Schloss Gobelsburg</small></span>
-                  <i class="ui-wire"></i><i class="ui-packet"></i>
+                  <span class="ui-seg" data-seg="1"><i class="ui-dot"></i></span>
+                  <span class="ui-node" data-n="prod"><b>Producer</b><small>Gobelsburg</small></span>
                 </div>
                 <ol class="ui-log"></ol>
               </div>
@@ -204,95 +204,69 @@
     </div>
   </section>
 
-  <!-- ============ HOW IT WORKS ============ -->
+  <!-- ============ HOW IT WORKS: two-window stage ============ -->
   <section class="section how" id="how">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">How it works</span>
-        <h2>From new article to finished record<span class="dot">.</span></h2>
-        <p class="lead">WIN connects straight to your ERP. Create an article and the request starts itself. Follow it step by step below.</p>
+    <div class="container how-wrap">
+      <div class="how-top">
+        <div class="how-title">
+          <span class="eyebrow">How it works</span>
+          <h2>From new article to finished record<span class="dot">.</span></h2>
+        </div>
+        <div class="how-controls">
+          <div class="how-tabs" role="tablist" aria-label="Flow">
+            <button role="tab" aria-selected="true" data-mode="direct">Merchant ↔ Producer</button>
+            <button role="tab" aria-selected="false" data-mode="agency">Via trade agency</button>
+          </div>
+          <button class="how-play" id="howPlay" type="button" aria-label="Pause">Pause</button>
+        </div>
       </div>
 
-      <div class="how-tabs" role="tablist" aria-label="Flow">
-        <button role="tab" aria-selected="true" data-mode="direct">Merchant ↔ Producer</button>
-        <button role="tab" aria-selected="false" data-mode="agency">Via trade agency</button>
-      </div>
+      <ol class="how-stepper" id="howStepper"></ol>
 
-      <div class="how-grid">
-        <div class="diagram-card reveal">
-          <svg class="diagram" id="diagram" data-mode="direct" viewBox="0 110 640 310" role="img" aria-labelledby="diagTitle">
-            <title id="diagTitle">Product request flow between merchant, WIN and producer</title>
-            <!-- lanes -->
-            <path class="lane" id="lane-m" d="M150 220 H262"/>
-            <path class="lane" id="lane-p" d="M378 220 H490"/>
-            <path class="lane agency" id="lane-a" d="M320 162 V84"/>
-            <path class="lane agency" id="lane-pa" d="M560 170 V120 Q560 60 500 60 H388"/>
-            <!-- motion paths (invisible, for packets) -->
-            <path id="mp-m-w" d="M150 220 H262" fill="none"/>
-            <path id="mp-w-p" d="M378 220 H490" fill="none"/>
-            <path id="mp-p-w" d="M490 220 H378" fill="none"/>
-            <path id="mp-w-m" d="M262 220 H150" fill="none"/>
-            <path id="mp-w-a" d="M320 162 V84" fill="none"/>
-            <path id="mp-a-w" d="M320 84 V162" fill="none"/>
-            <path id="mp-p-a" d="M560 170 V120 Q560 60 500 60 H388" fill="none"/>
-
-            <!-- merchant -->
-            <g class="node" id="n-merchant">
-              <rect class="node-box" x="20" y="160" width="130" height="120" rx="16"/>
-              <g class="node-ico" transform="translate(67 178)"><path d="M3 9l3-6h24l3 6"/><path d="M3 9h30v4a4 4 0 01-7.5 2 4 4 0 01-7.5 0 4 4 0 01-7.5 0A4 4 0 013 13z"/><path d="M5 17v10h26V17"/><path d="M14 27v-6h8v6"/></g>
-              <text class="node-label" x="85" y="236" text-anchor="middle">Merchant</text>
-              <text class="node-sub" x="85" y="256" text-anchor="middle">ERP · WEB APP</text>
-            </g>
-            <!-- hub -->
-            <g class="node hub" id="n-win">
-              <circle class="hub-ring" cx="320" cy="220" r="64"/>
-              <circle class="hub-core" cx="320" cy="220" r="52"/>
-              <text x="320" y="228" text-anchor="middle" style="font:800 24px var(--font);fill:#fff;font-variation-settings:'wdth' 75;letter-spacing:.04em">WIN</text>
-            </g>
-            <!-- producer -->
-            <g class="node" id="n-producer">
-              <rect class="node-box" x="490" y="160" width="130" height="120" rx="16"/>
-              <g class="node-ico" transform="translate(537 176)"><path d="M14 2h8l-1 9a3 3 0 01-6 0z"/><path d="M18 14v10M13 27h10"/><path d="M4 30h28"/></g>
-              <text class="node-label" x="555" y="236" text-anchor="middle">Producer</text>
-              <text class="node-sub" x="555" y="256" text-anchor="middle">WINERY · BREWERY</text>
-            </g>
-            <!-- agency -->
-            <g class="node agency" id="n-agency">
-              <rect class="node-box" x="252" y="20" width="136" height="64" rx="14"/>
-              <text class="node-label" x="320" y="48" text-anchor="middle">Trade agency</text>
-              <text class="node-sub" x="320" y="66" text-anchor="middle">IMPORTER · REFINES</text>
-            </g>
-
-            <!-- packet -->
-            <circle class="packet" id="packet" r="7" cx="0" cy="0"/>
-
-            <!-- bubble -->
-            <g class="bubble" id="bubble">
-              <rect x="0" y="0" width="10" height="30" rx="8"/>
-              <text x="12" y="20"></text>
-            </g>
-
-            <!-- record card at merchant -->
-            <g id="record" style="opacity:0;transition:opacity .4s">
-              <rect x="20" y="300" width="250" height="110" rx="14" fill="#fff" stroke="var(--line-strong)"/>
-              <text class="rec-id" x="38" y="328">ARTICLE 40-11873</text>
-              <text class="rec-name" x="38" y="352">Grüner Veltliner 2025</text>
-              <rect x="38" y="368" width="214" height="7" rx="3.5" fill="#eef2f8"/>
-              <rect id="recordBar" x="38" y="368" width="0" height="7" rx="3.5" fill="var(--teal)" style="transition:width .9s var(--ease)"/>
-              <text class="rec-meta" id="recordText" x="38" y="396">0 / 214 attributes</text>
-            </g>
-          </svg>
-          <div class="diagram-caption">
-            <div class="legend">
-              <span><i style="background:var(--accent)"></i>Request</span>
-              <span><i style="background:var(--teal)"></i>Validated data</span>
-            </div>
-            <button class="play-btn" id="playBtn" type="button">Pause</button>
+      <div class="how-stage" id="howStage" data-mode="direct">
+        <!-- Merchant ERP -->
+        <div class="win-pane erp" aria-hidden="true">
+          <div class="pane-bar"><i></i><i></i><i></i><span>Your ERP · Article master</span></div>
+          <div class="pane-body">
+            <div class="erp-head"><span>Article</span><span>Product</span><span>Producer</span><span>Data</span></div>
+            <div class="erp-row"><span class="mono">40-11861</span><span>Blaufränkisch 2023</span><span>Prieler</span><span class="pill ok">Complete</span></div>
+            <div class="erp-row"><span class="mono">40-11870</span><span>Sauvignon Blanc 2024</span><span>Tement</span><span class="pill ok">Complete</span></div>
+            <div class="erp-row is-new" id="erpNew"><span class="mono">40-11873</span><span class="erp-name"><b id="erpName"></b><i class="ui-caret"></i></span><span id="erpProd">—</span><span class="pill" id="erpPill">Draft</span></div>
+            <div class="erp-detail" id="erpDetail"><span>Attributes received</span><b id="erpCount">0 / 214</b><i><em id="erpBar"></em></i></div>
           </div>
         </div>
 
-        <ol class="steps" id="steps" aria-live="polite"></ol>
+        <!-- WIN hub -->
+        <div class="hub-col" aria-hidden="true">
+          <i class="hub-line l"></i><i class="hub-line r"></i>
+          <span class="hub-badge"><b>WIN</b><small id="hubNote">waiting</small></span>
+          <span class="hub-pill" id="hubPill">Product request</span>
+        </div>
+
+        <!-- Producer / agency in WIN -->
+        <div class="win-pane prod" aria-hidden="true">
+          <div class="pane-bar"><i></i><i></i><i></i><span id="prodTitle">WIN · Weingut Schloss Gobelsburg</span></div>
+          <div class="pane-body">
+            <div class="prod-view is-on" data-view="idle"><div class="empty"><b>No open requests</b><span>New requests from merchants appear here.</span></div></div>
+            <div class="prod-view" data-view="mail">
+              <div class="notif"><span class="notif-dot"></span><div><small>New product request · now</small><b>Hawesko requests data for</b><span>Grüner Veltliner Ried Lamm 2025</span></div><span class="notif-btn">Open</span></div>
+            </div>
+            <div class="prod-view" data-view="rule">
+              <div class="rule"><div><small>Forwarding rule · set once</small><b>All requests for the German market</b><span>→ Pellegrini, trade agency</span></div><span class="ui-switch" id="ruleSwitch"></span></div>
+            </div>
+            <div class="prod-view" data-view="form">
+              <div class="pf-head"><b>Grüner Veltliner Ried Lamm 2025</b><span class="pf-chip" id="pfChip">For Hawesko</span></div>
+              <div class="pf-row" data-k="abv"><span>Alcohol</span><b></b></div>
+              <div class="pf-row" data-k="size"><span>Bottle size</span><b></b></div>
+              <div class="pf-row" data-k="allergen"><span>Allergens</span><b></b></div>
+              <div class="pf-row" data-k="gtin"><span>GTIN</span><b></b></div>
+              <div class="pf-foot"><span id="pfCount">0 / 214 checked</span><span class="pf-send" id="pfSend">Send</span></div>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <p class="how-caption" id="howCaption" aria-live="polite"></p>
     </div>
   </section>
 
@@ -433,28 +407,11 @@
     </div>
   </section>
 
-  <!-- ============ CTA ============ -->
-  <section class="cta-wrap" id="get-started">
-    <div class="container">
-      <div class="cta reveal">
-        <div>
-          <h2>Ready to stop chasing datasheets<span class="dot">?</span></h2>
-          <p>See WIN with your own articles in a 30-minute demo. We'll also show you how to connect your ERP.</p>
-        </div>
-        <div class="cta-actions">
-          <a class="btn btn-primary" href="contact.html?topic=demo">Book a demo</a>
-          <div class="cta-contact">
-            <a href="tel:+493098395916"><span>Phone</span>+49 30 983 959 16</a>
-            <a href="mailto:info@euvinopro.eu"><span>Email</span>info@euvinopro.eu</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
 </main>
 
 <script src="js/home.js"></script>
 <script src="js/why.js"></script>
+<script src="js/how.js"></script>
 </body>
 </html>

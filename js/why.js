@@ -97,40 +97,46 @@
   /* ---------- Fast ---------- */
   var flow = document.querySelector('.ui-flow');
   if (flow) {
-    var log = flow.querySelector('.ui-log'), packet = flow.querySelector('.ui-packet');
+    var log = flow.querySelector('.ui-log');
     var nodes = {}; flow.querySelectorAll('.ui-node').forEach(function (n) { nodes[n.getAttribute('data-n')] = n; });
-    var X = { erp: '16%', win: '50%', prod: '84%' };
+    var segs = Array.prototype.slice.call(flow.querySelectorAll('.ui-seg'));
+    /* seg 0 sits between ERP and WIN, seg 1 between WIN and the producer */
     var STEPS = [
       { t: '09:41:02', who: 'ERP', text: 'Article 40-11873 created', at: 'erp' },
-      { t: '09:41:02', who: 'WIN', text: 'Product request received', from: 'erp', to: 'win' },
-      { t: '09:41:03', who: 'Mail', text: 'Routed to Schloss Gobelsburg, producer notified', from: 'win', to: 'prod' },
-      { t: '11:20:41', who: 'Producer', text: 'Data entered and checked, 214 / 214', at: 'prod' },
-      { t: '11:20:42', who: 'WIN', text: 'Validated record sent back', from: 'prod', to: 'win', data: true },
-      { t: '11:20:42', who: 'ERP', text: 'Imported. Article ready to sell', from: 'win', to: 'erp', data: true, done: true }
+      { t: '09:41:02', who: 'WIN', text: 'Product request received', seg: 0, dir: 'fwd', to: 'win' },
+      { t: '09:41:03', who: 'Mail', text: 'Routed to Schloss Gobelsburg, producer notified', seg: 1, dir: 'fwd', to: 'prod' },
+      { t: '11:20:41', who: 'Producer', text: 'Data entered and checked, 214 / 214', at: 'prod', pause: 1200 },
+      { t: '11:20:42', who: 'WIN', text: 'Validated record received', seg: 1, dir: 'back', to: 'win', data: true },
+      { t: '11:20:42', who: 'ERP', text: 'Imported. Article ready to sell', seg: 0, dir: 'back', to: 'erp', data: true, done: true }
     ];
-    function light(k) { Object.keys(nodes).forEach(function (n) { nodes[n].classList.toggle('is-active', n === k); }); }
+    function light(k) {
+      Object.keys(nodes).forEach(function (n) { nodes[n].classList.toggle('is-active', n === k); });
+      if (k) { nodes[k].classList.remove('is-ping'); void nodes[k].offsetWidth; nodes[k].classList.add('is-ping'); }
+    }
     function addLog(s) {
       var li = document.createElement('li'); if (s.done) li.className = 'is-done';
       li.innerHTML = '<time>' + s.t + '</time><span class="who">' + s.who + '</span><span>' + s.text + '</span>';
       log.appendChild(li);
+    }
+    async function travel(s) {
+      var seg = segs[s.seg], dot = seg.querySelector('.ui-dot');
+      seg.classList.add('is-live'); seg.classList.toggle('is-data', !!s.data);
+      dot.style.transition = 'none'; dot.style.left = s.dir === 'fwd' ? '0%' : '100%'; dot.style.opacity = 1;
+      void dot.offsetWidth; dot.style.transition = '';
+      await wait(30); dot.style.left = s.dir === 'fwd' ? '100%' : '0%';
+      await wait(820); dot.style.opacity = 0; seg.classList.remove('is-live');
     }
     if (reduce) { STEPS.forEach(addLog); light('erp'); }
     else loopWhileVisible(flow, async function (alive) {
       await wait(500);
       for (var i = 0; i < STEPS.length && alive(); i++) {
         var s = STEPS[i];
-        if (s.from) {
-          packet.classList.toggle('is-data', !!s.data);
-          packet.style.transition = 'none'; packet.style.left = X[s.from]; packet.style.opacity = 1;
-          void packet.offsetWidth; packet.style.transition = '';
-          light(s.from); await wait(60); packet.style.left = X[s.to]; await wait(950);
-          light(s.to);
-        } else { light(s.at); await wait(400); }
+        if (s.seg !== undefined) { await travel(s); light(s.to); }
+        else { light(s.at); await wait(350); }
         addLog(s);
-        await wait(s.at === 'prod' ? 1100 : 650);
+        await wait(s.pause || 600);
       }
-      packet.style.opacity = 0;
       await wait(2600);
-    }, function () { log.innerHTML = ''; light(null); packet.style.opacity = 0; });
+    }, function () { log.innerHTML = ''; light(null); segs.forEach(function (g) { g.querySelector('.ui-dot').style.opacity = 0; }); });
   }
 })();
