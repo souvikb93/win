@@ -153,7 +153,7 @@ The How it works animation follows WIN's own diagrams exactly:
 
 ## 8. Build rules
 
-- **Stack:** plain HTML/CSS/JS, no build step. One stylesheet (`css/styles.css`), small scripts per feature (`layout.js`, `home.js`, `why.js`, `how.js`, `gallery.js`, `cursor.js`).
+- **Stack:** plain HTML/CSS/JS, no build step. One stylesheet (`css/styles.css`), small scripts per feature (`layout.js`, `home.js`, `why.js`, `solution.js`, `testimonials.js`, `gallery.js`, `cursor.js`).
 - **21st.dev components** are ported to vanilla JS (GSAP via CDN where needed). Free tier = 2 downloads/day.
 - Shared nav/footer live in `js/layout.js`. Change them once.
 - Add a token before adding a hard-coded value. Reuse a pattern before creating one.
