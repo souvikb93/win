@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact | WIN by EuvinoPRO</title>
-  <meta name="description" content="Book a WIN demo, register as a producer or talk to the EuvinoPRO team in Berlin.">
+  <meta name="description" content="Contact the EuvinoPRO team about WIN: questions, demos and digital solutions for beverage businesses.">
   <meta name="robots" content="noindex">
   <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,87 +16,103 @@
 <script src="js/layout.js"></script>
 
 <main>
-  <section class="page-hero contact-hero">
+  <section class="cx" aria-labelledby="cxTitle">
     <div class="hero-bg" aria-hidden="true"></div>
-    <div class="container contact-grid">
-      <div class="contact-copy">
-        <span class="eyebrow">Get in touch</span>
-        <h1>Let's talk about your product data<span class="dot">.</span></h1>
-        <p class="lead">Book a demo with your own articles, register as a producer, or ask us anything about connecting your ERP.</p>
+    <div class="container cx-grid">
+      <div class="cx-intro">
+        <h1 id="cxTitle">We'd love to hear from you<span class="dot">.</span></h1>
+        <p class="cx-lead">Have a question about WIN, interested in a demo, or exploring digital solutions for your beverage business? Get in touch with our team.</p>
 
-        <ol class="next-steps">
-          <li><span>01</span><div><b>Tell us about your setup</b>Your role, your ERP and how you handle product data today.</div></li>
-          <li><span>02</span><div><b>30-minute demo</b>We walk through WIN with articles from your own range.</div></li>
-          <li><span>03</span><div><b>Connection plan</b>How WIN plugs into your ERP, plus the modules that fit.</div></li>
-        </ol>
-
-        <div class="contact-cards">
-          <a class="contact-card" href="tel:+493098395916"><small>Phone</small><b>+49 30 983 959 16</b></a>
-          <a class="contact-card" href="mailto:info@euvinopro.eu"><small>Email</small><b>info@euvinopro.eu</b></a>
-          <div class="contact-card"><small>Office</small><b>Inselstraße 10, 10179 Berlin</b></div>
-          <a class="contact-card" href="https://backend.euvinopro.eu/login"><small>Already a customer?</small><b>Log in to WIN →</b></a>
-        </div>
+        <h2 class="cx-label">Contact EuvinoPRO</h2>
+        <ul class="cx-cards">
+          <li>
+            <a class="cx-card" href="tel:+4930200034380">
+              <span class="cx-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8 9.8a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z"/></svg></span>
+              <span><small>Call us</small><b>+49 30 2000 3438 0</b></span>
+            </a>
+          </li>
+          <li>
+            <a class="cx-card" href="mailto:info@euvinopro.eu">
+              <span class="cx-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+              <span><small>Email us</small><b>info@euvinopro.eu</b></span>
+            </a>
+          </li>
+          <li>
+            <div class="cx-card">
+              <span class="cx-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0112 2.5a7 7 0 017 7C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+              <span><small>Visit us</small><b>Inselstraße 10<br>10179 Berlin, Germany</b></span>
+            </div>
+          </li>
+        </ul>
       </div>
 
-      <div class="form-card" id="formCard">
+      <div class="cx-form-card">
         <form id="contactForm" novalidate>
-          <fieldset class="topic">
-            <legend>What can we help with?</legend>
-            <div class="topic-options">
-              <label><input type="radio" name="topic" value="demo" checked><span>Book a demo</span></label>
-              <label><input type="radio" name="topic" value="producer"><span>I'm a producer</span></label>
-              <label><input type="radio" name="topic" value="agency"><span>Agency / importer</span></label>
-              <label><input type="radio" name="topic" value="press"><span>Press</span></label>
-              <label><input type="radio" name="topic" value="other"><span>Something else</span></label>
-            </div>
-          </fieldset>
+          <div class="cx-form-head">
+            <h2>Send us a message</h2>
+            <p>Tell us a little about what you need, and we'll be happy to help.</p>
+          </div>
 
           <div class="form-row">
-            <label class="field-l"><span>Full name</span><input name="name" type="text" autocomplete="name" required placeholder="Jana Weber"></label>
-            <label class="field-l"><span>Company</span><input name="company" type="text" autocomplete="organization" required placeholder="Weinhandel GmbH"></label>
+            <div class="fld">
+              <label for="f-name">Full name <span class="req" aria-hidden="true">*</span></label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Your full name" aria-describedby="e-name">
+              <p class="fld-err" id="e-name" role="alert"></p>
+            </div>
+            <div class="fld">
+              <label for="f-email">Work email <span class="req" aria-hidden="true">*</span></label>
+              <input id="f-email" name="email" type="email" autocomplete="email" required placeholder="you@company.com" aria-describedby="e-email">
+              <p class="fld-err" id="e-email" role="alert"></p>
+            </div>
           </div>
-          <div class="form-row">
-            <label class="field-l"><span>Work email</span><input name="email" type="email" autocomplete="email" required placeholder="jana@weinhandel.de"></label>
-            <label class="field-l"><span>Your role</span>
-              <select name="role" required>
-                <option value="">Choose…</option>
-                <option>Merchant / retailer</option>
-                <option>Wholesaler (GFGH)</option>
-                <option>Producer</option>
-                <option>Trade agency / importer</option>
+          <div class="form-row form-row--org">
+            <div class="fld">
+              <label for="f-company">Company <span class="opt">(optional)</span></label>
+              <input id="f-company" name="company" type="text" autocomplete="organization" placeholder="Your company name">
+            </div>
+            <div class="fld">
+              <label for="f-type">I'm contacting you as <span class="opt">(optional)</span></label>
+              <select id="f-type" name="type">
+                <option value="">Select your organisation type</option>
+                <option>Beverage producer</option>
+                <option>Retailer or distributor</option>
+                <option>Trade agency or importer</option>
                 <option>Other</option>
               </select>
-            </label>
+            </div>
           </div>
-          <label class="field-l"><span>ERP system <em>(optional)</em></span><input name="erp" type="text" placeholder="e.g. SAP, Microsoft Dynamics, in-house"></label>
-          <label class="field-l"><span>Message</span><textarea name="message" rows="4" placeholder="How many new articles do you list per season? Where does it hurt today?"></textarea></label>
-          <label class="consent"><input type="checkbox" name="consent" required><span>I agree that EuvinoPRO may use my details to answer this request.</span></label>
-          <button class="btn btn-primary btn-block" type="submit">Send request</button>
-          <p class="form-note">Concept prototype: this form doesn't send anything.</p>
+          <div class="fld">
+            <label for="f-message">Message <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="f-message" name="message" rows="3" required placeholder="How can we help you?" aria-describedby="e-message"></textarea>
+            <p class="fld-err" id="e-message" role="alert"></p>
+          </div>
+
+          <button class="btn btn-primary btn-block" type="submit">Send message</button>
+          <p class="cx-privacy">We'll use your details to respond to your enquiry. Read our <a href="https://www.win.wine/datenschutzerklaerung/" target="_blank" rel="noopener">Privacy Policy</a>.</p>
         </form>
 
-        <div class="form-success" id="formSuccess" hidden>
-          <div class="success-ico"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
-          <h2 class="h-sm">Thanks, <span id="successName">we've got it</span>.</h2>
-          <p>In the real product, the EuvinoPRO team would now get back to you to schedule a call.</p>
-          <button class="btn btn-secondary" type="button" id="resetForm">Send another request</button>
+        <div class="cx-success" id="formSuccess" hidden tabindex="-1">
+          <div class="success-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+          <h2>Thanks, <span id="successName">your message is ready</span>.</h2>
+          <p>This is a design prototype, so <strong>nothing has been sent</strong>. On the live site, your message would go to the EuvinoPRO team. To reach them now, email <a href="mailto:info@euvinopro.eu">info@euvinopro.eu</a>.</p>
+          <button class="btn btn-secondary" type="button" id="resetForm">Write another message</button>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section-tight" style="padding-bottom: clamp(80px, 10vw, 120px)">
+  <section class="cx-faq" aria-labelledby="faqTitle">
     <div class="container faq-grid">
-      <div class="reveal">
-        <span class="eyebrow">FAQ</span>
-        <h2 class="h-sm" style="margin-top:16px">Good to know<span class="dot">.</span></h2>
+      <div class="faq-head">
+        <h2 id="faqTitle" class="h-sm">Frequently asked questions about WIN</h2>
+        <p>Find answers to common questions about WIN and how it supports the beverage industry.</p>
       </div>
-      <div class="faq reveal">
-        <details open><summary>Is WIN really free for producers?</summary><p>Yes. Producers enter and manage their product data at no cost. Merchants and wholesalers pay for the data they request.</p></details>
-        <details><summary>Does WIN work with our ERP?</summary><p>WIN connects to ERP systems so requests and data travel machine to machine. If you aren't connected yet, you can use the WIN web app straight away. We'll check your system in the demo.</p></details>
-        <details><summary>Where is our data stored?</summary><p>On servers in Germany, under German and EU data protection law. WIN isn't an open pool: only merchants who send a request receive a producer's data.</p></details>
-        <details><summary>Which data can WIN handle?</summary><p>More than 200 attributes per wine, including descriptions, aromas, media, LMIV labelling, logistics and packaging data for LUCID reports. Merchants decide which fields are required.</p></details>
-        <details><summary>Can WIN connect us to GDSN?</summary><p>Yes. The optional EuvinoPRO GDSN module publishes and receives product data in a GDSN data pool, sent straight from your ERP via API.</p></details>
+      <div class="faq">
+        <details><summary>What is WIN?</summary><p>WIN is EuvinoPRO's beverage data management platform, helping businesses exchange structured product information digitally.</p></details>
+        <details><summary>Who is WIN designed for?</summary><p>WIN supports beverage producers, retailers, distributors, and trade agencies.</p></details>
+        <details><summary>What product information can be exchanged?</summary><p>Depending on the workflow, this can include product names, barcodes, packaging details, origin, and other product attributes.</p></details>
+        <details><summary>Can WIN work with our existing business systems?</summary><p>WIN supports connections with existing business systems. Contact the team to discuss your organisation's requirements.</p></details>
+        <details><summary>How can we learn more about WIN?</summary><p>Send us a message or use the Book a Demo option to discuss how WIN could support your business.</p></details>
       </div>
     </div>
   </section>
@@ -106,34 +122,41 @@
 (function () {
   var form = document.getElementById('contactForm');
   var success = document.getElementById('formSuccess');
-  var topic = new URLSearchParams(location.search).get('topic');
-  if (topic) {
-    var r = form.querySelector('input[name="topic"][value="' + topic + '"]');
-    if (r) r.checked = true;
-    var role = { producer: 'Producer', agency: 'Trade agency / importer' }[topic];
-    if (role) form.elements.namedItem('role').value = role;
+  var el = function (n) { return form.elements.namedItem(n); };
+  var rules = {
+    name: function (v) { return v.trim() ? '' : 'Please enter your full name.'; },
+    email: function (v) {
+      if (!v.trim()) return 'Please enter your work email.';
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) ? '' : 'Please enter a valid email address, like you@company.com.';
+    },
+    message: function (v) { return v.trim() ? '' : 'Please tell us how we can help.'; }
+  };
+  function check(name) {
+    var input = el(name), msg = rules[name](input.value);
+    var err = document.getElementById('e-' + name);
+    err.textContent = msg;
+    input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+    input.closest('.fld').classList.toggle('is-invalid', !!msg);
+    return !msg;
   }
+  Object.keys(rules).forEach(function (n) {
+    el(n).addEventListener('blur', function () { if (el(n).value) check(n); });
+    el(n).addEventListener('input', function () { if (el(n).closest('.fld').classList.contains('is-invalid')) check(n); });
+  });
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var ok = true;
-    form.querySelectorAll('[required]').forEach(function (el) {
-      var valid = el.type === 'checkbox' ? el.checked : el.checkValidity() && el.value.trim() !== '';
-      var wrap = el.closest('.field-l, .consent');
-      if (wrap) wrap.classList.toggle('is-invalid', !valid);
-      if (!valid && ok) { el.focus(); ok = false; }
-    });
-    if (!ok) return;
-    var first = form.elements.namedItem('name').value.trim().split(' ')[0];
-    document.getElementById('successName').textContent = first || "we've got it";
-    form.hidden = true;
-    success.hidden = false;
-  });
-  form.addEventListener('input', function (e) {
-    var wrap = e.target.closest('.is-invalid');
-    if (wrap) wrap.classList.remove('is-invalid');
+    var first = null;
+    Object.keys(rules).forEach(function (n) { if (!check(n) && !first) first = el(n); });
+    if (first) { first.focus(); return; }
+    var name = el('name').value.trim().split(' ')[0];
+    document.getElementById('successName').textContent = name || 'your message is ready';
+    form.hidden = true; success.hidden = false; success.focus();
   });
   document.getElementById('resetForm').addEventListener('click', function () {
-    form.reset(); form.hidden = false; success.hidden = true;
+    form.reset();
+    form.querySelectorAll('.is-invalid').forEach(function (f) { f.classList.remove('is-invalid'); });
+    form.querySelectorAll('.fld-err').forEach(function (p) { p.textContent = ''; });
+    success.hidden = true; form.hidden = false; el('name').focus();
   });
 })();
 </script>

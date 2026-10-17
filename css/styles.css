@@ -1045,3 +1045,70 @@ a.contact-card:hover { box-shadow: inset 0 0 0 1px var(--line-strong), var(--sha
 #today .tl-body { width: 640px; }
 #today .tl-logo { height: 46px; padding: 0 10px; }
 #today .tl-foot { flex-wrap: nowrap; gap: 8px; }
+
+/* =========================================================
+   Contact page v2: two columns, fits the first viewport
+   ========================================================= */
+.cx { position: relative; overflow: hidden; min-height: calc(100vh - 72px); display: flex; align-items: center; padding: clamp(24px, 4vh, 48px) 0; }
+.cx-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(40px, 5vw, 80px); align-items: center; }
+.cx-intro { display: grid; gap: 18px; align-content: center; }
+.cx-intro h1 { font-size: clamp(40px, 4.4vw, 64px); max-width: 12ch; }
+.cx-lead { font-size: 18px; line-height: 1.55; color: var(--ink-2); max-width: 46ch; }
+.cx-label { margin: 10px 0 0; font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); font-variation-settings: normal; }
+.cx-cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; max-width: 420px; }
+.cx-card { display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-radius: 14px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); transition: box-shadow .2s, transform .2s var(--ease); }
+a.cx-card:hover { box-shadow: inset 0 0 0 1px var(--line-strong), var(--shadow-sm); transform: translateY(-1px); }
+.cx-ico { width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; background: var(--violet-100); flex-shrink: 0; }
+.cx-ico svg { width: 18px; height: 18px; fill: none; stroke: var(--violet); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.cx-card small { display: block; font-size: 12.5px; color: var(--ink-3); line-height: 1.3; }
+.cx-card b { display: block; font-size: 15.5px; font-weight: 600; line-height: 1.35; }
+
+.cx-form-card { background: var(--surface); border-radius: 24px; padding: clamp(22px, 2.4vw, 32px); box-shadow: var(--shadow-lg), inset 0 0 0 1px var(--line); }
+.cx-form-card form { display: grid; gap: 14px; }
+.cx-form-card form[hidden] { display: none; }
+.cx-form-head { display: grid; gap: 4px; margin-bottom: 2px; }
+.cx-form-head h2 { font-size: 26px; font-variation-settings: "wdth" 85, "opsz" 32; }
+.cx-form-head p { font-size: 15px; color: var(--ink-2); }
+.fld { display: grid; gap: 6px; min-width: 0; }
+.fld label { font-size: 14px; font-weight: 600; }
+.fld .req { color: var(--violet); }
+.fld .opt { font-weight: 400; color: var(--ink-3); }
+.fld input, .fld select, .fld textarea {
+  font: inherit; font-size: 15px; color: var(--ink); width: 100%; height: 44px; padding: 0 14px; border: 0; border-radius: 12px;
+  background: var(--bg); box-shadow: inset 0 0 0 1px var(--line-strong); transition: box-shadow .2s, background .2s; appearance: none; -webkit-appearance: none;
+}
+.fld select { padding-right: 36px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3 4.5l3 3 3-3' fill='none' stroke='%238a90a1' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; background-size: 12px; }
+.fld select:invalid, .fld select option[value=""] { color: #a6acbb; }
+.fld textarea { height: auto; min-height: 92px; padding: 12px 14px; line-height: 1.5; resize: vertical; }
+.fld input::placeholder, .fld textarea::placeholder { color: #a6acbb; }
+.fld input:focus-visible, .fld select:focus-visible, .fld textarea:focus-visible { outline: none; background: #fff; box-shadow: inset 0 0 0 1.5px var(--violet), 0 0 0 4px rgba(88,68,255,.15); }
+.fld.is-invalid input, .fld.is-invalid textarea { background: #fff8f7; box-shadow: inset 0 0 0 1.5px var(--red); }
+.fld-err { font-size: 13px; color: var(--red); line-height: 1.35; min-height: 0; }
+.fld-err:empty { display: none; }
+.cx-privacy { font-size: 13px; color: var(--ink-3); text-align: center; }
+.cx-privacy a { color: var(--ink-2); text-decoration: underline; text-underline-offset: 2px; }
+.cx-privacy a:hover { color: var(--violet); }
+.cx-success { display: grid; gap: 14px; justify-items: start; padding: 12px 4px; }
+.cx-success[hidden] { display: none; }
+.cx-success:focus { outline: none; }
+.cx-success h2 { font-size: 28px; }
+.cx-success p { color: var(--ink-2); }
+.cx-success p a { color: var(--violet); font-weight: 600; }
+
+.cx-faq { padding: clamp(64px, 9vw, 112px) 0; border-top: 1px solid var(--line); }
+.faq-head { display: grid; gap: 14px; align-content: start; }
+.faq-head p { color: var(--ink-2); max-width: 40ch; }
+
+@media (max-width: 900px) {
+  .cx { min-height: 0; display: block; padding: 40px 0 56px; }
+  .cx-grid { grid-template-columns: 1fr; gap: 36px; }
+  .cx-cards { max-width: none; }
+}
+@media (max-width: 600px) {
+  .cx-intro h1 { font-size: 40px; }
+  .cx-lead { font-size: 16.5px; }
+  .cx-form-card { border-radius: 20px; }
+}
+.form-row--org { grid-template-columns: .85fr 1.15fr; }
+.fld select { font-size: 14.5px; padding-left: 12px; padding-right: 32px; background-position: right 12px center; text-overflow: ellipsis; }
+@media (max-width: 600px) { .form-row--org { grid-template-columns: 1fr; } }
