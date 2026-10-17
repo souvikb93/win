@@ -1179,3 +1179,109 @@ a.cx-card:hover { box-shadow: inset 0 0 0 1px var(--line-strong), var(--shadow-s
   .gx-clip-title { font-size: 13px; } .gx-clip-kicker { display: none; } .gx-clip-pub { font-size: 10.5px; }
   .gx-tile { border-radius: 8px; }
 }
+
+/* =========================================================
+   Home motion: data being requested, checked, delivered
+   ========================================================= */
+/* Cursor-following highlight on cards */
+.tile, .trust-card, .compare-card, .role-copy, .press-feature { position: relative; }
+.tile::after, .trust-card::after, .compare-card::after, .role-copy::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .35s;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(88,68,255,.10), transparent 45%);
+}
+.trust-card::after, .compare-card.after::after { background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(169,157,255,.16), transparent 45%); }
+.tile:hover::after, .trust-card:hover::after, .compare-card:hover::after, .role-copy:hover::after { opacity: 1; }
+.tile, .trust-card { transition: transform .4s var(--ease), box-shadow .4s var(--ease), opacity .8s var(--ease); }
+.tile:hover { transform: translateY(-4px); box-shadow: var(--shadow-md), inset 0 0 0 1px var(--line); }
+.trust-card:hover { transform: translateY(-4px); }
+
+/* Without WIN: messy files drift and shuffle */
+.paper { transition: transform .9s var(--ease); }
+.compare-card.before.is-in .paper:nth-child(1) { animation: paperA 6s ease-in-out infinite; }
+.compare-card.before.is-in .paper:nth-child(2) { animation: paperB 7s ease-in-out infinite; }
+.compare-card.before.is-in .paper:nth-child(3) { animation: paperC 5.5s ease-in-out infinite; }
+@keyframes paperA { 0%,100% { transform: rotate(-10deg); } 50% { transform: rotate(-14deg) translate(-8px, -6px); } }
+@keyframes paperB { 0%,100% { transform: rotate(4deg); } 50% { transform: rotate(8deg) translate(6px, -10px); } }
+@keyframes paperC { 0%,100% { transform: rotate(14deg); } 50% { transform: rotate(10deg) translate(-4px, -4px); } }
+.paper b { animation: stamp 2.4s ease-in-out infinite; }
+@keyframes stamp { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+.compare-card.before .compare-list li { transition: opacity .5s var(--ease), transform .5s var(--ease); }
+.compare-card.before:not(.is-in) .compare-list li { opacity: 0; transform: translateX(-10px); }
+
+/* With WIN: each benefit ticks in */
+.compare-card.after .compare-list li { transition: opacity .5s var(--ease), transform .5s var(--ease); }
+.compare-card.after .compare-list li::before { transition: transform .45s cubic-bezier(.3,1.6,.5,1), background-color .3s; }
+.compare-card.after:not(.is-in) .compare-list li { opacity: 0; transform: translateY(8px); }
+.compare-card.after:not(.is-in) .compare-list li::before { transform: scale(0); }
+.compare-list li:nth-child(1) { transition-delay: .25s; } .compare-list li:nth-child(1)::before { transition-delay: .45s; }
+.compare-list li:nth-child(2) { transition-delay: .45s; } .compare-list li:nth-child(2)::before { transition-delay: .65s; }
+.compare-list li:nth-child(3) { transition-delay: .65s; } .compare-list li:nth-child(3)::before { transition-delay: .85s; }
+.compare-list li:nth-child(4) { transition-delay: .85s; } .compare-list li:nth-child(4)::before { transition-delay: 1.05s; }
+
+/* Easy: toggles snap into place */
+.seg i { transition: background .3s, color .3s, box-shadow .3s; }
+.field { transition: box-shadow .4s, background .4s; }
+.field.is-setting { background: var(--violet-100); box-shadow: inset 0 0 0 1px rgba(88,68,255,.35); }
+
+/* Right: validation runs row by row */
+.check { transition: box-shadow .35s, background .35s, opacity .35s; }
+.check .tick { transition: background .3s, transform .35s cubic-bezier(.3,1.6,.5,1); }
+.check.is-pending { opacity: .55; }
+.check.is-pending .tick { background: #eef1f6; transform: scale(.85); }
+.check.is-pending .tick svg { opacity: 0; }
+.check.is-pending .tick::after {
+  content: ""; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--line-strong); border-top-color: var(--violet);
+  animation: spin .7s linear infinite; position: absolute;
+}
+.check .tick { position: relative; }
+.check.is-fixed { box-shadow: inset 0 0 0 1px rgba(4,139,168,.35); background: #f2fbfd; }
+.check.is-fixed .mono { color: var(--teal); }
+
+/* Fast: hub pulses as packets pass */
+.pipe-node.hub { animation: hubPulse 1.8s ease-in-out infinite; }
+@keyframes hubPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(229,127,9,0); } 50% { box-shadow: 0 0 0 6px rgba(229,127,9,.18); } }
+
+/* Security: icons draw in */
+.trust-ico svg * { stroke-dasharray: 80; stroke-dashoffset: 80; transition: stroke-dashoffset 1.2s var(--ease) .2s; }
+.trust-card.is-in .trust-ico svg * { stroke-dashoffset: 0; }
+.trust-card:nth-child(2) .trust-ico svg * { transition-delay: .35s; }
+.trust-card:nth-child(3) .trust-ico svg * { transition-delay: .5s; }
+.trust-card:nth-child(4) .trust-ico svg * { transition-delay: .65s; }
+.trust-card:nth-child(2) { transition-delay: .08s; } .trust-card:nth-child(3) { transition-delay: .16s; } .trust-card:nth-child(4) { transition-delay: .24s; }
+
+/* Platform: data flows from WIN to each module */
+.orbit-lines .spoke { stroke: var(--orange); stroke-width: 1.5; vector-effect: non-scaling-stroke; stroke-dasharray: 2 10; opacity: 0; transition: opacity .6s; }
+.eco-orbit.is-in .orbit-lines .spoke { opacity: .55; animation: flow 1.6s linear infinite; animation-delay: var(--d); }
+@keyframes flow { to { stroke-dashoffset: -24; } }
+.eco-module { opacity: 0; transition: opacity .5s var(--ease), transform .5s var(--ease), box-shadow .3s; }
+.eco-orbit:not(.is-in) .eco-module { transform: translate(-50%, -40%) scale(.85); }
+.eco-orbit.is-in .eco-module { opacity: 1; animation: bob 5s ease-in-out infinite; }
+.eco-orbit.is-in .eco-module:nth-of-type(2) { transition-delay: .1s; animation-delay: -1s; }
+.eco-orbit.is-in .eco-module:nth-of-type(3) { transition-delay: .2s; animation-delay: -2s; }
+.eco-orbit.is-in .eco-module:nth-of-type(4) { transition-delay: .3s; animation-delay: -3s; }
+.eco-orbit.is-in .eco-module:nth-of-type(5) { transition-delay: .4s; animation-delay: -4s; }
+.eco-orbit.is-in .eco-module:nth-of-type(6) { transition-delay: .5s; animation-delay: -2.5s; }
+.eco-orbit.is-in .eco-module:nth-of-type(7) { transition-delay: .6s; animation-delay: -3.5s; }
+@keyframes bob { 0%,100% { transform: translate(-50%, -50%); } 50% { transform: translate(-50%, calc(-50% - 6px)); } }
+.eco-core { animation: corePulse 3.2s ease-in-out infinite; }
+@keyframes corePulse { 0%,100% { box-shadow: 0 0 0 12px rgba(26,34,62,.06), 0 0 0 26px rgba(26,34,62,.03), var(--shadow-lg); } 50% { box-shadow: 0 0 0 16px rgba(229,127,9,.10), 0 0 0 34px rgba(229,127,9,.04), var(--shadow-lg); } }
+
+/* Solutions: cards slide in on tab switch */
+.role-panel.is-active .rv-card, .role-panel.is-active .rv-big { animation: rvIn .55s var(--ease) both; }
+.role-panel.is-active .rv-card:nth-of-type(2) { animation-delay: .08s; }
+.role-panel.is-active .rv-card:nth-of-type(3) { animation-delay: .16s; }
+.role-panel.is-active .rv-card:nth-of-type(4) { animation-delay: .24s; }
+@keyframes rvIn { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: none; } }
+
+/* Logo carousel: lift on hover */
+.logo-tile { transition: box-shadow .3s, transform .3s var(--ease); }
+.logo-tile:hover { transform: translateY(-3px); box-shadow: inset 0 0 0 1px var(--line-strong), var(--shadow-md); }
+
+@media (max-width: 600px) {
+  .eco-orbit:not(.is-in) .eco-module { transform: translateY(10px) scale(.95); }
+  .eco-orbit.is-in .eco-module { animation: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .trust-ico svg * { stroke-dashoffset: 0 !important; }
+  .eco-module, .compare-list li, .compare-list li::before { opacity: 1 !important; transform: none !important; }
+}

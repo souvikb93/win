@@ -234,3 +234,90 @@
     });
   });
 })();
+
+/* ---------- Card motion: data being requested, checked and delivered ---------- */
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  /* Cursor-following highlight */
+  if (fine) {
+    document.querySelectorAll('.tile, .trust-card, .compare-card, .role-copy').forEach(function (el) {
+      el.addEventListener('pointermove', function (e) {
+        var r = el.getBoundingClientRect();
+        el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
+  }
+
+  function whenVisible(el, cb, opts) {
+    if (!el) return;
+    if (!('IntersectionObserver' in window)) { cb(true); return; }
+    new IntersectionObserver(function (en) { cb(en[0].isIntersecting); }, opts || { threshold: 0.45 }).observe(el);
+  }
+  var wait = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
+
+  /* Easy: each field's toggle snaps into its Required / Optional state */
+  var fields = document.querySelector('.tile-visual.fields');
+  if (fields && !reduce) {
+    var rows = Array.prototype.slice.call(fields.querySelectorAll('.field'));
+    var finals = rows.map(function (r) { return Array.prototype.indexOf.call(r.querySelectorAll('.seg i'), r.querySelector('.seg i.on')); });
+    var ranFields = false;
+    rows.forEach(function (r) { r.querySelectorAll('.seg i').forEach(function (i) { i.classList.remove('on'); }); });
+    whenVisible(fields, async function (vis) {
+      if (!vis || ranFields) return; ranFields = true;
+      for (var n = 0; n < rows.length; n++) {
+        rows[n].classList.add('is-setting');
+        await wait(260);
+        rows[n].querySelectorAll('.seg i')[finals[n]].classList.add('on');
+        await wait(220);
+        rows[n].classList.remove('is-setting');
+      }
+    });
+  }
+
+  /* Right: validation runs row by row; the missing bottle size gets fixed */
+  var checks = document.querySelector('.tile-visual.checks');
+  if (checks && !reduce) {
+    var crow = Array.prototype.slice.call(checks.querySelectorAll('.check'));
+    var err = checks.querySelector('.check.is-err');
+    var errHTML = err ? err.innerHTML : '';
+    var okTick = '<span class="tick"><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.2 2.2 4.8-4.8"/></svg></span>';
+    var visibleNow = false, running = false;
+    async function cycle() {
+      if (running) return; running = true;
+      while (visibleNow) {
+        if (err) { err.className = 'check is-err'; err.innerHTML = errHTML; }
+        crow.forEach(function (r) { r.classList.add('is-pending'); r.classList.remove('is-fixed'); });
+        await wait(500);
+        for (var n = 0; n < crow.length && visibleNow; n++) { await wait(420); crow[n].classList.remove('is-pending'); }
+        await wait(1400);
+        if (err && visibleNow) {
+          err.className = 'check is-fixed';
+          err.innerHTML = okTick + 'Bottle size added<span class="mono">0.75 l · fixed</span>';
+        }
+        await wait(3200);
+      }
+      running = false;
+    }
+    whenVisible(checks, function (vis) { visibleNow = vis; if (vis) cycle(); });
+  }
+
+  /* Stats: count up */
+  document.querySelectorAll('[data-count]').forEach(function (el) {
+    var target = +el.getAttribute('data-count'), done = false;
+    if (reduce) return;
+    el.textContent = '0';
+    whenVisible(el, function (vis) {
+      if (!vis || done) return; done = true;
+      var t0 = null, dur = 1400;
+      requestAnimationFrame(function step(t) {
+        if (!t0) t0 = t;
+        var p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(target * e);
+        if (p < 1) requestAnimationFrame(step);
+      });
+    }, { threshold: 0.6 });
+  });
+})();
