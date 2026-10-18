@@ -2522,3 +2522,8 @@ html { overscroll-behavior-y: none; }
 .ui-activity .act-state { min-width: 84px; white-space: nowrap; }
 .ui-activity .ui-count { min-width: 104px; text-align: center; white-space: nowrap; }
 @media (max-width: 600px) { .ui-activity .act li { height: 56px; } .ui-activity .act-state { min-width: 0; } }
+
+/* hero app screen: English and German screenshots, one shows per language */
+.device-screen.shot-de { display: none; }
+html[lang="de"] .device-screen.shot-en { display: none; }
+html[lang="de"] .device-screen.shot-de { display: block; }

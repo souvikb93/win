@@ -335,3 +335,6 @@ The testimonials sub-heading stays on one line above 900px wide (wraps on smalle
 
 ## Why WIN: Fast card stability
 - The Fast card never changes size while its five steps run: every step row is a fixed 62px (56px on phones), the "In Progress / Done" label has a fixed width, the badge has a fixed minimum width, and the step text clamps to two lines. All three stack cards share one minimum height (460px max). Verified in English and German at 1440, 1100 and 375.
+
+## Hero app screen
+- The browser mockup on Home is a real screenshot, one per language: `assets/brand/win-network-screen-en.webp` and `-de.webp` (2000 x 1254). CSS shows the one matching `html[lang]`. Replace both files together when the app UI changes.
