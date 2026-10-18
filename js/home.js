@@ -180,27 +180,69 @@
   update();
 })();
 
-/* ---------- Platform: WIN is a button that opens the module circle (after 21st.dev Circle Menu) ---------- */
+/* ---------- Platform: WIN is a button that opens the module circle (after 21st.dev Circle Menu) ----------
+   Each module travels on a circular path: it spirals out of the WIN button, sweeping round the centre
+   while its radius grows, and spirals back in on close. */
 (function () {
   var orbit = document.getElementById('ecoMods'); if (!orbit) return;
   var core = orbit.querySelector('.eco-core'), hint = orbit.querySelector('.eco-hint');
   var mods = Array.prototype.slice.call(orbit.querySelectorAll('.eco-module'));
-  function layout() {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var phone = window.matchMedia('(max-width: 600px)');
+  var SWEEP = 160 * Math.PI / 180, OPEN_MS = 820, CLOSE_MS = 560, STAGGER = 70;
+  var open = false;
+  var items = mods.map(function (m, i) {
+    m.style.setProperty('--i', i);
+    return { el: m, l: parseFloat(m.style.left), t: parseFloat(m.style.top), p: 0, from: 0, to: 0, start: 0, dur: 0, delay: 0 };
+  });
+
+  function easeOutBack(x) { var c1 = 1.4, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); }
+  function easeInOutCubic(x) { return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
+
+  function geometry() {
     var W = orbit.clientWidth, H = orbit.clientHeight;
-    mods.forEach(function (m, i) {
-      var l = parseFloat(m.style.left), t = parseFloat(m.style.top);
-      m.style.setProperty('--dx', ((50 - l) / 100 * W).toFixed(1) + 'px');
-      m.style.setProperty('--dy', ((50 - t) / 100 * H).toFixed(1) + 'px');
-      m.style.setProperty('--i', i);
+    items.forEach(function (it) {
+      var dx = (it.l - 50) / 100 * W, dy = (it.t - 50) / 100 * H;
+      it.r = Math.hypot(dx, dy); it.a = Math.atan2(dy, dx);
     });
   }
-  function set(open) {
+  function draw(it) {
+    if (phone.matches) { it.el.style.transform = ''; it.el.style.opacity = ''; return; }
+    var e = it.p, r = it.r * Math.max(0, e), a = it.a - SWEEP * (1 - Math.min(1, e));
+    var x = Math.cos(a) * r, y = Math.sin(a) * r, s = .3 + .7 * Math.min(1, Math.max(0, e));
+    it.el.style.transform = 'translate(-50%, -50%) translate(' + x.toFixed(1) + 'px, ' + y.toFixed(1) + 'px) scale(' + s.toFixed(3) + ')';
+    it.el.style.opacity = Math.min(1, Math.max(0, e * 1.8)).toFixed(3);
+  }
+  var raf = null;
+  function tick(now) {
+    var busy = false;
+    items.forEach(function (it) {
+      var k = (now - it.start - it.delay) / it.dur;
+      if (k < 0) { busy = true; return; }
+      if (k >= 1) { it.p = it.to; draw(it); return; }
+      busy = true;
+      var e = open ? easeOutBack(k) : easeInOutCubic(k);
+      it.p = it.from + (it.to - it.from) * e; draw(it);
+    });
+    raf = busy ? requestAnimationFrame(tick) : null;
+  }
+  function set(next) {
+    open = next;
     orbit.classList.toggle('is-open', open);
     core.setAttribute('aria-expanded', String(open));
     core.setAttribute('aria-label', open ? 'Hide the EuvinoPRO modules' : 'Show the EuvinoPRO modules');
     if (hint) hint.textContent = open ? 'Click to close' : 'Click to explore';
+    var now = performance.now(), n = items.length;
+    items.forEach(function (it, i) {
+      it.from = it.p; it.to = open ? 1 : 0; it.start = now;
+      it.dur = reduce ? 1 : (open ? OPEN_MS : CLOSE_MS);
+      it.delay = reduce ? 0 : (open ? i : n - 1 - i) * STAGGER;
+    });
+    if (!raf) raf = requestAnimationFrame(tick);
   }
-  core.addEventListener('click', function () { set(!orbit.classList.contains('is-open')); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && orbit.classList.contains('is-open')) set(false); });
-  layout(); window.addEventListener('resize', layout);
+  core.addEventListener('click', function () { set(!open); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && open) set(false); });
+  geometry(); items.forEach(draw);
+  window.addEventListener('resize', function () { geometry(); items.forEach(draw); });
+  phone.addEventListener('change', function () { items.forEach(draw); });
 })();
