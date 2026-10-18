@@ -39,7 +39,7 @@
             <div class="pane-bar"><i></i><i></i><i></i><span class="scr-party"><b>Merchant · ERP</b></span><span class="scr-url">erp / articles / new</span></div>
             <div class="scr-body">
               <div class="scr-view is-on" data-screen="erp-new">
-                <div class="scr-h"><b>Request Product Data via WIN</b><span class="muted">New article</span></div>
+                <div class="scr-h"><b>Create a New Article</b></div>
                 <div class="frm">
                   <label>Article no.</label><div class="inp mono" data-type="40-11873"><span class="tv">40-11873</span><i class="ui-caret"></i></div>
                   <label>Producer</label><div class="inp" data-type="Producer A"><span class="tv">Producer A</span><i class="ui-caret"></i></div>
@@ -73,7 +73,7 @@
         <div class="tl-side"><span class="tl-dot" aria-hidden="true"><i></i></span><span class="tl-num">03</span><span class="tl-who">WIN → Producer</span></div>
         <div class="tl-body">
           <span class="tl-num-m">Step 03 · WIN → Producer</span>
-          <h3>Notification of a New Product Request from the Merchant<span class="dot">.</span></h3>
+          <h3>New Product Request Notification<span class="dot">.</span></h3>
           <p>The producer gets an email from WIN with a link to the request.</p>
           <div class="scr-win tl-scr" data-loop="mail" aria-hidden="true">
             <div class="pane-bar"><i></i><i></i><i></i><span class="scr-party"><b>Producer · Inbox</b></span><span class="scr-url">mail / inbox</span></div>
@@ -81,11 +81,15 @@
               <div class="scr-view is-on" data-screen="mail">
                 <div class="mx">
                   <div class="mx-bar"><span class="mx-search">Search mail</span><span class="mx-av">P</span></div>
-                  <div class="mx-tabs"><span class="is-on">Primary</span><span>Updates</span><span>Promotions</span></div>
+                  <div class="mx-tabs">
+                    <span class="mx-tab is-on">Inbox<i class="mx-badge" aria-hidden="true">1</i></span><span class="mx-tab">Sent</span><span class="mx-tab">Spam</span>
+                    <span class="mx-acts" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 016 6v3"/></svg><svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M20 9H10a6 6 0 00-6 6v3"/></svg></span>
+                  </div>
                   <div class="mx-list">
                     <div class="mx-row is-new"><span class="mx-dot">W</span><div class="mx-main"><b>WIN · EuvinoPRO</b><span class="mx-sub">New product request: Riesling, dry 2025</span><span class="mx-snip">Please complete 41 required fields for the trader. Open the request in WIN.</span></div><span class="mx-time">11:20</span></div>
                     <div class="mx-row"><span class="mx-dot is-g">W</span><div class="mx-main"><b>Wine Association</b><span class="mx-sub">Newsletter October</span><span class="mx-snip">Harvest report and dates for the autumn fairs.</span></div><span class="mx-time">09:02</span></div>
                     <div class="mx-row"><span class="mx-dot is-g">F</span><div class="mx-main"><b>Freight Forwarder</b><span class="mx-sub">Delivery confirmation #44812</span><span class="mx-snip">Pallets collected on Tuesday.</span></div><span class="mx-time">Mon</span></div>
+                    <div class="mx-row"><span class="mx-dot is-g">P</span><div class="mx-main"><b>Packaging Supplier</b><span class="mx-sub">Invoice #2291</span><span class="mx-snip">Your invoice for the October order is attached.</span></div><span class="mx-time">Sun</span></div>
                   </div>
                 </div>
               </div>
@@ -97,13 +101,13 @@
         <div class="tl-side"><span class="tl-dot" aria-hidden="true"><i></i></span><span class="tl-num">04</span><span class="tl-who">Producer</span></div>
         <div class="tl-body">
           <span class="tl-num-m">Step 04 · Producer</span>
-          <h3>Product Request Is Answered, in the ERP or Online<span class="dot">.</span></h3>
+          <h3>Product Request Is Answered<span class="dot">.</span></h3>
           <p>The producer fills in the data once, in the WIN web app or straight from their own ERP.</p>
           <div class="scr-win tl-scr" data-loop="form" aria-hidden="true">
             <div class="pane-bar"><i></i><i></i><i></i><span class="scr-party"><b>Producer · WIN web app</b></span><span class="scr-url">win / producer / requests / 40-11873</span></div>
             <div class="scr-body">
               <div class="scr-view is-on" data-screen="form">
-                <div class="scr-h"><b>Product Data Request</b><span class="muted">For the trader</span></div>
+                <div class="scr-h"><b>Product Data Request</b></div>
                 <div class="frm frm-data">
                   <label>Alcohol</label><div class="inp mono" data-type="12.5 % vol"><span class="tv"></span><i class="ui-caret"></i></div>
                   <label>Bottle size</label><div class="inp mono" data-type="0.75 l"><span class="tv"></span><i class="ui-caret"></i></div>
