@@ -45,6 +45,7 @@
                   <label>Producer</label><div class="inp">Selected producer</div>
                   <label>Wine name</label><div class="inp" data-type="Riesling, dry"><span class="tv"></span><i class="ui-caret"></i></div>
                   <label>Vintage</label><div class="inp mono" data-type="2025"><span class="tv"></span><i class="ui-caret"></i></div>
+                  <label>Category</label><div class="inp">Still wine</div>
                 </div>
                 <div class="scr-actions"><span class="btn-fake" data-btn>Request product data via WIN</span></div>
               </div>
@@ -63,6 +64,7 @@
             <div class="scr-body">
               <div class="scr-view is-on" data-screen="win-route">
                 <div class="scr-h"><b>Request routing</b><span class="pill req">Live</span></div>
+                <div class="mini-stats"><div><span>Requests today</span><b>14</b></div><div><span>Matched</span><b>14</b></div><div><span>Routing time</span><b>2 s</b></div></div>
                 <ol class="console" data-lines></ol>
               </div>
             </div>
@@ -105,6 +107,8 @@
                   <label>Alcohol</label><div class="inp mono" data-type="12.5 % vol"><span class="tv"></span><i class="ui-caret"></i></div>
                   <label>Bottle size</label><div class="inp mono" data-type="0.75 l"><span class="tv"></span><i class="ui-caret"></i></div>
                   <label>Allergens</label><div class="inp" data-type="Contains sulphites"><span class="tv"></span><i class="ui-caret"></i></div>
+                  <label>Country of origin</label><div class="inp">Germany</div>
+                  <label>Grape variety</label><div class="inp">Riesling</div>
                 </div>
                 <div class="scr-actions"><span class="frm-count" data-count>32 / 41 required fields</span><span class="btn-fake" data-btn>Send to WIN</span></div>
               </div>
@@ -127,6 +131,7 @@
                   <li>GTIN check digit<span>4006381333931</span></li>
                   <li>LMIV mandatory fields<span>12 / 12</span></li>
                   <li>Allergen declaration<span>sulphites</span></li>
+                  <li>Country of origin<span>Germany</span></li>
                   <li>Merchant's required fields<span>41 / 41</span></li>
                 </ul>
                 <div class="approved" data-approved>Record approved, sending to the merchant</div>
@@ -173,70 +178,70 @@
         <p class="lead">WIN covers the whole value chain of the beverage trade, and each role gets exactly what it needs.</p>
       </div>
       <div class="roles-tabs" role="tablist" aria-label="Role">
-        <button class="role-tab" role="tab" aria-selected="true" data-role="merchants">Merchants &amp; wholesalers</button>
+        <button class="role-tab" role="tab" aria-selected="true" data-role="merchants">Merchants &amp; Wholesalers</button>
         <button class="role-tab" role="tab" aria-selected="false" data-role="producers">Producers</button>
-        <button class="role-tab" role="tab" aria-selected="false" data-role="agencies">Agencies &amp; importers</button>
+        <button class="role-tab" role="tab" aria-selected="false" data-role="agencies">Agencies &amp; Importers</button>
       </div>
 
       <div class="role-panel is-active" data-panel="merchants" role="tabpanel">
         <div class="role-copy">
-          <h3>Stop chasing datasheets.</h3>
+          <h3>Stop Chasing Datasheets.</h3>
           <p>For wine merchants, food retailers and beverage wholesalers who list hundreds of new articles every season.</p>
           <ul class="role-list">
-            <li><div><b>Request from your ERP</b>Creating an article starts the product request automatically.</div></li>
-            <li><div><b>Only complete records</b>Your required fields, checked at input.</div></li>
-            <li><div><b>Track your whole network</b>See who's invited, in progress or complete at a glance.</div></li>
+            <li><div><b>Request from Your ERP</b>Creating an article starts the product request automatically.</div></li>
+            <li><div><b>Only Complete Records</b>Your required fields, checked at input.</div></li>
+            <li><div><b>Track Your Whole Network</b>See who's invited, in progress or complete at a glance.</div></li>
           </ul>
           <a class="text-link" href="contact.html?topic=demo">Book a merchant demo</a>
         </div>
         <div class="role-visual rv2" data-rv="merchants" aria-hidden="true">
-          <div class="rv2-head"><b>Your requests, live</b><span>What happens after a merchant creates an article</span></div>
+          <div class="rv2-head"><b>Your Requests, Live</b><span>What happens after a trader creates an article</span></div>
           <div class="rv2-stage">
-            <div class="rv2-row" style="--d:0s"><span class="rv2-who">Nordwein Handel</span><span class="rv2-act">Request sent</span><span class="rv2-state"><i></i>Waiting</span></div>
-            <div class="rv2-row" style="--d:.9s"><span class="rv2-who">Weingut Sonnenhang</span><span class="rv2-act">Entering data</span><span class="rv2-state is-mid"><i></i>41 of 214</span></div>
-            <div class="rv2-row" style="--d:1.8s"><span class="rv2-who">Cantina del Lago</span><span class="rv2-act">Record returned</span><span class="rv2-state is-done"><i></i>Complete</span></div>
+            <div class="rv2-row" data-i="0" style="--d:0s"><span class="rv2-who">Producer A</span><span class="rv2-act">Record returned</span><span class="rv2-state is-done"><i></i>Complete</span></div>
+            <div class="rv2-row" data-i="1" style="--d:.9s"><span class="rv2-who">Producer B</span><span class="rv2-act">Record returned</span><span class="rv2-state is-done"><i></i>Complete</span></div>
+            <div class="rv2-row" data-i="2" style="--d:1.8s"><span class="rv2-who">Producer C</span><span class="rv2-act">Record returned</span><span class="rv2-state is-done"><i></i>Complete</span></div>
             <p class="rv2-note">Each request turns into a complete record in your ERP, without a chase.</p></div>
         </div>
       </div>
 
       <div class="role-panel" data-panel="producers" role="tabpanel">
         <div class="role-copy">
-          <h3>Enter it once. Free.</h3>
+          <h3>Enter It Once. Free.</h3>
           <p>For wineries, cellars, distilleries, breweries and soft-drink producers. Using WIN costs producers nothing.</p>
           <ul class="role-list">
-            <li><div><b>One record, every merchant</b>Enter your data once and reuse it for every merchant request.</div></li>
-            <li><div><b>Online or from your ERP</b>Answer in the web app, or let your system reply automatically.</div></li>
-            <li><div><b>You stay in control</b>You release your data to individual merchants. It's never an open pool.</div></li>
+            <li><div><b>One Record, Every Merchant</b>Enter your data once and reuse it for every merchant request.</div></li>
+            <li><div><b>Online or from Your ERP</b>Answer in the web app, or let your system reply automatically.</div></li>
+            <li><div><b>You Stay in Control</b>You release your data to individual merchants. It's never an open pool.</div></li>
           </ul>
           <a class="text-link" href="contact.html?topic=producer">Register as a producer</a>
         </div>
         <div class="role-visual rv2" data-rv="producers" aria-hidden="true">
-          <div class="rv2-head"><b>Who can see your data</b><span>You release it per merchant, never to everyone</span></div>
+          <div class="rv2-head"><b>Who Can See Your Data</b><span>You release it per trader, never to everyone</span></div>
           <div class="rv2-stage">
-            <div class="rv2-row" style="--d:0s"><span class="rv2-who">Nordwein Handel</span><span class="rv2-act">Requested 12 wines</span><span class="rv2-toggle is-on"></span></div>
-            <div class="rv2-row" style="--d:.9s"><span class="rv2-who">Markthalle Feinkost</span><span class="rv2-act">Requested 4 wines</span><span class="rv2-toggle is-on"></span></div>
-            <div class="rv2-row rv2-hidden" style="--d:1.8s"><span class="rv2-who">Unknown merchant</span><span class="rv2-act">No request</span><span class="rv2-toggle"></span></div>
+            <div class="rv2-row" data-i="0" style="--d:0s"><span class="rv2-who">Trader A</span><span class="rv2-act">Requested 12 wines</span><span class="rv2-toggle is-on"></span></div>
+            <div class="rv2-row" data-i="1" style="--d:.9s"><span class="rv2-who">Trader B</span><span class="rv2-act">Requested 4 wines</span><span class="rv2-toggle is-on"></span></div>
+            <div class="rv2-row rv2-hidden" style="--d:1.8s"><span class="rv2-who">Unknown Trader</span><span class="rv2-act">No request</span><span class="rv2-toggle"></span></div>
             <p class="rv2-note">Switch on means released. No request, no access.</p></div>
         </div>
       </div>
 
       <div class="role-panel" data-panel="agencies" role="tabpanel">
         <div class="role-copy">
-          <h3>Own your market.</h3>
+          <h3>Own Your Market.</h3>
           <p>For exclusive importers and trade agencies who prepare their producers' data for the local market.</p>
           <ul class="role-list">
-            <li><div><b>Automatic routing</b>Requests for the wines you represent are forwarded to you automatically.</div></li>
-            <li><div><b>Refine the data</b>Translate, enrich and prepare records for your target market.</div></li>
-            <li><div><b>One-time setup</b>Your producers set the forwarding rule once and never need to touch it again.</div></li>
+            <li><div><b>Automatic Routing</b>Requests for the wines you represent are forwarded to you automatically.</div></li>
+            <li><div><b>Refine the Data</b>Translate, enrich and prepare records for your target market.</div></li>
+            <li><div><b>One-Time Setup</b>Your producers set the forwarding rule once and never need to touch it again.</div></li>
           </ul>
           <a class="text-link" href="contact.html?topic=agency">Talk to us about the agency model</a>
         </div>
         <div class="role-visual rv2" data-rv="agencies" aria-hidden="true">
-          <div class="rv2-head"><b>One rule routes everything</b><span>Set once by the producer, used for every request</span></div>
+          <div class="rv2-head"><b>One Rule Routes Everything</b><span>Set once by the producer, used for every request</span></div>
           <div class="rv2-stage">
-            <div class="rv2-flow"><span class="rv2-chip">Weingut Sonnenhang</span><span class="rv2-arrow"><i></i></span><span class="rv2-chip is-ag">Vinara Import</span></div>
-            <div class="rv2-rule"><b>Forward all requests for the German market</b><span class="rv2-toggle is-on"></span></div>
-            <div class="rv2-row" style="--d:.2s"><span class="rv2-who">Nordwein Handel</span><span class="rv2-act">New request</span><span class="rv2-state is-mid"><i></i>To agency</span></div>
+            <div class="rv2-flow"><span class="rv2-chip">Producer</span><span class="rv2-arrow"><i></i></span><span class="rv2-chip is-ag">Agency</span></div>
+            <div class="rv2-rule"><b>Forward all requests for the local market</b><span class="rv2-toggle is-on"></span></div>
+            <div class="rv2-row" data-i="0" style="--d:.2s"><span class="rv2-who">Trader A</span><span class="rv2-act">Refined for market</span><span class="rv2-state is-done"><i></i>Complete</span></div>
             <p class="rv2-note">The agency receives each request directly and refines the data for its market.</p></div>
         </div>
       </div>

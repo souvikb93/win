@@ -41,6 +41,8 @@
     ['09:41:02', 'Request <span class="hl">40-11873</span> from the merchant'],
     ['09:41:02', 'Producer matched'],
     ['09:41:02', '41 required fields set by the merchant'],
+    ['09:41:02', 'Request validated'],
+    ['09:41:03', 'Notification queued'],
     ['09:41:03', '<span class="ok">Notification sent</span>']
   ];
 
@@ -61,7 +63,7 @@
         var ol = v.querySelector('[data-lines]'); await wait(400);
         for (var i = 0; i < LINES.length && alive(); i++) {
           var li = document.createElement('li'); li.innerHTML = '<time>' + LINES[i][0] + '</time><span>' + LINES[i][1] + '</span>';
-          ol.appendChild(li); await wait(650);
+          ol.appendChild(li); await wait(520);
         }
       },
       end: function (v) { v.querySelector('[data-lines]').innerHTML = LINES.map(function (l) { return '<li><time>' + l[0] + '</time><span>' + l[1] + '</span></li>'; }).join(''); }
@@ -124,13 +126,80 @@
     new IntersectionObserver(function (e) { visible = e[0].isIntersecting; if (visible) run(); }, { threshold: 0.4 }).observe(win);
   });
 
-  /* ---------- Roles tabs (One Network, Three Roles) ---------- */
-  var tabs = document.querySelectorAll('.role-tab');
-  tabs.forEach(function (t) {
-    t.addEventListener('click', function () {
-      var r = t.getAttribute('data-role');
-      tabs.forEach(function (x) { x.setAttribute('aria-selected', String(x === t)); });
-      document.querySelectorAll('.role-panel').forEach(function (p) { p.classList.toggle('is-active', p.getAttribute('data-panel') === r); });
-    });
-  });
+  /* ---------- One Network, Three Roles ----------
+     The tabs turn by themselves while the section is on screen: Merchants & Wholesalers, then Producers, then
+     Agencies & Importers, then round again. A click takes over for a while. Each role's right-hand visual plays
+     its own live loop, and always rests on the finished state. */
+  var tabsEl = document.querySelector('.roles-tabs');
+  if (tabsEl) {
+    var tabs = qa('.role-tab', document), panels = qa('.role-panel', document), order = tabs.map(function (t) { return t.getAttribute('data-role'); });
+    var HOLD = 7000, current = 0, rotateTimer = null, resumeAt = 0, inView = false, runId = 0;
+    tabsEl.style.setProperty('--hold', HOLD + 'ms');
+
+    var RV = {
+      merchants: async function (panel, alive) {
+        var rows = qa('.rv2-row', panel);
+        rows.forEach(function (r) { var st = r.querySelector('.rv2-state'); st.className = 'rv2-state'; st.innerHTML = '<i></i>Waiting'; r.querySelector('.rv2-act').textContent = 'Request sent'; });
+        await wait(700);
+        await Promise.all(rows.map(async function (r, i) {
+          await wait(i * 650); if (!alive()) return;
+          var st = r.querySelector('.rv2-state'), act = r.querySelector('.rv2-act');
+          act.textContent = 'Entering data'; st.className = 'rv2-state is-mid';
+          for (var n = 0; n <= 214 && alive(); n += 12) { st.innerHTML = '<i></i>' + Math.min(214, n) + ' of 214'; await wait(55); }
+          if (!alive()) return;
+          act.textContent = 'Record returned'; st.className = 'rv2-state is-done'; st.innerHTML = '<i></i>Complete';
+        }));
+      },
+      producers: async function (panel, alive) {
+        var tg = qa('.rv2-row[data-i] .rv2-toggle', panel);
+        tg.forEach(function (t) { t.classList.remove('is-on'); t.style.animation = 'none'; t.style.setProperty('--x', '0'); });
+        await wait(900);
+        for (var i = 0; i < tg.length && alive(); i++) { tg[i].classList.add('is-on'); await wait(1200); }
+      },
+      agencies: async function (panel, alive) {
+        var rule = panel.querySelector('.rv2-rule .rv2-toggle'), row = panel.querySelector('.rv2-row[data-i]'), st = row.querySelector('.rv2-state'), act = row.querySelector('.rv2-act');
+        rule.classList.remove('is-on'); st.className = 'rv2-state'; st.innerHTML = '<i></i>Waiting'; act.textContent = 'New request';
+        await wait(900); if (!alive()) return; rule.classList.add('is-on');
+        await wait(1300); if (!alive()) return; act.textContent = 'Forwarded to agency'; st.className = 'rv2-state is-mid'; st.innerHTML = '<i></i>To agency';
+        await wait(1700); if (!alive()) return; act.textContent = 'Refined for market'; st.className = 'rv2-state is-done'; st.innerHTML = '<i></i>Complete';
+      }
+    };
+    function finalStates() {
+      qa('.rv2-toggle', document).forEach(function (t) { t.style.animation = ''; });
+      var m = document.querySelector('[data-panel="merchants"]'), a = document.querySelector('[data-panel="agencies"]'), p = document.querySelector('[data-panel="producers"]');
+      qa('.rv2-row[data-i]', m).forEach(function (r) { r.querySelector('.rv2-act').textContent = 'Record returned'; var st = r.querySelector('.rv2-state'); st.className = 'rv2-state is-done'; st.innerHTML = '<i></i>Complete'; });
+      qa('.rv2-row[data-i] .rv2-toggle', p).forEach(function (t) { t.classList.add('is-on'); });
+      a.querySelector('.rv2-rule .rv2-toggle').classList.add('is-on');
+      var ar = a.querySelector('.rv2-row[data-i]'); ar.querySelector('.rv2-act').textContent = 'Refined for market'; ar.querySelector('.rv2-state').className = 'rv2-state is-done'; ar.querySelector('.rv2-state').innerHTML = '<i></i>Complete';
+    }
+
+    function playVisual() {
+      var role = order[current], panel = document.querySelector('[data-panel="' + role + '"]'), id = ++runId;
+      if (reduce) { finalStates(); return; }
+      (async function () {
+        var alive = function () { return id === runId && inView; };
+        while (alive()) { await RV[role](panel, alive); if (!alive()) break; await wait(Math.max(1200, HOLD - 4200)); }
+      })();
+    }
+    function select(i, user) {
+      current = (i + order.length) % order.length;
+      tabs.forEach(function (t, k) { t.setAttribute('aria-selected', String(k === current)); t.classList.remove('is-timing'); });
+      panels.forEach(function (p) { p.classList.toggle('is-active', p.getAttribute('data-panel') === order[current]); });
+      void tabsEl.offsetWidth; if (!reduce && inView) tabs[current].classList.add('is-timing');
+      if (user) resumeAt = Date.now() + HOLD * 1.6;
+      clearTimeout(rotateTimer); schedule();
+      playVisual();
+    }
+    function schedule() {
+      clearTimeout(rotateTimer);
+      if (reduce || !inView) return;
+      var delay = Math.max(HOLD, resumeAt - Date.now());
+      tabs[current].classList.remove('is-timing'); void tabsEl.offsetWidth; tabs[current].classList.add('is-timing');
+      rotateTimer = setTimeout(function () { select(current + 1, false); }, delay);
+    }
+    tabs.forEach(function (t, k) { t.addEventListener('click', function () { select(k, true); }); });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (e) { var was = inView; inView = e[0].isIntersecting; if (inView && !was) { schedule(); playVisual(); } else if (!inView) { clearTimeout(rotateTimer); runId++; tabs.forEach(function (t) { t.classList.remove('is-timing'); }); } }, { threshold: 0.4 }).observe(document.getElementById('solutions'));
+    } else { inView = true; schedule(); playVisual(); }
+  }
 })();

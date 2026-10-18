@@ -2185,3 +2185,27 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 @media (max-width: 700px) { .ui-activity[data-static] .ui-head > b { white-space: normal; } }
 /* the typed fields keep a fixed height while the loop runs; the empty placeholder stays muted */
 .ui-form .ui-val.ui-empty { color: var(--ink-3); }
+
+/* Type rhythm, one rule for every home section: section headings 44px max, section lead 18px, card body 17px (the hero keeps its own larger scale) */
+#testimonials h2, .cta-panel h2, #why .why-head h2, #ecosystem .eco-copy h2 { font-size: clamp(32px, 3.2vw, 44px); line-height: 1.08; }
+#why .why-head .lead, #ecosystem .eco-copy .lead, .testi-head .lead { font-size: clamp(16px, 1.35vw, 18px); line-height: 1.55; }
+.stack-copy p, .stack-card.is-right .stack-copy p { font-size: 17px; line-height: 1.6; }
+
+/* Solution page screens: use the whole browser window */
+.mini-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.mini-stats div { padding: 10px 12px; border-radius: 10px; background: var(--bg); box-shadow: inset 0 0 0 1px var(--line); display: grid; gap: 2px; }
+.mini-stats span { font-size: 11.5px; color: var(--ink-3); }
+.mini-stats b { font-size: 18px; font-weight: 700; color: var(--navy); }
+.tl-scr .scr-body { height: auto; min-height: 340px; }
+.tl-scr .scr-view { position: relative; inset: auto; }
+.tl-scr .console { min-height: 168px; }
+.tl-scr .checklist li { height: 36px; }
+
+/* Role tabs: a thin bar fills under the active tab while it is the one on show, then the next role takes over */
+.role-tab { position: relative; overflow: hidden; }
+.role-tab::after { content: ""; position: absolute; left: 0; bottom: 0; height: 3px; width: 100%; background: var(--violet); transform: scaleX(0); transform-origin: left; opacity: 0; }
+.role-tab[aria-selected="true"].is-timing::after { opacity: 1; animation: roleTimer var(--hold, 7s) linear forwards; }
+@keyframes roleTimer { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.rv2-toggle { transition: background .35s var(--ease); }
+.rv2-toggle::after { transition: transform .35s var(--ease); }
+.rv2-state { transition: background .3s, color .3s; }
