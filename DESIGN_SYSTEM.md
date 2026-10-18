@@ -252,3 +252,5 @@ Data & Privacy page was removed (owner request). The security cards no longer ex
 **Platform card icons:** the six outer cards use useanimations.com Lottie icons (check-circle, globe, book-open, shopping-cart, git-branch, settings), played through `assets/vendor/lottie_light.min.js` (lottie-web 5.12.2, self-hosted) from `assets/icons/*.json`, drawn in brand violet. Each plays once per 4 s cycle (stretched to ~3 s, then rests), aligned to the hero infinity icon's clock, only while the diagram is open.
 
 **Testimonials:** the quote is italic under a large brand-violet quote mark. Below it: round portrait (placeholder stock portraits from randomuser.me, saved in `assets/testimonials/`), name, role in Title Case (Category Manager, Managing Director, Product Data Lead) and company in violet (made-up: Nordwein Handel, Weingut Sonnenhang, Vinara Import). Names, quotes and photos are placeholders: replace with real ones, with permission, before this is shown as fact.
+
+Testimonial controls are the three dots only (no arrows); the carousel also auto-advances while on screen.

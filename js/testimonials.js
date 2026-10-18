@@ -15,8 +15,6 @@
     if (user) restart();
   }
   function restart() { clearInterval(timer); if (visible && !reduce) timer = setInterval(function () { go(i + 1); }, 7000); }
-  stage.querySelector('[data-prev]').addEventListener('click', function () { go(i - 1, true); });
-  stage.querySelector('[data-next]').addEventListener('click', function () { go(i + 1, true); });
   go(0);
   if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { visible = e[0].isIntersecting; restart(); }, { threshold: .4 }).observe(stage);
   else { visible = true; restart(); }
