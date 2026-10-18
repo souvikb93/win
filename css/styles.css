@@ -1961,3 +1961,12 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .cta-end { padding-bottom: clamp(40px, 7vh, 72px); }
 .cta-panel { padding-top: clamp(40px, 7vh, 80px); padding-bottom: clamp(40px, 7vh, 80px); gap: 16px; }
 .footer { padding: clamp(40px, 6vh, 56px) 0 clamp(32px, 5vh, 44px); }
+
+/* One side edge for the nav, the announcement bar and the footer */
+:root { --edge: clamp(20px, 3vw, 48px); }
+.nav-inner { padding-left: var(--edge); padding-right: var(--edge); }
+.announce-row { justify-content: flex-start; padding: 8px calc(var(--edge) + 44px) 8px var(--edge); }
+.announce-text { text-align: left; }
+.announce-close { right: calc(var(--edge) - 9px); }
+.footer .container { max-width: none; padding-left: var(--edge); padding-right: var(--edge); }
+@media (max-width: 700px) { .announce-row { padding: 8px calc(var(--edge) + 36px) 8px var(--edge); } }
