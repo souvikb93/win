@@ -1970,3 +1970,8 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .announce-close { right: calc(var(--edge) - 9px); }
 .footer .container { max-width: none; padding-left: var(--edge); padding-right: var(--edge); }
 @media (max-width: 700px) { .announce-row { padding: 8px calc(var(--edge) + 36px) 8px var(--edge); } }
+
+/* CTA card: taller, with the same gap above (after testimonials) and below (before the footer) */
+.testi { padding-bottom: clamp(56px, 8vh, 88px); }
+.cta-end { padding-bottom: clamp(56px, 8vh, 88px); }
+.cta-panel { padding-top: clamp(64px, 11vh, 112px); padding-bottom: clamp(64px, 11vh, 112px); }
