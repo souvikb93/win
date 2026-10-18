@@ -226,3 +226,5 @@ The "One Network, Three Roles" tabs section moved from Home to the Solution page
 Data & Privacy page was removed (owner request). The security cards no longer exist on the site. Top nav: Home, Solution, Press, Contact.
 
 **CTA panel background:** after 21st.dev "Nice BG", recoloured to the brand: navy-900 base, a violet glow bottom-right, a faint woven hatch, film grain and a soft vignette. Pure CSS on `.cta-panel::before/::after`. Applies to every `.cta-panel`. Text sits above it (z-index 1).
+
+**Platform circle menu:** the WIN core is a button (`.eco-core`, aria-expanded). Closed: just the small violet WIN circle with a "Click to explore" hint. Open: the six module cards fly out of it to their places with a springy stagger, rings and spokes fade in; click again or Escape to close. After 21st.dev Circle Menu. On phones the modules drop down as a list. Logic in `js/home.js` (end).

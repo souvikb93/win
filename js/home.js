@@ -179,3 +179,28 @@
   window.addEventListener('scroll', update, { passive: true });
   update();
 })();
+
+/* ---------- Platform: WIN is a button that opens the module circle (after 21st.dev Circle Menu) ---------- */
+(function () {
+  var orbit = document.getElementById('ecoMods'); if (!orbit) return;
+  var core = orbit.querySelector('.eco-core'), hint = orbit.querySelector('.eco-hint');
+  var mods = Array.prototype.slice.call(orbit.querySelectorAll('.eco-module'));
+  function layout() {
+    var W = orbit.clientWidth, H = orbit.clientHeight;
+    mods.forEach(function (m, i) {
+      var l = parseFloat(m.style.left), t = parseFloat(m.style.top);
+      m.style.setProperty('--dx', ((50 - l) / 100 * W).toFixed(1) + 'px');
+      m.style.setProperty('--dy', ((50 - t) / 100 * H).toFixed(1) + 'px');
+      m.style.setProperty('--i', i);
+    });
+  }
+  function set(open) {
+    orbit.classList.toggle('is-open', open);
+    core.setAttribute('aria-expanded', String(open));
+    core.setAttribute('aria-label', open ? 'Hide the EuvinoPRO modules' : 'Show the EuvinoPRO modules');
+    if (hint) hint.textContent = open ? 'Click to close' : 'Click to explore';
+  }
+  core.addEventListener('click', function () { set(!orbit.classList.contains('is-open')); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && orbit.classList.contains('is-open')) set(false); });
+  layout(); window.addEventListener('resize', layout);
+})();
