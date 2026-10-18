@@ -4,12 +4,16 @@
   /* ---------- Hero: advantage cards slide in from the sides as you scroll ---------- */
   var floats = Array.prototype.slice.call(document.querySelectorAll('.float'));
   var flTick = false;
+  var scene = document.querySelector('.device-scene') || document.querySelector('.hero-stage');
+  /* the cards finish arriving exactly when the whole device is in view; they come in one after another before that */
+  var STAGES = [[0.06, 0.55], [0.22, 0.55], [0.38, 0.62]];
   function updateFloats() {
     flTick = false;
-    var vh = window.innerHeight;
-    floats.forEach(function (f) {
-      var top = f.getBoundingClientRect().top;
-      var p = reduceMotion ? 1 : Math.min(1, Math.max(0, (vh * 0.78 - top) / (vh * 0.4)));
+    var vh = window.innerHeight, full = scene ? scene.getBoundingClientRect().bottom + window.scrollY - vh : 0;
+    var q = full > 1 ? Math.min(1, Math.max(0, window.scrollY / full)) : 1;
+    floats.forEach(function (f, i) {
+      var st = STAGES[i] || STAGES[STAGES.length - 1];
+      var p = reduceMotion ? 1 : Math.min(1, Math.max(0, (q - st[0]) / st[1]));
       /* once a card has come in it stays: scrolling back up does not take it away */
       p = Math.max(p, parseFloat(f.getAttribute('data-p')) || 0);
       f.setAttribute('data-p', p.toFixed(3));

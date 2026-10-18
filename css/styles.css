@@ -2055,3 +2055,7 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
   90%, 100% { transform: translate(-1.8px, 1.8px); }
 }
 @media (max-width: 900px) { .float { padding: 10px 14px 10px 10px; } .float b { font-size: 14px; } .float small { font-size: 12.5px; } .float-icon { width: 34px; height: 34px; } }
+
+/* Hero card 1 sits lower, level with the search bar on the right of the device, so it is not on screen at first load */
+.float-1 { top: 34%; } .float-2 { top: 52%; } .float-3 { top: 74%; }
+@media (max-width: 900px) { .float-1 { top: 30%; } .float-3 { top: auto; } }

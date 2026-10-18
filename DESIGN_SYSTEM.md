@@ -238,3 +238,5 @@ Data & Privacy page was removed (owner request). The security cards no longer ex
 **Gotcha:** never cut `css/styles.css` at a comment marker and append: later blocks below it get deleted silently (this dropped the footer/edge/CTA spacing once). Edit blocks in place.
 
 **Hero cards v3:** every card has a header and a sub-header (third: Cross-Platform Integration / Connects With Your Systems). Slim (about 62px high), lifted off the screen with a layered shadow. Slide in 96px from their own side while scrolling (right cards from the right, left card from the left), starting only after the user scrolls. All three icon loops share one 4 s clock, act in the first ~74 % and hold, like the infinity icon.
+
+**Hero card timing:** arrival is tied to how far the device has come into view, not to each card's own position. The three cards stagger in (right, left, right) and are all fully in by the moment the whole device is in the viewport. The first card sits level with the search bar on the right, below the fold at load.
