@@ -268,3 +268,5 @@ The testimonials sub-heading stays on one line above 900px wide (wraps on smalle
 **Precise card (final):** heading "Catch Missing Data Before It Moves On." and body "WIN checks product information as suppliers enter it, flagging missing or invalid fields before the data reaches your ERP." The preview is static: heading "Product Record Requested by a Trader" on one line; GTIN 4006381333931 (Valid), Bottle Size 0.75 L (Valid), Country of Origin (Empty, Required); "2 of 3 Required Fields Complete" 67% (grey bar); "Send to Trader" disabled until all fields are complete. No typing animation.
 
 **Gotcha:** a desktop-only rule appended late (e.g. the Why WIN card two-column grid) overrides earlier mobile rules. Always re-add the mobile override after it and check 375px.
+
+**Easy card (final):** heading "Choose What Suppliers Must Provide." and body "Set required and optional product fields to ensure suppliers provide the information your business needs." Preview heading "Product Data Requirements" on one line, no supporting text, no count pill (the "2 / 3 / 4 required" pill was removed). Field names and toggle animation unchanged.

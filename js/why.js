@@ -24,11 +24,9 @@
   var fields = document.querySelector('.ui-fields');
   if (fields) {
     var cursor = fields.querySelector('.ui-cursor');
-    var count = fields.querySelector('[data-count-req]');
-    var countPill = fields.querySelector('.ui-count');
     var targets = [fields.querySelector('[data-target="1"]'), fields.querySelector('[data-target="2"]')];
     var base = 2;
-    function setCount(n) { count.textContent = n; countPill.classList.add('is-bump'); setTimeout(function () { countPill.classList.remove('is-bump'); }, 300); }
+    function setCount() {}
     function pointAt(el) {
       var a = fields.getBoundingClientRect(), b = el.getBoundingClientRect();
       cursor.style.setProperty('--cx', (b.left - a.left + b.width * 0.6) + 'px');
@@ -36,7 +34,7 @@
     }
     function home() { cursor.style.setProperty('--cx', (fields.clientWidth * 0.82) + 'px'); cursor.style.setProperty('--cy', (fields.clientHeight + 10) + 'px'); }
     cursor.style.transition = 'none'; home(); void cursor.offsetWidth; cursor.style.transition = '';
-    if (reduce) { targets.forEach(function (t) { t.querySelector('.ui-switch').classList.add('is-on'); t.classList.add('is-req'); t.querySelector('.ui-state').textContent = 'Required'; }); count.textContent = base + targets.length; }
+    if (reduce) { targets.forEach(function (t) { t.querySelector('.ui-switch').classList.add('is-on'); t.classList.add('is-req'); t.querySelector('.ui-state').textContent = 'Required'; }); }
     else loopWhileVisible(fields, async function (alive) {
       fields.classList.add('is-live');
       await wait(600);
@@ -52,7 +50,7 @@
       home(); await wait(2600);
     }, function () {
       targets.forEach(function (t) { t.querySelector('.ui-switch').classList.remove('is-on'); t.classList.remove('is-hot', 'is-req'); t.querySelector('.ui-state').textContent = 'Optional'; });
-      count.textContent = base; home();
+      home();
     });
   }
 
