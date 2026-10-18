@@ -180,37 +180,50 @@
   update();
 })();
 
-/* ---------- Platform: WIN is a button that opens the module circle (after 21st.dev Circle Menu) ----------
-   Each module travels on a circular path: it spirals out of the WIN button, sweeping round the centre
-   while its radius grows, and spirals back in on close. */
+/* ---------- Platform: modules open out of WIN as the section scrolls into view, and close as it leaves ----------
+   The modules sit evenly on a circle (a regular hexagon) around WIN, joined to it by spokes, inside two concentric
+   dotted circles. Each module spirals out along the circle while its radius grows, and spirals back in on close. */
 (function () {
   var orbit = document.getElementById('ecoMods'); if (!orbit) return;
-  var core = orbit.querySelector('.eco-core'), hint = orbit.querySelector('.eco-hint');
+  var core = orbit.querySelector('.eco-core'), svg = orbit.querySelector('svg.orbit-lines');
   var mods = Array.prototype.slice.call(orbit.querySelectorAll('.eco-module'));
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var phone = window.matchMedia('(max-width: 600px)');
-  var SWEEP = 160 * Math.PI / 180, OPEN_MS = 820, CLOSE_MS = 560, STAGGER = 70;
+  var SWEEP = 160 * Math.PI / 180, OPEN_MS = 900, CLOSE_MS = 600, STAGGER = 70, NS = 'http://www.w3.org/2000/svg';
+  /* evenly spaced, mirrored left to right: top, upper right, lower right, bottom, lower left, upper left */
+  var ANGLES = [-90, -150, -30, 150, 30, 90].map(function (d) { return d * Math.PI / 180; });
   var open = false;
-  var items = mods.map(function (m, i) {
-    m.style.setProperty('--i', i);
-    return { el: m, l: parseFloat(m.style.left), t: parseFloat(m.style.top), p: 0, from: 0, to: 0, start: 0, dur: 0, delay: 0 };
-  });
+  var items = mods.map(function (m, i) { m.style.setProperty('--i', i); return { el: m, p: 0, from: 0, to: 0, start: 0, dur: 0, delay: 0, a: ANGLES[i % 6], r: 0 }; });
 
-  function easeOutBack(x) { var c1 = 1.4, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); }
+  function easeOutBack(x) { var c1 = 1.3, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); }
   function easeInOutCubic(x) { return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
 
+  function circle(cx, cy, r) { var c = document.createElementNS(NS, 'circle'); c.setAttribute('cx', cx); c.setAttribute('cy', cy); c.setAttribute('r', r); return c; }
   function geometry() {
-    var W = orbit.clientWidth, H = orbit.clientHeight;
-    items.forEach(function (it) {
-      var dx = (it.l - 50) / 100 * W, dy = (it.t - 50) / 100 * H;
-      it.r = Math.hypot(dx, dy); it.a = Math.atan2(dy, dx);
+    if (phone.matches) { svg.innerHTML = ''; items.forEach(function (it) { it.el.style.left = ''; it.el.style.top = ''; }); return; }
+    var W = orbit.clientWidth, H = orbit.clientHeight, cx = W / 2, cy = H / 2, mw = 150, mh = 34;
+    var R = Math.min(cy - mh - 8, (cx - mw - 8) / Math.cos(Math.PI / 6));
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.setAttribute('width', W); svg.setAttribute('height', H);
+    svg.innerHTML = '';
+    var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'rings');
+    g.appendChild(circle(cx, cy, R * 0.56)); g.appendChild(circle(cx, cy, R));
+    svg.appendChild(g);
+    items.forEach(function (it, i) {
+      it.r = R;
+      var x = cx + Math.cos(it.a) * R, y = cy + Math.sin(it.a) * R;
+      it.el.style.left = x.toFixed(1) + 'px'; it.el.style.top = y.toFixed(1) + 'px';
+      var l = document.createElementNS(NS, 'line');
+      l.setAttribute('x1', cx); l.setAttribute('y1', cy); l.setAttribute('x2', x.toFixed(1)); l.setAttribute('y2', y.toFixed(1));
+      l.setAttribute('class', 'spoke'); l.style.setProperty('--d', (i * 0.35).toFixed(2) + 's'); svg.insertBefore(l, g.nextSibling);
     });
   }
   function draw(it) {
     if (phone.matches) { it.el.style.transform = ''; it.el.style.opacity = ''; return; }
     var e = it.p, r = it.r * Math.max(0, e), a = it.a - SWEEP * (1 - Math.min(1, e));
-    var x = Math.cos(a) * r, y = Math.sin(a) * r, s = .3 + .7 * Math.min(1, Math.max(0, e));
-    it.el.style.transform = 'translate(-50%, -50%) translate(' + x.toFixed(1) + 'px, ' + y.toFixed(1) + 'px) scale(' + s.toFixed(3) + ')';
+    /* offset from the module's own resting spot: at rest (e = 1) the offset is 0, at e = 0 it sits on WIN */
+    var rx = Math.cos(a) * r - Math.cos(it.a) * it.r, ry = Math.sin(a) * r - Math.sin(it.a) * it.r;
+    var s = .3 + .7 * Math.min(1, Math.max(0, e));
+    it.el.style.transform = 'translate(-50%, -50%) translate(' + rx.toFixed(1) + 'px, ' + ry.toFixed(1) + 'px) scale(' + s.toFixed(3) + ')';
     it.el.style.opacity = Math.min(1, Math.max(0, e * 1.8)).toFixed(3);
   }
   var raf = null;
@@ -227,11 +240,9 @@
     raf = busy ? requestAnimationFrame(tick) : null;
   }
   function set(next) {
+    if (next === open) return;
     open = next;
     orbit.classList.toggle('is-open', open);
-    core.setAttribute('aria-expanded', String(open));
-    core.setAttribute('aria-label', open ? 'Hide the EuvinoPRO modules' : 'Show the EuvinoPRO modules');
-    if (hint) hint.textContent = open ? 'Click to close' : 'Click to explore';
     var now = performance.now(), n = items.length;
     items.forEach(function (it, i) {
       it.from = it.p; it.to = open ? 1 : 0; it.start = now;
@@ -240,9 +251,16 @@
     });
     if (!raf) raf = requestAnimationFrame(tick);
   }
-  core.addEventListener('click', function () { set(!open); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && open) set(false); });
   geometry(); items.forEach(draw);
   window.addEventListener('resize', function () { geometry(); items.forEach(draw); });
-  phone.addEventListener('change', function () { items.forEach(draw); });
+  phone.addEventListener('change', function () { geometry(); items.forEach(draw); });
+  /* open when the diagram is well in view, close once it has mostly left (two thresholds so it never flickers) */
+  if ('IntersectionObserver' in window) {
+    var thresholds = []; for (var t = 0; t <= 20; t++) thresholds.push(t / 20);
+    new IntersectionObserver(function (en) {
+      var r = en[0].intersectionRatio;
+      if (!open && r >= 0.45) set(true);
+      else if (open && r < 0.35) set(false);
+    }, { threshold: thresholds }).observe(orbit);
+  } else set(true);
 })();
