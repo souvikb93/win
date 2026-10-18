@@ -2410,3 +2410,16 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .i18n-wait body { visibility: hidden; }
 html[lang="de"] .role-panel { min-height: 600px; }
 @media (min-width: 701px) and (max-width: 1000px) { html[lang="de"] .role-panel { min-height: 880px; } }
+
+/* consistency: UI values use the sans font everywhere; only the terminal stays mono */
+.tl-scr .attr b, .tl-scr .inp.mono, .tl-scr .inp, .tl-scr .checklist li span, .rv2-fields b { font-family: var(--font); }
+.tl-scr .attr b { font-weight: 500; font-size: 13px; }
+.tl-scr .inp.mono { font-size: 13px; }
+.tl-scr .checklist li span { font-size: 12px; }
+.rv2-fields b { font-size: 13.5px; font-weight: 600; }
+/* role previews: rows sit on the same edges as the head and cards (no leftover slide offset) */
+.role-panel.is-active .rv2-row { transform: none; }
+.role-panel.is-active .rv2-row.is-off, .role-panel.is-active .rv2-row.rv2-hidden.is-off { transform: translateY(8px); }
+@media (min-width: 1001px) { .role-panel { grid-template-columns: minmax(0,1fr) minmax(0,1fr); } }
+.role-visual .rv2 { width: 100%; justify-self: stretch; }
+.role-visual.rv2 { grid-template-columns: minmax(0, 1fr); justify-content: stretch; }

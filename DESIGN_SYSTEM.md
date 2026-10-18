@@ -312,3 +312,8 @@ The testimonials sub-heading stays on one line above 900px wide (wraps on smalle
 - **Every new visible string must be added to `js/lang-de.js`**, including strings built in JS. Strings that are typed character by character must be translated before typing (`WINi18n.t()`).
 - Tone: formal "Sie", natural German, not word for word. Merchant = Händler, producer = Produzent, supplier = Lieferant, agency = Agentur. Kept as in German business use: ERP, GTIN, PPWR, GDSN, B2B/B2C, Category Manager, Newsletter, company and person names. German number format (0,75 l, 12.000+). Press titles use the original German article titles.
 - Check German layouts after copy changes: headings are longer. Role cards are 600px high in German.
+
+## Fonts and preview alignment (correction)
+- Mockup inputs and values (steps 1–6, role previews) use the UI sans font. Mono is only for the terminal and URL chips.
+- Role preview panels: head, rows, records, flow all share one left/right edge (`.role-visual.rv2` single `minmax(0,1fr)` column); both panel columns equal width. Rows must not keep a slide-in `translateX` after animating.
+- Solution page ends with the footer; no closing CTA panel.
