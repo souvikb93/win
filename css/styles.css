@@ -1941,7 +1941,10 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .eco-orbit .eco-module { animation: none !important; transition: box-shadow .3s, translate .3s var(--ease); opacity: 0; }
 .eco-orbit:not(.is-open) .eco-module { pointer-events: none; }
 .eco-orbit.is-open .eco-module:hover { translate: 0 -4px; }
-@media (max-width: 600px) {
+@media (max-width: 700px) {
+  .eco-orbit { display: grid; gap: 12px; }
+  .eco-orbit .eco-core { position: relative; left: auto; top: auto; transform: none; margin-bottom: 4px; border-radius: 18px; }
+  .eco-orbit .eco-module { position: relative; transform: none !important; left: auto !important; top: auto !important; white-space: normal; }
   .eco-orbit { aspect-ratio: auto; }
   .eco-orbit .eco-core, .eco-orbit.is-open .eco-core { width: 100%; height: 96px; border-radius: 18px; }
   .eco-orbit .eco-core::after { display: none; }
@@ -1960,7 +1963,7 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .float b { font-size: 16px; line-height: 1.25; font-weight: 600; letter-spacing: -.005em; color: var(--navy); }
 .float small { margin-top: 4px; font-family: var(--font); font-size: 14px; line-height: 1.3; letter-spacing: 0; text-transform: none; font-weight: 400; color: var(--ink-2); }
 @media (max-width: 900px) { .float { width: 290px; min-height: 76px; padding: 14px 18px 14px 14px; gap: 14px; } .float-icon { width: 40px; height: 40px; border-radius: 12px; } .float b { font-size: 15px; } .float small { font-size: 13px; } }
-@media (max-width: 600px) { .float { width: 250px; min-height: 0; padding: 12px 14px 12px 12px; } .float b { font-size: 14px; } .float small { font-size: 12.5px; } }
+@media (max-width: 700px) { .float { width: 250px; min-height: 0; padding: 12px 14px 12px 12px; } .float b { font-size: 14px; } .float small { font-size: 12.5px; } }
 
 /* Hero cards: scroll-driven slide-in (--p set in js/home.js), sitting further out on the sides */
 .float { opacity: var(--p, 0); transform: translateX(calc((1 - var(--p, 0)) * var(--dir, 1) * 160px)); transition: none; will-change: transform, opacity; }
@@ -2105,3 +2108,23 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
   66.5%, 100% { transform: translateY(0); }
 }
 @media (prefers-reduced-motion: reduce) { .layer-top, .layer-mid, .layer-bot { animation: none; } }
+
+/* Platform diagram refinement: a roomier circle and a WIN mark about 13 % smaller (cards and type unchanged) */
+.eco-orbit { aspect-ratio: 1 / .94; }
+.eco-orbit .eco-core { width: 94px; height: 94px; }
+.eco-orbit .eco-core .win-logo { height: 23px; }
+.eco-orbit .eco-core::after { inset: -9px; }
+.eco-orbit.is-open .eco-core { width: 115px; height: 115px; }
+.eco-orbit.is-open .eco-core .win-logo { height: 28px; }
+.eco-orbit.is-open .eco-core::after { inset: -12px; }
+@media (max-width: 700px) {
+  .eco-orbit { gap: 12px; }
+  .eco-orbit .eco-core, .eco-orbit.is-open .eco-core { width: 100%; height: 84px; }
+  .eco-orbit .eco-core .win-logo, .eco-orbit.is-open .eco-core .win-logo { height: 26px; }
+}
+@media (min-width: 1261px) {
+  /* the platform section borrows a little more width than the text sections, so the circle can open up without squeezing the copy */
+  #ecosystem .container.eco { max-width: min(1344px, calc(100% - 2 * var(--edge))); grid-template-columns: minmax(380px, 456px) 1fr; gap: 48px; }
+}
+@media (min-width: 701px) { .eco-orbit { max-width: 720px; width: 100%; justify-self: center; } }
+@media (min-width: 701px) and (max-width: 1260px) { #ecosystem .container.eco { grid-template-columns: 1fr; gap: 40px; } }

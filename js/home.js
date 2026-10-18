@@ -227,7 +227,7 @@
   var core = orbit.querySelector('.eco-core'), svg = orbit.querySelector('svg.orbit-lines');
   var mods = Array.prototype.slice.call(orbit.querySelectorAll('.eco-module'));
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var phone = window.matchMedia('(max-width: 600px)');
+  var phone = window.matchMedia('(max-width: 700px)');
   var SWEEP = 160 * Math.PI / 180, OPEN_MS = 900, CLOSE_MS = 600, STAGGER = 70, NS = 'http://www.w3.org/2000/svg';
   /* evenly spaced, mirrored left to right: top, upper right, lower right, bottom, lower left, upper left */
   var ANGLES = [-90, -150, -30, 150, 30, 90].map(function (d) { return d * Math.PI / 180; });
@@ -240,8 +240,10 @@
   function circle(cx, cy, r) { var c = document.createElementNS(NS, 'circle'); c.setAttribute('cx', cx); c.setAttribute('cy', cy); c.setAttribute('r', r); return c; }
   function geometry() {
     if (phone.matches) { svg.innerHTML = ''; items.forEach(function (it) { it.el.style.left = ''; it.el.style.top = ''; }); return; }
-    var W = orbit.clientWidth, H = orbit.clientHeight, cx = W / 2, cy = H / 2, mw = 150, mh = 34;
-    var R = Math.min(cy - mh - 8, (cx - mw - 8) / Math.cos(Math.PI / 6));
+    var W = orbit.clientWidth, H = orbit.clientHeight, cx = W / 2, cy = H / 2, PAD = 20;
+    /* real card size, so the circle is as large as the box allows and cards never touch the edge or each other */
+    var mw = 0, mh = 0; mods.forEach(function (m) { mw = Math.max(mw, m.offsetWidth / 2); mh = Math.max(mh, m.offsetHeight / 2); });
+    var R = Math.min(cy - mh - PAD, (cx - mw - PAD) / Math.cos(Math.PI / 6));
     svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.setAttribute('width', W); svg.setAttribute('height', H);
     svg.innerHTML = '';
     var g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'rings');
