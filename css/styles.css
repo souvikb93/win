@@ -1902,7 +1902,6 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
   /* the header leaves only through the transform in home.js: give its sticky box extra room so the browser never releases it a second time */
   .why-stage { padding-bottom: 100vh; margin-bottom: -100vh; }
 }
-}
 
 /* CTA panel background (after 21st.dev "Nice BG"): dark base, a soft glow, a woven hatch texture and film grain,
    all in the brand navy and violet. */
