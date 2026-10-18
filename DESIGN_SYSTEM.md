@@ -383,3 +383,15 @@ One scale, one set of tokens (`:root` in `css/styles.css`, block "Spacing system
 **Deliberate exceptions (do not "fix"):** Home hero (top 138 to clear nav + announcement bar, no bottom), Why WIN section (43 top because the sticky header sits there), closing CTA section (0 top, 72 bottom), page intros on Workflow and Press (81 top/bottom), Contact top section (one viewport tall).
 
 **Audit result (1440 wide, English):** heading → lead was 26/20/18/16 across pages, now 24 for every H1 and 16 for every H2; logos band was 128/112, now 112/112. Verified on Home, Workflow, Press and Contact; Contact still fits one viewport.
+
+## Success color (authoritative)
+One green for every success or positive state: valid, complete, done, sent, approved, ready, registered. It replaces the teal that was used for these before.
+- `--success` #16a34a: icons, strokes, small fills.
+- `--success-600` #15803d: text on light backgrounds and filled buttons with white text (AA contrast).
+- `--success-100` #e6f6ec: soft background (pills, tick circles).
+- Dark surfaces (terminal): light green #6ee7a0.
+- Where it applies: Workflow mockup buttons "Request Sent" / "Sent", "Complete / Prepared / Done" pills, validation ticks and checklists, valid input borders and messages, progress/complete bars, "approved", console "ok" lines, Home Fast card done steps, form success icon.
+- Error stays red (`--red`), in-progress stays violet. Success never uses violet or teal.
+- Teal (`--teal`) remains only for data-flow elements in diagrams (packets, lanes, data records), where it means "data in transit", never "success".
+
+**Success motion (tick):** when a button becomes "Request Sent" or "Sent" it turns green, pops slightly (scale 0.94 → 1.04 → 1, 0.45 s) and a tick draws itself in front of the label (circle stroke 0.45 s, then the check 0.35 s, after the useanimations check pattern). Done pills show a check instead of a dot. No motion with reduced-motion. Button size never changes (156 x 36).

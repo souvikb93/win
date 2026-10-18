@@ -32,7 +32,12 @@
   }
   async function press(btn, doneText) {
     btn.classList.add('is-press'); await wait(160); btn.classList.remove('is-press');
-    if (doneText) { btn.textContent = doneText; btn.classList.add('is-done'); }
+    if (doneText) setDone(btn, doneText);
+  }
+  /* success state: a tick draws itself (circle, then check) before the label */
+  function setDone(btn, text) {
+    btn.innerHTML = '<svg class="btn-tick" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M7.6 12.6l3 3 5.8-6.4"></path></svg><span>' + text + '</span>';
+    btn.classList.add('is-done');
   }
   function clearInputs(v) { qa('.inp[data-type]', v).forEach(function (i) { i.querySelector('.tv').textContent = ''; i.classList.remove('is-ok', 'is-typing'); }); }
   function fillInputs(v) { qa('.inp[data-type]', v).forEach(function (i) { i.querySelector('.tv').textContent = i.getAttribute('data-type'); i.classList.add('is-ok'); }); }
@@ -64,7 +69,7 @@
         for (var i = 0; i < inps.length && alive(); i++) await typeInto(inps[i], 50, alive);
         if (!alive()) return; await wait(500); await press(v.querySelector('[data-btn]'), 'Request Sent');
       },
-      end: function (v) { fillInputs(v); var b = v.querySelector('[data-btn]'); b.textContent = 'Request Sent'; b.classList.add('is-done'); }
+      end: function (v) { fillInputs(v); setDone(v.querySelector('[data-btn]'), 'Request Sent'); }
     },
     'win-route': {
       reset: function (v) { v.querySelector('[data-lines]').innerHTML = ''; },
@@ -109,7 +114,7 @@
         if (!alive()) return; c.textContent = '41 / 41 required fields';
         await wait(400); await press(v.querySelector('[data-btn]'), 'Sent');
       },
-      end: function (v) { fillInputs(v); v.querySelector('[data-count]').textContent = '41 / 41 required fields'; var b = v.querySelector('[data-btn]'); b.textContent = 'Sent'; b.classList.add('is-done'); }
+      end: function (v) { fillInputs(v); v.querySelector('[data-count]').textContent = '41 / 41 required fields'; setDone(v.querySelector('[data-btn]'), 'Sent'); }
     },
     'win-check': {
       reset: function (v) { qa('[data-checks] li', v).forEach(function (li) { li.classList.remove('is-ok'); }); v.querySelector('[data-approved]').classList.remove('is-on'); },
