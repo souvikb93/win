@@ -2495,3 +2495,7 @@ a.cx-card:hover { box-shadow: var(--card-shadow-hover), inset 0 0 0 1px var(--li
 /* press: nine covers at 4:3 so the whole image shows */
 .gx-tile { aspect-ratio: 4 / 3; }
 .gx-tile img { object-position: center top; }
+
+/* press: all three columns share one rhythm (same gap, rows line up) */
+.gx-col--mid { margin-top: 0; }
+html { overscroll-behavior-y: none; }
