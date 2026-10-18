@@ -2499,3 +2499,17 @@ a.cx-card:hover { box-shadow: var(--card-shadow-hover), inset 0 0 0 1px var(--li
 /* press: all three columns share one rhythm (same gap, rows line up) */
 .gx-col--mid { margin-top: 0; }
 html { overscroll-behavior-y: none; }
+
+/* press v3: card = cover on top, source + headline always visible underneath */
+.gx-tile { aspect-ratio: auto; display: flex; flex-direction: column; background: var(--surface); }
+.gx-tile img { height: auto; aspect-ratio: 4 / 3; flex: none; clip-path: inset(0); }
+.gx-cap { position: static; transform: none; opacity: 1; background: none; color: var(--ink);
+  padding: 14px 18px 18px; gap: 6px; align-content: start; min-height: calc(12px * 1.3 + 6px + 2 * 1.3 * clamp(14px, 1.2vw, 17px) + 32px); }
+.gx-cap small { color: var(--ink-3); font-size: 12px; letter-spacing: .06em; line-height: 1.3; }
+.gx-cap b { font-size: clamp(14px, 1.2vw, 17px); line-height: 1.3; font-weight: 600; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.gx-intro { padding-bottom: clamp(48px, 9vh, 104px); }
+@media (max-width: 700px) { .gx-cap { padding: 8px 8px 10px; min-height: 0; } .gx-cap small { display: block; font-size: 8px; letter-spacing: .02em; } .gx-cap b { font-size: 10px; -webkit-line-clamp: 3; } }
+
+/* press cursor label: must stay out of the page flow (restores the rule lost in an earlier cleanup; it was adding scrollable space under the footer) */
+.cursor { position: fixed; left: 0; top: 0; z-index: 120; pointer-events: none; opacity: 0; transition: opacity .2s; }
+@media (max-width: 700px) { .gx-cap { min-height: 104px; } .gx-cap small { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; } }

@@ -330,3 +330,5 @@ The testimonials sub-heading stays on one line above 900px wide (wraps on smalle
 - Eyebrows on press cards (publication · date on the hover caption, kicker on typographic cards) are white on dark/violet and navy on light cards, 12px, never light purple.
 - Tile frame is 4:3, nine tiles in three columns (rows read left to right). Cover images 1600 x 1191 px WebP (source 1720 x 1280, scaled), named `news-01..09.webp`. Each tile links to the original article (new tab).
 - Press grid: three columns move together (no staggered middle column), so rows line up and every tile gap is the same (14px max, both directions). Page has no elastic overscroll (`overscroll-behavior-y: none`) so no blank band can show under the footer.
+- Never delete the base `.cursor { position: fixed … }` rule: without it the press cursor label sits in the page flow and the pointer position makes the page scrollable below the footer.
+- Press cards: cover (4:3) on top, then source · date (12px muted caps) and a Title Case headline (17px/600, max two lines) always visible, in a fixed-height caption so every card is the same size. Header intro has a larger gap above the gallery.
