@@ -232,3 +232,5 @@ Data & Privacy page was removed (owner request). The security cards no longer ex
 **Footer:** no Log in link. No bottom bar (copyright / "Concept redesign" line removed); roomier footer padding. The CTA card is taller with equal gaps above and below; card + footer fit one screen at 1440x900.
 
 **Side edge:** nav, announcement bar and footer share one left/right edge, `--edge: clamp(20px, 3vw, 48px)` (43px at 1440, 20px on phones). The announcement content is left-aligned from that edge, its close icon sits on the right edge, and the footer is full width inside the same edge.
+
+**Hero floating cards:** show product advantages, not events. Title first, short line under it: Automatic ERP Updates / Direct Data Transfer; Built-In Data Validation / Fewer Missing Fields; Cross-Platform Integration. They appear one after another around the device (existing cycle in `js/home.js`).

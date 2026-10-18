@@ -1951,3 +1951,8 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
   @keyframes ecoDrop { from { opacity: 0; transform: translateY(-8px) scale(.97); } to { opacity: 1; transform: none; } }
 }
 @media (prefers-reduced-motion: reduce) { .eco-orbit .eco-core::after, .orbit-lines circle { transition: none !important; } }
+
+/* Hero floating cards: advantages (title first, short line under it) */
+.float { align-items: center; }
+.float b { font-size: 15px; }
+.float small { margin-top: 3px; font-family: var(--font); font-size: 13px; letter-spacing: 0; text-transform: none; font-weight: 400; color: var(--ink-2); }
