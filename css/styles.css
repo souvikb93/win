@@ -1980,9 +1980,6 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 }
 .float-1 { top: 11%; } .float-3 { top: 72%; }
 .float-icon svg * { transform-box: fill-box; }
-/* automatic ERP updates: the two arrows turn a half circle, pause, and turn again */
-.sync-arrows { transform-origin: 12px 12px; animation: icoSync 4.8s cubic-bezier(.65, 0, .35, 1) infinite; }
-@keyframes icoSync { 0%, 22% { transform: rotate(0); } 50%, 72% { transform: rotate(180deg); } 100% { transform: rotate(360deg); } }
 /* built-in validation: the check mark draws in, holds, and wipes out */
 .check-mark { stroke-dasharray: 9; animation: icoCheck 3.6s ease-in-out infinite; }
 @keyframes icoCheck { 0%, 8% { stroke-dashoffset: 9; } 38%, 78% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 9; } }
@@ -1991,7 +1988,7 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .link-b { animation: icoLinkB 3.8s ease-in-out infinite; }
 @keyframes icoLinkA { 0%, 12% { transform: translate(1.8px, -1.8px); } 42%, 72% { transform: translate(0, 0); } 100% { transform: translate(1.8px, -1.8px); } }
 @keyframes icoLinkB { 0%, 12% { transform: translate(-1.8px, 1.8px); } 42%, 72% { transform: translate(0, 0); } 100% { transform: translate(-1.8px, 1.8px); } }
-@media (prefers-reduced-motion: reduce) { .sync-arrows, .check-mark, .link-a, .link-b { animation: none; } .check-mark { stroke-dasharray: none; } }
+@media (prefers-reduced-motion: reduce) { .loop-run, .check-mark, .link-a, .link-b { animation: none; } .check-mark { stroke-dasharray: none; } }
 
 /* Page ending: the CTA card and the (shorter) footer fit in one viewport together */
 .cta-end { padding-bottom: clamp(40px, 7vh, 72px); }
@@ -2015,3 +2012,16 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 /* Footer: bottom bar is back, with more air in the footer; the CTA card keeps its size */
 .footer { padding: clamp(56px, 8vh, 80px) 0 clamp(28px, 4vh, 40px); }
 .footer-bottom { margin-top: clamp(40px, 6vh, 56px); padding-top: 24px; }
+
+/* Automatic ERP updates: the "infinity" loop icon from useanimations.com (Lottie "infinity", 4 s): a faint track with a
+   dark stroke that grows, runs round the loop four times and settles. Rebuilt as an SVG dash animation. */
+.ico-loop svg { width: 26px; height: 26px; }
+.ico-loop path { stroke: var(--violet); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+.loop-track { opacity: .3; }
+.loop-run { stroke-dasharray: 1 0; animation: icoLoop 4s infinite; }
+@keyframes icoLoop {
+  0%      { stroke-dasharray: 1 0;     stroke-dashoffset: 0;     animation-timing-function: cubic-bezier(.3, 0, .7, 1); }
+  16.7%   { stroke-dasharray: .1 .9;   stroke-dashoffset: -1.8;  animation-timing-function: linear; }
+  44.2%   { stroke-dasharray: .1 .9;   stroke-dashoffset: -3.28; animation-timing-function: cubic-bezier(.3, 0, .7, 1); }
+  74.2%, 100% { stroke-dasharray: 1 0; stroke-dashoffset: -4; }
+}

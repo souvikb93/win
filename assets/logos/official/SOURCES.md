@@ -9,3 +9,4 @@ Downloaded on 2026-10-17 with the owner's approval, from each company's own webs
 
 Still on the 140×100 win.wine versions (no official download found): Hawesko, AMKA, Winedock, Döllerer, Ersan Weine.
 - hawesko.svg: supplied by owner (Downloads/logo.svg), 2026-10-17; recoloured navy in mono/hawesko.svg
+- ersan.svg: supplied by owner (Downloads/ersan_weine_logo_exact.svg, 2026-10-18); a 498x122 PNG wrapped in SVG, rebuilt as navy mono/ersan.png (6x, tight crop)
