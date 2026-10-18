@@ -306,3 +306,9 @@ The testimonials sub-heading stays on one line above 900px wide (wraps on smalle
 **Roles rotation pauses while the pointer is on the card** (not only on the pills): the three roles stop switching, the preview inside keeps looping, and rotation resumes about 3 s after the pointer leaves.
 
 **Audience heading line break:** "One Platform for the Entire" / "Beverage Industry." (forced break on desktop, keeps "Beverage Industry" together; wraps naturally on phones).
+
+**German version (Deutsch):** the whole site (all four pages, nav, footer, animations, typed text, form messages, alt texts, meta) has a German version. The language menu lists "English" and "Deutsch" in full; the nav button shows EN / DE. Choice is stored in localStorage ("win-lang", or `?lang=de`) and the page reloads in that language.
+- English stays the source text in HTML and JS. German lives in `js/lang-de.js` (key = exact English string, whitespace collapsed; `patterns` for strings with numbers). `js/i18n.js` swaps text nodes and the attributes alt, aria-label, placeholder, title, data-type, data-cursor and the meta description, and a MutationObserver translates text that scripts add later. `data-de="..."` on an element overrides one word with several meanings (the mail avatar initials).
+- **Every new visible string must be added to `js/lang-de.js`**, including strings built in JS. Strings that are typed character by character must be translated before typing (`WINi18n.t()`).
+- Tone: formal "Sie", natural German, not word for word. Merchant = Händler, producer = Produzent, supplier = Lieferant, agency = Agentur. Kept as in German business use: ERP, GTIN, PPWR, GDSN, B2B/B2C, Category Manager, Newsletter, company and person names. German number format (0,75 l, 12.000+). Press titles use the original German article titles.
+- Check German layouts after copy changes: headings are longer. Role cards are 600px high in German.

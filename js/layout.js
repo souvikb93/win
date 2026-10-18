@@ -6,13 +6,15 @@
   var home = page === 'home' ? '' : 'index.html';
   /* Languages: add an entry here when a translation is ready. */
   var LANGS = [
-    { code: 'en', short: 'EN', name: 'English', ready: true },
-    { code: 'de', short: 'DE', name: 'Deutsch', ready: false }
+    { code: 'en', short: 'EN', name: 'English' },
+    { code: 'de', short: 'DE', name: 'Deutsch' }
   ];
+  var CUR = (window.WINi18n && window.WINi18n.lang) || 'en';
+  var CURL = LANGS.filter(function (l) { return l.code === CUR; })[0];
   function langOptions() {
     return LANGS.map(function (l) {
-      return '<button type="button" class="lang-opt' + (l.code === 'en' ? ' is-active' : '') + '" role="option" aria-selected="' + (l.code === 'en') + '" data-lang="' + l.code + '">' +
-        '<span>' + l.short + ' — ' + l.name + '</span>' + (l.ready ? '' : '<small>Soon</small>') + '</button>';
+      return '<button type="button" class="lang-opt' + (l.code === CUR ? ' is-active' : '') + '" role="option" aria-selected="' + (l.code === CUR) + '" data-lang="' + l.code + '" lang="' + l.code + '">' +
+        '<span>' + l.name + '</span></button>';
     }).join('');
   }
   /* The contact page carries no customer-login links */
@@ -41,8 +43,8 @@
         '<nav class="nav-links" aria-label="Main">' + navLinks() + '</nav>' +
         '<div class="nav-actions">' +
           '<div class="lang-dd" id="langDd">' +
-            '<button type="button" class="lang-trigger" aria-haspopup="listbox" aria-expanded="false" aria-label="Language: English">' +
-              '<span class="lang-current">EN</span>' +
+            '<button type="button" class="lang-trigger" aria-haspopup="listbox" aria-expanded="false" aria-label="Language: ' + CURL.name + '">' +
+              '<span class="lang-current">' + CURL.short + '</span>' +
               '<svg viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg>' +
             '</button>' +
             '<div class="lang-menu" role="listbox" aria-label="Language">' + langOptions() + '</div>' +
@@ -56,8 +58,7 @@
         loginMobile +
         '<a class="btn btn-primary" href="contact.html?topic=demo">Book a demo</a>' +
       '</div>' +
-    '</header>' +
-    '<div class="lang-notice" role="status" aria-live="polite">Die deutsche Version folgt in Kürze. The German version is coming soon.</div>';
+    '</header>';
 
   var footer =
     '<footer class="footer">' +
@@ -108,11 +109,9 @@
     a.addEventListener('click', function () { nav.classList.remove('is-open'); burger.setAttribute('aria-expanded', 'false'); });
   });
 
-  /* Language menu. Only English is ready; picking another language shows a notice. */
+  /* Language menu: English and Deutsch, shown with their full names. Picking one stores the choice and reloads in that language. */
   var dd = document.getElementById('langDd');
   var trigger = dd.querySelector('.lang-trigger');
-  var notice = document.querySelector('.lang-notice');
-  var noticeTimer;
   function setOpen(open) {
     dd.classList.toggle('is-open', open);
     trigger.setAttribute('aria-expanded', String(open));
@@ -120,13 +119,9 @@
   trigger.addEventListener('click', function (e) { e.stopPropagation(); setOpen(!dd.classList.contains('is-open')); });
   dd.querySelector('.lang-menu').addEventListener('click', function (e) {
     var opt = e.target.closest('.lang-opt'); if (!opt) return;
-    var lang = LANGS.filter(function (l) { return l.code === opt.getAttribute('data-lang'); })[0];
+    var code = opt.getAttribute('data-lang');
     setOpen(false);
-    if (lang && !lang.ready) {
-      notice.classList.add('is-visible');
-      clearTimeout(noticeTimer);
-      noticeTimer = setTimeout(function () { notice.classList.remove('is-visible'); }, 3200);
-    }
+    if (code !== CUR && window.WINi18n) window.WINi18n.setLang(code);
   });
   document.addEventListener('click', function (e) { if (!dd.contains(e.target)) setOpen(false); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { setOpen(false); } });

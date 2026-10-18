@@ -47,6 +47,7 @@
     ['09:41:03', '<span class="ok">Notification sent to the producer</span>'],
     ['09:41:03', 'Waiting for the producer ...']
   ];
+  CODE = CODE.map(function (l) { return [l[0], window.WINi18n ? window.WINi18n.t(l[1]) : l[1]]; });
   function codeSegments(html) {
     var d = document.createElement('div'); d.innerHTML = html; var out = [];
     Array.prototype.forEach.call(d.childNodes, function (n) { out.push({ text: n.textContent, cls: n.nodeType === 1 ? n.className : '' }); });

@@ -16,6 +16,8 @@ Concept redesign of win.wine for EuvinoPRO, built as a portfolio piece. Static H
 9. **No eyebrow labels** above headings. Section headers in **Title Case**. Hero headline on two lines on desktop.
 10. Top nav = pages only (Home, Solution, Press, Contact). No side section navigation. Language = "EN ⌄" dropdown.
 
+11. **Two languages (English, Deutsch).** Every new visible string, including strings built in JS, needs an entry in `js/lang-de.js` (see DESIGN_SYSTEM.md, German version). Check both languages.
+
 ## How to work here
 - Owner dictates by voice; parse for intent. For larger design changes, **suggest first, then build** when asked to ("suggest before building").
 - Verify before saying done: visible preview pane, hard-reloaded assets, 1440×900, 1366×768 and 375×812, measure with the DOM, no console errors. State plainly what was not watched in real time.

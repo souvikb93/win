@@ -2405,3 +2405,8 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 @media (min-width: 1001px) { .role-panel { min-height: 560px; } }
 .nw { white-space: nowrap; }
 @media (max-width: 700px) { .h-br { display: none; } }
+
+/* German: hide the page for an instant while the text is swapped in, so English never flashes */
+.i18n-wait body { visibility: hidden; }
+html[lang="de"] .role-panel { min-height: 600px; }
+@media (min-width: 701px) and (max-width: 1000px) { html[lang="de"] .role-panel { min-height: 880px; } }

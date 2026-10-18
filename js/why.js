@@ -75,7 +75,7 @@
     }
     function finalState() {
       setVal(f.gtin, '4006381333931'); state(f.gtin, 'is-ok', 'Valid');
-      setVal(f.size, '0.75 L'); state(f.size, 'is-ok', 'Valid');
+      setVal(f.size, window.WINi18n.t('0.75 L')); state(f.size, 'is-ok', 'Valid');
       setVal(f.country, 'Empty', true); state(f.country, 'is-err', 'Required');
       setProgress(2);
     }
@@ -84,7 +84,7 @@
       await wait(700);
       await type(f.gtin, '4006381333931', alive, 60); if (!alive()) return; state(f.gtin, 'is-ok', 'Valid'); setProgress(1);
       await wait(600); if (!alive()) return;
-      await type(f.size, '0.75 L', alive, 110); if (!alive()) return; state(f.size, 'is-ok', 'Valid'); setProgress(2);
+      await type(f.size, window.WINi18n.t('0.75 L'), alive, 110); if (!alive()) return; state(f.size, 'is-ok', 'Valid'); setProgress(2);
       await wait(800); if (!alive()) return;
       state(f.country, 'is-err', 'Required');
       await wait(3600);
