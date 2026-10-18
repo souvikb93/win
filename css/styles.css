@@ -2079,3 +2079,29 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 
 /* Logos share one optical middle line: --dy nudges a logo whose ink is not centred in its own box (set per logo in index.html) */
 .logo-tile img, .logo-splash { translate: 0 var(--dy, 0px); }
+
+/* Cross-platform integration: the "layers" icon from useanimations.com (its hover motion, Lottie "layers"), played as a loop on the
+   same 4 s clock as the infinity icon: the layers lift apart and settle through the first ~74 %, then rest. */
+.ico-layers svg { width: 22px; height: 22px; }
+.ico-layers path { stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+.layer-top { animation: layerTop 4s infinite; }
+.layer-mid { animation: layerMid 4s infinite; }
+.layer-bot { animation: layerBot 4s infinite; }
+@keyframes layerTop {
+  0%      { transform: translateY(0);    animation-timing-function: cubic-bezier(.42, 0, .58, 1); }
+  23%, 38.4% { transform: translateY(-3px); animation-timing-function: cubic-bezier(.42, 0, .58, 1); }
+  61.4%   { transform: translateY(.4px); animation-timing-function: cubic-bezier(.42, 0, .58, 1); }
+  74.2%, 100% { transform: translateY(0); }
+}
+@keyframes layerMid {
+  0%, 5.1% { transform: translateY(0);    animation-timing-function: cubic-bezier(.42, 0, .58, 1); }
+  28.1%, 40.9% { transform: translateY(-1.5px); animation-timing-function: cubic-bezier(.42, 0, .58, 1); }
+  64%     { transform: translateY(.3px); animation-timing-function: cubic-bezier(.42, 0, .58, 1); }
+  76.8%, 100% { transform: translateY(0); }
+}
+@keyframes layerBot {
+  0%, 10.2% { transform: translateY(0);   animation-timing-function: cubic-bezier(.42, 0, .58, 1); }
+  33.3%   { transform: translateY(.5px); animation-timing-function: cubic-bezier(.42, 0, .58, 1); }
+  66.5%, 100% { transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) { .layer-top, .layer-mid, .layer-bot { animation: none; } }
