@@ -325,3 +325,7 @@ The testimonials sub-heading stays on one line above 900px wide (wraps on smalle
 - Contact top section is exactly one viewport tall on desktop (100vh minus nav); form spacing scales with viewport height, extra compact under 760px height. FAQ starts below the fold.
 - Contact audit: h1 uses the system scale clamp(40px,5.2vw,72px); info cards and form card use the shared card language (20px radius, `--card-shadow`, hairline); form card padding 32px; inputs 44px/12px radius; labels 14px/600, "(optional)" 14px/400 grey.
 - Contact background is one continuous layer: the form section's glow and dots fade out into the FAQ; no border line between them.
+
+## Press page cards
+- Eyebrows on press cards (publication · date on the hover caption, kicker on typographic cards) are white on dark/violet and navy on light cards, 12px, never light purple.
+- Tile frame is 16:11 (all tiles). Cover images: 1600 x 1100 px, JPG/WebP, under ~250 KB. Keep key content inside the central 90% (rounded corners, hover zoom 1.04, caption gradient over the bottom 35%).
