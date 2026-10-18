@@ -2070,3 +2070,9 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .logo-tile.is-hot .logo-splash { --r: 170px; }
 @media (hover: none) { .logo-splash { display: none; } }
 @media (prefers-reduced-motion: reduce) { .logo-splash { transition: none; } }
+
+/* Hero card icons: solid brand violet tile, white loop icons */
+.float-icon, .float-icon.violet, .float-icon.teal, .float-icon.amber { background: var(--violet); }
+.float-icon svg, .float-icon.violet svg, .float-icon.teal svg, .float-icon.amber svg { stroke: #fff; }
+.ico-loop path { stroke: #fff; }
+.loop-track { opacity: .35; }

@@ -242,3 +242,5 @@ Data & Privacy page was removed (owner request). The security cards no longer ex
 **Hero card timing:** arrival is tied to how far the device has come into view, not to each card's own position. The three cards stagger in (right, left, right) and are all fully in by the moment the whole device is in the viewport. The first card sits level with the search bar on the right, below the fold at load.
 
 **Customer logo hover:** hovering a logo paints a splash of brand violet that follows the pointer, painted only inside the logo's own shape (an overlay `.logo-splash` masked by the logo image, radial gradient at the pointer, radius grows to 170px over .55 s and shrinks on leave). The marquee never pauses. Hidden on touch devices. Logic at the end of the logo carousel block in `js/home.js`.
+
+**Hero card icons:** solid brand-violet tile with white line icons (all three, including the looping infinity icon). No teal or tinted tiles.
