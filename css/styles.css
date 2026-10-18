@@ -2059,3 +2059,14 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 /* Hero card 1 sits lower, level with the search bar on the right of the device, so it is not on screen at first load */
 .float-1 { top: 34%; } .float-2 { top: 52%; } .float-3 { top: 74%; }
 @media (max-width: 900px) { .float-1 { top: 30%; } .float-3 { top: auto; } }
+
+/* Customer logos: hover paints a splash of brand violet that follows the pointer, only inside the logo shape */
+@property --r { syntax: "<length>"; inherits: true; initial-value: 0px; }
+.logo-tile { position: relative; }
+.logo-splash { position: absolute; pointer-events: none; --r: 0px; --mx: 50%; --my: 50%;
+  background: radial-gradient(circle var(--r) at var(--mx) var(--my), var(--violet) 0%, var(--violet) 55%, rgba(88,68,255,0) 100%);
+  -webkit-mask: var(--mask) center / contain no-repeat; mask: var(--mask) center / contain no-repeat;
+  transition: --r .55s cubic-bezier(.22, 1, .36, 1); }
+.logo-tile.is-hot .logo-splash { --r: 170px; }
+@media (hover: none) { .logo-splash { display: none; } }
+@media (prefers-reduced-motion: reduce) { .logo-splash { transition: none; } }

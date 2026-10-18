@@ -101,6 +101,29 @@
       c.querySelector('img').alt = '';
       track.appendChild(c);
     });
+
+    /* hover: a splash of brand violet blooms under the pointer, painted only inside the logo's own shape */
+    var tiles = Array.prototype.slice.call(track.querySelectorAll('.logo-tile'));
+    tiles.forEach(function (t) { var s = document.createElement('span'); s.className = 'logo-splash'; s.setAttribute('aria-hidden', 'true'); t.appendChild(s); });
+    function fitSplash(t) {
+      var img = t.querySelector('img'), s = t.querySelector('.logo-splash'); if (!img || !s || !img.offsetWidth) return;
+      s.style.left = img.offsetLeft + 'px'; s.style.top = img.offsetTop + 'px'; s.style.width = img.offsetWidth + 'px'; s.style.height = img.offsetHeight + 'px';
+      s.style.setProperty('--mask', 'url("' + (img.currentSrc || img.src) + '")');
+    }
+    function fitAll() { tiles.forEach(fitSplash); }
+    tiles.forEach(function (t) { var img = t.querySelector('img'); if (img.complete) fitSplash(t); else img.addEventListener('load', function () { fitSplash(t); }); });
+    window.addEventListener('resize', fitAll);
+    track.addEventListener('pointermove', function (e) {
+      if (e.pointerType === 'touch') return;
+      var t = e.target.closest ? e.target.closest('.logo-tile') : null; if (!t) return;
+      var s = t.querySelector('.logo-splash'), r = s.getBoundingClientRect();
+      s.style.setProperty('--mx', (e.clientX - r.left).toFixed(1) + 'px'); s.style.setProperty('--my', (e.clientY - r.top).toFixed(1) + 'px');
+      t.classList.add('is-hot');
+    });
+    track.addEventListener('pointerout', function (e) {
+      var t = e.target.closest ? e.target.closest('.logo-tile') : null;
+      if (t && !t.contains(e.relatedTarget)) t.classList.remove('is-hot');
+    });
   }
 
   /* How it works lives on the Solution page (js/solution.js) */
