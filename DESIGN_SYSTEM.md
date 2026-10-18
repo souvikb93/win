@@ -296,3 +296,5 @@ The testimonials sub-heading stays on one line above 900px wide (wraps on smalle
 **Solution step copy v3:** headings Merchant Creates a New Article in ERP; ERP Sends a Product Request to WIN; WIN Notifies the Producer of a New Request; Producer Provides the Product Information; Product Data Is Submitted to WIN; WIN Transfers Product Data to the Merchant’s ERP. Step 4 window header "Provide Product Information". Bodies as supplied by the owner (no repetition of the heading).
 
 **One Network, Three Roles v2:** one card per role (left: heading, intro and three points; right: the live view on a soft background, split by a hairline). All three cards are the same size (1152 x 520 at 1440 wide; stacked and equal on tablet). Tabs are a centred segmented pill control (white track, navy active pill). No progress bar under the tabs; rotation still runs every 7 s.
+
+**Solution page widths:** the intro paragraph is 900px wide on desktop (two lines); each step body text is exactly as wide as its browser window (680px max).

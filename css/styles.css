@@ -2360,3 +2360,7 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .role-visual .rv2-rule, .role-visual .rv2-chip { background: var(--surface); }
 .role-visual .rv2-stage { gap: 12px; }
 @media (min-width: 701px) and (max-width: 1000px) { .role-panel { min-height: 840px; } }
+
+/* Solution page: intro on two lines, step text exactly as wide as its browser window */
+@media (min-width: 901px) { .sol-intro .lead { max-width: 900px; } }
+.tl-body p { max-width: 680px; }
