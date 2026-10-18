@@ -2,6 +2,10 @@
 window.WIN_DE = {
  dict: {
  "Home": "Start",
+ "Workflow": "Workflow",
+ "Workflow | WIN by EuvinoPRO": "Workflow | WIN von EuvinoPRO",
+ "View workflow": "Workflow ansehen",
+ "See How WIN Connects Merchants and Producers.": "So verbindet WIN Händler und Produzenten.",
  "Solution": "Lösung",
  "Press": "Presse",
  "Contact": "Kontakt",
