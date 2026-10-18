@@ -260,3 +260,5 @@ Testimonial controls are the three dots only (no arrows); the carousel also auto
 **Section rhythm:** Testimonials has the same 140px bottom padding as other sections, so the gap before the closing card matches the others.
 
 **Testimonials copy:** heading "Better Product Data Starts Here." with sub-heading "200+ product attributes. One connected data workflow." First quote: "Product requests are clearer, data is easier to manage, and we spend less time chasing information." (Lena Hartmann, Nordwein Handel; the other two quotes are unchanged placeholders.)
+
+**Testimonial attribution:** name in bold, then one line "Role, Company" in Title Case, same font and colour (no violet company name).
