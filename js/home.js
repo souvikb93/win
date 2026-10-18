@@ -9,7 +9,7 @@
     var vh = window.innerHeight;
     floats.forEach(function (f) {
       var top = f.getBoundingClientRect().top;
-      var p = reduceMotion ? 1 : Math.min(1, Math.max(0, (vh * 0.94 - top) / (vh * 0.42)));
+      var p = reduceMotion ? 1 : Math.min(1, Math.max(0, (vh * 0.78 - top) / (vh * 0.4)));
       /* once a card has come in it stays: scrolling back up does not take it away */
       p = Math.max(p, parseFloat(f.getAttribute('data-p')) || 0);
       f.setAttribute('data-p', p.toFixed(3));
