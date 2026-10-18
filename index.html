@@ -137,17 +137,17 @@
             <div class="stack-copy">
               <span class="tile-tag">Fast</span>
               <h3>From Request to Ready-to-Use Data<span class="dot">.</span></h3>
-              <p>WIN routes product requests to the right supplier and transfers completed product information directly into the retailer's connected ERP system. No repeated manual data entry.</p>
+              <p>WIN routes requests to the right supplier and sends completed product data directly to your connected ERP. No manual re-entry.</p>
             </div>
             <div class="stack-visual">
-              <div class="ui ui-activity" aria-hidden="true">
-                <div class="ui-head"><b>Product request</b><span class="ui-sub">From trader to producer</span><span class="ui-count" data-act-status>In progress</span></div>
+              <div class="ui ui-activity" data-static aria-hidden="true">
+                <div class="ui-head"><b>Product Request from Trader to Producer</b><span class="ui-count is-ready" data-act-status>Ready to Use</span></div>
                 <ol class="act">
-                  <li><span class="act-dot"></span><span class="act-who">Trader ERP</span><span class="act-msg">Product request created</span><span class="act-state"></span></li>
-                  <li><span class="act-dot"></span><span class="act-who is-win">WIN</span><span class="act-msg">Request forwarded to supplier</span><span class="act-state"></span></li>
-                  <li><span class="act-dot"></span><span class="act-who">Producer</span><span class="act-msg">Product information submitted</span><span class="act-state"></span></li>
-                  <li><span class="act-dot"></span><span class="act-who is-win">WIN</span><span class="act-msg">Product data checked for completeness</span><span class="act-state"></span></li>
-                  <li><span class="act-dot"></span><span class="act-who">Trader ERP</span><span class="act-msg">Product information received</span><span class="act-state"></span></li>
+                  <li class="is-done"><span class="act-dot"></span><span class="act-who">Trader ERP</span><span class="act-msg">Product Request Created</span><span class="act-state">Done</span></li>
+                  <li class="is-done"><span class="act-dot"></span><span class="act-who is-win">WIN</span><span class="act-msg">Request Forwarded to Supplier</span><span class="act-state">Done</span></li>
+                  <li class="is-done"><span class="act-dot"></span><span class="act-who">Producer</span><span class="act-msg">Product Data Submitted</span><span class="act-state">Done</span></li>
+                  <li class="is-done"><span class="act-dot"></span><span class="act-who is-win">WIN</span><span class="act-msg">Data Checked for Completeness</span><span class="act-state">Done</span></li>
+                  <li class="is-done is-final"><span class="act-dot"></span><span class="act-who">Trader ERP</span><span class="act-msg">Product Data Received</span><span class="act-state">Done</span></li>
                 </ol>
               </div>
             </div>

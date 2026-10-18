@@ -2176,3 +2176,10 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
   .stack-card { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
 }
 @media (min-width: 601px) and (max-width: 1000px) { .stack-copy h3 { white-space: nowrap; } }
+
+/* Fast card: static finished state. Every step done, the last one highlighted. */
+.ui-activity[data-static] .ui-head > b { white-space: nowrap; font-size: 15px; }
+.act li.is-final { background: var(--accent-soft); }
+.act li.is-final .act-msg { font-weight: 600; }
+.act li.is-final .act-state { font-weight: 600; }
+@media (max-width: 700px) { .ui-activity[data-static] .ui-head > b { white-space: normal; } }

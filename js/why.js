@@ -97,7 +97,7 @@
 
   /* ---------- Fast ---------- */
   var act = document.querySelector('.ui-activity');
-  if (act) {
+  if (act && !act.hasAttribute('data-static')) {
     var rows = Array.prototype.slice.call(act.querySelectorAll('.act li'));
     var pill = act.querySelector('[data-act-status]');
     function setRow(li, st) {
