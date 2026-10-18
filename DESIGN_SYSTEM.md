@@ -341,3 +341,6 @@ The testimonials sub-heading stays on one line above 900px wide (wraps on smalle
 
 ## Precise card (animated, replaces the static preview)
 Loops while on screen, one pass: GTIN typed and accepted; bottle size typed as 0.85 L, flagged red ("Not a standard bottle size"), erased and retyped as 0.75 L (accepted); "Germany" typed and accepted (no "Required" flag on country); 3 of 3, bar turns violet, Send to Trader becomes active; then it restarts. Card height never changes. German: 0,85 L / 0,75 L, Deutschland, "Keine übliche Flaschengröße".
+
+## Home: end of the Why WIN stack
+- Gap from the last (Fast) card to "See how WIN works, step by step." is clamp(80px, 8vw, 120px) (115px at 1440), 56px on phones; the button reads "View solution" (matches the nav item "Solution"; German "Lösung ansehen").

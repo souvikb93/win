@@ -2532,3 +2532,13 @@ html[lang="de"] .device-screen.shot-de { display: block; }
 .ui-form[data-static] .ui-progress.is-full em { background: var(--violet); }
 .ui-form[data-static] .ui-send.is-ready { background: var(--violet); color: #fff; cursor: pointer; }
 .ui-form .ui-msg { min-height: 16px; }
+
+/* Why WIN: clear breathing room between the last card and "See how WIN works" */
+.why-more { margin-top: clamp(64px, 8vw, 112px); }
+/* last card sits flush at the end of the stack; the gap to "See how WIN works" is one design-system step */
+@media (min-width: 901px) {
+  .stack-item:last-child { height: auto; }
+  .stack::after { height: 0; }
+  .why-more { margin-top: clamp(80px, 8vw, 120px); }
+}
+@media (max-width: 900px) { .why-more { margin-top: 56px; } }
