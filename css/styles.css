@@ -2323,3 +2323,6 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 
 /* step eyebrows: one consistent label style (desktop side label and phone line) */
 .tl-who, .tl-num-m { text-transform: uppercase; letter-spacing: .05em; font-size: 13px; font-weight: 600; color: var(--violet); }
+
+/* step headings: longer, still one line; the size eases down on narrower screens so the longest always fits */
+@media (min-width: 701px) { .tl-body h3 { font-size: clamp(24px, 2.6vw, 28px); } }
