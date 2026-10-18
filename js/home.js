@@ -9,8 +9,11 @@
     var vh = window.innerHeight;
     floats.forEach(function (f) {
       var top = f.getBoundingClientRect().top;
-      var p = reduceMotion ? 1 : Math.min(1, Math.max(0, (vh * 0.9 - top) / (vh * 0.26)));
-      f.style.setProperty('--p', (1 - Math.pow(1 - p, 3)).toFixed(3));
+      var p = reduceMotion ? 1 : Math.min(1, Math.max(0, (vh * 0.94 - top) / (vh * 0.42)));
+      /* once a card has come in it stays: scrolling back up does not take it away */
+      p = Math.max(p, parseFloat(f.getAttribute('data-p')) || 0);
+      f.setAttribute('data-p', p.toFixed(3));
+      f.style.setProperty('--p', (p * p * (3 - 2 * p)).toFixed(3));
     });
   }
   window.addEventListener('scroll', function () { if (!flTick) { flTick = true; requestAnimationFrame(updateFloats); } }, { passive: true });

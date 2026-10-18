@@ -1971,3 +1971,47 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
   .float-2 { left: calc(50% - 50vw + 24px); right: auto; }
   .float-3 { right: calc(50% - 50vw + 64px); left: auto; }
 }
+
+/* Hero cards, calmer: short eased slide, edge-aligned, stay once in; icons loop gently (after useanimations-style line icons) */
+.float, .float.is-on { transform: translateX(calc((1 - var(--p, 0)) * var(--dir, 1) * 44px)); }
+@media (min-width: 1001px) {
+  .float-1, .float-3 { right: calc(50% - 50vw + var(--edge)); left: auto; }
+  .float-2 { left: calc(50% - 50vw + var(--edge)); right: auto; }
+}
+.float-1 { top: 11%; } .float-3 { top: 72%; }
+.float-icon svg * { transform-box: fill-box; }
+/* automatic ERP updates: the two arrows turn a half circle, pause, and turn again */
+.sync-arrows { transform-origin: 12px 12px; animation: icoSync 4.8s cubic-bezier(.65, 0, .35, 1) infinite; }
+@keyframes icoSync { 0%, 22% { transform: rotate(0); } 50%, 72% { transform: rotate(180deg); } 100% { transform: rotate(360deg); } }
+/* built-in validation: the check mark draws in, holds, and wipes out */
+.check-mark { stroke-dasharray: 9; animation: icoCheck 3.6s ease-in-out infinite; }
+@keyframes icoCheck { 0%, 8% { stroke-dashoffset: 9; } 38%, 78% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 9; } }
+/* cross-platform integration: the two link halves slide together, hold, and part */
+.link-a { animation: icoLinkA 3.8s ease-in-out infinite; }
+.link-b { animation: icoLinkB 3.8s ease-in-out infinite; }
+@keyframes icoLinkA { 0%, 12% { transform: translate(1.8px, -1.8px); } 42%, 72% { transform: translate(0, 0); } 100% { transform: translate(1.8px, -1.8px); } }
+@keyframes icoLinkB { 0%, 12% { transform: translate(-1.8px, 1.8px); } 42%, 72% { transform: translate(0, 0); } 100% { transform: translate(-1.8px, 1.8px); } }
+@media (prefers-reduced-motion: reduce) { .sync-arrows, .check-mark, .link-a, .link-b { animation: none; } .check-mark { stroke-dasharray: none; } }
+
+/* Page ending: the CTA card and the (shorter) footer fit in one viewport together */
+.cta-end { padding-bottom: clamp(40px, 7vh, 72px); }
+.cta-panel { padding-top: clamp(40px, 7vh, 80px); padding-bottom: clamp(40px, 7vh, 80px); gap: 16px; }
+.footer { padding: clamp(40px, 6vh, 56px) 0 clamp(32px, 5vh, 44px); }
+
+/* One side edge for the nav, the announcement bar and the footer */
+:root { --edge: clamp(20px, 3vw, 48px); }
+.nav-inner { padding-left: var(--edge); padding-right: var(--edge); }
+.announce-row { justify-content: flex-start; padding: 8px calc(var(--edge) + 44px) 8px var(--edge); }
+.announce-text { text-align: left; }
+.announce-close { right: calc(var(--edge) - 9px); }
+.footer .container { max-width: none; padding-left: var(--edge); padding-right: var(--edge); }
+@media (max-width: 700px) { .announce-row { padding: 8px calc(var(--edge) + 36px) 8px var(--edge); } }
+
+/* CTA card: taller, with the same gap above (after testimonials) and below (before the footer) */
+.testi { padding-bottom: clamp(56px, 8vh, 88px); }
+.cta-end { padding-bottom: clamp(56px, 8vh, 88px); }
+.cta-panel { padding-top: clamp(64px, 11vh, 112px); padding-bottom: clamp(64px, 11vh, 112px); }
+
+/* Footer: bottom bar is back, with more air in the footer; the CTA card keeps its size */
+.footer { padding: clamp(56px, 8vh, 80px) 0 clamp(28px, 4vh, 40px); }
+.footer-bottom { margin-top: clamp(40px, 6vh, 56px); padding-top: 24px; }
