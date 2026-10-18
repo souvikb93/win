@@ -2469,3 +2469,8 @@ html[lang="de"] .role-panel { min-height: 600px; }
 @media (min-width: 1001px) { .role-visual .rv2-head span { white-space: nowrap; font-size: 13.5px; } }
 @media (min-width: 1001px) and (max-width: 1279px) { .role-visual .rv2-head span { white-space: normal; } }
 @media (min-width: 1001px) { .role-visual .rv2-head span { font-size: 13px; } }
+
+/* contact v3: four fields, roomier vertical rhythm, compact message box */
+.cx-form-card form { gap: clamp(14px, 2.6vh, 24px); }
+.fld textarea { min-height: clamp(72px, 11vh, 96px); }
+@media (min-width: 1001px) and (max-height: 760px) { .cx-form-card form { gap: 12px; } .fld textarea { min-height: 60px; } }

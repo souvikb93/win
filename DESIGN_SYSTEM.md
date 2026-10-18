@@ -321,5 +321,5 @@ The testimonials sub-heading stays on one line above 900px wide (wraps on smalle
 ## Contact page
 - Info cards: icon + value only (no "Call us / Email us / Visit us" labels), one line each, all 64px tall and equal width.
 - Section label "Contact EuvinoPRO" is Title Case, not uppercase.
-- Form: one field per row (Full name, Email, Company, I'm contacting you as, Message); no helper line under the heading.
+- Form: one field per row (Full name, Email, I'm contacting you as, Message); no helper line under the heading.
 - Contact top section is exactly one viewport tall on desktop (100vh minus nav); form spacing scales with viewport height, extra compact under 760px height. FAQ starts below the fold.
