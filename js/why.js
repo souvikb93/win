@@ -58,7 +58,7 @@
 
   /* ---------- Right ---------- */
   var form = document.querySelector('.ui-form');
-  if (form) {
+  if (form && !form.hasAttribute('data-static')) {
     var f = {}; form.querySelectorAll('.ui-field').forEach(function (el) { f[el.getAttribute('data-f')] = el; });
     var pctEl = form.querySelector('[data-pct]'), bar = form.querySelector('.ui-progress'), statusEl = form.querySelector('[data-status]'), send = form.querySelector('.ui-send');
     function setPct(p, n, warn) {

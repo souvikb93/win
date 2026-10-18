@@ -117,17 +117,17 @@
           <article class="stack-card is-right">
             <div class="stack-copy">
               <span class="tile-tag">Precise</span>
-              <h3>Checked As Data Is Entered<span class="dot">.</span></h3>
-              <p>The product data is checked directly when it is entered. You only import complete, correct data records. In this way, WIN facilitates data entry for your suppliers and you can rely on the data from WIN. The data is entered once digitally and forwarded from system to system without media breaks.</p>
+              <h3>Catch Missing Data Before It Moves On<span class="dot">.</span></h3>
+              <p>WIN checks product information as suppliers enter it, flagging missing or invalid fields before the data reaches your ERP.</p>
             </div>
             <div class="stack-visual">
-              <div class="ui ui-form" aria-hidden="true">
-                <div class="ui-head"><b>Product record</b><span class="ui-sub">Requested by a trader</span></div>
-                <div class="ui-field" data-f="gtin"><label>GTIN</label><div class="ui-input"><span class="ui-val"></span><i class="ui-caret"></i></div><span class="ui-msg"></span></div>
-                <div class="ui-field" data-f="size"><label>Bottle size</label><div class="ui-input"><span class="ui-val"></span><i class="ui-caret"></i></div><span class="ui-msg"></span></div>
-                <div class="ui-field" data-f="country"><label>Country of origin</label><div class="ui-input"><span class="ui-val"></span><i class="ui-caret"></i></div><span class="ui-msg"></span></div>
-                <div class="ui-progress"><span data-status>0 of 3 required fields complete</span><b data-pct>0%</b><i><em></em></i></div>
-                <span class="ui-send">Send to trader</span>
+              <div class="ui ui-form" data-static aria-hidden="true">
+                <div class="ui-head"><b>Product Record Requested by a Trader</b></div>
+                <div class="ui-field is-ok" data-f="gtin"><label>GTIN</label><div class="ui-input"><span class="ui-val">4006381333931</span></div><span class="ui-msg">Valid</span></div>
+                <div class="ui-field is-ok" data-f="size"><label>Bottle Size</label><div class="ui-input"><span class="ui-val">0.75 L</span></div><span class="ui-msg">Valid</span></div>
+                <div class="ui-field is-err" data-f="country"><label>Country of Origin</label><div class="ui-input"><span class="ui-val ui-empty">Empty</span></div><span class="ui-msg">Required</span></div>
+                <div class="ui-progress"><span data-status>2 of 3 Required Fields Complete</span><b data-pct>67%</b><i><em style="width:67%"></em></i></div>
+                <span class="ui-send" aria-disabled="true">Send to Trader</span>
               </div>
             </div>
           </article>

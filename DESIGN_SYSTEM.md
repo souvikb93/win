@@ -264,3 +264,7 @@ Testimonial controls are the three dots only (no arrows); the carousel also auto
 **Testimonial attribution:** name in bold, then one line "Role, Company" in Title Case, same font and colour (no violet company name).
 
 The testimonials sub-heading stays on one line above 900px wide (wraps on smaller screens).
+
+**Precise card (final):** heading "Catch Missing Data Before It Moves On." and body "WIN checks product information as suppliers enter it, flagging missing or invalid fields before the data reaches your ERP." The preview is static: heading "Product Record Requested by a Trader" on one line; GTIN 4006381333931 (Valid), Bottle Size 0.75 L (Valid), Country of Origin (Empty, Required); "2 of 3 Required Fields Complete" 67% (grey bar); "Send to Trader" disabled until all fields are complete. No typing animation.
+
+**Gotcha:** a desktop-only rule appended late (e.g. the Why WIN card two-column grid) overrides earlier mobile rules. Always re-add the mobile override after it and check 375px.

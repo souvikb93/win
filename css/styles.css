@@ -2155,3 +2155,15 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 /* Testimonials sub-heading stays on one line on desktop */
 .testi-head .lead { max-width: none; white-space: nowrap; }
 @media (max-width: 900px) { .testi-head .lead { white-space: normal; max-width: 36em; } }
+
+/* Precise card: static preview, two valid fields and one missing, button disabled until all are complete */
+.ui-form[data-static] .ui-head > b { white-space: nowrap; font-size: 15px; }
+.ui-empty { color: var(--ink-3); font-weight: 400; }
+.ui-form[data-static] .ui-field.is-err .ui-msg { font-weight: 600; }
+.ui-form[data-static] .ui-field.is-ok .ui-msg { font-weight: 600; }
+.ui-form[data-static] .ui-progress em { background: #b6bdcc; }
+.ui-form[data-static] .ui-send { cursor: not-allowed; opacity: 1; }
+@media (max-width: 700px) { .ui-form[data-static] .ui-head > b { white-space: normal; } }
+
+/* Why WIN cards stack to one column on tablet and phone (the wider two-column rule above must not apply there) */
+@media (max-width: 1000px) { .stack-card { grid-template-columns: minmax(0, 1fr); gap: 22px; padding: 28px 22px; } }
