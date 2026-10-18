@@ -298,3 +298,5 @@ The testimonials sub-heading stays on one line above 900px wide (wraps on smalle
 **One Network, Three Roles v2:** one card per role (left: heading, intro and three points; right: the live view on a soft background, split by a hairline). All three cards are the same size (1152 x 520 at 1440 wide; stacked and equal on tablet). Tabs are a centred segmented pill control (white track, navy active pill). No progress bar under the tabs; rotation still runs every 7 s.
 
 **Solution page widths:** the intro paragraph is 900px wide on desktop (two lines); each step body text is exactly as wide as its browser window (680px max).
+
+**Roles v3:** the three tabs are three separate pills (white with a hairline, navy when selected), not one segmented bar. The role card has a real 1px border and its right half uses the soft violet tint (`--accent-soft`) so it never blends into the page background; rows inside are white.

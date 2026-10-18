@@ -2364,3 +2364,18 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 /* Solution page: intro on two lines, step text exactly as wide as its browser window */
 @media (min-width: 901px) { .sol-intro .lead { max-width: 900px; } }
 .tl-body p { max-width: 680px; }
+
+/* Roles v3: three separate pills; the card keeps a real border and its right half has its own tint so it never melts into the page */
+.roles-tabs { width: auto; max-width: 100%; justify-content: center; flex-wrap: wrap; gap: 10px; padding: 0; background: none; box-shadow: none; border-radius: 0; margin: 0 auto 32px; }
+.role-tab { padding: 11px 22px; border-radius: 999px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-strong); color: var(--ink-2); }
+.role-tab:hover { color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink-3); }
+.role-tab[aria-selected="true"] { background: var(--navy); color: #fff; box-shadow: none; }
+.role-panel { box-shadow: var(--card-shadow); border: 1px solid var(--line-strong); }
+.role-visual { background: var(--accent-soft); border-left: 1px solid var(--line-strong); }
+.role-visual .rv2-row, .role-visual .rv2-rule, .role-visual .rv2-chip { background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-strong); }
+.role-visual .rv2-chip.is-ag { background: var(--violet-100); box-shadow: inset 0 0 0 1.5px var(--violet); }
+@media (max-width: 1000px) { .role-visual { border-left: 0; border-top: 1px solid var(--line-strong); } }
+@media (max-width: 700px) {
+  .roles-tabs { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; margin-inline: calc(var(--gutter) * -1); padding: 0 var(--gutter) 4px; }
+  .role-tab { flex-shrink: 0; }
+}
