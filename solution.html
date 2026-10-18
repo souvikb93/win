@@ -34,7 +34,7 @@
         <div class="tl-body">
           <span class="tl-num-m">01 · Merchant</span>
           <h3>Merchant Creates a New Article in ERP</h3>
-          <p>The merchant creates a new article in their ERP, assigns an article number, selects the producer, and enters the relevant product details.</p>
+          <p>The merchant assigns an internal article number, selects the relevant producer, and enters the details needed to identify the product.</p>
           <div class="scr-win tl-scr" data-loop="erp-new" aria-hidden="true">
             <div class="pane-bar"><i></i><i></i><i></i><span class="scr-party"><b>Merchant · ERP</b></span><span class="scr-url">erp / articles / new</span></div>
             <div class="scr-body">
@@ -58,7 +58,7 @@
         <div class="tl-body">
           <span class="tl-num-m">02 · Merchant → WIN</span>
           <h3>ERP Sends a Product Request to WIN</h3>
-          <p>The merchant’s ERP sends a product request to WIN for the missing product information.</p>
+          <p>The request is transmitted digitally from the merchant’s ERP, eliminating the need to contact the supplier separately by email.</p>
           <div class="scr-win tl-scr" data-loop="win-route" aria-hidden="true">
             <div class="pane-bar"><i></i><i></i><i></i><span class="scr-party"><b>WIN · EuvinoPRO</b></span><span class="scr-url">win / requests</span></div>
             <div class="scr-body">
@@ -74,7 +74,7 @@
         <div class="tl-body">
           <span class="tl-num-m">03 · WIN → Producer</span>
           <h3>WIN Notifies the Producer of a New Request</h3>
-          <p>WIN forwards the request to the selected producer, who receives an email notification with access to the request.</p>
+          <p>The selected producer receives an email notification with access to the request and the product information needed.</p>
           <div class="scr-win tl-scr" data-loop="mail" aria-hidden="true">
             <div class="pane-bar"><i></i><i></i><i></i><span class="scr-party"><b>Producer · Inbox</b></span><span class="scr-url">mail / inbox</span></div>
             <div class="scr-body">
@@ -104,13 +104,13 @@
         <div class="tl-side"><span class="tl-dot" aria-hidden="true"><i></i></span><span class="tl-num">04</span><span class="tl-who">Producer</span></div>
         <div class="tl-body">
           <span class="tl-num-m">04 · Producer</span>
-          <h3>Producer Enters the Requested Product Data</h3>
-          <p>The producer provides the requested product information through the WIN web app or directly from their ERP system.</p>
+          <h3>Producer Provides the Product Information</h3>
+          <p>The producer completes the relevant product details in the WIN web app or directly through their ERP system.</p>
           <div class="scr-win tl-scr" data-loop="form" aria-hidden="true">
             <div class="pane-bar"><i></i><i></i><i></i><span class="scr-party"><b>Producer · WIN web app</b></span><span class="scr-url">win / producer / requests / 40-11873</span></div>
             <div class="scr-body">
               <div class="scr-view is-on" data-screen="form">
-                <div class="scr-h"><b>Enter Product Data</b></div>
+                <div class="scr-h"><b>Provide Product Information</b></div>
                 <div class="frm frm-data">
                   <label>Alcohol</label><div class="inp mono" data-type="12.5 % vol"><span class="tv"></span><i class="ui-caret"></i></div>
                   <label>Bottle size</label><div class="inp mono" data-type="0.75 l"><span class="tv"></span><i class="ui-caret"></i></div>
@@ -128,8 +128,8 @@
         <div class="tl-side"><span class="tl-dot" aria-hidden="true"><i></i></span><span class="tl-num">05</span><span class="tl-who">Producer → WIN</span></div>
         <div class="tl-body">
           <span class="tl-num-m">05 · Producer → WIN</span>
-          <h3>Producer Submits Product Data to WIN</h3>
-          <p>The producer submits the completed data to WIN, which checks for missing required fields and completeness.</p>
+          <h3>Product Data Is Submitted to WIN</h3>
+          <p>WIN checks the submitted record against required fields and applicable validation rules, helping identify missing information before import.</p>
           <div class="scr-win tl-scr" data-loop="win-check" aria-hidden="true">
             <div class="pane-bar"><i></i><i></i><i></i><span class="scr-party"><b>WIN · EuvinoPRO</b></span><span class="scr-url">win / validation</span></div>
             <div class="scr-body">
@@ -153,7 +153,7 @@
         <div class="tl-body">
           <span class="tl-num-m">06 · WIN → Merchant ERP</span>
           <h3>WIN Transfers Product Data to the Merchant’s ERP</h3>
-          <p>WIN transfers the complete product record directly into the merchant’s ERP, ready for use.</p>
+          <p>The completed record becomes available in the merchant’s existing system for product setup and further business use, without manually re-entering the information.</p>
           <div class="scr-win tl-scr" data-loop="erp-done" aria-hidden="true">
             <div class="pane-bar"><i></i><i></i><i></i><span class="scr-party"><b>Merchant · ERP</b></span><span class="scr-url">erp / articles / 40-11873</span></div>
             <div class="scr-body">
