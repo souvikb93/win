@@ -2151,3 +2151,7 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 /* Platform heading is longer now: keep it to three lines in the copy column */
 #ecosystem .eco-copy h2 { font-size: clamp(32px, 3.2vw, 44px); line-height: 1.08; }
 .testi-slide figcaption .testi-co { color: inherit; font-weight: inherit; margin-top: 0; }
+
+/* Testimonials sub-heading stays on one line on desktop */
+.testi-head .lead { max-width: none; white-space: nowrap; }
+@media (max-width: 900px) { .testi-head .lead { white-space: normal; max-width: 36em; } }

@@ -262,3 +262,5 @@ Testimonial controls are the three dots only (no arrows); the carousel also auto
 **Testimonials copy:** heading "Trusted Across the Beverage Industry." with sub-heading "12,000+ producers and 300+ retailers and distributors supported by EuvinoPRO" First quote: "Product requests are clearer, data is easier to manage, and we spend less time chasing information." (Lena Hartmann, Nordwein Handel; the other two quotes are unchanged placeholders.)
 
 **Testimonial attribution:** name in bold, then one line "Role, Company" in Title Case, same font and colour (no violet company name).
+
+The testimonials sub-heading stays on one line above 900px wide (wraps on smaller screens).
