@@ -385,11 +385,11 @@ One scale, one set of tokens (`:root` in `css/styles.css`, block "Spacing system
 **Audit result (1440 wide, English):** heading → lead was 26/20/18/16 across pages, now 24 for every H1 and 16 for every H2; logos band was 128/112, now 112/112. Verified on Home, Workflow, Press and Contact; Contact still fits one viewport.
 
 ## Success color (authoritative)
-One green for every success or positive state: valid, complete, done, sent, approved, ready, registered. It replaces the teal that was used for these before.
-- `--success` #16a34a: icons, strokes, small fills.
-- `--success-600` #15803d: text on light backgrounds and filled buttons with white text (AA contrast).
-- `--success-100` #e6f6ec: soft background (pills, tick circles).
-- Dark surfaces (terminal): light green #6ee7a0.
+One emerald green (a cooler green that sits comfortably next to the brand violet) for every success or positive state: valid, complete, done, sent, approved, ready, registered. It replaces the teal that was used for these before.
+- `--success` #10b981: icons, strokes, small fills.
+- `--success-600` #047857: text on light backgrounds and filled buttons with white text (AA contrast).
+- `--success-100` #dcf5ec: soft background (pills, tick circles).
+- Dark surfaces (terminal): light green #6ee7b7.
 - Where it applies: Workflow mockup buttons "Request Sent" / "Sent", "Complete / Prepared / Done" pills, validation ticks and checklists, valid input borders and messages, progress/complete bars, "approved", console "ok" lines, Home Fast card done steps, form success icon.
 - Error stays red (`--red`), in-progress stays violet. Success never uses violet or teal.
 - Teal (`--teal`) remains only for data-flow elements in diagrams (packets, lanes, data records), where it means "data in transit", never "success".
