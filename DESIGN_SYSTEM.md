@@ -351,3 +351,6 @@ Loops while on screen, one pass: GTIN typed and accepted; bottle size typed as 0
 
 ## Shiny button (`.btn-shiny`)
 A light band sweeps across the border and face every 3 seconds (after 21st.dev "Shiny Button"). Used only on Home: "View workflow" (secondary, violet shine) and the closing "Book a demo" (primary on navy, white shine). Not a glow: nothing coloured sits around the button at rest. Off with reduced motion. Do not spread it to other buttons without asking.
+
+## Trust badge (Home, ecosystem section)
+Pill above "Explore EuvinoPRO": three overlapping round portraits (the placeholder testimonial photos) and "Trusted by 12,000+ producers and 300+ businesses" (German "12.000+ Produzenten und 300+ Unternehmen vertrauen uns"). Subtle white-on-navy pill, hairline border, no glow.
