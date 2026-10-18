@@ -1793,7 +1793,7 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 
 /* Customer strip: more air above and below, uppercase label */
 .logos { padding: clamp(80px, 9vw, 128px) 0 clamp(72px, 8vw, 112px); }
-.logos p { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; margin-bottom: 40px; }
+.logos p { font-size: 15px; letter-spacing: .01em; font-weight: 500; margin-bottom: 40px; }
 .why { padding-top: clamp(24px, 3vw, 48px); }
 
 /* Why WIN header: more air between title, lead and the first card (still pinned while cards stack) */
@@ -1902,15 +1902,23 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
   .why-stage .stack-item:last-child { height: auto; min-height: 0; }
 }
 
-/* CTA panel: flowing lines on the dark base, kept away from the text by a soft hole in the mask */
-.cta-panel { position: relative; overflow: hidden; isolation: isolate; }
-.cta-panel > *:not(.cta-paths) { position: relative; z-index: 1; }
-.cta-paths { position: absolute; inset: 0; z-index: 0; pointer-events: none; color: #fff;
-  -webkit-mask-image: radial-gradient(ellipse var(--hrx, 300px) var(--hry, 150px) at var(--hx, 50%) var(--hy, 50%), transparent 78%, #000 100%);
-  mask-image: radial-gradient(ellipse var(--hrx, 300px) var(--hry, 150px) at var(--hx, 50%) var(--hy, 50%), transparent 78%, #000 100%); }
-.cta-paths svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-
-.cta-paths path { stroke-dasharray: .32 .68; stroke-dashoffset: 1; animation: cta-flow 24s linear infinite; }
-@keyframes cta-flow { from { stroke-dashoffset: 1; } to { stroke-dashoffset: -1; } }
-.cta-paths.is-paused path { animation-play-state: paused; }
-.cta-paths.is-static path { animation: none; stroke-dasharray: none; stroke-opacity: .06; }
+/* CTA panel background (after 21st.dev "Nice BG"): dark base, a soft glow, a woven hatch texture and film grain,
+   all in the brand navy and violet. */
+.cta-panel { position: relative; overflow: hidden; isolation: isolate; background: var(--navy-900); }
+.cta-panel > * { position: relative; z-index: 1; }
+.cta-panel::before, .cta-panel::after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0; border-radius: inherit; }
+.cta-panel::before {
+  background:
+    radial-gradient(ellipse 75% 95% at 78% 92%, rgba(88,68,255,.62), rgba(88,68,255,.18) 48%, transparent 72%),
+    radial-gradient(ellipse 55% 70% at 8% 6%, rgba(88,68,255,.2), transparent 70%),
+    repeating-linear-gradient(45deg, rgba(169,157,255,.13) 0 1px, transparent 1px 6px),
+    repeating-linear-gradient(-45deg, rgba(169,157,255,.13) 0 1px, transparent 1px 6px);
+  -webkit-mask-image: radial-gradient(ellipse 120% 120% at 60% 70%, #000 30%, rgba(0,0,0,.35) 100%);
+  mask-image: radial-gradient(ellipse 120% 120% at 60% 70%, #000 30%, rgba(0,0,0,.35) 100%);
+}
+.cta-panel::after {
+  background:
+    radial-gradient(ellipse 100% 100% at 50% 50%, transparent 55%, rgba(8,11,26,.55) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: .5; mix-blend-mode: soft-light;
+}

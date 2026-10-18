@@ -225,4 +225,4 @@ The "One Network, Three Roles" tabs section moved from Home to the Solution page
 
 Data & Privacy page was removed (owner request). The security cards no longer exist on the site. Top nav: Home, Solution, Press, Contact.
 
-**CTA panel background:** flowing lines after 21st.dev kokonutd "Background Paths" (`js/layout.js` builds 2 x 36 SVG paths, CSS dash animation, paused offscreen, static with reduced motion). A soft elliptical mask hole sized from the text block keeps lines out of the heading, copy and button. Applies to every `.cta-panel`.
+**CTA panel background:** after 21st.dev "Nice BG", recoloured to the brand: navy-900 base, a violet glow bottom-right, a faint woven hatch, film grain and a soft vignette. Pure CSS on `.cta-panel::before/::after`. Applies to every `.cta-panel`. Text sits above it (z-index 1).
