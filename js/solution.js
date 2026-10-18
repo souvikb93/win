@@ -69,14 +69,19 @@
       end: function (v) { v.querySelector('[data-lines]').innerHTML = CODE.map(codeLine).join(''); }
     },
     'mail': {
-      reset: function (v) { v.querySelector('.mx-row.is-new').classList.add('is-collapsed'); v.querySelector('.mx-badge').classList.remove('is-on', 'is-blink'); },
+      reset: function (v) {
+        var row = v.querySelector('.mx-row.is-new'); row.classList.add('is-collapsed'); row.classList.remove('is-fresh');
+        v.querySelector('.mx-badge').classList.remove('is-on', 'is-pop'); v.querySelector('.mx-toast').classList.remove('is-show');
+      },
       play: async function (v, alive) {
-        var row = v.querySelector('.mx-row.is-new'), badge = v.querySelector('.mx-badge');
+        var row = v.querySelector('.mx-row.is-new'), badge = v.querySelector('.mx-badge'), toast = v.querySelector('.mx-toast');
         await wait(900); if (!alive()) return;
-        badge.classList.add('is-on', 'is-blink');
+        toast.classList.add('is-show');                       /* the banner drops in, like a phone notification */
         await wait(1300); if (!alive()) return;
-        row.classList.remove('is-collapsed');
-        await wait(900); badge.classList.remove('is-blink');
+        badge.classList.add('is-on', 'is-pop');               /* the Inbox count appears */
+        row.classList.remove('is-collapsed'); row.classList.add('is-fresh');   /* the mail slides in at the top, the rest move down */
+        await wait(500); toast.classList.remove('is-show');
+        await wait(600);
       },
       end: function (v) { v.querySelector('.mx-row.is-new').classList.remove('is-collapsed'); v.querySelector('.mx-badge').classList.add('is-on'); }
     },
