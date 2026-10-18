@@ -6,7 +6,7 @@ window.WIN_DE = {
  "Workflow | WIN by EuvinoPRO": "Workflow | WIN von EuvinoPRO",
  "View workflow": "Workflow ansehen",
  "See How WIN Connects Merchants and Producers.": "So verbindet WIN Händler und Produzenten.",
- "Trusted by 12,000+ producers and 300+ businesses": "12.000+ Produzenten und 300+ Unternehmen vertrauen uns",
+ "Trusted by 300+ businesses": "300+ Unternehmen vertrauen uns",
  "Solution": "Lösung",
  "Press": "Presse",
  "Contact": "Kontakt",
