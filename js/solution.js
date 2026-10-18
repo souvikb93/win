@@ -209,13 +209,19 @@
       clearTimeout(rotateTimer); schedule();
       playVisual();
     }
-    function schedule() {
+    var overCard = false;
+    function schedule(fixed) {
       clearTimeout(rotateTimer);
-      if (reduce || !inView) return;
-      var delay = Math.max(HOLD, resumeAt - Date.now());
+      if (reduce || !inView || overCard) return;
+      var delay = fixed || Math.max(HOLD, resumeAt - Date.now());
       rotateTimer = setTimeout(function () { select(current + 1, false); }, delay);
     }
     tabs.forEach(function (t, k) { t.addEventListener('click', function () { select(k, true); }); });
+    /* while the pointer rests on the card the tabs stay put (the preview inside keeps looping); a few seconds after it leaves, rotation resumes */
+    panels.forEach(function (p) {
+      p.addEventListener('mouseenter', function () { overCard = true; clearTimeout(rotateTimer); });
+      p.addEventListener('mouseleave', function () { overCard = false; schedule(3000); });
+    });
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (e) { var was = inView; inView = e[0].isIntersecting; if (inView && !was) { schedule(); playVisual(); } else if (!inView) { clearTimeout(rotateTimer); runId++; } }, { threshold: 0.4 }).observe(document.getElementById('solutions'));
     } else { inView = true; schedule(); playVisual(); }

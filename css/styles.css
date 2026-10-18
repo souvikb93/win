@@ -2403,3 +2403,5 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .role-panel.is-active .rv2-row .rv2-toggle.is-on, .role-panel.is-active .rv2-row .rv2-toggle.is-on::after { animation: none; }
 .rv2-rule { background: var(--surface); }
 @media (min-width: 1001px) { .role-panel { min-height: 560px; } }
+.nw { white-space: nowrap; }
+@media (max-width: 700px) { .h-br { display: none; } }
