@@ -19,7 +19,6 @@
   var showLogin = page !== 'contact';
   var loginNav = showLogin ? '<a class="nav-login" href="https://backend.euvinopro.eu/login">Log in</a>' : '';
   var loginMobile = showLogin ? '<a href="https://backend.euvinopro.eu/login">Log in</a>' : '';
-  var loginFooter = showLogin ? '<li><a href="https://backend.euvinopro.eu/login">Log in</a></li>' : '';
 
   var links = [
     { href: 'index.html', label: 'Home', key: 'home' },
@@ -77,16 +76,11 @@
             '<li><a href="press.html">Press</a></li>' +
             '<li><a href="contact.html">Contact</a></li>' +
             '<li><a href="https://www.euvinopro.eu/">EuvinoPRO</a></li>' +
-            loginFooter +
           '</ul></div>' +
           '<div><h5>Legal</h5><ul>' +
             '<li><a href="https://www.win.wine/impressum/">Imprint</a></li>' +
             '<li><a href="https://www.win.wine/datenschutzerklaerung/">Privacy policy</a></li>' +
           '</ul></div>' +
-        '</div>' +
-        '<div class="footer-bottom">' +
-          '<span>© 2026 Euvino GmbH · Inselstraße 10 · 10179 Berlin</span>' +
-          '<span>Concept redesign · Not the official website</span>' +
         '</div>' +
       '</div>' +
     '</footer>';

@@ -1956,3 +1956,8 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
   @keyframes ecoDrop { from { opacity: 0; transform: translateY(-8px) scale(.97); } to { opacity: 1; transform: none; } }
 }
 @media (prefers-reduced-motion: reduce) { .eco-orbit .eco-core::after, .orbit-lines ellipse { transition: none !important; } }
+
+/* Page ending: the CTA card and the (shorter) footer fit in one viewport together */
+.cta-end { padding-bottom: clamp(40px, 7vh, 72px); }
+.cta-panel { padding-top: clamp(40px, 7vh, 80px); padding-bottom: clamp(40px, 7vh, 80px); gap: 16px; }
+.footer { padding: clamp(40px, 6vh, 56px) 0 clamp(32px, 5vh, 44px); }
