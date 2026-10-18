@@ -186,6 +186,7 @@
       tabs.forEach(function (t, k) { t.setAttribute('aria-selected', String(k === current)); t.classList.remove('is-timing'); });
       panels.forEach(function (p) { p.classList.toggle('is-active', p.getAttribute('data-panel') === order[current]); });
       void tabsEl.offsetWidth; if (!reduce && inView) tabs[current].classList.add('is-timing');
+      if (tabsEl.scrollWidth > tabsEl.clientWidth) tabsEl.scrollTo({ left: tabs[current].offsetLeft - (tabsEl.clientWidth - tabs[current].offsetWidth) / 2, behavior: reduce ? 'auto' : 'smooth' });
       if (user) resumeAt = Date.now() + HOLD * 1.6;
       clearTimeout(rotateTimer); schedule();
       playVisual();

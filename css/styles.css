@@ -2209,3 +2209,8 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .rv2-toggle { transition: background .35s var(--ease); }
 .rv2-toggle::after { transition: transform .35s var(--ease); }
 .rv2-state { transition: background .3s, color .3s; }
+
+/* Solution page type rhythm: same scale as Home (section heading 44px, lead 18px, card heading 28px) */
+#solutions .section-head h2 { font-size: clamp(32px, 3.2vw, 44px); line-height: 1.08; }
+#solutions .section-head .lead { font-size: clamp(16px, 1.35vw, 18px); }
+.role-copy h3 { font-size: 28px; }
