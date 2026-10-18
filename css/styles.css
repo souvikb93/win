@@ -2214,3 +2214,47 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 #solutions .section-head h2 { font-size: clamp(32px, 3.2vw, 44px); line-height: 1.08; }
 #solutions .section-head .lead { font-size: clamp(16px, 1.35vw, 18px); }
 .role-copy h3 { font-size: 28px; }
+
+/* Solution page screens v3 */
+.tl-scr .btn-fake { min-width: 156px; justify-content: center; }
+.tl-scr .scr-h .muted, .tl-scr .scr-actions .muted { color: var(--ink-3); font-size: 13px; }
+.tl-scr .scr-h { min-height: 28px; }
+
+/* screen 2: the whole window is a terminal */
+.tl-scr .scr-body:has(.code) { background: #0f1428; padding: 0; }
+.tl-scr .scr-view:has(.code) { padding: 0; }
+.code { padding: 22px 24px; font-family: var(--mono); font-size: 12.5px; line-height: 1.65; color: rgba(255,255,255,.82); min-height: 340px; box-sizing: border-box; display: block; }
+.code .cl { white-space: pre; animation: logIn .3s var(--ease) both; }
+.code .c { color: #fff; font-weight: 500; } .code .d { color: rgba(255,255,255,.62); } .code .j { color: rgba(255,255,255,.78); }
+.code .k { color: #b8adff; } .code .s { color: #8ee0b3; } .code .n { color: #ffd479; }
+.code .ok { color: #7fd6e8; } .code .hl { color: #b8adff; }
+
+/* screen 3: mail in the style of a phone mail app */
+.mx { display: grid; gap: 10px; }
+.mx-bar { display: flex; align-items: center; gap: 10px; }
+.mx-search { flex: 1; height: 36px; border-radius: 999px; background: var(--bg); box-shadow: inset 0 0 0 1px var(--line); display: flex; align-items: center; padding: 0 16px; font-size: 13px; color: var(--ink-3); }
+.mx-av { width: 30px; height: 30px; border-radius: 50%; background: var(--violet); color: #fff; display: grid; place-items: center; font-size: 13px; font-weight: 700; }
+.mx-tabs { display: flex; gap: 18px; font-size: 13px; color: var(--ink-3); border-bottom: 1px solid var(--line); }
+.mx-tabs span { padding: 6px 2px 9px; font-weight: 500; } .mx-tabs .is-on { color: var(--violet); box-shadow: inset 0 -2px 0 var(--violet); }
+.mx-list { display: grid; }
+.mx-row { display: grid; grid-template-columns: 38px 1fr auto; gap: 12px; align-items: start; padding: 10px 6px; border-bottom: 1px solid var(--line); }
+.mx-row:last-child { border-bottom: 0; }
+.mx-dot { width: 38px; height: 38px; border-radius: 50%; background: var(--violet-100); color: var(--violet); display: grid; place-items: center; font-weight: 700; font-size: 15px; }
+.mx-dot.is-g { background: #eef1f6; color: var(--ink-2); }
+.mx-main { display: grid; gap: 1px; min-width: 0; }
+.mx-main b { font-size: 13.5px; font-weight: 600; }
+.mx-sub { font-size: 13px; color: var(--ink); }
+.mx-snip { font-size: 12.5px; color: var(--ink-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mx-time { font-size: 11.5px; color: var(--ink-3); padding-top: 2px; }
+.mx-row.is-new { background: var(--accent-soft); border-radius: 12px; border-bottom-color: transparent; }
+.mx-row.is-new .mx-main b, .mx-row.is-new .mx-sub { font-weight: 700; }
+.mx-row.is-new .mx-time { color: var(--violet); font-weight: 600; }
+.mx-row.is-new.is-arrive { animation: notifIn .5s cubic-bezier(.3,1.4,.5,1); }
+
+/* screen 6: the incoming values shown as read-only input fields */
+.tl-scr .attr { gap: 10px 12px; }
+.tl-scr .attr div { padding: 0; background: none; box-shadow: none; gap: 5px; }
+.tl-scr .attr span { font-size: 12px; color: var(--ink-2); font-weight: 500; }
+.tl-scr .attr b { display: flex; align-items: center; height: 36px; padding: 0 12px; border-radius: 10px; background: var(--bg); box-shadow: inset 0 0 0 1px var(--line-strong); font-size: 13px; font-weight: 500; font-family: var(--mono); }
+@media (max-width: 600px) { .tl-scr .attr { grid-template-columns: 1fr 1fr; } .tl-scr .attr div:nth-child(n+5) { display: grid; } }
+.mx { gap: 8px; } .mx-search { height: 32px; } .mx-row { padding: 7px 6px; } .mx-dot { width: 34px; height: 34px; font-size: 14px; } .mx-row { grid-template-columns: 34px 1fr auto; } .mx-tabs span { padding: 3px 2px 7px; }

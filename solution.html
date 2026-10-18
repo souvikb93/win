@@ -39,15 +39,15 @@
             <div class="pane-bar"><i></i><i></i><i></i><span class="scr-party"><b>Merchant · ERP</b></span><span class="scr-url">erp / articles / new</span></div>
             <div class="scr-body">
               <div class="scr-view is-on" data-screen="erp-new">
-                <div class="scr-h"><b>New article</b><span class="pill">Draft</span></div>
+                <div class="scr-h"><b>Request Product Data via WIN</b><span class="muted">New article</span></div>
                 <div class="frm">
-                  <label>Article no.</label><div class="inp mono">40-11873</div>
-                  <label>Producer</label><div class="inp">Selected producer</div>
-                  <label>Wine name</label><div class="inp" data-type="Riesling, dry"><span class="tv"></span><i class="ui-caret"></i></div>
-                  <label>Vintage</label><div class="inp mono" data-type="2025"><span class="tv"></span><i class="ui-caret"></i></div>
-                  <label>Category</label><div class="inp">Still wine</div>
+                  <label>Article no.</label><div class="inp mono" data-type="40-11873"><span class="tv">40-11873</span><i class="ui-caret"></i></div>
+                  <label>Producer</label><div class="inp" data-type="Producer A"><span class="tv">Producer A</span><i class="ui-caret"></i></div>
+                  <label>Wine name</label><div class="inp" data-type="Riesling, dry"><span class="tv">Riesling, dry</span><i class="ui-caret"></i></div>
+                  <label>Vintage</label><div class="inp mono" data-type="2025"><span class="tv">2025</span><i class="ui-caret"></i></div>
+                  <label>Category</label><div class="inp" data-type="Still wine"><span class="tv">Still wine</span><i class="ui-caret"></i></div>
                 </div>
-                <div class="scr-actions"><span class="btn-fake" data-btn>Request product data via WIN</span></div>
+                <div class="scr-actions"><span class="muted">All fields required</span><span class="btn-fake" data-btn>Request Sent</span></div>
               </div>
             </div>
           </div>
@@ -63,9 +63,7 @@
             <div class="pane-bar"><i></i><i></i><i></i><span class="scr-party"><b>WIN · EuvinoPRO</b></span><span class="scr-url">win / requests</span></div>
             <div class="scr-body">
               <div class="scr-view is-on" data-screen="win-route">
-                <div class="scr-h"><b>Request routing</b><span class="pill req">Live</span></div>
-                <div class="mini-stats"><div><span>Requests today</span><b>14</b></div><div><span>Matched</span><b>14</b></div><div><span>Routing time</span><b>2 s</b></div></div>
-                <ol class="console" data-lines></ol>
+                <div class="code" data-lines></div>
               </div>
             </div>
           </div>
@@ -81,11 +79,14 @@
             <div class="pane-bar"><i></i><i></i><i></i><span class="scr-party"><b>Producer · Inbox</b></span><span class="scr-url">mail / inbox</span></div>
             <div class="scr-body">
               <div class="scr-view is-on" data-screen="mail">
-                <div class="scr-h"><b>Inbox</b><span class="muted">Producer</span></div>
-                <div class="mail-list">
-                  <div class="mail is-new"><span class="from">WIN · EuvinoPRO</span><b>A merchant requests product data: Riesling, dry 2025</b><span class="snippet">Please complete 41 required fields for the merchant. Open the request in WIN.</span></div>
-                  <div class="mail"><span class="from">Wine association</span><b>Newsletter October</b><span class="snippet">Harvest report and dates for the autumn fairs.</span></div>
-                  <div class="mail"><span class="from">Freight forwarder</span><b>Delivery confirmation #44812</b><span class="snippet">Pallets collected on Tuesday.</span></div>
+                <div class="mx">
+                  <div class="mx-bar"><span class="mx-search">Search mail</span><span class="mx-av">P</span></div>
+                  <div class="mx-tabs"><span class="is-on">Primary</span><span>Updates</span><span>Promotions</span></div>
+                  <div class="mx-list">
+                    <div class="mx-row is-new"><span class="mx-dot">W</span><div class="mx-main"><b>WIN · EuvinoPRO</b><span class="mx-sub">New product request: Riesling, dry 2025</span><span class="mx-snip">Please complete 41 required fields for the trader. Open the request in WIN.</span></div><span class="mx-time">11:20</span></div>
+                    <div class="mx-row"><span class="mx-dot is-g">W</span><div class="mx-main"><b>Wine Association</b><span class="mx-sub">Newsletter October</span><span class="mx-snip">Harvest report and dates for the autumn fairs.</span></div><span class="mx-time">09:02</span></div>
+                    <div class="mx-row"><span class="mx-dot is-g">F</span><div class="mx-main"><b>Freight Forwarder</b><span class="mx-sub">Delivery confirmation #44812</span><span class="mx-snip">Pallets collected on Tuesday.</span></div><span class="mx-time">Mon</span></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -102,7 +103,7 @@
             <div class="pane-bar"><i></i><i></i><i></i><span class="scr-party"><b>Producer · WIN web app</b></span><span class="scr-url">win / producer / requests / 40-11873</span></div>
             <div class="scr-body">
               <div class="scr-view is-on" data-screen="form">
-                <div class="scr-h"><b>Riesling, dry 2025</b><span class="pill req">For the merchant</span></div>
+                <div class="scr-h"><b>Product Data Request</b><span class="muted">For the trader</span></div>
                 <div class="frm frm-data">
                   <label>Alcohol</label><div class="inp mono" data-type="12.5 % vol"><span class="tv"></span><i class="ui-caret"></i></div>
                   <label>Bottle size</label><div class="inp mono" data-type="0.75 l"><span class="tv"></span><i class="ui-caret"></i></div>
@@ -126,7 +127,7 @@
             <div class="pane-bar"><i></i><i></i><i></i><span class="scr-party"><b>WIN · EuvinoPRO</b></span><span class="scr-url">win / validation</span></div>
             <div class="scr-body">
               <div class="scr-view is-on" data-screen="win-check">
-                <div class="scr-h"><b>Validation</b><span class="muted">40-11873 · 214 attributes</span></div>
+                <div class="scr-h"><b>Product Data Validation</b><span class="muted">214 attributes</span></div>
                 <ul class="checklist" data-checks>
                   <li>GTIN check digit<span>4006381333931</span></li>
                   <li>LMIV mandatory fields<span>12 / 12</span></li>
@@ -150,7 +151,7 @@
             <div class="pane-bar"><i></i><i></i><i></i><span class="scr-party"><b>Merchant · ERP</b></span><span class="scr-url">erp / articles / 40-11873</span></div>
             <div class="scr-body">
               <div class="scr-view is-on" data-screen="erp-done">
-                <div class="scr-h"><b>40-11873 · Riesling, dry 2025</b><span class="pill" data-status>Waiting</span></div>
+                <div class="scr-h"><b>Product Data Received</b><span class="pill" data-status>Waiting</span></div>
                 <div class="attr" data-attrs>
                   <div><span>Alcohol</span><b>12.5 % vol</b></div>
                   <div><span>Bottle size</span><b>0.75 l</b></div>

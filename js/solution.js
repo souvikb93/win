@@ -37,40 +37,46 @@
   function clearInputs(v) { qa('.inp[data-type]', v).forEach(function (i) { i.querySelector('.tv').textContent = ''; i.classList.remove('is-ok', 'is-typing'); }); }
   function fillInputs(v) { qa('.inp[data-type]', v).forEach(function (i) { i.querySelector('.tv').textContent = i.getAttribute('data-type'); i.classList.add('is-ok'); }); }
 
-  var LINES = [
-    ['09:41:02', 'Request <span class="hl">40-11873</span> from the merchant'],
-    ['09:41:02', 'Producer matched'],
-    ['09:41:02', '41 required fields set by the merchant'],
-    ['09:41:02', 'Request validated'],
-    ['09:41:03', 'Notification queued'],
-    ['09:41:03', '<span class="ok">Notification sent</span>']
+  var CODE = [
+    ['c', '$ win request create --article 40-11873'],
+    ['d', '> reading article from the trader ERP ... <span class="ok">ok</span>'],
+    ['d', '> matching producer ... <span class="hl">Producer A</span>'],
+    ['d', '> required fields set by the trader: <span class="hl">41</span>'],
+    ['j', '{'],
+    ['j', '  <span class="k">"request"</span>: <span class="s">"REQ-40-11873"</span>,'],
+    ['j', '  <span class="k">"article"</span>: <span class="s">"40-11873"</span>,'],
+    ['j', '  <span class="k">"producer"</span>: <span class="s">"Producer A"</span>,'],
+    ['j', '  <span class="k">"required_fields"</span>: <span class="n">41</span>,'],
+    ['j', '  <span class="k">"status"</span>: <span class="s">"queued"</span>'],
+    ['j', '}'],
+    ['d', '> validating request ... <span class="ok">ok</span>'],
+    ['d', '> notification queued'],
+    ['d', '> notification sent to producer <span class="ok">✓</span>']
   ];
+  function codeLine(l) { return '<div class="cl ' + l[0] + '">' + l[1] + '</div>'; }
 
   var MOMENTS = {
     'erp-new': {
-      reset: function (v) { clearInputs(v); var b = v.querySelector('[data-btn]'); b.textContent = 'Request product data via WIN'; b.classList.remove('is-done'); },
+      reset: function (v) { clearInputs(v); var b = v.querySelector('[data-btn]'); b.textContent = 'Submit Request'; b.classList.remove('is-done'); },
       play: async function (v, alive) {
         await wait(500);
         var inps = qa('.inp[data-type]', v);
-        for (var i = 0; i < inps.length && alive(); i++) await typeInto(inps[i], 55, alive);
-        if (!alive()) return; await wait(400); await press(v.querySelector('[data-btn]'), 'Request sent ✓');
+        for (var i = 0; i < inps.length && alive(); i++) await typeInto(inps[i], 50, alive);
+        if (!alive()) return; await wait(500); await press(v.querySelector('[data-btn]'), 'Request Sent');
       },
-      end: function (v) { fillInputs(v); var b = v.querySelector('[data-btn]'); b.textContent = 'Request sent ✓'; b.classList.add('is-done'); }
+      end: function (v) { fillInputs(v); var b = v.querySelector('[data-btn]'); b.textContent = 'Request Sent'; b.classList.add('is-done'); }
     },
     'win-route': {
       reset: function (v) { v.querySelector('[data-lines]').innerHTML = ''; },
       play: async function (v, alive) {
-        var ol = v.querySelector('[data-lines]'); await wait(400);
-        for (var i = 0; i < LINES.length && alive(); i++) {
-          var li = document.createElement('li'); li.innerHTML = '<time>' + LINES[i][0] + '</time><span>' + LINES[i][1] + '</span>';
-          ol.appendChild(li); await wait(520);
-        }
+        var box = v.querySelector('[data-lines]'); await wait(400);
+        for (var i = 0; i < CODE.length && alive(); i++) { box.insertAdjacentHTML('beforeend', codeLine(CODE[i])); await wait(CODE[i][0] === 'j' ? 140 : 420); }
       },
-      end: function (v) { v.querySelector('[data-lines]').innerHTML = LINES.map(function (l) { return '<li><time>' + l[0] + '</time><span>' + l[1] + '</span></li>'; }).join(''); }
+      end: function (v) { v.querySelector('[data-lines]').innerHTML = CODE.map(codeLine).join(''); }
     },
     'mail': {
-      reset: function (v) { v.querySelector('.mail.is-new').classList.remove('is-arrive'); },
-      play: async function (v) { var m = v.querySelector('.mail.is-new'); await wait(500); void m.offsetWidth; m.classList.add('is-arrive'); await wait(1800); },
+      reset: function (v) { v.querySelector('.mx-row.is-new').classList.remove('is-arrive'); },
+      play: async function (v) { var m = v.querySelector('.mx-row.is-new'); await wait(500); void m.offsetWidth; m.classList.add('is-arrive'); await wait(1800); },
       end: function () {}
     },
     'form': {
@@ -79,9 +85,9 @@
         var inps = qa('.inp[data-type]', v), c = v.querySelector('[data-count]'); await wait(400);
         for (var i = 0; i < inps.length && alive(); i++) { await typeInto(inps[i], 45, alive); c.textContent = (32 + (i + 1) * 3) + ' / 41 required fields'; }
         if (!alive()) return; c.textContent = '41 / 41 required fields';
-        await wait(400); await press(v.querySelector('[data-btn]'), 'Sent ✓');
+        await wait(400); await press(v.querySelector('[data-btn]'), 'Sent');
       },
-      end: function (v) { fillInputs(v); v.querySelector('[data-count]').textContent = '41 / 41 required fields'; var b = v.querySelector('[data-btn]'); b.textContent = 'Sent ✓'; b.classList.add('is-done'); }
+      end: function (v) { fillInputs(v); v.querySelector('[data-count]').textContent = '41 / 41 required fields'; var b = v.querySelector('[data-btn]'); b.textContent = 'Sent'; b.classList.add('is-done'); }
     },
     'win-check': {
       reset: function (v) { qa('[data-checks] li', v).forEach(function (li) { li.classList.remove('is-ok'); }); v.querySelector('[data-approved]').classList.remove('is-on'); },
