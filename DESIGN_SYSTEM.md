@@ -270,3 +270,5 @@ The testimonials sub-heading stays on one line above 900px wide (wraps on smalle
 **Gotcha:** a desktop-only rule appended late (e.g. the Why WIN card two-column grid) overrides earlier mobile rules. Always re-add the mobile override after it and check 375px.
 
 **Easy card (final):** heading "Choose What Suppliers Must Provide." and body "Set required and optional product fields to ensure suppliers provide the information your business needs." Preview heading "Product Data Requirements" on one line, no supporting text, no count pill (the "2 / 3 / 4 required" pill was removed). Field names and toggle animation unchanged.
+
+**Why WIN card headings are one line** on desktop and tablet (≥601px), all three cards, same rule: no max-width, `white-space: nowrap`, size scales `clamp(22px, 2.05vw, 28px)` on desktop so the longest heading always fits (left column is 1.1fr of the card). Only on phones may they wrap. Keep new card headings short enough to fit at 22px in ~480px.
