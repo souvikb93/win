@@ -2542,3 +2542,10 @@ html[lang="de"] .device-screen.shot-de { display: block; }
   .why-more { margin-top: clamp(80px, 8vw, 120px); }
 }
 @media (max-width: 900px) { .why-more { margin-top: 56px; } }
+
+/* equal item heights: the three cards leave the pinned position together when "See how WIN works" arrives */
+@media (min-width: 901px) {
+  .stack-item, .stack-item:last-child { height: 520px; }
+  .stack::after { height: 0; }
+  .why-more { margin-top: calc(clamp(80px, 8vw, 120px) - 3px); }
+}

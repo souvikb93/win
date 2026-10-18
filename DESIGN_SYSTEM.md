@@ -344,3 +344,4 @@ Loops while on screen, one pass: GTIN typed and accepted; bottle size typed as 0
 
 ## Home: end of the Why WIN stack
 - Gap from the last (Fast) card to "See how WIN works, step by step." is clamp(80px, 8vw, 120px) (115px at 1440), 56px on phones; the button reads "View solution" (matches the nav item "Solution"; German "Lösung ansehen").
+- The three stack items have the same height (520px on desktop), so all three cards lift away together when the next block arrives (the 26px stagger between them stays constant). Never give the last item a different height; cards 1 and 2 would then leave first.
