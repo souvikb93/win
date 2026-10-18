@@ -2201,11 +2201,6 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .tl-scr .console { min-height: 168px; }
 .tl-scr .checklist li { height: 36px; }
 
-/* Role tabs: a thin bar fills under the active tab while it is the one on show, then the next role takes over */
-.role-tab { position: relative; overflow: hidden; }
-.role-tab::after { content: ""; position: absolute; left: 0; bottom: 0; height: 3px; width: 100%; background: var(--violet); transform: scaleX(0); transform-origin: left; opacity: 0; }
-.role-tab[aria-selected="true"].is-timing::after { opacity: 1; animation: roleTimer var(--hold, 7s) linear forwards; }
-@keyframes roleTimer { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 .rv2-toggle { transition: background .35s var(--ease); }
 .rv2-toggle::after { transition: transform .35s var(--ease); }
 .rv2-state { transition: background .3s, color .3s; }
@@ -2332,3 +2327,36 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 @keyframes caretBlink { 50% { opacity: 0; } }
 .code .txt span { color: inherit; } .code .txt .hl { color: #b8adff; } .code .txt .ok { color: #7fd6e8; }
 @media (prefers-reduced-motion: reduce) { .code .cl.is-typing .txt::after { animation: none; } }
+
+/* One Network, Three Roles v2: one card per role, points on the left and the live view on the right, all three the same size */
+.roles-tabs { display: flex; width: max-content; max-width: 100%; margin: 0 auto 32px; gap: 4px; padding: 5px; flex-wrap: nowrap; border-radius: 999px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-strong); }
+.role-tab { padding: 11px 22px; border-radius: 999px; background: none; box-shadow: none; color: var(--ink-2); font-size: 15px; font-weight: 600; white-space: nowrap; transition: background .25s var(--ease), color .25s var(--ease); }
+.role-tab:hover { color: var(--ink); }
+.role-tab[aria-selected="true"] { background: var(--navy); color: #fff; }
+.role-panel { gap: 0; background: var(--surface); border-radius: var(--card-r); box-shadow: var(--card-shadow), inset 0 0 0 1px var(--line); overflow: hidden; min-height: 520px; }
+.role-panel.is-active { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.role-copy { background: none; box-shadow: none; border-radius: 0; padding: 48px 48px 44px; gap: 20px; }
+.role-copy h3 { font-size: 28px; }
+.role-copy > p { font-size: 17px; line-height: 1.6; }
+.role-list { gap: 16px; margin-top: 4px; }
+.role-list li { font-size: 15.5px; }
+.role-visual { background: var(--bg); box-shadow: none; border-radius: 0; border-left: 1px solid var(--line); padding: 48px; display: grid; align-content: center; min-height: 0; }
+.rv2 { min-height: 0; gap: 20px; }
+.rv2-head { padding-bottom: 16px; }
+@media (max-width: 1000px) {
+  .role-panel.is-active { grid-template-columns: 1fr; }
+  .role-visual { border-left: 0; border-top: 1px solid var(--line); padding: 32px; }
+  .role-copy { padding: 36px 32px; }
+  .role-panel { min-height: 0; }
+}
+@media (max-width: 700px) {
+  .roles-tabs { width: auto; max-width: none; margin-inline: calc(var(--gutter) * -1); border-radius: 0; box-shadow: none; background: none; overflow-x: auto; padding: 0 var(--gutter) 4px; justify-content: flex-start; scrollbar-width: none; }
+  .role-tab { padding: 10px 16px; font-size: 14px; box-shadow: inset 0 0 0 1px var(--line-strong); background: var(--surface); }
+  .role-tab[aria-selected="true"] { background: var(--navy); box-shadow: none; }
+  .role-copy { padding: 28px 22px; } .role-visual { padding: 24px 22px; }
+}
+.role-visual .rv2-row { padding: 17px 18px; background: var(--surface); }
+.role-visual .rv2-head b { font-size: 22px; }
+.role-visual .rv2-rule, .role-visual .rv2-chip { background: var(--surface); }
+.role-visual .rv2-stage { gap: 12px; }
+@media (min-width: 701px) and (max-width: 1000px) { .role-panel { min-height: 840px; } }

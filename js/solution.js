@@ -161,7 +161,6 @@
   if (tabsEl) {
     var tabs = qa('.role-tab', document), panels = qa('.role-panel', document), order = tabs.map(function (t) { return t.getAttribute('data-role'); });
     var HOLD = 7000, current = 0, rotateTimer = null, resumeAt = 0, inView = false, runId = 0;
-    tabsEl.style.setProperty('--hold', HOLD + 'ms');
 
     var RV = {
       merchants: async function (panel, alive) {
@@ -210,9 +209,8 @@
     }
     function select(i, user) {
       current = (i + order.length) % order.length;
-      tabs.forEach(function (t, k) { t.setAttribute('aria-selected', String(k === current)); t.classList.remove('is-timing'); });
+      tabs.forEach(function (t, k) { t.setAttribute('aria-selected', String(k === current)); });
       panels.forEach(function (p) { p.classList.toggle('is-active', p.getAttribute('data-panel') === order[current]); });
-      void tabsEl.offsetWidth; if (!reduce && inView) tabs[current].classList.add('is-timing');
       if (tabsEl.scrollWidth > tabsEl.clientWidth) tabsEl.scrollTo({ left: tabs[current].offsetLeft - (tabsEl.clientWidth - tabs[current].offsetWidth) / 2, behavior: reduce ? 'auto' : 'smooth' });
       if (user) resumeAt = Date.now() + HOLD * 1.6;
       clearTimeout(rotateTimer); schedule();
@@ -222,12 +220,11 @@
       clearTimeout(rotateTimer);
       if (reduce || !inView) return;
       var delay = Math.max(HOLD, resumeAt - Date.now());
-      tabs[current].classList.remove('is-timing'); void tabsEl.offsetWidth; tabs[current].classList.add('is-timing');
       rotateTimer = setTimeout(function () { select(current + 1, false); }, delay);
     }
     tabs.forEach(function (t, k) { t.addEventListener('click', function () { select(k, true); }); });
     if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (e) { var was = inView; inView = e[0].isIntersecting; if (inView && !was) { schedule(); playVisual(); } else if (!inView) { clearTimeout(rotateTimer); runId++; tabs.forEach(function (t) { t.classList.remove('is-timing'); }); } }, { threshold: 0.4 }).observe(document.getElementById('solutions'));
+      new IntersectionObserver(function (e) { var was = inView; inView = e[0].isIntersecting; if (inView && !was) { schedule(); playVisual(); } else if (!inView) { clearTimeout(rotateTimer); runId++; } }, { threshold: 0.4 }).observe(document.getElementById('solutions'));
     } else { inView = true; schedule(); playVisual(); }
   }
 })();

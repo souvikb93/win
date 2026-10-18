@@ -294,3 +294,5 @@ The testimonials sub-heading stays on one line above 900px wide (wraps on smalle
 **Terminal (Step 2) is typed:** each log line is typed character by character (about 24 ms per character, colours kept for the highlighted words), a block cursor follows the line being typed and keeps blinking on the last line, then the loop resets.
 
 **Solution step copy v3:** headings Merchant Creates a New Article in ERP; ERP Sends a Product Request to WIN; WIN Notifies the Producer of a New Request; Producer Provides the Product Information; Product Data Is Submitted to WIN; WIN Transfers Product Data to the Merchant’s ERP. Step 4 window header "Provide Product Information". Bodies as supplied by the owner (no repetition of the heading).
+
+**One Network, Three Roles v2:** one card per role (left: heading, intro and three points; right: the live view on a soft background, split by a hairline). All three cards are the same size (1152 x 520 at 1440 wide; stacked and equal on tablet). Tabs are a centred segmented pill control (white track, navy active pill). No progress bar under the tabs; rotation still runs every 7 s.
