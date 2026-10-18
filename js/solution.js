@@ -163,40 +163,33 @@
     var HOLD = 7000, current = 0, rotateTimer = null, resumeAt = 0, inView = false, runId = 0;
 
     var RV = {
+      /* each role's right-hand preview builds up piece by piece, then rests on the finished picture */
       merchants: async function (panel, alive) {
         var rows = qa('.rv2-row', panel);
-        rows.forEach(function (r) { var st = r.querySelector('.rv2-state'); st.className = 'rv2-state'; st.innerHTML = '<i></i>Waiting'; r.querySelector('.rv2-act').textContent = 'Request sent'; });
+        rows.forEach(function (r) { r.classList.add('is-off'); });
         await wait(700);
-        await Promise.all(rows.map(async function (r, i) {
-          await wait(i * 650); if (!alive()) return;
-          var st = r.querySelector('.rv2-state'), act = r.querySelector('.rv2-act');
-          act.textContent = 'Entering data'; st.className = 'rv2-state is-mid';
-          for (var n = 0; n <= 214 && alive(); n += 12) { st.innerHTML = '<i></i>' + Math.min(214, n) + ' of 214'; await wait(55); }
-          if (!alive()) return;
-          act.textContent = 'Record returned'; st.className = 'rv2-state is-done'; st.innerHTML = '<i></i>Complete';
-        }));
+        for (var i = 0; i < rows.length && alive(); i++) { rows[i].classList.remove('is-off'); await wait(900); }
       },
       producers: async function (panel, alive) {
-        var tg = qa('.rv2-row[data-i] .rv2-toggle', panel);
-        tg.forEach(function (t) { t.classList.remove('is-on'); t.style.animation = 'none'; t.style.setProperty('--x', '0'); });
-        await wait(900);
-        for (var i = 0; i < tg.length && alive(); i++) { tg[i].classList.add('is-on'); await wait(1200); }
+        var rec = panel.querySelector('.rv2-record'), items = qa('.rv2-fields li', panel), pill = rec.querySelector('.rv2-state'), req = panel.querySelector('.rv2-req');
+        items.forEach(function (li) { li.classList.add('is-off'); }); pill.classList.add('is-off'); req.classList.add('is-off');
+        await wait(700);
+        for (var i = 0; i < items.length && alive(); i++) { items[i].classList.remove('is-off'); await wait(480); }
+        if (!alive()) return; pill.classList.remove('is-off'); await wait(800);
+        if (!alive()) return; req.classList.remove('is-off');
       },
       agencies: async function (panel, alive) {
-        var rule = panel.querySelector('.rv2-rule .rv2-toggle'), row = panel.querySelector('.rv2-row[data-i]'), st = row.querySelector('.rv2-state'), act = row.querySelector('.rv2-act');
-        rule.classList.remove('is-on'); st.className = 'rv2-state'; st.innerHTML = '<i></i>Waiting'; act.textContent = 'New request';
+        var rule = panel.querySelector('.rv2-rule .rv2-toggle'), rec = panel.querySelector('.rv2-record'), items = qa('.rv2-fields li', panel), pill = rec.querySelector('.rv2-state');
+        rule.classList.remove('is-on'); items.forEach(function (li) { li.classList.add('is-off'); }); pill.classList.add('is-off');
         await wait(900); if (!alive()) return; rule.classList.add('is-on');
-        await wait(1300); if (!alive()) return; act.textContent = 'Forwarded to agency'; st.className = 'rv2-state is-mid'; st.innerHTML = '<i></i>To agency';
-        await wait(1700); if (!alive()) return; act.textContent = 'Refined for market'; st.className = 'rv2-state is-done'; st.innerHTML = '<i></i>Complete';
+        await wait(1000);
+        for (var i = 0; i < items.length && alive(); i++) { items[i].classList.remove('is-off'); await wait(560); }
+        if (!alive()) return; pill.classList.remove('is-off');
       }
     };
     function finalStates() {
-      qa('.rv2-toggle', document).forEach(function (t) { t.style.animation = ''; });
-      var m = document.querySelector('[data-panel="merchants"]'), a = document.querySelector('[data-panel="agencies"]'), p = document.querySelector('[data-panel="producers"]');
-      qa('.rv2-row[data-i]', m).forEach(function (r) { r.querySelector('.rv2-act').textContent = 'Record returned'; var st = r.querySelector('.rv2-state'); st.className = 'rv2-state is-done'; st.innerHTML = '<i></i>Complete'; });
-      qa('.rv2-row[data-i] .rv2-toggle', p).forEach(function (t) { t.classList.add('is-on'); });
-      a.querySelector('.rv2-rule .rv2-toggle').classList.add('is-on');
-      var ar = a.querySelector('.rv2-row[data-i]'); ar.querySelector('.rv2-act').textContent = 'Refined for market'; ar.querySelector('.rv2-state').className = 'rv2-state is-done'; ar.querySelector('.rv2-state').innerHTML = '<i></i>Complete';
+      qa('.is-off', document).forEach(function (e) { e.classList.remove('is-off'); });
+      qa('.rv2-rule .rv2-toggle', document).forEach(function (t) { t.classList.add('is-on'); });
     }
 
     function playVisual() {

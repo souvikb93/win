@@ -2379,3 +2379,27 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
   .roles-tabs { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; margin-inline: calc(var(--gutter) * -1); padding: 0 var(--gutter) 4px; }
   .role-tab { flex-shrink: 0; }
 }
+
+/* CTA in the left panel: underline only under the link itself, never the full column */
+.role-copy .text-link { align-self: flex-start; width: fit-content; margin-top: auto; }
+
+/* pills line up with the card, heading and intro on the left */
+.roles-tabs { justify-content: flex-start; margin: 0 0 32px; }
+
+/* roles v4: copy blocks and previews */
+.role-tag { align-self: flex-start; font-size: 12.5px; font-weight: 600; color: var(--violet); background: var(--violet-100); padding: 5px 12px; border-radius: 999px; margin-top: -4px; }
+.rv2-head span { max-width: 44ch; }
+.rv2-record { border-radius: 14px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-strong); overflow: hidden; }
+.rv2-rec-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+.rv2-rec-head b { font-size: 15px; font-weight: 700; }
+.rv2-fields { list-style: none; margin: 0; padding: 4px 18px 6px; }
+.rv2-fields li { display: flex; justify-content: space-between; gap: 16px; padding: 9px 0; font-size: 13.5px; border-bottom: 1px solid var(--line); }
+.rv2-fields li:last-child { border-bottom: 0; }
+.rv2-fields span { color: var(--ink-3); } .rv2-fields b { font-weight: 600; font-family: var(--mono); font-size: 13px; }
+.rv2-row, .rv2-fields li, .rv2-rec-head .rv2-state { transition: opacity .45s var(--ease), transform .45s var(--ease); }
+.is-off { opacity: 0; transform: translateY(8px); }
+.role-panel.is-active .rv2-row { animation: none; opacity: 1; }
+.role-panel.is-active .rv2-row.is-off { opacity: 0; }
+.role-panel.is-active .rv2-row .rv2-toggle.is-on, .role-panel.is-active .rv2-row .rv2-toggle.is-on::after { animation: none; }
+.rv2-rule { background: var(--surface); }
+@media (min-width: 1001px) { .role-panel { min-height: 560px; } }
