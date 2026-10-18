@@ -2527,3 +2527,8 @@ html { overscroll-behavior-y: none; }
 .device-screen.shot-de { display: none; }
 html[lang="de"] .device-screen.shot-en { display: none; }
 html[lang="de"] .device-screen.shot-de { display: block; }
+
+/* Precise card: finished record turns the bar violet and the send button active */
+.ui-form[data-static] .ui-progress.is-full em { background: var(--violet); }
+.ui-form[data-static] .ui-send.is-ready { background: var(--violet); color: #fff; cursor: pointer; }
+.ui-form .ui-msg { min-height: 16px; }

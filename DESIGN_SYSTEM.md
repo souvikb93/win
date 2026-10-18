@@ -338,3 +338,6 @@ The testimonials sub-heading stays on one line above 900px wide (wraps on smalle
 
 ## Hero app screen
 - The browser mockup on Home is a real screenshot, one per language: `assets/brand/win-network-screen-en.webp` and `-de.webp` (2000 x 1254). CSS shows the one matching `html[lang]`. Replace both files together when the app UI changes.
+
+## Precise card (animated, replaces the static preview)
+Loops while on screen. Round 1: GTIN typed and accepted; bottle size typed as 0.85 L, flagged red ("Not a standard bottle size"), erased and retyped as 0.75 L (accepted); country shows Required, then "Germany" is typed and accepted; 3 of 3, bar turns violet, Send to Trader becomes active. Round 2: the record starts with the country missing (2 of 3, Required), "Germany" is typed, 3 of 3. Card height never changes (messages reserve their line). German: 0,85 L / 0,75 L, Deutschland, "Keine übliche Flaschengröße".

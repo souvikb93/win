@@ -58,6 +58,8 @@ window.WIN_DE = {
  "Set required and optional product fields to ensure suppliers provide the information your business needs.": "Definieren Sie Pflicht- und optionale Produktfelder, damit Lieferanten genau die Informationen liefern, die Ihr Unternehmen braucht.",
  "Product Data Requirements": "Anforderungen an die Produktdaten",
  "Product name": "Produktname",
+ "0.85 L": "0,85 L",
+ "Not a standard bottle size": "Keine übliche Flaschengröße",
  "Required": "Pflichtfeld",
  "GTIN": "GTIN",
  "Bottle size": "Flaschengröße",
