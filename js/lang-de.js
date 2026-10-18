@@ -291,7 +291,7 @@ window.WIN_DE = {
  "Configured forwarding rules help relevant requests reach your agency without repeated manual routing.": "Eingerichtete Weiterleitungsregeln sorgen dafür, dass relevante Anfragen Ihre Agentur ohne wiederholtes manuelles Weiterleiten erreichen.",
  "Discuss the Agency Model": "Agenturmodell besprechen",
  "Relevant Requests, Automatically Routed": "Relevante Anfragen, automatisch weitergeleitet",
- "Receive requests for represented products and prepare the data for your market.": "Erhalten Sie Anfragen für vertretene Produkte und bereiten Sie die Daten für Ihren Markt auf.",
+ "Receive requests for represented products and prepare the data for your market.": "Erhalten Sie Anfragen und bereiten Sie die Daten für Ihren Markt auf.",
  "Agency": "Agentur",
  "Forwarding rule enabled": "Weiterleitungsregel aktiv",
  "Prepared": "Aufbereitet",

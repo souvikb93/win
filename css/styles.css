@@ -2464,3 +2464,8 @@ html[lang="de"] .role-panel { min-height: 600px; }
   .cx-form-card .btn-block { height: 42px; }
   .cx-privacy { font-size: 12px; }
 }
+/* role preview subline: one line on desktop */
+.rv2-head span { max-width: none; }
+@media (min-width: 1001px) { .role-visual .rv2-head span { white-space: nowrap; font-size: 13.5px; } }
+@media (min-width: 1001px) and (max-width: 1279px) { .role-visual .rv2-head span { white-space: normal; } }
+@media (min-width: 1001px) { .role-visual .rv2-head span { font-size: 13px; } }
