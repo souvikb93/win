@@ -348,3 +348,6 @@ Loops while on screen, one pass: GTIN typed and accepted; bottle size typed as 0
 
 ## Naming: Workflow
 - The page at `solution.html` is called **Workflow** everywhere visible: nav item, footer link, page title, Home button "View workflow" (German "Workflow ansehen"). The Home line above it reads "See How WIN Connects Merchants and Producers." (German "So verbindet WIN Händler und Produzenten."). The file name stays `solution.html` so existing links keep working.
+
+## Shiny button (`.btn-shiny`)
+A light band sweeps across the border and face every 3 seconds (after 21st.dev "Shiny Button"). Used only on Home: "View workflow" (secondary, violet shine) and the closing "Book a demo" (primary on navy, white shine). Not a glow: nothing coloured sits around the button at rest. Off with reduced motion. Do not spread it to other buttons without asking.

@@ -2549,3 +2549,23 @@ html[lang="de"] .device-screen.shot-de { display: block; }
   .stack::after { height: 0; }
   .why-more { margin-top: calc(clamp(56px, 5.5vw, 80px) - 3px); }
 }
+
+/* Shiny button (after 21st.dev / Magic UI "Shiny Button"): a light band keeps sweeping across the border and the face.
+   Used on "View workflow" and the closing "Book a demo" on Home. */
+.btn-shiny { position: relative; overflow: hidden; isolation: isolate; --shine: 88, 68, 255; --sheen: 88, 68, 255; --sheen-a: .10; }
+.btn-primary.btn-shiny { --shine: 255, 255, 255; --sheen: 255, 255, 255; --sheen-a: .28; }
+.btn-shiny::before, .btn-shiny::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; }
+.btn-shiny::before {
+  padding: 1.5px; z-index: 1;
+  background: linear-gradient(-75deg, rgba(var(--shine), 0) 38%, rgba(var(--shine), .95) 50%, rgba(var(--shine), 0) 62%) 120% 0 / 300% 100% no-repeat;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  animation: shinySweep 3s linear infinite;
+}
+.btn-shiny::after {
+  z-index: 0;
+  background: linear-gradient(-75deg, rgba(var(--sheen), 0) 40%, rgba(var(--sheen), var(--sheen-a)) 50%, rgba(var(--sheen), 0) 60%) 120% 0 / 300% 100% no-repeat;
+  animation: shinySweep 3s linear infinite;
+}
+@keyframes shinySweep { 0% { background-position: 120% 0; } 55%, 100% { background-position: -20% 0; } }
+@media (prefers-reduced-motion: reduce) { .btn-shiny::before, .btn-shiny::after { animation: none; } }
