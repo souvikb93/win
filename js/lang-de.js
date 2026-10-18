@@ -100,6 +100,8 @@ window.WIN_DE = {
  "See how WIN works, step by step.": "So funktioniert WIN – Schritt für Schritt.",
  "View process": "Ablauf ansehen",
  "View solution": "Lösung ansehen",
+ "One Connected Ecosystem for the Beverage Industry": "Ein vernetztes Ökosystem für die Getränkebranche",
+ "From product data to compliance and commerce, EuvinoPRO connects solutions around WIN to help beverage businesses work smarter.": "Von Produktdaten über Compliance bis zum Handel: EuvinoPRO verbindet Lösungen rund um WIN, damit Getränkeunternehmen smarter arbeiten.",
  "One Connected Ecosystem. Built for the Beverage Industry": "Ein vernetztes Ökosystem. Gemacht für die Getränkebranche",
  "From product data and regulatory compliance to catalogues and commerce, EuvinoPRO brings connected solutions together around WIN to help your business work smarter.": "Von Produktdaten und Regulatorik bis zu Katalogen und Handel: EuvinoPRO bringt vernetzte Lösungen rund um WIN zusammen und hilft Ihrem Unternehmen, smarter zu arbeiten.",
  "Explore EuvinoPRO": "EuvinoPRO entdecken",
