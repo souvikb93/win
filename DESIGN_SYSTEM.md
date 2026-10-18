@@ -258,3 +258,5 @@ Testimonial controls are the three dots only (no arrows); the carousel also auto
 **No side section navigation:** the dotted side nav on the Home page was removed (owner request). Home sections are reached by scrolling only.
 **Platform copy (left column):** heading "One Connected Ecosystem. Built for the Beverage Industry." (44px max, three lines) and "From product data and regulatory compliance to catalogues and commerce, EuvinoPRO brings connected solutions together around WIN to help your business work smarter." The diagram is unchanged.
 **Section rhythm:** Testimonials has the same 140px bottom padding as other sections, so the gap before the closing card matches the others.
+
+**Testimonials copy:** heading "Better Product Data Starts Here." with sub-heading "200+ product attributes. One connected data workflow." First quote: "Product requests are clearer, data is easier to manage, and we spend less time chasing information." (Lena Hartmann, Nordwein Handel; the other two quotes are unchanged placeholders.)
