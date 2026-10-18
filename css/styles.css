@@ -1898,8 +1898,10 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 /* Why WIN: header is pinned only while the cards stack. It lives in .why-stage, which ends with the last card,
    so the header scrolls away together with it instead of showing below it. */
 @media (min-width: 1001px) {
-  .why-stage .stack::after { height: 200px; }
-  .why-stage .stack-item:last-child { height: auto; min-height: 0; }
+  .why-stage .stack::after { height: 120px; }
+  /* the header leaves only through the transform in home.js: give its sticky box extra room so the browser never releases it a second time */
+  .why-stage { padding-bottom: 100vh; margin-bottom: -100vh; }
+}
 }
 
 /* CTA panel background (after 21st.dev "Nice BG"): dark base, a soft glow, a woven hatch texture and film grain,
