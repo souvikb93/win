@@ -357,3 +357,29 @@ Pill above "Explore EuvinoPRO": three overlapping round portraits (the placehold
 
 - Ecosystem copy (current): heading "One Connected Ecosystem for the Beverage Industry." and body "From product data to compliance and commerce, EuvinoPRO connects solutions around WIN to help beverage businesses work smarter." (supersedes the earlier platform copy).
 - Ecosystem copy spacing (proximity hierarchy): heading → body 16px, body → trust badge 32px, trust badge → CTA 20px. Related items sit closer; the proof is a separate beat, and the CTA stays near it.
+
+## Spacing system (authoritative; supersedes older spacing values above)
+One scale, one set of tokens (`:root` in `css/styles.css`, block "Spacing system"). Use tokens, not new numbers.
+
+**Scale (px):** 4 · 8 · 12 · 16 · 20 · 24 · 32 · 40 · 48 · 56 · 64 · 80 · 112 · 140. Anything between is a bug.
+
+| Token | Value | Where |
+|---|---|---|
+| `--sp-h1-body` | 24 | page title → lead (Home hero, Workflow, Press, Contact) |
+| `--sp-h2-body` | 16 | section heading → lead (all sections, Why WIN header, CTA panel) |
+| `--sp-head-content` | 40 → 56 (4vw) | section head → its content |
+| `--sp-section` | 80 → 140 (11vw) | vertical padding of a full section |
+| `--sp-band` | 72 → 112 (8vw) | vertical padding of a slim band (customer logos), top = bottom |
+
+**Proximity rules (apply everywhere):**
+- Items that belong together sit closer than items that do not: heading + body 16, body → proof 32, proof → its CTA 20.
+- A control sits closer to what it controls than to the heading above it (Workflow role pills: head → pills 40, pills → card 24).
+- Gaps between sibling cards: 14 (gallery) or 20 (role/feature columns); inside a card: padding 32 (small), 48 (feature cards); caption blocks 6.
+- Last card → following line (Why WIN): 80 (5.5vw), equal item heights so cards lift together.
+- Forms: 44px fields, 16–24 between fields, label → field 6.
+
+**Edges:** content aligns to the 1152 container (144px at 1440). Nav, announcement bar and footer use the wider `--edge` (72px). The ecosystem section is full-bleed on purpose (the diagram needs the width) and aligns to the `--edge` like the nav.
+
+**Deliberate exceptions (do not "fix"):** Home hero (top 138 to clear nav + announcement bar, no bottom), Why WIN section (43 top because the sticky header sits there), closing CTA section (0 top, 72 bottom), page intros on Workflow and Press (81 top/bottom), Contact top section (one viewport tall).
+
+**Audit result (1440 wide, English):** heading → lead was 26/20/18/16 across pages, now 24 for every H1 and 16 for every H2; logos band was 128/112, now 112/112. Verified on Home, Workflow, Press and Contact; Contact still fits one viewport.

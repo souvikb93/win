@@ -2580,3 +2580,22 @@ html[lang="de"] .device-screen.shot-de { display: block; }
 .eco-copy { gap: 16px; }
 .eco-copy .trust-badge { margin-top: 16px; }
 .eco-copy .trust-badge + div { margin-top: 4px; }
+
+/* ===== Spacing system (single source of truth; see DESIGN_SYSTEM.md "Spacing system") ===== */
+:root {
+  --sp-h1-body: 24px;                       /* page title -> lead */
+  --sp-h2-body: 16px;                       /* section heading -> lead */
+  --sp-head-content: clamp(40px, 4vw, 56px);/* section head -> its content */
+  --sp-section: clamp(80px, 11vw, 140px);   /* vertical padding of a full section */
+  --sp-band: clamp(72px, 8vw, 112px);       /* vertical padding of a slim band (logos) */
+}
+.section-head { gap: var(--sp-h2-body); margin-bottom: var(--sp-head-content); }
+.hero-copy { gap: var(--sp-h1-body); }
+.gx-intro-inner { gap: var(--sp-h1-body); }
+.cx-intro h1 + .cx-lead { margin-top: calc(var(--sp-h1-body) - 18px); }
+.why-head { gap: var(--sp-h2-body); }
+.logos { padding: var(--sp-band) 0; }
+.logos p { margin-bottom: 40px; }
+/* Workflow roles: head -> pills 40, pills -> card 24 (the pills control the card, so they sit closer to it) */
+#solutions .section-head { margin-bottom: 40px; }
+#solutions .roles-tabs { margin-bottom: 24px; }
