@@ -305,3 +305,24 @@
     }, { threshold: thresholds }).observe(orbit);
   } else set(true);
 })();
+
+/* ---------- Platform cards: useanimations.com icons (Lottie), played as a loop on the shared 4 s clock ----------
+   Each icon's own hover animation plays through the first ~74 % of every 4 s cycle and then rests, in step with the
+   infinity icon in the hero. They are lit by the same clock, so all of them start together. */
+(function () {
+  var orbit = document.getElementById('ecoMods'); if (!orbit || !window.lottie) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var CYCLE = 4000, ACT = 2.97;
+  var anims = Array.prototype.slice.call(orbit.querySelectorAll('.lot')).map(function (box) {
+    return window.lottie.loadAnimation({ container: box, renderer: 'svg', loop: false, autoplay: false, path: 'assets/icons/' + box.getAttribute('data-icon') + '.json' });
+  });
+  if (reduce) { anims.forEach(function (a) { a.addEventListener('DOMLoaded', function () { a.goToAndStop(0, true); }); }); return; }
+  function play() {
+    if (!orbit.classList.contains('is-open')) return;
+    anims.forEach(function (a) { if (!a.isLoaded) return; a.setSpeed(a.getDuration() / ACT); a.goToAndPlay(0, true); });
+  }
+  /* line the beat up with the hero's infinity icon, so every loop on the page turns over together */
+  var wait = CYCLE;
+  try { var ref = document.querySelector('.loop-run').getAnimations()[0]; var t = document.timeline.currentTime; wait = CYCLE - (((t - ref.startTime) % CYCLE) + CYCLE) % CYCLE; } catch (e) {}
+  setTimeout(function () { play(); setInterval(play, CYCLE); }, wait);
+})();

@@ -2128,3 +2128,9 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 }
 @media (min-width: 701px) { .eco-orbit { max-width: 720px; width: 100%; justify-self: center; } }
 @media (min-width: 701px) and (max-width: 1260px) { #ecosystem .container.eco { grid-template-columns: 1fr; gap: 40px; } }
+
+/* Platform card icons: Lottie line icons, drawn in brand violet */
+.eco-module i.lot { display: grid; place-items: center; }
+.eco-module i.lot svg { width: 22px !important; height: 22px !important; transform: none !important; }
+.eco-module i.lot svg path { stroke: var(--violet) !important; stroke-width: 2px; }
+.eco-module i.lot svg path[fill]:not([fill="none"]) { fill: var(--violet) !important; }
