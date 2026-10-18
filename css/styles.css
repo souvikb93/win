@@ -2134,3 +2134,13 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .eco-module i.lot svg { width: 22px !important; height: 22px !important; transform: none !important; }
 .eco-module i.lot svg path { stroke: var(--violet) !important; stroke-width: 2px; }
 .eco-module i.lot svg path[fill]:not([fill="none"]) { fill: var(--violet) !important; }
+
+/* Testimonials: italic quote under a brand-violet quote mark; portrait, name, role and company below */
+.testi-q { width: 40px; height: 30px; fill: var(--violet); }
+.testi-slide { gap: 24px; }
+.testi-slide blockquote { font-style: italic; font-weight: 500; max-width: 30em; }
+.testi-av { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; padding: 0; background: var(--violet-100); box-shadow: 0 0 0 3px var(--surface), 0 0 0 4.5px var(--violet), 0 14px 28px -14px rgba(26,34,62,.45); margin-bottom: 14px; }
+.testi-slide figcaption b { font-size: 17px; }
+.testi-slide figcaption small { font-size: 14.5px; }
+.testi-slide figcaption .testi-co { color: var(--violet); font-weight: 600; margin-top: 2px; }
+@media (max-width: 600px) { .testi-q { width: 34px; height: 26px; } .testi-av { width: 64px; height: 64px; } }
