@@ -254,3 +254,7 @@ Data & Privacy page was removed (owner request). The security cards no longer ex
 **Testimonials:** the quote is italic under a large brand-violet quote mark. Below it: round portrait (placeholder stock portraits from randomuser.me, saved in `assets/testimonials/`), name, role in Title Case (Category Manager, Managing Director, Product Data Lead) and company in violet (made-up: Nordwein Handel, Weingut Sonnenhang, Vinara Import). Names, quotes and photos are placeholders: replace with real ones, with permission, before this is shown as fact.
 
 Testimonial controls are the three dots only (no arrows); the carousel also auto-advances while on screen.
+
+**No side section navigation:** the dotted side nav on the Home page was removed (owner request). Home sections are reached by scrolling only.
+**Platform copy (left column):** heading "One Connected Ecosystem. Built for the Beverage Industry." (44px max, three lines) and "From product data and regulatory compliance to catalogues and commerce, EuvinoPRO brings connected solutions together around WIN to help your business work smarter." The diagram is unchanged.
+**Section rhythm:** Testimonials has the same 140px bottom padding as other sections, so the gap before the closing card matches the others.

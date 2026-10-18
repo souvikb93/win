@@ -2144,3 +2144,9 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .testi-slide figcaption small { font-size: 14.5px; }
 .testi-slide figcaption .testi-co { color: var(--violet); font-weight: 600; margin-top: 2px; }
 @media (max-width: 600px) { .testi-q { width: 34px; height: 26px; } .testi-av { width: 64px; height: 64px; } }
+
+/* Same breathing room between Testimonials and the closing card as between the other sections */
+.testi { padding-bottom: clamp(80px, 11vw, 140px); }
+
+/* Platform heading is longer now: keep it to three lines in the copy column */
+#ecosystem .eco-copy h2 { font-size: clamp(32px, 3.2vw, 44px); line-height: 1.08; }
