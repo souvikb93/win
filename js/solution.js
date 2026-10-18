@@ -47,7 +47,12 @@
     ['09:41:03', '<span class="ok">Notification sent to the producer</span>'],
     ['09:41:03', 'Waiting for the producer ...']
   ];
-  function codeLine(l) { return '<div class="cl"><time>' + l[0] + '</time><span>' + l[1] + '</span></div>'; }
+  function codeSegments(html) {
+    var d = document.createElement('div'); d.innerHTML = html; var out = [];
+    Array.prototype.forEach.call(d.childNodes, function (n) { out.push({ text: n.textContent, cls: n.nodeType === 1 ? n.className : '' }); });
+    return out;
+  }
+  function codeLine(l) { return '<div class="cl"><time>' + l[0] + '</time><span class="txt">' + l[1] + '</span></div>'; }
 
   var MOMENTS = {
     'erp-new': {
@@ -63,8 +68,19 @@
     'win-route': {
       reset: function (v) { v.querySelector('[data-lines]').innerHTML = ''; },
       play: async function (v, alive) {
-        var box = v.querySelector('[data-lines]'); await wait(400);
-        for (var i = 0; i < CODE.length && alive(); i++) { box.insertAdjacentHTML('beforeend', codeLine(CODE[i])); await wait(520); }
+        var box = v.querySelector('[data-lines]'); await wait(500);
+        for (var i = 0; i < CODE.length && alive(); i++) {
+          var line = document.createElement('div'); line.className = 'cl is-typing';
+          line.innerHTML = '<time>' + CODE[i][0] + '</time><span class="txt"></span>';
+          box.querySelectorAll('.is-typing').forEach(function (p) { p.classList.remove('is-typing'); });
+          box.appendChild(line);
+          var txt = line.querySelector('.txt'), segs = codeSegments(CODE[i][1]);
+          for (var s = 0; s < segs.length && alive(); s++) {          /* typed one character at a time, keeping the colours */
+            var el = document.createElement('span'); if (segs[s].cls) el.className = segs[s].cls; txt.appendChild(el);
+            for (var c = 0; c < segs[s].text.length && alive(); c++) { el.textContent += segs[s].text[c]; await wait(segs[s].text[c] === ' ' ? 14 : 24); }
+          }
+          await wait(320);
+        }
       },
       end: function (v) { v.querySelector('[data-lines]').innerHTML = CODE.map(codeLine).join(''); }
     },

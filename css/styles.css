@@ -2326,3 +2326,9 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 
 /* step headings: longer, still one line; the size eases down on narrower screens so the longest always fits */
 @media (min-width: 701px) { .tl-body h3 { font-size: clamp(24px, 2.6vw, 28px); } }
+
+/* terminal typing: a block cursor follows the line being typed and keeps blinking at the end */
+.code .cl.is-typing .txt::after { content: ""; display: inline-block; width: 8px; height: 1.05em; margin-left: 2px; vertical-align: -3px; background: rgba(255,255,255,.85); animation: caretBlink 1s steps(1) infinite; }
+@keyframes caretBlink { 50% { opacity: 0; } }
+.code .txt span { color: inherit; } .code .txt .hl { color: #b8adff; } .code .txt .ok { color: #7fd6e8; }
+@media (prefers-reduced-motion: reduce) { .code .cl.is-typing .txt::after { animation: none; } }
