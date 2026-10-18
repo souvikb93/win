@@ -38,10 +38,10 @@
   function fillInputs(v) { qa('.inp[data-type]', v).forEach(function (i) { i.querySelector('.tv').textContent = i.getAttribute('data-type'); i.classList.add('is-ok'); }); }
 
   var CODE = [
-    ['09:41:02', 'Request <span class="hl">40-11873</span> from the trader'],
+    ['09:41:02', 'Request <span class="hl">40-11873</span> from the merchant'],
     ['09:41:02', 'Article: Riesling, dry 2025'],
     ['09:41:02', 'Producer matched'],
-    ['09:41:02', '41 required fields set by the trader'],
+    ['09:41:02', '41 required fields set by the merchant'],
     ['09:41:02', 'Request validated'],
     ['09:41:03', 'Notification queued'],
     ['09:41:03', '<span class="ok">Notification sent to the producer</span>'],
