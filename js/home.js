@@ -1,12 +1,26 @@
 (function () {
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- Hero: floating event cards cycle ---------- */
-  var floats = document.querySelectorAll('.float');
+  /* ---------- Hero: advantage cards slide in from the sides as you scroll ---------- */
+  var floats = Array.prototype.slice.call(document.querySelectorAll('.float'));
+  var flTick = false;
+  function updateFloats() {
+    flTick = false;
+    var vh = window.innerHeight;
+    floats.forEach(function (f) {
+      var top = f.getBoundingClientRect().top;
+      var p = reduceMotion ? 1 : Math.min(1, Math.max(0, (vh * 0.9 - top) / (vh * 0.26)));
+      f.style.setProperty('--p', (1 - Math.pow(1 - p, 3)).toFixed(3));
+    });
+  }
+  window.addEventListener('scroll', function () { if (!flTick) { flTick = true; requestAnimationFrame(updateFloats); } }, { passive: true });
+  window.addEventListener('resize', updateFloats);
+  updateFloats();
+
+  /* the table row on the device keeps cycling through its states */
   var flashRow = document.querySelector('tr[data-row="0"]');
   var fi = 0;
-  function cycleFloats() {
-    floats.forEach(function (f, i) { f.classList.toggle('is-on', i <= fi); });
+  function cycleRow() {
     if (flashRow) {
       var status = flashRow.querySelector('.status');
       var bar = flashRow.querySelector('.bar');
@@ -19,15 +33,10 @@
       flashRow.classList.add('is-flash');
       setTimeout(function () { flashRow.classList.remove('is-flash'); }, 900);
     }
-    fi = (fi + 1) % (floats.length + 1);
-    if (fi === floats.length) {
-      setTimeout(function () { floats.forEach(function (f) { f.classList.remove('is-on'); }); fi = 0; }, 2600);
-      setTimeout(cycleFloats, 3600);
-    } else {
-      setTimeout(cycleFloats, 2000);
-    }
+    fi = (fi + 1) % 3;
+    setTimeout(cycleRow, 2400);
   }
-  setTimeout(cycleFloats, reduceMotion ? 0 : 1300);
+  setTimeout(cycleRow, reduceMotion ? 0 : 1300);
 
   /* ---------- Hero: product screen tilts flat as you scroll (container-scroll animation) ---------- */
   var device = document.getElementById('device');
