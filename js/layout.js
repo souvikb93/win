@@ -82,6 +82,10 @@
             '<li><a href="https://www.win.wine/datenschutzerklaerung/">Privacy policy</a></li>' +
           '</ul></div>' +
         '</div>' +
+        '<div class="footer-bottom">' +
+          '<span>© 2026 Euvino GmbH · Inselstraße 10 · 10179 Berlin</span>' +
+          '<span>Concept redesign · Not the official website</span>' +
+        '</div>' +
       '</div>' +
     '</footer>';
 

@@ -1975,3 +1975,7 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .testi { padding-bottom: clamp(56px, 8vh, 88px); }
 .cta-end { padding-bottom: clamp(56px, 8vh, 88px); }
 .cta-panel { padding-top: clamp(64px, 11vh, 112px); padding-bottom: clamp(64px, 11vh, 112px); }
+
+/* Footer: bottom bar is back, with more air in the footer; the CTA card keeps its size */
+.footer { padding: clamp(56px, 8vh, 80px) 0 clamp(28px, 4vh, 40px); }
+.footer-bottom { margin-top: clamp(40px, 6vh, 56px); padding-top: 24px; }

@@ -229,6 +229,6 @@ Data & Privacy page was removed (owner request). The security cards no longer ex
 
 **Platform circle menu:** the WIN core is a button (`.eco-core`, aria-expanded). Closed: just the small violet WIN circle with a dashed ring and a "Click to explore" hint. Open: each module spirals out of WIN on a circular path (sweeps 160° round the centre while its radius grows, slight overshoot, 70ms stagger); the dashed ring turns half a circle, the orbit rings unfold with a quarter turn, spokes follow. Close reverses it: modules spiral back in, last one first. Click again or Escape. After 21st.dev Circle Menu. On phones the modules drop down as a list. Logic in `js/home.js` (end).
 
-**Footer:** no Log in link, no bottom bar (copyright / "Concept redesign" line removed). Spacing of the CTA section, CTA card and footer scales with viewport height so the card and the footer fit on one screen together (checked down to 1280x680).
+**Footer:** no Log in link. Bottom bar (copyright + "Concept redesign · Not the official website") is back, with roomier footer padding. The CTA card is taller with equal gaps above and below; card + footer fit one screen at 1440x900.
 
 **Side edge:** nav, announcement bar and footer share one left/right edge, `--edge: clamp(20px, 3vw, 48px)` (43px at 1440, 20px on phones). The announcement content is left-aligned from that edge, its close icon sits on the right edge, and the footer is full width inside the same edge.
