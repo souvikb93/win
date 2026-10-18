@@ -244,3 +244,5 @@ Data & Privacy page was removed (owner request). The security cards no longer ex
 **Customer logo hover:** hovering a logo paints a splash of brand violet that follows the pointer, painted only inside the logo's own shape (an overlay `.logo-splash` masked by the logo image, radial gradient at the pointer, radius grows to 170px over .55 s and shrinks on leave). The marquee never pauses. Hidden on touch devices. Logic at the end of the logo carousel block in `js/home.js`.
 
 **Hero card icons:** solid brand-violet tile with white line icons (all three, including the looping infinity icon). No teal or tinted tiles.
+
+**Logo middle line:** logos are aligned by their ink, not their image box. Each tile can carry `--dy` (e.g. Hawesko +3.6px, Schlumberger -2.9px, Pellegrini -4.7px) so the average of each logo's bounding-box centre and visual-mass centre lands on the same line (within about 0.3px). Measure with a canvas alpha scan when adding a logo.

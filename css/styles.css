@@ -2076,3 +2076,6 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .float-icon svg, .float-icon.violet svg, .float-icon.teal svg, .float-icon.amber svg { stroke: #fff; }
 .ico-loop path { stroke: #fff; }
 .loop-track { opacity: .35; }
+
+/* Logos share one optical middle line: --dy nudges a logo whose ink is not centred in its own box (set per logo in index.html) */
+.logo-tile img, .logo-splash { translate: 0 var(--dy, 0px); }
