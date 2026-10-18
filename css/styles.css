@@ -2491,3 +2491,7 @@ a.cx-card:hover { box-shadow: var(--card-shadow-hover), inset 0 0 0 1px var(--li
 .gx-cap small { color: rgba(255,255,255,.88); font-size: 12px; }
 .gx-clip-kicker { opacity: 1; font-size: 12px; color: rgba(255,255,255,.9); }
 .gx-clip.is-orange .gx-clip-kicker, .gx-clip.is-light .gx-clip-kicker { color: var(--navy); }
+
+/* press: nine covers at 4:3 so the whole image shows */
+.gx-tile { aspect-ratio: 4 / 3; }
+.gx-tile img { object-position: center top; }

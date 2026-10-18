@@ -328,4 +328,4 @@ The testimonials sub-heading stays on one line above 900px wide (wraps on smalle
 
 ## Press page cards
 - Eyebrows on press cards (publication · date on the hover caption, kicker on typographic cards) are white on dark/violet and navy on light cards, 12px, never light purple.
-- Tile frame is 16:11 (all tiles). Cover images: 1600 x 1100 px, JPG/WebP, under ~250 KB. Keep key content inside the central 90% (rounded corners, hover zoom 1.04, caption gradient over the bottom 35%).
+- Tile frame is 4:3, nine tiles in three columns (rows read left to right). Cover images 1600 x 1191 px WebP (source 1720 x 1280, scaled), named `news-01..09.webp`. Each tile links to the original article (new tab).
