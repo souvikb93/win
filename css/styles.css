@@ -2547,5 +2547,5 @@ html[lang="de"] .device-screen.shot-de { display: block; }
 @media (min-width: 901px) {
   .stack-item, .stack-item:last-child { height: 520px; }
   .stack::after { height: 0; }
-  .why-more { margin-top: calc(clamp(80px, 8vw, 120px) - 3px); }
+  .why-more { margin-top: calc(clamp(56px, 5.5vw, 80px) - 3px); }
 }
