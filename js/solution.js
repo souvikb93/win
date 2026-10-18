@@ -71,19 +71,18 @@
     'mail': {
       reset: function (v) {
         var row = v.querySelector('.mx-row.is-new'); row.classList.add('is-collapsed'); row.classList.remove('is-fresh');
-        v.querySelector('.mx-badge').classList.remove('is-on', 'is-pop'); v.querySelector('.mx-toast').classList.remove('is-show');
+        v.querySelector('.mx-drawer').classList.remove('is-show');
       },
       play: async function (v, alive) {
-        var row = v.querySelector('.mx-row.is-new'), badge = v.querySelector('.mx-badge'), toast = v.querySelector('.mx-toast');
+        var row = v.querySelector('.mx-row.is-new'), drawer = v.querySelector('.mx-drawer');
         await wait(900); if (!alive()) return;
-        toast.classList.add('is-show');                       /* the banner drops in, like a phone notification */
-        await wait(1300); if (!alive()) return;
-        badge.classList.add('is-on', 'is-pop');               /* the Inbox count appears */
+        drawer.classList.add('is-show');                      /* a "New Mail" drawer slides in at the bottom right */
+        await wait(1100); if (!alive()) return;
         row.classList.remove('is-collapsed'); row.classList.add('is-fresh');   /* the mail slides in at the top, the rest move down */
-        await wait(500); toast.classList.remove('is-show');
+        await wait(700); drawer.classList.remove('is-show');  /* the drawer goes away */
         await wait(600);
       },
-      end: function (v) { v.querySelector('.mx-row.is-new').classList.remove('is-collapsed'); v.querySelector('.mx-badge').classList.add('is-on'); }
+      end: function (v) { v.querySelector('.mx-row.is-new').classList.remove('is-collapsed'); }
     },
     'form': {
       reset: function (v) { clearInputs(v); var b = v.querySelector('[data-btn]'); b.textContent = 'Send to WIN'; b.classList.remove('is-done'); v.querySelector('[data-count]').textContent = '32 / 41 required fields'; },
