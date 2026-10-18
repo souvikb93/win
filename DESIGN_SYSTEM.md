@@ -356,3 +356,4 @@ A light band sweeps across the border and face every 3 seconds (after 21st.dev "
 Pill above "Explore EuvinoPRO": three overlapping round portraits (the placeholder testimonial photos) and "Trusted by 300+ businesses" (German "300+ Unternehmen vertrauen uns"). Subtle white-on-navy pill, hairline border, no glow.
 
 - Ecosystem copy (current): heading "One Connected Ecosystem for the Beverage Industry." and body "From product data to compliance and commerce, EuvinoPRO connects solutions around WIN to help beverage businesses work smarter." (supersedes the earlier platform copy).
+- Ecosystem copy spacing (proximity hierarchy): heading → body 16px, body → trust badge 32px, trust badge → CTA 20px. Related items sit closer; the proof is a separate beat, and the CTA stays near it.

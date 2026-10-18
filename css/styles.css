@@ -2575,3 +2575,8 @@ html[lang="de"] .device-screen.shot-de { display: block; }
 .trust-avatars { display: inline-flex; flex: none; }
 .trust-avatars img { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 2px solid var(--navy-900); }
 .trust-avatars img + img { margin-left: -10px; }
+
+/* Ecosystem copy: spacing hierarchy. Heading + body read as one group (16), proof stands apart (32 above), CTA sits close to the proof it backs (20). */
+.eco-copy { gap: 16px; }
+.eco-copy .trust-badge { margin-top: 16px; }
+.eco-copy .trust-badge + div { margin-top: 4px; }
