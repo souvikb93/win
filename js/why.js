@@ -55,9 +55,8 @@
   }
 
   /* ---------- Precise ---------- */
-  /* Two rounds loop. Round 1: GTIN and bottle size are typed; the bottle size is wrong (0.85 L), WIN flags it, it is
-     corrected to 0.75 L, then the country is entered and the record is complete. Round 2: the record starts with
-     the country missing (flagged Required), the country is entered, and the record is complete. */
+  /* One loop: the GTIN is typed and accepted; the bottle size is typed wrong (0.85 L), WIN flags it, it is corrected to
+     0.75 L and accepted; the country is typed and accepted; 3 of 3, bar full, Send to Trader active. */
   var form = document.querySelector('.ui-form');
   if (form) {
     var f = {}; form.querySelectorAll('.ui-field').forEach(function (el) { f[el.getAttribute('data-f')] = el; });
@@ -92,13 +91,13 @@
     function finalState() {
       setVal(f.gtin, '4006381333931'); state(f.gtin, 'is-ok', 'Valid');
       setVal(f.size, T('0.75 L')); state(f.size, 'is-ok', 'Valid');
-      setVal(f.country, T('Empty'), true); state(f.country, 'is-err', 'Required');
-      setProgress(2);
+      setVal(f.country, T('Germany')); state(f.country, 'is-ok', 'Valid');
+      setProgress(3);
     }
     async function enterCountry(alive) {
       await type(f.country, T('Germany'), alive, 90); if (!alive()) return;
       state(f.country, 'is-ok', 'Valid'); setProgress(3);
-      await wait(3000);
+      await wait(3600);
     }
     if (reduce) finalState();
     else loopWhileVisible(form, async function (alive) {
@@ -110,13 +109,7 @@
       await wait(1700); if (!alive()) return;
       await erase(f.size, alive); if (!alive()) return;
       await type(f.size, T('0.75 L'), alive, 110); if (!alive()) return; state(f.size, 'is-ok', 'Valid'); setProgress(2);
-      await wait(600); if (!alive()) return;
-      state(f.country, 'is-err', 'Required');
-      await wait(1200); if (!alive()) return;
-      await enterCountry(alive); if (!alive()) return;
-      /* round 2: the record arrives with the country missing */
-      finalState();
-      await wait(1800); if (!alive()) return;
+      await wait(700); if (!alive()) return;
       await enterCountry(alive);
     }, clearAll);
   }
