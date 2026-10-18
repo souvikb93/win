@@ -317,3 +317,8 @@ The testimonials sub-heading stays on one line above 900px wide (wraps on smalle
 - Mockup inputs and values (steps 1–6, role previews) use the UI sans font. Mono is only for the terminal and URL chips.
 - Role preview panels: head, rows, records, flow all share one left/right edge (`.role-visual.rv2` single `minmax(0,1fr)` column); both panel columns equal width. Rows must not keep a slide-in `translateX` after animating.
 - Solution page ends with the footer; no closing CTA panel.
+
+## Contact page
+- Info cards: icon + value only (no "Call us / Email us / Visit us" labels), one line each, all 64px tall and equal width.
+- Section label "Contact EuvinoPRO" is Title Case, not uppercase.
+- Form: one field per row (Full name, Email, Company, I'm contacting you as, Message); no helper line under the heading.

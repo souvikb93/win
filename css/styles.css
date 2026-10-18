@@ -2423,3 +2423,14 @@ html[lang="de"] .role-panel { min-height: 600px; }
 @media (min-width: 1001px) { .role-panel { grid-template-columns: minmax(0,1fr) minmax(0,1fr); } }
 .role-visual .rv2 { width: 100%; justify-self: stretch; }
 .role-visual.rv2 { grid-template-columns: minmax(0, 1fr); justify-content: stretch; }
+
+/* contact v2: plain equal info cards, single-column form */
+.cx-label { text-transform: none; font-family: var(--font); letter-spacing: 0; font-size: 15px; font-weight: 600; color: var(--ink-2); }
+.cx-cards { max-width: 440px; width: 100%; }
+.cx-card { height: 64px; box-sizing: border-box; width: 100%; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-strong); }
+.cx-card b { font-size: 15px; white-space: nowrap; }
+.cx-form-card { padding: clamp(26px, 3vw, 40px); }
+.cx-form-card form { gap: 18px; }
+.cx-form-head { margin-bottom: 4px; }
+.fld textarea { min-height: 140px; }
+@media (max-width: 600px) { .cx-card b { white-space: normal; font-size: 14.5px; } .cx-card { height: auto; min-height: 64px; } }
