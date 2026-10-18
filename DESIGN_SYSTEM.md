@@ -332,3 +332,6 @@ The testimonials sub-heading stays on one line above 900px wide (wraps on smalle
 - Press grid: three columns move together (no staggered middle column), so rows line up and every tile gap is the same (14px max, both directions). Page has no elastic overscroll (`overscroll-behavior-y: none`) so no blank band can show under the footer.
 - Never delete the base `.cursor { position: fixed … }` rule: without it the press cursor label sits in the page flow and the pointer position makes the page scrollable below the footer.
 - Press cards: cover (4:3) on top, then source · date (12px muted caps) and a Title Case headline (17px/600, max two lines) always visible, in a fixed-height caption so every card is the same size. Header intro has a larger gap above the gallery.
+
+## Why WIN: Fast card stability
+- The Fast card never changes size while its five steps run: every step row is a fixed 62px (56px on phones), the "In Progress / Done" label has a fixed width, the badge has a fixed minimum width, and the step text clamps to two lines. All three stack cards share one minimum height (460px max). Verified in English and German at 1440, 1100 and 375.

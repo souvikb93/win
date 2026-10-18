@@ -2513,3 +2513,12 @@ html { overscroll-behavior-y: none; }
 /* press cursor label: must stay out of the page flow (restores the rule lost in an earlier cleanup; it was adding scrollable space under the footer) */
 .cursor { position: fixed; left: 0; top: 0; z-index: 120; pointer-events: none; opacity: 0; transition: opacity .2s; }
 @media (max-width: 700px) { .gx-cap { min-height: 104px; } .gx-cap small { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; } }
+
+/* Why WIN: the Fast card never changes size while its steps run (fixed rows, fixed badge and state widths) */
+.stack-card { min-height: min(460px, calc(100vh - var(--stack-top) - 90px)); }
+.ui-activity .act li { height: 62px; box-sizing: border-box; padding-top: 0; padding-bottom: 0; }
+.ui-activity .act li::before { top: 38px; bottom: -24px; }
+.ui-activity .act-msg { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.3; }
+.ui-activity .act-state { min-width: 84px; white-space: nowrap; }
+.ui-activity .ui-count { min-width: 104px; text-align: center; white-space: nowrap; }
+@media (max-width: 600px) { .ui-activity .act li { height: 56px; } .ui-activity .act-state { min-width: 0; } }
