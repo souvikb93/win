@@ -2481,3 +2481,8 @@ html[lang="de"] .role-panel { min-height: 600px; }
 a.cx-card:hover { box-shadow: var(--card-shadow-hover), inset 0 0 0 1px var(--line-strong); }
 @media (min-width: 1001px) { .cx-form-card { padding-left: var(--card-pad); padding-right: var(--card-pad); } }
 .cx-ico { border-radius: 12px; }
+
+/* contact: one continuous background from the form section into the FAQ */
+.cx { overflow: visible; }
+.cx .hero-bg { bottom: -260px; -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 60%, transparent 100%); mask-image: linear-gradient(to bottom, #000 0, #000 60%, transparent 100%); }
+.cx-faq { border-top: 0; position: relative; z-index: 1; }
