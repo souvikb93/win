@@ -2183,3 +2183,5 @@ body[data-page="home"] .hero { padding-top: calc(clamp(56px, 8vw, 96px) + 42px);
 .act li.is-final .act-msg { font-weight: 600; }
 .act li.is-final .act-state { font-weight: 600; }
 @media (max-width: 700px) { .ui-activity[data-static] .ui-head > b { white-space: normal; } }
+/* the typed fields keep a fixed height while the loop runs; the empty placeholder stays muted */
+.ui-form .ui-val.ui-empty { color: var(--ink-3); }
