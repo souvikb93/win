@@ -339,8 +339,8 @@ The testimonials sub-heading stays on one line above 900px wide (wraps on smalle
 ## Hero app screen
 - The browser mockup on Home is a real screenshot, one per language: `assets/brand/win-network-screen-en.webp` and `-de.webp` (2000 x 1254). CSS shows the one matching `html[lang]`. Replace both files together when the app UI changes.
 
-## Precise card (animated, replaces the static preview)
-Loops while on screen, one pass: GTIN typed and accepted; bottle size typed as 0.85 L, flagged red ("Not a standard bottle size"), erased and retyped as 0.75 L (accepted); "Germany" typed and accepted (no "Required" flag on country); 3 of 3, bar turns violet, Send to Trader becomes active; then it restarts. Card height never changes. German: 0,85 L / 0,75 L, Deutschland, "Keine übliche Flaschengröße".
+## Precise card (animated, final story)
+Loops while on screen, one pass: GTIN typed → valid; bottle size typed wrong (0.85 L) → red "Not a standard bottle size" → erased → 0.75 L → valid (2 of 3); the user presses **Send to Trader** with the country empty → the button refuses (short shake) and the country field turns red with "This is a required field" under it; "Germany" is typed → valid; 3 of 3, bar violet, Send turns active, is pressed → **success green with a drawn tick, "Sent"**; hold, then restart. The country field has **no placeholder and no "Empty" text** (an empty box until typed). German: 0,85 L / 0,75 L, Deutschland, "Keine übliche Flaschengröße", "Dies ist ein Pflichtfeld", "Gesendet". Card height and the Send button's layout width never change. Reduced motion shows the finished state.
 
 ## Home: end of the Why WIN stack
 - Gap from the last (Fast) card to "See how WIN works, step by step." is clamp(56px, 5.5vw, 80px) (about 79px at 1440), 56px on phones; the button reads "View solution" (matches the nav item "Solution"; German "Lösung ansehen").

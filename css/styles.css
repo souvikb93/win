@@ -2660,3 +2660,11 @@ html[lang="de"] .device-screen.shot-de { display: block; }
 @media (max-width: 700px) { .float b, .float small { white-space: normal; } }
 /* press gallery: breathing room above the first row so it never touches the nav */
 .gx-grid { padding-top: clamp(20px, 3.5vh, 36px); }
+
+/* Precise card: Send button keeps one size through its states; refuses with a shake; success = green with a drawn tick */
+.ui-send { min-width: 148px; justify-content: center; }
+.ui-form .ui-send.is-sent { background: var(--success-600); color: #fff; opacity: 1; animation: successPop .45s var(--ease); }
+.ui-form .ui-send .btn-tick { width: 18px; height: 18px; }
+.ui-send.is-shake { animation: sendShake .42s var(--ease); }
+@keyframes sendShake { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(3px); } }
+@media (prefers-reduced-motion: reduce) { .ui-send.is-shake { animation: none; } }

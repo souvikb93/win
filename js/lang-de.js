@@ -65,6 +65,7 @@ window.WIN_DE = {
  "Product name": "Produktname",
  "0.85 L": "0,85 L",
  "Not a standard bottle size": "Keine übliche Flaschengröße",
+ "This is a required field": "Dies ist ein Pflichtfeld",
  "Required": "Pflichtfeld",
  "GTIN": "GTIN",
  "Bottle size": "Flaschengröße",
