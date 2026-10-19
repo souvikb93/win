@@ -2644,3 +2644,12 @@ html[lang="de"] .device-screen.shot-de { display: block; }
   .cx-form-card .btn-block + .cx-privacy { margin-top: -4px; }
 }
 @media (max-width: 600px) { .cx-form-card { padding: 24px; } .cx-form-card form { gap: 20px; } }
+
+/* Contact card icons: useanimations (Lottie) icon replaces the static SVG once loaded, recoloured to the accent, plays on hover/focus */
+.cx-ico { position: relative; }
+.cx-ico .cx-lot { display: none; width: 22px; height: 22px; }
+.cx-ico.has-lottie > svg { display: none; }
+.cx-ico.has-lottie .cx-lot { display: block; }
+.cx-lot svg { width: 22px; height: 22px; display: block; }
+.cx-lot svg path, .cx-lot svg circle, .cx-lot svg line, .cx-lot svg polyline, .cx-lot svg rect { stroke: var(--violet) !important; }
+.cx-lot svg [fill]:not([fill="none"]) { fill: var(--violet) !important; }
