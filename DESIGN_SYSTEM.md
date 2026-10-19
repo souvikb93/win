@@ -405,3 +405,7 @@ No shrunken "all nine" overview (rejected: narrow column with empty sides). The 
 - Press gallery top padding: `clamp(20px, 3.5vh, 36px)` above the first row (≈31px at 1440×900) so the first row never touches the nav while resting; the final rest still leaves 32px under the last row.
 - German copy fixes (owner-supplied): nav item "Home" stays "Home" in German; Home intro "WIN vernetzt Getränkehersteller mit ihren Lieferanten und ermöglicht einen digitalen, effizienten und zuverlässigen Austausch von Produktinformationen."; Workflow: "Weniger Nachhaken", agency point "WIN leitet Anfragen zu den von Ihnen vertriebenen Produkten anhand der vom Hersteller festgelegten Regeln automatisch an Sie weiter.", "Weniger manueller Abstimmungsaufwand" with "Einmal festgelegte Weiterleitungsregeln sorgen dafür, dass relevante Anfragen direkt bei Ihrer Agentur eingehen – ohne dass sie jedes Mal manuell weitergeleitet werden müssen."
 - German logo-strip line: "Diese Unternehmen vertrauen auf WIN" (English: "Trusted By Leading Wine Merchants, Importers and Retailers").
+
+## Browser tab
+- Favicon: the white WIN mark on a **brand violet** (`#5844FF`) rounded square (never navy/black). The link carries `?v=2` so browsers refetch after a change; bump it whenever the icon changes.
+- Tab titles are short and brand-first so Chrome never cuts them: `WIN | Home`, `WIN | Workflow`, `WIN | Press`, `WIN | Contact` (German `WIN | Presse`, `WIN | Kontakt`). The long tagline lives in the meta description, not the title.
