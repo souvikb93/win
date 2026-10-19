@@ -33,7 +33,7 @@
     grid.style.transform = 'rotateX(' + rx.toFixed(2) + 'deg) scale(' + sc.toFixed(4) + ')';
     var t = range(p, 0.5, 0.95);
     cols.forEach(function (c) {
-      var y1 = Math.min(0, frameH - c.offsetHeight - 32);
+      var y1 = Math.min(0, frameH - (c.offsetTop + c.offsetHeight) - 32);
       c.style.transform = 'translateY(' + lerp(0, y1, t).toFixed(1) + 'px)';
     });
   }

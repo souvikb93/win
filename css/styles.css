@@ -2658,3 +2658,5 @@ html[lang="de"] .device-screen.shot-de { display: block; }
 .float { max-width: none; width: max-content; box-sizing: border-box; padding: 12px 20px 12px 12px; }
 @media (max-width: 900px) { .float { max-width: calc(100vw - 32px); padding: 10px 16px 10px 10px; } }
 @media (max-width: 700px) { .float b, .float small { white-space: normal; } }
+/* press gallery: breathing room above the first row so it never touches the nav */
+.gx-grid { padding-top: clamp(20px, 3.5vh, 36px); }

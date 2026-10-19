@@ -402,3 +402,4 @@ One emerald green (a cooler green that sits comfortably next to the brand violet
 
 ## Press gallery: full width, every card seen individually
 No shrunken "all nine" overview (rejected: narrow column with empty sides). The grid always stays at full page width. Beats (p = progress through the section): 0–.35 the tilt flattens and the grid settles from 1.2 to 1; .35–.50 rest, top row fully in view; .50–.95 all columns scroll up together so every row passes fully through the frame; .95–1 rest, last row fully in view. Columns share one rhythm. Verified at 1440×900 by sampling the scroll: all nine cards are fully inside the frame at some point (9/9), tile width 459, grid width = viewport.
+- Press gallery top padding: `clamp(20px, 3.5vh, 36px)` above the first row (≈31px at 1440×900) so the first row never touches the nav while resting; the final rest still leaves 32px under the last row.
