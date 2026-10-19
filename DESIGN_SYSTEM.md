@@ -408,4 +408,4 @@ No shrunken "all nine" overview (rejected: narrow column with empty sides). The 
 
 ## Browser tab
 - Favicon: the white WIN mark on a **brand violet** (`#5844FF`) rounded square (never navy/black). The link carries `?v=2` so browsers refetch after a change; bump it whenever the icon changes.
-- Tab titles are short and brand-first so Chrome never cuts them: `WIN | Home`, `WIN | Workflow`, `WIN | Press`, `WIN | Contact` (German `WIN | Presse`, `WIN | Kontakt`). The long tagline lives in the meta description, not the title.
+- Tab title is just `WIN` on every page and in both languages (the favicon already carries the brand; the page is told apart by its content). The long tagline lives in the meta description.
