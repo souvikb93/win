@@ -2619,3 +2619,28 @@ html[lang="de"] .device-screen.shot-de { display: block; }
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.3l2.2 2.2 4.8-4.8' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.3l2.2 2.2 4.8-4.8' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat; }
 @media (prefers-reduced-motion: reduce) { .btn-tick circle, .btn-tick path { animation: none; stroke-dashoffset: 0; } .btn-fake.is-done { animation: none; } }
+
+/* contact form card v4: one padding on all four sides, one gap between every row, shorter message box */
+.cx-form-card { padding: var(--card-pad); }
+.cx-form-card form { gap: 24px; }
+.cx-form-head { margin-bottom: 0; }
+.fld { gap: 6px; }
+.fld textarea { min-height: 96px; height: 96px; resize: none; }
+.cx-form-card .btn-block + .cx-privacy { margin-top: -8px; }
+@media (min-width: 1001px) {
+  .cx-form-card { padding: var(--card-pad); }
+  .cx-form-card form { gap: 24px; }
+  .fld { gap: 6px; }
+  .fld input, .fld select { height: 44px; }
+  .fld textarea { min-height: 96px; height: 96px; }
+  .cx-form-head h2 { font-size: 26px; }
+}
+/* short screens step the whole card down one notch together (padding and every gap), never one value alone */
+@media (min-width: 1001px) and (max-height: 760px) {
+  .cx-form-card { padding: 24px 32px; }
+  .cx-form-card form { gap: 16px; }
+  .fld textarea { min-height: 80px; height: 80px; }
+  .cx-form-card .btn-block { height: 48px; }
+  .cx-form-card .btn-block + .cx-privacy { margin-top: -4px; }
+}
+@media (max-width: 600px) { .cx-form-card { padding: 24px; } .cx-form-card form { gap: 20px; } }
