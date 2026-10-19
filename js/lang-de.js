@@ -48,7 +48,7 @@ window.WIN_DE = {
  "Connects With Your Systems": "Verbindet sich mit Ihren Systemen",
  "The WIN web app: a merchant's network of producers with request and data status for each one": "Die WIN Web-App: das Produzentennetzwerk eines Händlers mit Anfrage- und Datenstatus je Produzent",
  "Customers": "Kunden",
- "Trusted By Leading Wine Merchants, Importers and Retailers": "Das Vertrauen führender Weinhändler, Importeure und Einzelhändler",
+ "Trusted By Leading Wine Merchants, Importers and Retailers": "Diese Unternehmen vertrauen auf WIN",
  "Hawesko": "Hawesko",
  "Schlumberger": "Schlumberger",
  "Pellegrini": "Pellegrini",
