@@ -409,3 +409,4 @@ No shrunken "all nine" overview (rejected: narrow column with empty sides). The 
 ## Browser tab
 - Favicon: the white WIN mark on a **brand violet** (`#5844FF`) rounded square (never navy/black). The link carries `?v=2` so browsers refetch after a change; bump it whenever the icon changes.
 - Tab title is just `WIN` on every page and in both languages (the favicon already carries the brand; the page is told apart by its content). The long tagline lives in the meta description.
+- German alignment with euvinopro.eu (owner-approved 2026-10-27): "Getränkebranche" → **"Getränkeindustrie"** everywhere (as on the parent site); contact button "Nachricht senden" (site wording); hero second button "Workflow ansehen"; terminal line "Warten auf den Produzenten …"; logo aria-label "WIN-Startseite"; status "Waiting" → "Ausstehend".
